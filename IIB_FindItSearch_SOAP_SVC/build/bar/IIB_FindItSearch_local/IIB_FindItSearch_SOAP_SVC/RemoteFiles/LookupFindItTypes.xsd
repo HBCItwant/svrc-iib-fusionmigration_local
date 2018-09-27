@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.saksinc.com/CommonModules/LookupFindIt/Types" xmlns:fidtyp="http://xmlns.saksinc.com/CommonModules/LookupFindIt/Types">
+    <xsd:complexType name="RetrieveByWildCardRequestType">
+        <xsd:sequence>
+            <xsd:element name="RestXML" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="Chain" type="fidtyp:ChainType"/>
+            <xsd:element minOccurs="0" name="CountryCode" type="fidtyp:CountryCodeType"/>
+            <xsd:element minOccurs="0" name="DeptNo" type="fidtyp:DeptNoType"/>
+            <xsd:element minOccurs="0" name="ClassNo" type="fidtyp:ClassNoType"/>
+            <xsd:element minOccurs="0" name="SSN" type="fidtyp:SSNType"/>
+            <xsd:element minOccurs="0" name="VendorStyle" type="fidtyp:VendorStyleType"/>
+            <xsd:element minOccurs="0" name="MFGName" type="fidtyp:MfgNameType"/>
+            <xsd:element minOccurs="0" name="MFGNo" type="fidtyp:MfgNoType"/>
+            <xsd:element minOccurs="0" name="UdaID" type="fidtyp:UdaIDType"/>
+            <xsd:element minOccurs="0" name="UdaValue" type="fidtyp:UdaValueType"/>
+            <xsd:element minOccurs="0" name="GMM" type="fidtyp:GMMType"/>
+            <xsd:element minOccurs="0" name="DMM" type="fidtyp:DMMType"/>
+            <xsd:element name="RowStart" type="xsd:integer"/>
+            <xsd:element name="RowEnd" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveByWildCardResponseType">
+        <xsd:sequence>
+            <xsd:element name="SSN" type="fidtyp:SSNType"/>
+            <xsd:element name="SKN" type="fidtyp:SKNType"/>
+            <xsd:element name="UPC" type="fidtyp:UPCType"/>
+            <xsd:element name="SVS" type="fidtyp:SVSType"/>
+            <xsd:element name="FashionStyleNo" type="fidtyp:FashionStyleNoType"/>
+            <xsd:element name="VendorStyle" type="fidtyp:VendorStyleType"/>
+            <xsd:element name="DeptNo" type="fidtyp:DeptNoType"/>
+            <xsd:element name="ClassNo" type="fidtyp:ClassNoType"/>
+            <xsd:element name="MfgNo" type="fidtyp:MfgNoType"/>
+            <xsd:element name="MfgName" type="fidtyp:MfgNameType"/>
+            <xsd:element name="ItemDescShort" type="fidtyp:ItemDescShortType"/>
+            <xsd:element name="ItemDescLong" type="fidtyp:ItemDescLongType"/>
+            <xsd:element name="SizeCode" type="fidtyp:SizeCodeType"/>
+            <xsd:element name="SizeDesc" type="fidtyp:SizeDescType"/>
+            <xsd:element name="ColorCode" type="fidtyp:ColorCodeType"/>
+            <xsd:element name="ColorDesc" type="fidtyp:ColorDescType"/>
+            <xsd:element name="ConsignmentCode" type="fidtyp:ConsignmentCodeType"/>
+            <xsd:element name="CurTicketPriceDollars" type="fidtyp:CurTicketPriceDollarsType"/>
+            <xsd:element name="CurOwnedRetailDollars" type="fidtyp:CurOwnedRetailDollarsType"/>
+            <xsd:element name="CostAmountDollars" type="fidtyp:CurOwnedPriceType"/>
+            <xsd:element name="UdaID" type="fidtyp:UdaIDType"/>
+            <xsd:element name="UdaIDDesc" type="fidtyp:UdaIDDescType"/>
+            <xsd:element name="UdaValue" type="fidtyp:UdaValueType"/>
+            <xsd:element name="UdaValueDesc" type="fidtyp:UdaValueDescType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ChainType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ClassNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ColorCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ColorDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="codeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CountryCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ConsignmentCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CurOwnedRetailDollarsType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CurOwnedPriceType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CurTicketPriceDollarsType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DeptNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DMMType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="FashionStyleNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ItemIDType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GMMType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ItemDescShortType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ItemDescLongType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="messageType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MfgNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MfgNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SeasonType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="severityType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SizeCodeType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SizeDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SKNType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SpecInstTxtType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SSNType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StyleNoType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SVSType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaIDType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaIDDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaValueType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaValueDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UPCType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="VendorStyleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+</xsd:schema>

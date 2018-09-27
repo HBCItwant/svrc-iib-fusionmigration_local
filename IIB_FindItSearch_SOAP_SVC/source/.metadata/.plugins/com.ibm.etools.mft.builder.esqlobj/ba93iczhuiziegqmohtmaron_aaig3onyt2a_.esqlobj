@@ -1,0 +1,59 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	
+	
+	-- verify if udaId and udaVal are not empty
+	DECLARE sqlQuerry,p_RowStart,p_RowEnd,p_CountryCode,p_VendorStyle,p_Chain CHARACTER;
+		
+		SET p_Chain 	  = Environment.variables.p_Chain  ;
+		SET p_RowStart    = Environment.variables.p_RowStart ;
+		SET p_RowEnd      = Environment.variables.p_RowEnd   ;
+		SET p_CountryCode = Environment.variables.p_CountryCode ;
+		SET p_VendorStyle = Environment.variables.p_VendorStyle ;
+	IF (TRIM(Environment.variables.p_UdaID) IS  NOT NULL OR TRIM(Environment.variables.p_UdaID) <>'' ) and 
+		(TRIM(Environment.variables.p_UdaValue) IS NOT NULL OR TRIM(Environment.variables.p_UdaValue) <>'' )THEN
+		SET sqlQuerry = 'SELECT /*+ NO_CPU_COSTING */ * FROM ( SELECT VENDOR_STYLE_20CH AS VENDOR_STYLE, ROW_NUMBER() OVER (ORDER BY VENDOR_STYLE_20CH) AS row_num, COUNT(*) over () totalRows, SSN, SVS, 
+		DEPT_NO, DEPT_DESC, CLASS_NO, CLASS_DESC, MFG_NAME, ITEM_DESC_LONG, MFG_NO, GMM_NO, 
+		DMM_NO, UDA_ID, UDA_DESC, UDA_Value, UDA_Value_DESC FROM ( SELECT DISTINCT A.VENDOR_STYLE_20CH, A.SSN, A.SVS, A.DEPT_NO, D.DEPT_DESC, A.CLASS_NO, E.CLASS_DESC, C.MFG_NAME, A.ITEM_DESC_LONG, 
+		A.MFG_NO, G.GMM_NO, G.DMM_NO, H.UDA_ID, J.UDA_DESC, I.UDA_Value, I.UDA_Value_DESC FROM RF_ITEM A, RF_DEPARTMENT D, V_RF_UPC F, V_RF_MERCHANT_ORG G, RF_DEPT_MFG C, RF_DEPT_CLASS E, 
+		RF_UDA_ITEM_LOV H, RF_UDA J, RF_UDA_VALUES I WHERE D.CHAIN = ? AND F.MDSE_COUNTRY_CODE = ? AND A.VENDOR_STYLE_20CH LIKE ? AND  A.CLASS_NO != 71 AND A.SKN_NO = F.SKN_NO AND F.CHAIN = G.CHAIN AND 
+		A.DEPT_NO = D.DEPT_NO AND D.DEPT_NO = G.DEPT_NO AND A.DEPT_NO = C.DEPT_NO AND A.MFG_NO = C.MFG_NO AND A.DEPT_NO = E.DEPT_NO AND
+		 A.CLASS_NO = E.CLASS_NO AND A.SKN_NO = H.SKN_NO AND H.UDA_ID = J.UDA_ID AND H.UDA_ID = I.UDA_ID AND H.UDA_Value = I.UDA_Value ) )WHERE  ROW_NUM >= ? AND ROW_NUM <= ? ORDER BY ROW_NUM ASC';
+		SET OutputRoot.XML.Query.Result[] = PASSTHRU(sqlQuerry,p_Chain,p_CountryCode,p_VendorStyle,p_RowStart,p_RowEnd);
+--		SET OutputRoot.XMLNS.ns:FindItResponse.ns:result.ROW[] = PASSTHRU(sqlQuerry,p_Chain,p_CountryCode,p_VendorStyle,p_RowStart,p_RowEnd);
+	Else
+		SET sqlQuerry = 'SELECT /*+ NO_CPU_COSTING */ * FROM ( SELECT VENDOR_STYLE_20CH AS VENDOR_STYLE, ROW_NUMBER() OVER (ORDER BY VENDOR_STYLE_20CH) AS row_num, COUNT(*) over () totalRows, SSN, SVS, DEPT_NO, DEPT_DESC, CLASS_NO, 
+		CLASS_DESC, MFG_NAME, ITEM_DESC_LONG, MFG_NO, GMM_NO, DMM_NO FROM ( SELECT DISTINCT A.VENDOR_STYLE_20CH, A.SSN, A.SVS, A.DEPT_NO, D.DEPT_DESC, A.CLASS_NO, E.CLASS_DESC, C.MFG_NAME, A.ITEM_DESC_LONG, A.MFG_NO, G.GMM_NO, G.DMM_NO FROM RF_ITEM A, 
+		RF_DEPARTMENT D, V_RF_UPC F, V_RF_MERCHANT_ORG G, RF_DEPT_MFG C, RF_DEPT_CLASS E WHERE D.CHAIN = ? AND F.MDSE_COUNTRY_CODE = ? AND A.VENDOR_STYLE_20CH LIKE ? AND  A.CLASS_NO  != 71 AND A.DEPT_NO = D.DEPT_NO AND A.SKN_NO = F.SKN_NO AND D.DEPT_NO = G.DEPT_NO AND A.DEPT_NO = C.DEPT_NO AND A.MFG_NO = C.MFG_NO AND A.DEPT_NO = E.DEPT_NO AND A.CLASS_NO = E.CLASS_NO ) )WHERE ROW_NUM >= ? AND ROW_NUM <= ? ORDER BY ROW_NUM ASC';
+		SET OutputRoot.XML.Query.Result[] = PASSTHRU(sqlQuerry,p_Chain,p_CountryCode,p_VendorStyle,p_RowStart,p_RowEnd);
+--		SET OutputRoot.XMLNS.ns:FindItResponse.ns:result.ROW[]  = PASSTHRU(sqlQuerry,p_Chain,p_CountryCode,p_VendorStyle,p_RowStart,p_RowEnd);
+		
+	END IF;
+		-- looping through the number of retruned results
+		DECLARE j INTEGER 1; 
+		DECLARE countmsg INTEGER CARDINALITY(OutputRoot.XML.Query.Result[]); 
+		WHILE (j <= countmsg) do 
+			SET OutputRoot.XMLNS.ns:FindItResponse.ns:result.ROW[j] = OutputRoot.XML.Query.Result[j];
+			SET OutputRoot.XMLNS.ns:FindItResponse.ns:result.ROW[j].(XMLNSC.Field)num = j;
+			
+			SET j = j + 1;
+		END WHILE;
+	
+	END;

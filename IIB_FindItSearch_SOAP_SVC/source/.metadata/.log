@@ -1,0 +1,35 @@
+!SESSION 2018-09-24 15:08:19.232 -----------------------------------------------
+eclipse.buildId=4.2.2.M20140918-1444
+java.fullversion=8.0.5.5 - pwa6480sr5fp5-20171114_01(SR5 FP5)
+JRE 1.8.0 IBM J9 2.9 Windows 7 amd64-64 Compressed References 20171102_369060 (JIT enabled, AOT enabled)
+OpenJ9   - 7ade437
+OMR      - 1b656cb
+IBM      - 59c3d96
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -b C:/Users/C997518/Documents/myfiles/HBC/projects/IIB/Findit/source/FindItSearch/bar\IIB_FindItSearch_dev.bar -cleanBuild -a FindItSearch -deployAsSource
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -data C:/Users/C997518/Documents/myfiles/HBC/projects/IIB/Findit/source -b C:/Users/C997518/Documents/myfiles/HBC/projects/IIB/Findit/source/FindItSearch/bar\IIB_FindItSearch_dev.bar -cleanBuild -a FindItSearch -deployAsSource
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-09-24 15:08:22.831
+!MESSAGE Both 'com.ibm.etools.javaee.core' and 'com.ibm.etools.mft.service.model' register an extension parser for 'application'
+!SESSION 2018-09-24 15:10:06.148 -----------------------------------------------
+eclipse.buildId=4.2.2.M20140918-1444
+java.fullversion=8.0.5.5 - pwa6480sr5fp5-20171114_01(SR5 FP5)
+JRE 1.8.0 IBM J9 2.9 Windows 7 amd64-64 Compressed References 20171102_369060 (JIT enabled, AOT enabled)
+OpenJ9   - 7ade437
+OMR      - 1b656cb
+IBM      - 59c3d96
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -b C:/Users/C997518/Documents/myfiles/HBC/projects/IIB/Findit/source/IIB_FindItSearch/bar\IIB_IIB_FindItSearch_dev.bar -cleanBuild -a IIB_FindItSearch -deployAsSource
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -data C:/Users/C997518/Documents/myfiles/HBC/projects/IIB/Findit/source -b C:/Users/C997518/Documents/myfiles/HBC/projects/IIB/Findit/source/IIB_FindItSearch/bar\IIB_IIB_FindItSearch_dev.bar -cleanBuild -a IIB_FindItSearch -deployAsSource
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-09-24 15:10:09.438
+!MESSAGE Both 'com.ibm.etools.javaee.core' and 'com.ibm.etools.mft.service.model' register an extension parser for 'application'
+
+!ENTRY com.ibm.etools.mft.uri 0 0 2018-09-24 15:10:13.926
+!MESSAGE 
+
+!ENTRY org.eclipse.osgi 2 1 2018-09-24 15:10:27.304
+!MESSAGE NLS unused message: DFDLXSDResourceBuilder_errorSchemaInAppImportSchemaInSharedLib in: com.ibm.etools.msg.builder.messages
+
+!ENTRY org.eclipse.osgi 2 1 2018-09-24 15:10:27.308
+!MESSAGE NLS unused message: DFDLXSDResourceBuilder_errorProjectReferenceIsMissing in: com.ibm.etools.msg.builder.messages

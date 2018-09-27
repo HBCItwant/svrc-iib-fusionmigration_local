@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="project" default="run">
+	<target name="run" description="">
+		<!-- <property name="toolkit.home" value="${toolkit_home}" /> -->
+		<property name="toolkit.home" value="C:\Program Files\ibm\IIB\10.0.0.11" />
+		<property name="mqsipackagebar.home" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_FindItSearch_SOAP_SVC\" />
+		<!-- <property name="workspace.dir" value="${base_dir}" /> -->
+		<property name="workspace.dir" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_FindItSearch_SOAP_SVC" />
+		<property name="env" value="dev" />
+		
+		<!-- Application projects name-->
+		<property name="application.name" value="FindItSearch" />
+		<!-- Bar file prefix-->
+		<property name="bar.prefix" value="${application.name}" />		
+		<property name="bar.properties.location" value="${workspace.dir}\build\properties"  />
+		<!--property name="bar.location" value="${workspace.dir}\${application.name}\bar"  /-->
+		<property name="bar.location" value="${workspace.dir}\build\bar"  />
+		<property name="bar.override.properties" value="${bar.properties.location}\${env}_override.properties" />
+		<echo message="${bar.override.properties}"/>
+		<property name="bar.name" value="IIB_${bar.prefix}_${env}.bar" />
+		<!--Build -->
+		<antcall target="build" />
+		<!--Override bar--> 
+		<antcall target="modifybar" />
+	</target>
+	
+	<target name="build">
+		<echo message="Building the IIB Project @ ${workspace.dir}\${application.name}_SOAP_SVC" />
+		<echo message="Building the IIB Project @ ${mqsipackagebar.home}\build" />
+		<exec executable="${mqsipackagebar.home}\build\mqsipackagebar.bat"  spawn="false" failonerror="true">
+			<arg line="-a" />
+			<arg line="${bar.name}" />
+			<arg line="-w" />
+			<arg line="${workspace.dir}\source" />
+			<arg line="-k IIB_${application.name}_SOAP_SVC" />
+			<!--arg line="-y IIB_Storesystem_SOAP_LIB" /-->
+		
+		</exec>
+		<echo message="Bar file created sucessfully - ${bar.location}\${bar.name}" />
+		<move file="${bar.name}" todir="${bar.location}" />
+	</target>
+	<target name="modifybar">
+		<echo message="Overriding Broker Archive file - ${bar.name} " />
+		<echo
+	      message="${toolkit.home}\mqsiapplybaroverride.exe 
+	            -b  ${bar.name} -p ${bar.override.properties} -k ${application.name}" />
+		<exec dir="${toolkit.home}\server\bin" executable="mqsiapplybaroverride.bat" spawn="false" failonerror="true">
+			<arg value="-b" />
+			<arg value="${bar.location}\${bar.name}" />
+			<arg value="-p" />
+			<arg value="${bar.override.properties}" />
+			<arg value="-k" />
+			<arg value="IIB_${application.name}_SOAP_SVC" />
+			<arg value="-r" />
+		</exec>
+		<echo message="Completed apply overrides on Broker Archive file - ${bar.name}" />
+	</target>
+</project>

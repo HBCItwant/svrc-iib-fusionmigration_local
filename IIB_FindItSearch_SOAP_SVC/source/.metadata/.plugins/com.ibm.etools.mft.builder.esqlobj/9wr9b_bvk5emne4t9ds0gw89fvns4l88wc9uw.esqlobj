@@ -1,0 +1,83 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DECLARE p_RestXML,p_Chain,p_CountryCode,p_DeptNo,p_ClassNo,p_SSN,p_VendorStyle,p_MFGName,p_MFGNo,
+			p_UdaID,p_UdaValue,p_GMM,p_DMM,p_RowStart,p_RowEnd CHARACTER;
+	
+		SET p_RestXML 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:RestXML;
+		SET p_Chain	  		= InputRoot.XMLNSC.ns:FindItRequest.ns1:Chain;
+		SET p_CountryCode 	= InputRoot.XMLNSC.ns:FindItRequest.ns1:CountryCode;
+		SET p_DeptNo 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:DeptNo;
+		SET p_ClassNo		= InputRoot.XMLNSC.ns:FindItRequest.ns1:ClassNo;
+		SET p_SSN 			= InputRoot.XMLNSC.ns:FindItRequest.ns1:SSN;
+		SET p_VendorStyle 	= InputRoot.XMLNSC.ns:FindItRequest.ns1:VendorStyle;
+		SET p_MFGName 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:MFGName;
+		SET p_MFGNo 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:MFGNo;
+		SET p_UdaID 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:UdaID;
+		SET p_UdaValue 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:UdaValue;
+		SET p_GMM 			= InputRoot.XMLNSC.ns:FindItRequest.ns1:GMM;
+		SET p_DMM 			= InputRoot.XMLNSC.ns:FindItRequest.ns1:DMM;
+		SET p_RowStart 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:RowStart;
+		SET p_RowEnd 		= InputRoot.XMLNSC.ns:FindItRequest.ns1:RowEnd;
+		
+		DECLARE ERROR_RowStart_ID 					CONSTANT CHARACTER 	'1000';
+		DECLARE ERROR_RowStart_MSG 					CONSTANT CHARACTER 	'Input RowStart element is not provided';  
+		DECLARE ERROR_RowEnd_ID 					CONSTANT CHARACTER 	'1001';
+		DECLARE ERROR_RowEnd_MSG 					CONSTANT CHARACTER 	'Input RowEnd element is not provided';  
+		DECLARE errorMsg            CHARACTER;
+			-- Create the request if the p_RestXML is populated
+		IF (TRIM(p_RowStart) IS NULL OR TRIM(p_RowStart) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_RowStart_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_RowStart_MSG;
+			SET errorMsg =  ERROR_RowStart_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_FindItSearchDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_CountryCode is populated
+		IF (TRIM(p_RowEnd) IS NULL OR TRIM(p_RowEnd) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_RowEnd_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_RowEnd_MSG;
+			SET errorMsg =  ERROR_RowEnd_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_FindItSearchDataValidation' MESSAGE 1001 VALUES(errorMsg) ;
+		END IF;
+		
+		
+		
+		-- store p_UdaID and p_UdaValue in environment variables
+		SET Environment.variables.p_RestXML     = p_RestXML;
+		SET Environment.variables.p_Chain 		= p_Chain;
+		SET Environment.variables.p_CountryCode = p_CountryCode;
+		SET Environment.variables.p_DeptNo   	= p_DeptNo;
+		
+		SET Environment.variables.p_ClassNo     = p_ClassNo;
+		SET Environment.variables.p_SSN 		= p_SSN;
+		SET Environment.variables.p_VendorStyle = p_VendorStyle;
+		SET Environment.variables.p_MFGName   	= p_MFGName;
+		SET Environment.variables.p_MFGNo    	= p_MFGNo;
+		SET Environment.variables.p_UdaID 		= p_UdaID;
+		SET Environment.variables.p_UdaValue 	= p_UdaValue;
+		SET Environment.variables.p_GMM   		= p_GMM;
+		SET Environment.variables.p_DMM    		= p_DMM;
+		SET Environment.variables.p_RowStart 	= p_RowStart;
+		SET Environment.variables.p_RowEnd 		= p_RowEnd;
+	
+		
+	END;

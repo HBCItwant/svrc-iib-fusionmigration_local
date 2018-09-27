@@ -1,0 +1,110 @@
+Running command: mqsipackagebar
+Command arguments: '-a IIB_FindItSearch_local.bar -w C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\Findit\source -k IIB_FindItSearch_SOAP_SVC'
+==============================================
+
+!Tue, Sep 25 11:12:36 EDT 2018
+
+Processing file 'IIB_FindItSearch_SOAP_SVC'.
+Application contents:
+
+	Processing file 'gen\FindItSearch_process_Request_Response_Compute.esql'.
+	Successfully added file 'gen\FindItSearch_process_Request_Response_Compute.esql' to the BAR file.
+	Elapsed time: '0.006' second(s).
+	
+	Processing file 'gen\IIB_FindItSearch.msgflow'.
+	Successfully added file 'gen\IIB_FindItSearch.msgflow' to the BAR file.
+	Elapsed time: '1.546' second(s).
+	
+	Processing file 'gen\IIB_FindItSearchInputCatchHandler.subflow'.
+	Successfully added file 'gen\IIB_FindItSearchInputCatchHandler.subflow' to the BAR file.
+	Elapsed time: '0.035' second(s).
+	
+	Processing file 'gen\IIB_FindItSearchInputFailureHandler.subflow'.
+	Successfully added file 'gen\IIB_FindItSearchInputFailureHandler.subflow' to the BAR file.
+	Elapsed time: '0.014' second(s).
+	
+	Processing file 'gen\IIB_FindItSearchInputHTTPTimeoutHandler.subflow'.
+	Successfully added file 'gen\IIB_FindItSearchInputHTTPTimeoutHandler.subflow' to the BAR file.
+	Elapsed time: '0.012' second(s).
+	
+	Processing file 'gen\process_Request_Response.subflow'.
+	Successfully added file 'gen\process_Request_Response.subflow' to the BAR file.
+	Elapsed time: '0.057' second(s).
+	
+	Processing file 'IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd'.
+	Successfully added file 'IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd' to the BAR file.
+	Elapsed time: '0.003' second(s).
+	
+	Processing file 'IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd'.
+	Successfully added file 'IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd' to the BAR file.
+	Elapsed time: '0.003' second(s).
+	
+	Processing file 'IBMdefined\soap.xsd'.
+	Successfully added file 'IBMdefined\soap.xsd' to the BAR file.
+	Elapsed time: '0.002' second(s).
+	
+	Processing file 'RemoteFiles\LookupFindIt.xsd'.
+	Successfully added file 'RemoteFiles\LookupFindIt.xsd' to the BAR file.
+	Elapsed time: '0.002' second(s).
+	
+	Processing file 'RemoteFiles\LookupFindItTypes.xsd'.
+	Successfully added file 'RemoteFiles\LookupFindItTypes.xsd' to the BAR file.
+	Elapsed time: '0.002' second(s).
+	
+	Processing file 'RemoteFiles\LookupFindIt_ep.wsdl'.
+	Successfully added file 'RemoteFiles\LookupFindIt_ep.wsdl' to the BAR file.
+	Elapsed time: '0.002' second(s).
+	
+	Processing file 'RemoteFiles\LookupFindIt_ep.xsd'.
+	Successfully added file 'RemoteFiles\LookupFindIt_ep.xsd' to the BAR file.
+	Elapsed time: '0.002' second(s).
+	
+	Processing file 'service.descriptor'.
+	Successfully added file 'service.descriptor' to the BAR file.
+	Elapsed time: '0.001' second(s).
+	
+	Processing file 'xformConcatWhereClause.xsl'.
+	Successfully added file 'xformConcatWhereClause.xsl' to the BAR file.
+	Elapsed time: '0.001' second(s).
+	
+	Processing file 'xformHTMLEncoding.xsl'.
+	Successfully added file 'xformHTMLEncoding.xsl' to the BAR file.
+	Elapsed time: '0.001' second(s).
+	
+	Processing file 'xformRESTElements.xsl'.
+	Successfully added file 'xformRESTElements.xsl' to the BAR file.
+	Elapsed time: '0.001' second(s).
+	
+	Processing file 'xformWhereClause.xsl'.
+	Successfully added file 'xformWhereClause.xsl' to the BAR file.
+	Elapsed time: '0.002' second(s).
+	
+	Processing file 'HBC_Common_Variables'.
+	Library contents:
+	
+		Processing file 'HBC_Common\HBC_GetErrorCode.esql'.
+		Successfully added file 'HBC_Common\HBC_GetErrorCode.esql' to the BAR file.
+		Elapsed time: '0.002' second(s).
+		
+		Processing file 'HBC_Common_Variables\AutoCreateJSONArrays.esql'.
+		Successfully added file 'HBC_Common_Variables\AutoCreateJSONArrays.esql' to the BAR file.
+		Elapsed time: '0.001' second(s).
+		
+		Processing file 'HBC_Common_Variables\Convert_To_JSON.esql'.
+		Successfully added file 'HBC_Common_Variables\Convert_To_JSON.esql' to the BAR file.
+		Elapsed time: '0.002' second(s).
+		
+		Processing file 'HBC_Common_Variables\Convert_To_XML.esql'.
+		Successfully added file 'HBC_Common_Variables\Convert_To_XML.esql' to the BAR file.
+		Elapsed time: '0.001' second(s).
+		
+		Processing file 'library.descriptor'.
+		Successfully added file 'library.descriptor' to the BAR file.
+		Elapsed time: '0.002' second(s).
+		
+	Library file 'HBC_Common_Variables.libzip' successfully added to the BAR file.
+	Elapsed time: '0.012' second(s).
+	
+Application file 'IIB_FindItSearch_SOAP_SVC.appzip' successfully added to the BAR file.
+Elapsed time: '1.762' second(s).
+

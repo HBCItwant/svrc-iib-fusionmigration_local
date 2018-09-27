@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.saksinc.com/CommonModules/LookupFindIt" xmlns:fid="http://xmlns.saksinc.com/CommonModules/LookupFindIt" xmlns:fidtyp="http://xmlns.saksinc.com/CommonModules/LookupFindIt/Types" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:import namespace="http://xmlns.saksinc.com/CommonModules/LookupFindIt/Types" schemaLocation="LookupFindItTypes.xsd"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="FindItRequest" type="fidtyp:RetrieveByWildCardRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="FindItResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="result" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="FindItResponseCollection">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="FindItResponseOutput" type="fidtyp:RetrieveByWildCardResponseType"/>
+            <xsd:element maxOccurs="unbounded" name="result" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

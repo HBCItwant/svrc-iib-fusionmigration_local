@@ -1,0 +1,33 @@
+
+
+Importing file: \soa-infra\services\CommonModules\FinditSearch\LookupFindIt_ep.wsdl
+
+Copying source WSDL LookupFindIt_ep?WSDL to LookupFindIt_ep.wsdl.
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/FinditSearch/LookupFindIt_ep?XSD=xsd/SQL.xsd' has not been resolved because the import is unused, Line: 1, Column: 1
+XSD: The location 'http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/FinditSearch/LookupFindIt_ep?XSD=xsd/WhereClause.xsd' has not been resolved because the import is unused, Line: 1, Column: 1
+XSD: The location 'http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/FinditSearch/LookupFindIt_ep?XSD=xsd/DBResult.xsd' has not been resolved because the import is unused, Line: 1, Column: 1
+
+
+The WSDL import will proceed with bindings LookupFindItBinding.
+Creating wsdl schema document for RemoteFiles/LookupFindIt_ep.xsd.
+Parsing wsdl binding {http://xmlns.saksinc.com/CommonModules/FinditSearch/LookupFindIt}LookupFindItBinding.
+Parsing wsdl binding input process.
+Parsing wsdl binding output process.
+Processing doc style for operation process.
+Populating WSDL schema RemoteFiles/LookupFindIt_ep.xsd.
+Removing unnecessary import statement with namespace http://www.xmlns.saksinc.com from schema RemoteFiles/LookupFindIt_ep_InlineSchema2.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://www.xmlns.saksinc.com from schema RemoteFiles/LookupFindIt_ep_InlineSchema3.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://www.xmlsn.saksinc.com from schema RemoteFiles/LookupFindIt_ep_InlineSchema4.xsd.  This statement was not resolved and is never used.
+Creating file RemoteFiles/LookupFindIt_ep.xsd in the workspace.
+Creating file /IIB_FindItSearch/LookupFindIt.xsd in the workspace.
+Creating file /IIB_FindItSearch/LookupFindItTypes.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.352 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><MessageBroker name="IIB_FindItSearch">
+  <XSDCollection href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd" prefix="tns" targetNamespace="http://schemas.xmlsoap.org/soap/envelope/">
+    <import name="IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd" targetNamespace="http://www.w3.org/XML/1998/namespace"/>
+    <element href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Envelope;XSDElementDeclaration" name="Envelope" type="mlib://IIB_FindItSearch#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Envelope"/>
+    <element href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Header;XSDElementDeclaration=1" name="Header" type="mlib://IIB_FindItSearch#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Header"/>
+    <element href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Body;XSDElementDeclaration=2" name="Body" type="mlib://IIB_FindItSearch#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Body"/>
+    <element href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Fault;XSDElementDeclaration=3" name="Fault" type="mlib://IIB_FindItSearch#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Fault"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Envelope;XSDComplexTypeDefinition" name="Envelope"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Header;XSDComplexTypeDefinition=1" name="Header"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Body;XSDComplexTypeDefinition=2" name="Body"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Fault;XSDComplexTypeDefinition=3" name="Fault"/>
+    <complexType href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//FaultString;XSDComplexTypeDefinition=4" name="FaultString"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//detail;XSDComplexTypeDefinition=5" name="detail"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//encodingStyle;XSDSimpleTypeDefinition" name="encodingStyle" variety="list"/>
+    <attribute href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//mustUnderstand;XSDAttributeDeclaration" name="mustUnderstand"/>
+    <attribute href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//actor;XSDAttributeDeclaration=1" name="actor"/>
+    <attribute href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//encodingStyle;XSDAttributeDeclaration=2" name="encodingStyle"/>
+    <attributeGroup href="platform:/resource/IIB_FindItSearch/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//encodingStyle;XSDAttributeGroupDefinition" name="encodingStyle"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindIt_ep.xsd" prefix="client" targetNamespace="http://xmlns.saksinc.com/CommonModules/FinditSearch/LookupFindIt">
+    <import name="RemoteFiles/LookupFindIt.xsd" targetNamespace="http://xmlns.saksinc.com/CommonModules/LookupFindIt"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd" prefix="fidtyp" targetNamespace="http://xmlns.saksinc.com/CommonModules/LookupFindIt/Types">
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//RetrieveByWildCardRequestType;XSDComplexTypeDefinition" name="RetrieveByWildCardRequestType"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//RetrieveByWildCardResponseType;XSDComplexTypeDefinition=1" name="RetrieveByWildCardResponseType"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ChainType;XSDSimpleTypeDefinition" name="ChainType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ClassNoType;XSDSimpleTypeDefinition=1" name="ClassNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ColorCodeType;XSDSimpleTypeDefinition=2" name="ColorCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ColorDescType;XSDSimpleTypeDefinition=3" name="ColorDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//codeType;XSDSimpleTypeDefinition=4" name="codeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//CountryCodeType;XSDSimpleTypeDefinition=5" name="CountryCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ConsignmentCodeType;XSDSimpleTypeDefinition=6" name="ConsignmentCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//CurOwnedRetailDollarsType;XSDSimpleTypeDefinition=7" name="CurOwnedRetailDollarsType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//CurOwnedPriceType;XSDSimpleTypeDefinition=8" name="CurOwnedPriceType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//CurTicketPriceDollarsType;XSDSimpleTypeDefinition=9" name="CurTicketPriceDollarsType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//DeptNoType;XSDSimpleTypeDefinition=10" name="DeptNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//DMMType;XSDSimpleTypeDefinition=11" name="DMMType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//FashionStyleNoType;XSDSimpleTypeDefinition=12" name="FashionStyleNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ItemIDType;XSDSimpleTypeDefinition=13" name="ItemIDType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//GMMType;XSDSimpleTypeDefinition=14" name="GMMType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ItemDescShortType;XSDSimpleTypeDefinition=15" name="ItemDescShortType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//ItemDescLongType;XSDSimpleTypeDefinition=16" name="ItemDescLongType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//messageType;XSDSimpleTypeDefinition=17" name="messageType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//MfgNameType;XSDSimpleTypeDefinition=18" name="MfgNameType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//MfgNoType;XSDSimpleTypeDefinition=19" name="MfgNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//SeasonType;XSDSimpleTypeDefinition=20" name="SeasonType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//severityType;XSDSimpleTypeDefinition=21" name="severityType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//SizeCodeType;XSDSimpleTypeDefinition=22" name="SizeCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//SizeDescType;XSDSimpleTypeDefinition=23" name="SizeDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//SKNType;XSDSimpleTypeDefinition=24" name="SKNType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//SpecInstTxtType;XSDSimpleTypeDefinition=25" name="SpecInstTxtType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//SSNType;XSDSimpleTypeDefinition=26" name="SSNType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//StyleNoType;XSDSimpleTypeDefinition=27" name="StyleNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//SVSType;XSDSimpleTypeDefinition=28" name="SVSType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//UdaIDType;XSDSimpleTypeDefinition=29" name="UdaIDType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//UdaIDDescType;XSDSimpleTypeDefinition=30" name="UdaIDDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//UdaValueType;XSDSimpleTypeDefinition=31" name="UdaValueType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//UdaValueDescType;XSDSimpleTypeDefinition=32" name="UdaValueDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//UPCType;XSDSimpleTypeDefinition=33" name="UPCType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindItTypes.xsd#//VendorStyleType;XSDSimpleTypeDefinition=34" name="VendorStyleType" variety="atomic"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_FindItSearch/IBMdefined/soap.xsd" prefix="" targetNamespace="">
+    <element href="platform:/resource/IIB_FindItSearch/IBMdefined/soap.xsd#//SOAP_Domain_Msg;XSDElementDeclaration" name="SOAP_Domain_Msg" type="mlib://IIB_FindItSearch#/-/complexType{}SOAP_Msg_type"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/soap.xsd#//MIME_Headers_type;XSDComplexTypeDefinition" name="MIME_Headers_type"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/soap.xsd#//Attachment_type;XSDComplexTypeDefinition=1" name="Attachment_type"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/IBMdefined/soap.xsd#//SOAP_Msg_type;XSDComplexTypeDefinition=2" name="SOAP_Msg_type"/>
+    <group href="platform:/resource/IIB_FindItSearch/IBMdefined/soap.xsd#//MIME_header_fields;XSDModelGroupDefinition" name="MIME_header_fields"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindIt.xsd" prefix="fid" targetNamespace="http://xmlns.saksinc.com/CommonModules/LookupFindIt">
+    <import name="RemoteFiles/LookupFindItTypes.xsd" targetNamespace="http://xmlns.saksinc.com/CommonModules/LookupFindIt/Types"/>
+    <element href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindIt.xsd#//FindItRequest;XSDElementDeclaration" name="FindItRequest" type="mlib://IIB_FindItSearch#/-/complexType{http://xmlns.saksinc.com/CommonModules/LookupFindIt/Types}RetrieveByWildCardRequestType"/>
+    <element href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindIt.xsd#//FindItResponse;XSDElementDeclaration=1" name="FindItResponse"/>
+    <complexType baseType="mlib://IIB_FindItSearch#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_FindItSearch/RemoteFiles/LookupFindIt.xsd#//FindItResponseCollection;XSDComplexTypeDefinition" name="FindItResponseCollection"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_FindItSearch/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd" prefix="xml" targetNamespace="http://www.w3.org/XML/1998/namespace">
+    <attribute href="platform:/resource/IIB_FindItSearch/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//lang;XSDAttributeDeclaration" name="lang"/>
+    <attribute href="platform:/resource/IIB_FindItSearch/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//space;XSDAttributeDeclaration=1" name="space"/>
+    <attribute href="platform:/resource/IIB_FindItSearch/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//base;XSDAttributeDeclaration=2" name="base"/>
+    <attributeGroup href="platform:/resource/IIB_FindItSearch/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//specialAttrs;XSDAttributeGroupDefinition" name="specialAttrs"/>
+  </XSDCollection>
+</MessageBroker>
