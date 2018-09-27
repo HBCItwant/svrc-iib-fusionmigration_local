@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/PrinterLookupService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:pld="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types" xmlns:prnt="http://xmlns.hbc.com/CommonModules/PrinterLookupService">
+    <xsd:import namespace="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types" schemaLocation="PrinterType.xsd"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="PrinterLookupRequest" type="pld:PrinterLookupRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="PrinterLookupResponse" type="pld:PrinterLookupResponseListType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="PrinterLookupFault" type="pld:PrinterLookupFaultType"/>
+</xsd:schema>

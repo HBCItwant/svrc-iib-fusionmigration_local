@@ -1,0 +1,18 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <NS1:PrinterLookupResponse xmlns:NS1="http://xmlns.hbc.com/CommonModules/PrinterLookupService">
+         <NS2:PrinterLookupDataList xmlns:NS2="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types">
+            <NS2:PrinterLookupData>
+               <NS2:printerID>STR601T2</NS2:printerID>
+               <NS2:storeNum>601</NS2:storeNum>
+               <NS2:printer>NYZ4</NS2:printer>
+               <NS2:printerTypeCode>MONARCH</NS2:printerTypeCode>
+               <NS2:printerIPAddress>10.36.155.201</NS2:printerIPAddress>
+               <NS2:severity/>
+               <NS2:code/>
+               <NS2:message/>
+            </NS2:PrinterLookupData>
+         </NS2:PrinterLookupDataList>
+      </NS1:PrinterLookupResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

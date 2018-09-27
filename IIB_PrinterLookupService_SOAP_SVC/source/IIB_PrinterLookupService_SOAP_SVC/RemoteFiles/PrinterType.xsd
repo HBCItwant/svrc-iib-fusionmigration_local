@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types" xmlns:pld="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types">
+    <xsd:complexType name="PrinterLookupRequestType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="storeNumber" type="xsd:decimal"/>
+            <xsd:element minOccurs="0" name="printerID" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrinterLookupResponseListType">
+        <xsd:sequence>
+            <xsd:element name="PrinterLookupDataList" type="pld:PrinterLookupResponseType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrinterLookupResponseType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="PrinterLookupData" type="pld:PrinterLookupOutputType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrinterLookupOutputType">
+        <xsd:sequence>
+            <xsd:element name="printerID" type="xsd:string"/>
+            <xsd:element name="storeNum" type="xsd:decimal"/>
+            <xsd:element name="printer" type="xsd:string"/>
+            <xsd:element name="printerTypeCode" type="xsd:string"/>
+            <xsd:element name="printerIPAddress" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="severity" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="code" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrinterLookupFaultType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="severity" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="code" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

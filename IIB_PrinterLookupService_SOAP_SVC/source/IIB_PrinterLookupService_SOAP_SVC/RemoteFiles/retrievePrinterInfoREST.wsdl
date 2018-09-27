@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="retrievePrinterInfoREST" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/Printer/PrinterLookupService/retrievePrinterInfoREST" xmlns:msg_in_out="http://xmlns.hbc.com/CommonModules/PrinterLookupService" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/Printer/PrinterLookupService/retrievePrinterInfoREST">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/PrinterLookupService!2.0/retrievePrinterInfoREST.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="retrievePrinterInfoByStore_pttBinding" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="retrievePrinterInfoByStore_ptHttpGET" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plt:partnerLinkType name="retrievePrinterInfoByStore_plt">
+        <plt:role name="retrievePrinterInfoByStore_role">
+            <plt:portType name="tns:retrievePrinterInfoByStore_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.hbc.com/CommonModules/PrinterLookupService" schemaLocation="PrinterLookup.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="PrinterLookupRequest_msg_in">
+        <wsdl:part element="msg_in_out:PrinterLookupRequest" name="PrinterLookupRequest"/>
+    </wsdl:message>
+    <wsdl:message name="PrinterLookupResponse_msg_out">
+        <wsdl:part element="msg_in_out:PrinterLookupResponse" name="PrinterLookupResponse"/>
+    </wsdl:message>
+    <wsdl:message name="PrinterLookupFault_msg_out">
+        <wsdl:part element="msg_in_out:PrinterLookupFault" name="FaultPart"/>
+    </wsdl:message>
+    <wsdl:portType name="retrievePrinterInfoByStore_ptt">
+        <wsdl:operation name="retrievePrinterInfoByStore">
+            <wsdl:input message="tns:PrinterLookupRequest_msg_in"/>
+            <wsdl:output message="tns:PrinterLookupResponse_msg_out"/>
+            <wsdl:fault message="tns:PrinterLookupFault_msg_out" name="fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="retrievePrinterInfoByStore_pttBinding" type="tns:retrievePrinterInfoByStore_ptt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="retrievePrinterInfoByStore">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="retrievePrinterInfoByStore_ptHttpGET" type="tns:retrievePrinterInfoByStore_ptt">
+        <http:binding xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" verb="GET"/>
+        <wsdl:operation name="retrievePrinterInfoByStore">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" />
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="retrievePrinterInfoREST">
+        <wsdl:port binding="tns:retrievePrinterInfoByStore_pttBinding" name="retrievePrinterInfoByStore_pt_soappt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/PrinterLookupService/retrievePrinterInfoREST"/>
+        </wsdl:port>
+        <wsdl:port binding="tns:retrievePrinterInfoByStore_ptHttpGET" name="retrievePrinterInfoByStore_pt">
+            <http:address xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/PrinterLookupService/retrievePrinterInfoREST"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pld="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types">
+  <xsd:complexType name="PrinterLookupRequestType">
+    <xsd:sequence>
+      <xsd:element name="storeNumber" type="xsd:decimal" minOccurs="1"/>
+      <xsd:element name="printerID" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PrinterLookupResponseListType">
+    <xsd:sequence>
+      <xsd:element name="PrinterLookupDataList" type="pld:PrinterLookupResponseType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PrinterLookupResponseType">
+    <xsd:sequence>
+      <xsd:element name="PrinterLookupData" type="pld:PrinterLookupOutputType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PrinterLookupOutputType">
+    <xsd:sequence>
+      <xsd:element name="printerID" type="xsd:string"/>
+      <xsd:element name="storeNum" type="xsd:decimal"/>
+      <xsd:element name="printer" type="xsd:string"/>
+      <xsd:element name="printerTypeCode" type="xsd:string"/>
+      <xsd:element name="printerIPAddress" type="xsd:string"/>
+      <xsd:element name="severity" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="code" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="message" type="xsd:string" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PrinterLookupFaultType">
+    <xsd:sequence>
+      <xsd:element name="severity" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="code" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="message" type="xsd:string" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

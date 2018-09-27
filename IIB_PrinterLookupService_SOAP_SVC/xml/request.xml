@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prin="http://xmlns.hbc.com/CommonModules/PrinterLookupService" xmlns:typ="http://xmlns.hbc.com/CommonModules/PrinterLookupService/Types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prin:PrinterLookupRequest>
+         <typ:storeNumber>601</typ:storeNumber>
+         <!--Optional:-->
+         <typ:printerID>STR601T2</typ:printerID>
+      </prin:PrinterLookupRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
