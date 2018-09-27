@@ -1,0 +1,237 @@
+BROKER SCHEMA gen
+DECLARE ns1 NAMESPACE 'http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types';
+DECLARE ns2 NAMESPACE 'http://cms.hbc.com/';
+DECLARE ns NAMESPACE 'http://xmlns.hbc.com/CommonModules/CMSStockLookupService';
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : getCMSStockInfo_Request_Response
+* DESCRIPTION : Call to the opertaion getCMSStockInfo_Request_Response_Compute in IIB_CMSStock_Lookup service. 
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 	Author 				Comments
+* 1.0 			08/23/2018 			vijay 				Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+--  Declare error code and error messages  for the inbound request
+		DECLARE ERROR_p_chain_ID 					CONSTANT CHARACTER 	'1000';
+		DECLARE ERROR_p_chain_MSG 					CONSTANT CHARACTER 	'Input chain info is not provided';
+		DECLARE ERROR_p_store_ID 					CONSTANT CHARACTER 	'1001';
+		DECLARE ERROR_p_store_MSG 					CONSTANT CHARACTER 	'Input store info is not provided';
+		DECLARE ERROR_p_skn_ID 					    CONSTANT CHARACTER 	'1002';
+		DECLARE ERROR_p_skn_MSG 					CONSTANT CHARACTER 	'Input skn info is not provided';
+		DECLARE ERROR_p_upc_ID 						CONSTANT CHARACTER 	'1003';
+		DECLARE ERROR_p_upc_MSG 					CONSTANT CHARACTER 	'Input upc info is not provided';
+		DECLARE ERROR_p_countrycode_ID 				CONSTANT CHARACTER 	'104';
+		DECLARE ERROR_p_countrycode_MSG 			CONSTANT CHARACTER 	'Input countrycode info is not provided';
+		DECLARE errorMsg            CHARACTER;
+		
+CREATE COMPUTE MODULE getCMSStockInfo_Request_Response_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		--SET OutputRoot = InputRoot;
+		
+		DECLARE varx BOOLEAN;
+		set varx = EXISTS(InputRoot.XMLNSC.ns:CMSStockRequest.ns1:store[]);
+		
+		--Input variable declaration
+		DECLARE p_skn,p_upc,p_chain,p_store,p_countrycode CHARACTER;
+		--Assign Input variable
+		set p_store = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:store;
+		set p_upc = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:UPC;
+		set p_chain = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:chain;
+		set p_skn = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:SKN;
+		set p_countrycode = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:countryCode;
+		
+--		-- Create the request if the p_chain is populated
+--		IF (TRIM(p_chain) IS NULL OR TRIM(p_chain) ='' ) THEN
+--			SET Environment.variables.ERROR_msg_ID  = ERROR_p_chain_ID;
+--			SET Environment.variables.ERROR_msg_MSG = ERROR_p_chain_MSG;
+--			SET errorMsg =  ERROR_p_chain_MSG;
+--		    THROW USER EXCEPTION CATALOG 'RFS_Promoprice_Data_p_chain_Validation' MESSAGE 1000 VALUES(errorMsg) ;
+--		END IF;
+--		-- Create the request if the p_store is populated
+--		IF (TRIM(p_store) IS NULL OR TRIM(p_store) ='' ) THEN
+--			SET Environment.variables.ERROR_msg_ID  = ERROR_p_store_ID;
+--			SET Environment.variables.ERROR_msg_MSG = ERROR_p_store_MSG;
+--			SET errorMsg =  ERROR_p_store_MSG;
+--		    THROW USER EXCEPTION CATALOG 'RFS_Promoprice_Data_p_store_Validation' MESSAGE 1001 VALUES(errorMsg) ;
+--		END IF;
+			-- Create the request if the p_skn is populated
+			
+			--Input Validation
+		IF (TRIM(p_skn) IS NULL OR TRIM(p_skn) ='' ) THEN
+			SET Environment.variables.ERROR_msg_ID  = ERROR_p_skn_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_p_skn_MSG;
+			SET errorMsg =  ERROR_p_skn_MSG;
+		    THROW USER EXCEPTION CATALOG 'RFS_Promoprice_Data_p_skn_Validation' MESSAGE 1002 VALUES(errorMsg) ;
+		END IF;
+			-- Create the request if the p_upc is populated
+		IF (TRIM(p_upc) IS NULL OR TRIM(p_upc) ='' ) THEN
+			SET Environment.variables.ERROR_msg_ID  = ERROR_p_upc_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_p_upc_MSG;
+			SET errorMsg =  ERROR_p_upc_MSG;
+		    THROW USER EXCEPTION CATALOG 'RFS_Promoprice_Data_p_upc_Validation' MESSAGE 1004 VALUES(errorMsg) ;
+		END IF;
+			-- Create the request if the p_countrycode is populated
+		IF (TRIM(p_countrycode) IS NULL OR TRIM(p_countrycode) ='' ) THEN
+			SET Environment.variables.ERROR_msg_ID  = ERROR_p_countrycode_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_p_countrycode_MSG;
+			SET errorMsg =  ERROR_p_countrycode_MSG;
+		    THROW USER EXCEPTION CATALOG 'RFS_Promoprice_Data_p_countrycode_Validation' MESSAGE 1005 VALUES(errorMsg) ;
+		END IF;
+		
+		IF varx = TRUE or LENGTH(TRIM(InputRoot.XMLNSC.ns:CMSStockRequest.ns1:store))>0 THEN
+			
+			SET OutputRoot.XMLNSC.ns2:getStockSKUStoreInq.ns2:SKU   = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:SKN;
+			SET OutputRoot.XMLNSC.ns2:getStockSKUStoreInq.ns2:UPC   = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:UPC;
+			SET OutputRoot.XMLNSC.ns2:getStockSKUStoreInq.ns2:Store = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:store;
+			SET OutputRoot.XMLNSC.ns2:getStockSKUStoreInq.ns2:Chain = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:chain;
+			
+			
+			PROPAGATE TO TERMINAL 'out1';
+			
+		ELSE
+			
+				
+			SET OutputRoot.XMLNSC.ns2:getStockSKUChainInq.ns2:SKU = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:SKN;
+			SET OutputRoot.XMLNSC.ns2:getStockSKUChainInq.ns2:UPC = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:UPC;
+			SET OutputRoot.XMLNSC.ns2:getStockSKUChainInq.ns2:Chain = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:chain;
+			SET OutputRoot.XMLNSC.ns2:getStockSKUChainInq.ns2:Country_Code = InputRoot.XMLNSC.ns:CMSStockRequest.ns1:countryCode;
+			
+			
+			PROPAGATE TO TERMINAL 'out2';
+			
+		END IF;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE IIB_CMSStock_Lookup_SOAP_SVCInputFailureHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE pException 			REFERENCE TO InputExceptionList;
+		DECLARE messageNumber INTEGER ;
+		DECLARE messageText CHARACTER;
+		DECLARE UserGenErrorMsg		CONSTANT CHARACTER 	'User generated exception';
+		
+		SET  messageNumber = Environment.variables.ERROR_msg_ID;
+		CALL HBC_Common.GetErrorContext(InputExceptionList,Environment.Exception);
+		
+		SET pException.ErrorType    = Environment.Exception.ErrorTpe;
+		SET pException.Text   		= Environment.Exception.ErrorDes;
+		SET pException.Number 		= Environment.Exception.ErrorCde;
+		
+		-- constructing the exception output message		
+		DECLARE rOutput REFERENCE TO OutputRoot.XMLNSC.ns:CMSStockFault;
+		CREATE FIELD OutputRoot.XMLNSC.ns:CMSStockFault AS rOutput;
+		
+		IF pException.ErrorType = 'UserException' THEN
+			DECLARE errorCodeID INTEGER;
+			DECLARE errorText CHARACTER;
+			DECLARE errorDetails CHARACTER;
+		    
+		    SET errorCodeID  	 = Environment.variables.ERROR_msg_ID;
+		    SET errorText 	 	 = Environment.variables.ERROR_msg_MSG;
+		    SET errorDetails 	 = Environment.variables.ERROR_msg_MSG;
+		    
+		    SET rOutput.ns1:code = errorCodeID;
+		    SET rOutput.ns1:message = errorText;
+		    SET rOutput.ns1:severity = 'low';
+		    
+		-- system/sockettimeout error    
+		ELSE   
+			DECLARE errorCodeID INTEGER;
+			DECLARE errorText CHARACTER;
+			DECLARE errorDetails CHARACTER;
+		    
+		    SET errorCodeID  	 =  pException.Number;
+		    SET errorText 	 	 =  pException.Text;
+		    SET errorDetails 	 =  pException.Text;
+		    
+		    SET rOutput.ns1:code = errorCodeID;
+		    SET rOutput.ns1:message = errorText;
+		    SET rOutput.ns1:severity = 'high';
+		    
+		END IF;	
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+
+CREATE COMPUTE MODULE IIB_CMSStock_Lookup_SOAP_SVCInputCatchHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE IIB_CMSStock_Lookup_SOAP_SVCInputHTTPTimeoutHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

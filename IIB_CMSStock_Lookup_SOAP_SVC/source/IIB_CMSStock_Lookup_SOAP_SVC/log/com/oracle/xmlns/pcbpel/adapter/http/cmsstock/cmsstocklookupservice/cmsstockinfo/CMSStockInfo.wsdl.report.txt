@@ -1,0 +1,23 @@
+
+
+Importing file: C:\Vijay\Development\workspace\POC\IIB_CMSStock_Lookup_SOAP_SVC\RemoteFiles\CMSStockInfo.wsdl
+
+Copying source WSDL CMSStockInfo.wsdl to CMSStockInfo.wsdl.
+The WSDL import will proceed with bindings getCMSStockInfo_pttBinding.
+Creating wsdl schema document for file:///C:/Vijay/Development/workspace/POC/IIB_CMSStock_Lookup_SOAP_SVC/RemoteFiles/CMSStockInfo.wsdl.
+Parsing wsdl binding {http://xmlns.oracle.com/pcbpel/adapter/http/CMSStock/CMSStockLookupService/CMSStockInfo}getCMSStockInfo_pttBinding.
+Parsing wsdl binding input getCMSStockInfo.
+Parsing wsdl binding output getCMSStockInfo.
+Processing doc style for operation getCMSStockInfo.
+Populating WSDL schema CMSStockInfo.xsd.
+Creating file CMSStockInfo.xsd in the workspace.
+Creating file /IIB_CMSStock_Lookup_SOAP_SVC/CMSStock.xsd in the workspace.
+Creating file /IIB_CMSStock_Lookup_SOAP_SVC/CMSStockTypes.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.234 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

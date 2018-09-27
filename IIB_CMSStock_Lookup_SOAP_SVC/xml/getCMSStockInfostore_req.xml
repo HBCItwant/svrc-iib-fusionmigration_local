@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cms="http://xmlns.hbc.com/CommonModules/CMSStockLookupService" xmlns:typ="http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cms:CMSStockRequest>
+         <typ:SKN>87189026</typ:SKN>
+         <typ:UPC>8028713240218</typ:UPC>
+         <!--Optional:-->
+         <typ:chain>8</typ:chain>
+         <!--Optional:-->
+         <typ:store>8601</typ:store>
+         <typ:countryCode>US</typ:countryCode>
+      </cms:CMSStockRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

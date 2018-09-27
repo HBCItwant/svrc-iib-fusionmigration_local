@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:stktyp="http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types">
+  <xsd:complexType name="CMSStockRequestType">
+    <xsd:sequence>
+      <xsd:element name="SKN" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="UPC" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="chain" type="xsd:integer" minOccurs="0" nillable="true"/>
+      <xsd:element name="store" type="xsd:string" minOccurs="0" nillable="true"/>
+      <xsd:element name="countryCode" type="xsd:integer" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CMSStockResponseListType">
+    <xsd:sequence>
+      <xsd:element name="CMSStockDataList" type="stktyp:CMSStockResponseType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CMSStockResponseType">
+    <xsd:sequence>
+      <xsd:element name="severity" type="xsd:string"/>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="message" type="xsd:string"/>
+      <xsd:element name="CMSStock" type="stktyp:CMSStockOutputType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CMSStockOutputType">
+    <xsd:sequence>
+      <xsd:element name="SKN" type="xsd:string"/>
+      <xsd:element name="store" type="xsd:string"/>
+      <xsd:element name="storeName" type="xsd:string"/>
+      <xsd:element name="availOnHandQty" type="xsd:integer"/>
+      <xsd:element name="totOnHandQty" type="xsd:integer"/>
+      <xsd:element name="inTransitQty" type="xsd:integer"/>
+      <xsd:element name="onOrdQty" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CMSStockFaultType">
+    <xsd:sequence>
+      <xsd:element name="severity" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="code" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="message" type="xsd:string" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

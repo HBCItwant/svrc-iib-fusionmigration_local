@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://cms.hbc.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://cms.hbc.com/">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="storesystem_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="StoreSystemSoap12" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="StoreSystemHttpPost" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="StoreSystemHttpGet" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="true" name="StoreSystemSoap" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://cms.hbc.com/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="storesystem_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="ProcessWriteOffTransSoapIn">
+    <wsdl:part element="tns:ProcessWriteOffTrans" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessWriteOffTransSoapOut">
+    <wsdl:part element="tns:ProcessWriteOffTransResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessDailyAdjTransSoapIn">
+    <wsdl:part element="tns:ProcessDailyAdjTrans" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessDailyAdjTransSoapOut">
+    <wsdl:part element="tns:ProcessDailyAdjTransResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUInqSoapIn">
+    <wsdl:part element="tns:getStockSKUInq" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUInqSoapOut">
+    <wsdl:part element="tns:getStockSKUInqResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUStoreInqSoapIn">
+    <wsdl:part element="tns:getStockSKUStoreInq" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUStoreInqSoapOut">
+    <wsdl:part element="tns:getStockSKUStoreInqResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUChainInqSoapIn">
+    <wsdl:part element="tns:getStockSKUChainInq" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUChainInqSoapOut">
+    <wsdl:part element="tns:getStockSKUChainInqResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateProdClassSoapIn">
+    <wsdl:part element="tns:updateProdClass" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateProdClassSoapOut">
+    <wsdl:part element="tns:updateProdClassResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStorePODataSoapIn">
+    <wsdl:part element="tns:getStorePOData" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getStorePODataSoapOut">
+    <wsdl:part element="tns:getStorePODataResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessWriteOffTransHttpGetIn">
+    <wsdl:part name="Banner" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+    <wsdl:part name="LocationType" type="s:string"/>
+    <wsdl:part name="AdjQty" type="s:string"/>
+    <wsdl:part name="AdjSign" type="s:string"/>
+    <wsdl:part name="ReasonCode" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessWriteOffTransHttpGetOut">
+  </wsdl:message>
+  <wsdl:message name="ProcessDailyAdjTransHttpGetIn">
+    <wsdl:part name="CPIControlNo" type="s:string"/>
+    <wsdl:part name="AdjustmentType" type="s:string"/>
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+    <wsdl:part name="LocationType" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="AdjQty" type="s:string"/>
+    <wsdl:part name="FromLoc" type="s:string"/>
+    <wsdl:part name="FromLocType" type="s:string"/>
+    <wsdl:part name="Orig_TSF_No" type="s:string"/>
+    <wsdl:part name="Orig_RTV_Order_No" type="s:string"/>
+    <wsdl:part name="Orig_Order_No" type="s:string"/>
+    <wsdl:part name="ReasonCode" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessDailyAdjTransHttpGetOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStockSKUInqHttpGetIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="UPC" type="s:string"/>
+    <wsdl:part name="SSN" type="s:string"/>
+    <wsdl:part name="SSN_Total" type="s:string"/>
+    <wsdl:part name="Country_Code" type="s:string"/>
+    <wsdl:part name="Store" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUInqHttpGetOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStockSKUStoreInqHttpGetIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="UPC" type="s:string"/>
+    <wsdl:part name="SSN" type="s:string"/>
+    <wsdl:part name="SSN_Total" type="s:string"/>
+    <wsdl:part name="Store" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUStoreInqHttpGetOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStockSKUChainInqHttpGetIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="UPC" type="s:string"/>
+    <wsdl:part name="SSN" type="s:string"/>
+    <wsdl:part name="Country_Code" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUChainInqHttpGetOut">
+   
+  </wsdl:message>
+  <wsdl:message name="updateProdClassHttpGetIn">
+    <wsdl:part name="Banner" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+    <wsdl:part name="LocationType" type="s:string"/>
+    <wsdl:part name="AdjQty" type="s:string"/>
+    <wsdl:part name="AdjSign" type="s:string"/>
+    <wsdl:part name="Reason" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="updateProdClassHttpGetOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStorePODataHttpGetIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="PO" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStorePODataHttpGetOut">
+   
+  </wsdl:message>
+  <wsdl:message name="ProcessWriteOffTransHttpPostIn">
+    <wsdl:part name="Banner" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+    <wsdl:part name="LocationType" type="s:string"/>
+    <wsdl:part name="AdjQty" type="s:string"/>
+    <wsdl:part name="AdjSign" type="s:string"/>
+    <wsdl:part name="ReasonCode" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessWriteOffTransHttpPostOut">
+   
+  </wsdl:message>
+  <wsdl:message name="ProcessDailyAdjTransHttpPostIn">
+    <wsdl:part name="CPIControlNo" type="s:string"/>
+    <wsdl:part name="AdjustmentType" type="s:string"/>
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+    <wsdl:part name="LocationType" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="AdjQty" type="s:string"/>
+    <wsdl:part name="FromLoc" type="s:string"/>
+    <wsdl:part name="FromLocType" type="s:string"/>
+    <wsdl:part name="Orig_TSF_No" type="s:string"/>
+    <wsdl:part name="Orig_RTV_Order_No" type="s:string"/>
+    <wsdl:part name="Orig_Order_No" type="s:string"/>
+    <wsdl:part name="ReasonCode" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessDailyAdjTransHttpPostOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStockSKUInqHttpPostIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="UPC" type="s:string"/>
+    <wsdl:part name="SSN" type="s:string"/>
+    <wsdl:part name="SSN_Total" type="s:string"/>
+    <wsdl:part name="Country_Code" type="s:string"/>
+    <wsdl:part name="Store" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUInqHttpPostOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStockSKUStoreInqHttpPostIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="UPC" type="s:string"/>
+    <wsdl:part name="SSN" type="s:string"/>
+    <wsdl:part name="SSN_Total" type="s:string"/>
+    <wsdl:part name="Store" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUStoreInqHttpPostOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStockSKUChainInqHttpPostIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="UPC" type="s:string"/>
+    <wsdl:part name="SSN" type="s:string"/>
+    <wsdl:part name="Country_Code" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStockSKUChainInqHttpPostOut">
+   
+  </wsdl:message>
+  <wsdl:message name="updateProdClassHttpPostIn">
+    <wsdl:part name="Banner" type="s:string"/>
+    <wsdl:part name="SKU" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+    <wsdl:part name="LocationType" type="s:string"/>
+    <wsdl:part name="AdjQty" type="s:string"/>
+    <wsdl:part name="AdjSign" type="s:string"/>
+    <wsdl:part name="Reason" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="updateProdClassHttpPostOut">
+   
+  </wsdl:message>
+  <wsdl:message name="getStorePODataHttpPostIn">
+    <wsdl:part name="Chain" type="s:string"/>
+    <wsdl:part name="PO" type="s:string"/>
+    <wsdl:part name="Location" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="getStorePODataHttpPostOut">
+   
+  </wsdl:message>
+  <wsdl:portType name="StoreSystemSoap">
+    <wsdl:operation name="ProcessWriteOffTrans">
+      <wsdl:documentation>This method processes the write-off transaction</wsdl:documentation>
+      <wsdl:input message="tns:ProcessWriteOffTransSoapIn"/>
+      <wsdl:output message="tns:ProcessWriteOffTransSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDailyAdjTrans">
+      <wsdl:documentation>This method processes Daily Ajustment transaction</wsdl:documentation>
+      <wsdl:input message="tns:ProcessDailyAdjTransSoapIn"/>
+      <wsdl:output message="tns:ProcessDailyAdjTransSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUInq">
+      <wsdl:documentation>This service returns stock status for a SKU in a Store or Chain/Store</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUInqSoapIn"/>
+      <wsdl:output message="tns:getStockSKUInqSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUStoreInq">
+      <wsdl:documentation>This service returns stock status for a SKU/STORE</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUStoreInqSoapIn"/>
+      <wsdl:output message="tns:getStockSKUStoreInqSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUChainInq">
+      <wsdl:documentation>This service returns store stock status for Chain/SKU per store</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUChainInqSoapIn"/>
+      <wsdl:output message="tns:getStockSKUChainInqSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateProdClass">
+      <wsdl:documentation>This method updates Prod Class</wsdl:documentation>
+      <wsdl:input message="tns:updateProdClassSoapIn"/>
+      <wsdl:output message="tns:updateProdClassSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStorePOData">
+      <wsdl:documentation>This service returns store/PO data for Ticket Print System</wsdl:documentation>
+      <wsdl:input message="tns:getStorePODataSoapIn"/>
+      <wsdl:output message="tns:getStorePODataSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="StoreSystemHttpGet">
+    <wsdl:operation name="ProcessWriteOffTrans">
+      <wsdl:documentation>This method processes the write-off transaction</wsdl:documentation>
+      <wsdl:input message="tns:ProcessWriteOffTransHttpGetIn"/>
+      <wsdl:output message="tns:ProcessWriteOffTransHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDailyAdjTrans">
+      <wsdl:documentation>This method processes Daily Ajustment transaction</wsdl:documentation>
+      <wsdl:input message="tns:ProcessDailyAdjTransHttpGetIn"/>
+      <wsdl:output message="tns:ProcessDailyAdjTransHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUInq">
+      <wsdl:documentation>This service returns stock status for a SKU in a Store or Chain/Store</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUInqHttpGetIn"/>
+      <wsdl:output message="tns:getStockSKUInqHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUStoreInq">
+      <wsdl:documentation>This service returns stock status for a SKU/STORE</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUStoreInqHttpGetIn"/>
+      <wsdl:output message="tns:getStockSKUStoreInqHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUChainInq">
+      <wsdl:documentation>This service returns store stock status for Chain/SKU per store</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUChainInqHttpGetIn"/>
+      <wsdl:output message="tns:getStockSKUChainInqHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateProdClass">
+      <wsdl:documentation>This method updates Prod Class</wsdl:documentation>
+      <wsdl:input message="tns:updateProdClassHttpGetIn"/>
+      <wsdl:output message="tns:updateProdClassHttpGetOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStorePOData">
+      <wsdl:documentation>This service returns store/PO data for Ticket Print System</wsdl:documentation>
+      <wsdl:input message="tns:getStorePODataHttpGetIn"/>
+      <wsdl:output message="tns:getStorePODataHttpGetOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="StoreSystemHttpPost">
+    <wsdl:operation name="ProcessWriteOffTrans">
+      <wsdl:documentation>This method processes the write-off transaction</wsdl:documentation>
+      <wsdl:input message="tns:ProcessWriteOffTransHttpPostIn"/>
+      <wsdl:output message="tns:ProcessWriteOffTransHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDailyAdjTrans">
+      <wsdl:documentation>This method processes Daily Ajustment transaction</wsdl:documentation>
+      <wsdl:input message="tns:ProcessDailyAdjTransHttpPostIn"/>
+      <wsdl:output message="tns:ProcessDailyAdjTransHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUInq">
+      <wsdl:documentation>This service returns stock status for a SKU in a Store or Chain/Store</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUInqHttpPostIn"/>
+      <wsdl:output message="tns:getStockSKUInqHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUStoreInq">
+      <wsdl:documentation>This service returns stock status for a SKU/STORE</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUStoreInqHttpPostIn"/>
+      <wsdl:output message="tns:getStockSKUStoreInqHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUChainInq">
+      <wsdl:documentation>This service returns store stock status for Chain/SKU per store</wsdl:documentation>
+      <wsdl:input message="tns:getStockSKUChainInqHttpPostIn"/>
+      <wsdl:output message="tns:getStockSKUChainInqHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateProdClass">
+      <wsdl:documentation>This method updates Prod Class</wsdl:documentation>
+      <wsdl:input message="tns:updateProdClassHttpPostIn"/>
+      <wsdl:output message="tns:updateProdClassHttpPostOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="getStorePOData">
+      <wsdl:documentation>This service returns store/PO data for Ticket Print System</wsdl:documentation>
+      <wsdl:input message="tns:getStorePODataHttpPostIn"/>
+      <wsdl:output message="tns:getStorePODataHttpPostOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="StoreSystemSoap" type="tns:StoreSystemSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ProcessWriteOffTrans">
+      <soap:operation soapAction="http://cms.hbc.com/ProcessWriteOffTrans" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDailyAdjTrans">
+      <soap:operation soapAction="http://cms.hbc.com/ProcessDailyAdjTrans" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUInq">
+      <soap:operation soapAction="http://cms.hbc.com/getStockSKUInq" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUStoreInq">
+      <soap:operation soapAction="http://cms.hbc.com/getStockSKUStoreInq" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUChainInq">
+      <soap:operation soapAction="http://cms.hbc.com/getStockSKUChainInq" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProdClass">
+      <soap:operation soapAction="http://cms.hbc.com/updateProdClass" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStorePOData">
+      <soap:operation soapAction="http://cms.hbc.com/getStorePOData" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StoreSystemSoap12" type="tns:StoreSystemSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ProcessWriteOffTrans">
+      <soap12:operation soapAction="http://cms.hbc.com/ProcessWriteOffTrans" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDailyAdjTrans">
+      <soap12:operation soapAction="http://cms.hbc.com/ProcessDailyAdjTrans" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUInq">
+      <soap12:operation soapAction="http://cms.hbc.com/getStockSKUInq" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUStoreInq">
+      <soap12:operation soapAction="http://cms.hbc.com/getStockSKUStoreInq" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUChainInq">
+      <soap12:operation soapAction="http://cms.hbc.com/getStockSKUChainInq" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProdClass">
+      <soap12:operation soapAction="http://cms.hbc.com/updateProdClass" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStorePOData">
+      <soap12:operation soapAction="http://cms.hbc.com/getStorePOData" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StoreSystemHttpGet" type="tns:StoreSystemHttpGet">
+    <http:binding verb="GET"/>
+    <wsdl:operation name="ProcessWriteOffTrans">
+      <http:operation location="/ProcessWriteOffTrans"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDailyAdjTrans">
+      <http:operation location="/ProcessDailyAdjTrans"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUInq">
+      <http:operation location="/getStockSKUInq"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUStoreInq">
+      <http:operation location="/getStockSKUStoreInq"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUChainInq">
+      <http:operation location="/getStockSKUChainInq"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProdClass">
+      <http:operation location="/updateProdClass"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStorePOData">
+      <http:operation location="/getStorePOData"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="StoreSystemHttpPost" type="tns:StoreSystemHttpPost">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="ProcessWriteOffTrans">
+      <http:operation location="/ProcessWriteOffTrans"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProcessDailyAdjTrans">
+      <http:operation location="/ProcessDailyAdjTrans"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUInq">
+      <http:operation location="/getStockSKUInq"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUStoreInq">
+      <http:operation location="/getStockSKUStoreInq"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStockSKUChainInq">
+      <http:operation location="/getStockSKUChainInq"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateProdClass">
+      <http:operation location="/updateProdClass"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStorePOData">
+      <http:operation location="/getStorePOData"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="StoreSystem">
+    <wsdl:port binding="tns:StoreSystemSoap" name="StoreSystemSoap">
+      <soap:address location="http://cmswstst.hbc.com/storesystem.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:StoreSystemSoap12" name="StoreSystemSoap12">
+      <soap12:address location="http://cmswstst.hbc.com/storesystem.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:StoreSystemHttpGet" name="StoreSystemHttpGet">
+      <http:address location="http://cmswstst.hbc.com/storesystem.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:StoreSystemHttpPost" name="StoreSystemHttpPost">
+      <http:address location="http://cmswstst.hbc.com/storesystem.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

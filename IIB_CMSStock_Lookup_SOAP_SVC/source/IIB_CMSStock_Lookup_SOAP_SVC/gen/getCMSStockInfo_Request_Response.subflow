@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmXslMqsi.msgnode="ComIbmXslMqsi.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_getStockSKUChainInq_storesystem_getCMSStockInfo_Request_Response.subflow="gen/getStockSKUChainInq_storesystem_getCMSStockInfo_Request_Response.subflow" xmlns:gen_getStockSKUStoreInq_storesystem_getCMSStockInfo_Request_Response.subflow="gen/getStockSKUStoreInq_storesystem_getCMSStockInfo_Request_Response.subflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/getCMSStockInfo_Request_Response.subflow" nsPrefix="gen_getCMSStockInfo_Request_Response.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="getCMSStockInfo_Request_Response" bundleName="gen/getCMSStockInfo_Request_Response" pluginId="IIB_CMSStock_Lookup_SOAP_SVC"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_CMSStock_Lookup_SOAP_SVC/icons/full/obj16/getCMSStockInfo_Request_Response.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_CMSStock_Lookup_SOAP_SVC/icons/full/obj30/getCMSStockInfo_Request_Response.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="20,102">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/getCMSStockInfo_Request_Response" pluginId="IIB_CMSStock_Lookup_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="816,140">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/getCMSStockInfo_Request_Response" pluginId="IIB_CMSStock_Lookup_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="gen_getStockSKUChainInq_storesystem_getCMSStockInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="272,139">
+        <translation xmi:type="utility:ConstantString" string="getStockSKUChainInq_storesystem"/>
+        <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
+        <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
+      </nodes>
+      <nodes xmi:type="gen_getStockSKUStoreInq_storesystem_getCMSStockInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="277,22">
+        <translation xmi:type="utility:ConstantString" string="getStockSKUStoreInq_storesystem"/>
+        <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
+        <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="146,101" computeExpression="esql://routine/gen#getCMSStockInfo_Request_Response_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="474,147" stylesheetName="TransformationByChainOutput.xsl" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform Chain"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="469,31" stylesheetName="TransformationByStore.xsl" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output1" location="825,70">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.failure" bundleName="gen/getCMSStockInfo_Request_Response" pluginId="IIB_CMSStock_Lookup_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="76,193" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="Input_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="701,140" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="Output_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="709,70" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="Failure_Trace"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out2" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.getStockSKUChainInqResponse" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.getStockSKUStoreInqResponse" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_17" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_18" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/CMSStockLookupService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:stk="http://xmlns.hbc.com/CommonModules/CMSStockLookupService" xmlns:stktyp="http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types">
+    <xsd:import namespace="http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types" schemaLocation="CMSStockTypes.xsd"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="CMSStockRequest" type="stktyp:CMSStockRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="CMSStockResponse" type="stktyp:CMSStockResponseListType"/>
+    <xsd:element name="CMSStockFault" type="stktyp:CMSStockFaultType"/>
+</xsd:schema>

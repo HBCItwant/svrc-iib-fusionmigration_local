@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types" xmlns:stktyp="http://xmlns.hbc.com/CommonModules/CMSStockLookupService/Types">
+    <xsd:complexType name="CMSStockRequestType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="SKN" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="UPC" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="chain" nillable="true" type="xsd:integer"/>
+            <xsd:element minOccurs="0" name="store" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="countryCode" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CMSStockResponseListType">
+        <xsd:sequence>
+            <xsd:element name="CMSStockDataList" type="stktyp:CMSStockResponseType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CMSStockResponseType">
+        <xsd:sequence>
+            <xsd:element name="severity" type="xsd:string"/>
+            <xsd:element name="code" type="xsd:string"/>
+            <xsd:element name="message" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="CMSStock" type="stktyp:CMSStockOutputType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CMSStockOutputType">
+        <xsd:sequence>
+            <xsd:element name="SKN" type="xsd:string"/>
+            <xsd:element name="store" type="xsd:string"/>
+            <xsd:element name="storeName" type="xsd:string"/>
+            <xsd:element name="availOnHandQty" type="xsd:integer"/>
+            <xsd:element name="totOnHandQty" type="xsd:integer"/>
+            <xsd:element name="inTransitQty" type="xsd:integer"/>
+            <xsd:element name="onOrdQty" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CMSStockFaultType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="severity" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="code" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

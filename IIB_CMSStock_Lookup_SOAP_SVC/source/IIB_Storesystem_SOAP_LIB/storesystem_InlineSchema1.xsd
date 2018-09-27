@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://cms.hbc.com/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://cms.hbc.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:element ibmSchExtn:docRoot="true" name="ProcessWriteOffTrans">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Banner" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SKU" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Location" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LocationType" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="AdjQty" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="AdjSign" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ReasonCode" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="ProcessWriteOffTransResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ProcessWriteOffTransResult">
+              <xsd:complexType mixed="true">
+                <xsd:sequence>
+                  <xsd:any/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="ProcessDailyAdjTrans">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="CPIControlNo" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="AdjustmentType" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Chain" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Location" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LocationType" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SKU" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="AdjQty" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FromLoc" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="FromLocType" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Orig_TSF_No" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Orig_RTV_Order_No" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Orig_Order_No" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ReasonCode" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="ProcessDailyAdjTransResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="ProcessDailyAdjTransResult">
+              <xsd:complexType mixed="true">
+                <xsd:sequence>
+                  <xsd:any/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStockSKUInq">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Chain" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SKU" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="UPC" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SSN" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SSN_Total" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Country_Code" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Store" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStockSKUInqResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="getStockSKUInqResult">
+              <xsd:complexType mixed="true">
+                <xsd:sequence>
+                  <xsd:any/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStockSKUStoreInq">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Chain" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SKU" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="UPC" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SSN" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SSN_Total" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Store" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStockSKUStoreInqResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="getStockSKUStoreInqResult">
+              <xsd:complexType mixed="true">
+                <xsd:sequence>
+                  <xsd:any/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStockSKUChainInq">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Chain" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SKU" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="UPC" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SSN" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Country_Code" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStockSKUChainInqResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="getStockSKUChainInqResult">
+              <xsd:complexType mixed="true">
+                <xsd:sequence>
+                  <xsd:any/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="updateProdClass">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Banner" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="SKU" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Location" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="LocationType" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="AdjQty" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="AdjSign" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Reason" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="updateProdClassResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="updateProdClassResult">
+              <xsd:complexType mixed="true">
+                <xsd:sequence>
+                  <xsd:any/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStorePOData">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Chain" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="PO" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="Location" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getStorePODataResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="0" name="getStorePODataResult">
+              <xsd:complexType mixed="true">
+                <xsd:sequence>
+                  <xsd:any/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>

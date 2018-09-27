@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="CMSStockInfo" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/CMSStock/CMSStockLookupService/CMSStockInfo" xmlns:msg_in_out="http://xmlns.hbc.com/CommonModules/CMSStockLookupService" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/CMSStock/CMSStockLookupService/CMSStockInfo">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/CMSStockLookupService!2.0/CMSStockInfo.wsdl</abstractWSDL>
+    
+  <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="false" name="getCMSStockInfo_ptHttpGET" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="true" name="getCMSStockInfo_pttBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plt:partnerLinkType name="getCMSStockInfo_plt">
+        <plt:role name="getCMSStockInfo_role">
+            <plt:portType name="tns:getCMSStockInfo_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:import namespace="http://xmlns.hbc.com/CommonModules/CMSStockLookupService" schemaLocation="CMSStock.xsd"/>
+</xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="CMSStockRequest_msg_in">
+        <wsdl:part element="msg_in_out:CMSStockRequest" name="CMSStockRequest"/>
+    </wsdl:message>
+    <wsdl:message name="CMSStockResponse_msg_out">
+        <wsdl:part element="msg_in_out:CMSStockResponse" name="CMSStockResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="getCMSStockInfo_ptt">
+        <wsdl:operation name="getCMSStockInfo">
+            <wsdl:input message="tns:CMSStockRequest_msg_in"/>
+            <wsdl:output message="tns:CMSStockResponse_msg_out"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="getCMSStockInfo_pttBinding" type="tns:getCMSStockInfo_ptt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getCMSStockInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="getCMSStockInfo_ptHttpGET" type="tns:getCMSStockInfo_ptt">
+        <http:binding xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" verb="GET"/>
+        <wsdl:operation name="getCMSStockInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CMSStockInfo">
+        <wsdl:port binding="tns:getCMSStockInfo_pttBinding" name="getCMSStockInfo_pt_soappt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/CMSStockLookupService/CMSStockInfo"/>
+        </wsdl:port>
+        <wsdl:port binding="tns:getCMSStockInfo_ptHttpGET" name="getCMSStockInfo_pt">
+            <http:address xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/CMSStockLookupService/CMSStockInfo"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
