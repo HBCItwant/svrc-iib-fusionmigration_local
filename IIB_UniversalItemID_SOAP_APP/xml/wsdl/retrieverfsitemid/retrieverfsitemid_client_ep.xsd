@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" xmlns:ridgc="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" xmlns:uidtyp="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" schemaLocation="retrieverfsitemid_client_ep_1.xsd"/>
+  <element name="RetrieveByIDandChainRequest" type="uidtyp:RetrieveByIDandChainRequestType"/>
+  <element name="RetrieveByIDandChainResponse" type="uidtyp:RetrieveByIDandChainResponseType"/>
+  <element name="RetrieveByIDandChainFault" type="uidtyp:UniversalItemIDFaultType"/>
+</schema>

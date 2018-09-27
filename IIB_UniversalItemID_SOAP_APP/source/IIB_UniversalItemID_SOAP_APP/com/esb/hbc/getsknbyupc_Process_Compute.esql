@@ -1,0 +1,88 @@
+BROKER SCHEMA com.esb.hbc
+
+DECLARE ERROR_RetrieveSKNByUPC_IP_ID CONSTANT CHARACTER '0061';
+DECLARE ERROR_RetrieveSKNByUPC_IP_MSG CONSTANT CHARACTER 'Invalid Inputs. Please enter the  required Chain, CountryCode and UPC for the operation - getSKNByUPC.';
+DECLARE ERROR_RetrieveSKNByUPC_Count_ItemID_ID CONSTANT CHARACTER '0062';
+DECLARE ERROR_RetrieveSKNByUPC_Count_ItemID_MSG CONSTANT CHARACTER 'Please enter no more than 1000 UPC.';
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : getsknbyupc_Process_Compute
+* DESCRIPTION : Call to the opertaion getsknbyupc_Process_Compute in getsknbyupc_Process.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			09/04/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+
+CREATE COMPUTE MODULE getsknbyupc_Process_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		--DELETE FIELD OutputRoot.*[<];
+		
+		-- Variable declaration
+		DECLARE p_CountryCode, p_DeptNo, p_Chain, p_ItemID, Query, SQLStatementStrg CHARACTER;
+		
+		-- Assign input to variable
+		SET p_Chain = InputRoot.XMLNSC.ns:RetrieveSKNByUPCRequest.ns0:Chain;
+		SET p_CountryCode = InputRoot.XMLNSC.ns:RetrieveSKNByUPCRequest.ns0:CountryCode;
+		
+		--Input message validation
+		IF (TRIM(p_CountryCode) IS NULL OR TRIM(p_CountryCode) ='' ) and (TRIM(p_Chain) IS NULL OR TRIM(p_Chain) ='' )    THEN
+		
+			SET Environment.variables.ERROR_msg_ID = ERROR_RetrieveSKNByUPC_IP_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_RetrieveSKNByUPC_IP_MSG;
+			SET errorMsg = ERROR_RetrieveSKNByUPC_IP_MSG;
+			THROW USER EXCEPTION CATALOG 'RetrieveSKNByUPC_Input_Validation' MESSAGE 1002 VALUES(errorMsg) ;
+		END IF;
+		
+		DECLARE I INTEGER 2;
+		DECLARE Count_ItemID INTEGER;
+		SET Count_ItemID = CARDINALITY(InputRoot.XMLNSC.ns:RetrieveSKNByUPCRequest.ns0:ItemIDList.ns0:ItemID[]);
+		
+		-- Input message validation count of  ItemId < 1000
+		
+		IF Count_ItemID > 1000 THEN
+			
+			SET Environment.variables.ERROR_msg_ID = ERROR_RetrieveSKNByUPC_Count_ItemID_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_RetrieveSKNByUPC_Count_ItemID_MSG;
+			SET errorMsg = ERROR_RetrieveSKNByUPC_Count_ItemID_MSG;
+			THROW USER EXCEPTION CATALOG 'RetrieveSKNByUPC_Count_ItemID_Validation' MESSAGE 1002 VALUES(errorMsg) ;
+				
+		END IF;
+		
+		SET SQLStatementStrg = InputRoot.XMLNSC.ns:RetrieveSKNByUPCRequest.ns0:ItemIDList.ns0:ItemID[1];
+		
+		-- where condition for select query 
+		
+		WHILE I <= Count_ItemID DO
+			SET SQLStatementStrg = SQLStatementStrg||','||CAST(InputRoot.XMLNSC.ns:RetrieveSKNByUPCRequest.ns0:ItemIDList.ns0:ItemID[I] as CHARACTER);
+			SET I = I + 1;
+		END WHILE;
+		
+		-- Select query 
+		SET Query = 'SELECT UPC, SKN_NO FROM RF_UPC WHERE UPC IN ('|| Cast(SQLStatementStrg as char)||') AND CHAIN =  '|| Cast(p_Chain as char)||'  AND MDSE_COUNTRY_CODE = '''|| Cast(p_CountryCode as char)||''' UNION  SELECT UPC, SKN_NO FROM RF_UPC WHERE UPC IN ('|| Cast(SQLStatementStrg as char)||') AND CHAIN =  '|| Cast(p_Chain as char)||'  AND MDSE_COUNTRY_CODE = '''|| Cast(p_CountryCode as char)||''''; 
+		
+		--Invoke DB to fetch results
+		SET OutputRoot.XML.Query.Result[] = PASSTHRU(Query);
+		
+	END;
+END MODULE;

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RetrieveInfoBySKN" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySKN" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySKN" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/RetrieveInfoBySKN.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="RetrieveInfoBySKN">
+    <plnk:role name="RetrieveInfoBySKNProvider" portType="client:RetrieveInfoBySKN"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySKN" schemaLocation="RetrieveInfoBySKNService_ep.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RetrieveInfoBySKNRequestMessage">
+    <wsdl:part name="payload" element="client:RetrieveInfoBySKNRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveInfoBySKNResponseMessage">
+    <wsdl:part name="payload" element="client:RetrieveInfoBySKNResponse"/>
+  </wsdl:message>
+  <wsdl:message name="FaultMessageRetrieveBySKN">
+    <wsdl:part name="part" element="client:RetrieveInfoBySKNFault"/>
+  </wsdl:message>
+  <wsdl:portType name="RetrieveInfoBySKN">
+    <wsdl:operation name="retrieveInfoBySKN">
+      <wsdl:input message="client:RetrieveInfoBySKNRequestMessage"/>
+      <wsdl:output message="client:RetrieveInfoBySKNResponseMessage"/>
+      <wsdl:fault name="part" message="client:FaultMessageRetrieveBySKN"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RetrieveInfoBySKNBinding" type="client:RetrieveInfoBySKN">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveInfoBySKN">
+      <soap:operation style="document" soapAction="retrieveInfoBySKN"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="part">
+        <soap:fault name="part" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RetrieveInfoBySKNService_ep">
+    <wsdl:port name="RetrieveInfoBySKN_pt" binding="client:RetrieveInfoBySKNBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/RetrieveInfoBySKNService_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

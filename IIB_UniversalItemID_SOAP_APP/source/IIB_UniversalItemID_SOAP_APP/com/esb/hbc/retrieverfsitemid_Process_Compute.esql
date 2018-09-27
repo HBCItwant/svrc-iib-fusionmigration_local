@@ -1,0 +1,111 @@
+BROKER SCHEMA com.esb.hbc
+
+DECLARE ERROR_retrieveRFSItemID_IP_ID CONSTANT CHARACTER '0007';
+DECLARE ERROR_retrieveRFSItemID_IP_MSG CONSTANT CHARACTER 'Invalid inputs. Enter valid Chain, ItemID and Store for the operation retrieveRFSItemID. ';
+DECLARE ERROR_retrieveRFSItemID_NoData_ID CONSTANT CHARACTER '0008';
+DECLARE ERROR_retrieveRFSItemID_NoData_MSG CONSTANT CHARACTER 'No data found for the operation retrieveRFSItemID.';
+
+
+DECLARE errorMsg CHARACTER;
+
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : getsknbyupc_Process_Compute
+* DESCRIPTION : Call to the opertaion getsknbyupc_Process_Compute in getsknbyupc_Process.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			09/04/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+
+
+CREATE COMPUTE MODULE retrieverfsitemid_Process_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		
+		DECLARE p_Store, p_Chain,p_Item, p_SKN, p_CountryCode, Query_RetrieveItemInfo, Query_CountryCdeByStore, Query_RetrieveInfoByIDandChain CHARACTER;
+		
+		
+		SET p_CountryCode = FIELDVALUE(InputRoot.XMLNSC.ns1:RetrieveByIDandChainRequest.ns0:CountryCode);
+		SET p_Store =  FIELDVALUE(InputRoot.XMLNSC.ns1:RetrieveByIDandChainRequest.ns0:Store);
+		SET p_Item =  FIELDVALUE(InputRoot.XMLNSC.ns1:RetrieveByIDandChainRequest.ns0:ItemID);
+		SET p_Chain =  FIELDVALUE(InputRoot.XMLNSC.ns1:RetrieveByIDandChainRequest.ns0:Chain);
+		
+		IF (TRIM(p_CountryCode) IS NULL OR TRIM(p_CountryCode) = '' ) THEN
+			
+			SET Query_CountryCdeByStore = 'SELECT STORE_NO, STORE_NAME, COUNTRY_ID, "CHAIN" FROM RFS.RF_STORE WHERE (STORE_NO = ?)';
+			
+			SET OutputRoot.XML.Query_CountryCdeByStore.Result[] = PASSTHRU(Query_CountryCdeByStore,p_Store);
+				
+			DECLARE Count_Query_CntryCdeByStore INTEGER CARDINALITY(OutputRoot.XML.Query_CountryCdeByStore.Result[]);
+				
+				IF Count_Query_CntryCdeByStore <> 0 THEN
+					
+					SET p_CountryCode = OutputRoot.XML.Query_CountryCdeByStore.Result.COUNTRY_ID;
+					
+				END IF;
+					
+		END IF;
+		
+		
+		IF (TRIM(p_CountryCode) IS NULL OR TRIM(p_CountryCode) ='' ) or (TRIM(p_Chain) IS NULL OR TRIM(p_Chain) ='' ) or (TRIM(p_Item) IS NULL OR TRIM(p_Item) ='' )   THEN
+			SET Environment.variables.ERROR_msg_ID = ERROR_retrieveRFSItemID_IP_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_retrieveRFSItemID_IP_MSG;
+			SET errorMsg = ERROR_retrieveRFSItemID_IP_MSG;
+			THROW USER EXCEPTION CATALOG 'retrieverfsitemid_Input_Validation' MESSAGE 1004 VALUES(errorMsg) ;
+		END IF;
+		
+		SET Query_RetrieveInfoByIDandChain = 'SELECT DISTINCT A.SKN_NO, B.REORDER_UPC_NO AS UPC, A.SVS, A.FASHION_STYLE_NO, A.VENDOR_STYLE, B.CHAIN, B.MDSE_COUNTRY_CODE, C.MFG_NAME, C.MFG_NO FROM RFS.RF_ITEM A LEFT JOIN RFS.RF_UPC B ON A.SKN_NO = B.SKN_NO LEFT JOIN RFS.RF_DEPT_MFG C ON A.DEPT_NO = C.DEPT_NO WHERE(B.SKN_NO =  ? OR  B.UPC =  ?)  AND A.MFG_NO = C.MFG_NO AND B.CHAIN =  ? AND B.MDSE_COUNTRY_CODE =  ?';
+		
+		SET OutputRoot.XML.Query.RetrieveInfoByIDandChainOutputCollection.RetrieveInfoByIDandChainOutput[] = PASSTHRU(Query_RetrieveInfoByIDandChain,p_Item,p_Item,p_Chain,p_CountryCode);
+		
+		
+		DECLARE Count_Query_RetrieveInfoByIDandChain INTEGER CARDINALITY(OutputRoot.XML.Query.RetrieveInfoByIDandChainOutputCollection.RetrieveInfoByIDandChainOutput[]);
+		
+		IF Count_Query_RetrieveInfoByIDandChain <= 0 THEN
+			
+			SET Environment.variables.ERROR_msg_ID = ERROR_retrieveRFSItemID_NoData_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_retrieveRFSItemID_NoData_MSG;
+			SET errorMsg = ERROR_retrieveRFSItemID_NoData_MSG;
+			THROW USER EXCEPTION CATALOG 'retrieverfsitemid_NoDataFound' MESSAGE 1004 VALUES(errorMsg) ;
+		END IF;
+		
+		
+		IF (TRIM(p_CountryCode) IS NULL OR TRIM(p_CountryCode) = '' ) THEN
+		
+		SET p_CountryCode ='US';
+		
+		END IF	;
+		
+		SET p_SKN = OutputRoot.XML.Query.RetrieveInfoByIDandChainOutputCollection.RetrieveInfoByIDandChainOutput.SKN_NO;
+		
+		--SET Query_RetrieveItemInfo = 'SELECT DISTINCT A.SKN_NO, B.REORDER_UPC_NO AS UPC, A.SVS, A.FASHION_STYLE_NO, A.VENDOR_STYLE, B.CHAIN, B.MDSE_COUNTRY_CODE, C.MFG_NAME, C.MFG_NO FROM RFS.RF_ITEM A LEFT JOIN RFS.RF_UPC B ON A.SKN_NO = B.SKN_NO LEFT JOIN RFS.RF_DEPT_MFG C ON A.DEPT_NO = C.DEPT_NO WHERE(B.SKN_NO =  ''' || Cast(p_Item as char) || ''' OR  B.UPC =  ''' || Cast(p_Item as char) || ''')  AND A.MFG_NO = C.MFG_NO AND B.CHAIN =  ''' || Cast(p_Chain as char) || ''' AND B.MDSE_COUNTRY_CODE =  ''' || Cast(p_CountryCode as char) || '''';
+		
+		
+		--SET Query_RetrieveItemInfo = 'SELECT B.UPC, B.MDSE_COUNTRY_CODE, A.SSN,    A.COLOR_CODE,    A.SIZE_CODE,    A.SIZE_DESC,    A.SKN_NO,    A.SVS,    A.ITEM_DESC_SHORT,    A.ITEM_DESC_LONG,    A.CUR_TKT_PRICE_DOL,    A.CUR_OWN_RETAIL_DOL,    A.ORIG_OWN_RTL_DOL, A.DEPT_NO,    A.MFG_NO,    A.COST_AMOUNT_DOL,    A.CLASS_NO,   A.COLOR_DESC,    A.CONSIGNMENT_CODE,    A.FASHION_STYLE_NO,    A.VENDOR_STYLE_20CH,    A.SEASON_TYPE_CODE ,A.CATALOG_CODE, C.VENDOR_NO, C.MDSC_VENDOR_NO, A.COMPARE_AT_AMT_DOL, D.DEPT_DESC, E.CLASS_DESC, F.DMM_NO,F.DMM_NAME, F.GMM_NO, F.GMM_NAME FROM    RFS.RF_ITEM A,    RFS.RF_UPC B, RFS.RF_DEPT_MFG C, RFS.RF_DEPARTMENT D, RFS.RF_DEPT_CLASS E, RFS.RF_MERCHANT_ORG F WHERE     A.SKN_NO = B.SKN_NO AND A.SKN_NO = ''' || Cast(p_SKN as char) || ''' AND B.MDSE_COUNTRY_CODE = ''' || Cast(p_CountryCode as char) || '''AND B.UPC = B.REORDER_UPC_NO AND A.DEPT_NO = C.DEPT_NO AND A.MFG_NO = C.MFG_NO AND A.DEPT_NO = D.DEPT_NO AND A.CLASS_NO = E.CLASS_NO AND D.DEPT_NO = E.DEPT_NO AND A.DEPT_NO = F.DEPT_NO';
+		SET Query_RetrieveItemInfo = 'SELECT  A.SSN FROM    RFS.RF_ITEM A,    RFS.RF_UPC B, RFS.RF_DEPT_MFG C, RFS.RF_DEPARTMENT D, RFS.RF_DEPT_CLASS E, RFS.RF_MERCHANT_ORG F WHERE     A.SKN_NO = B.SKN_NO AND A.SKN_NO = ? AND B.MDSE_COUNTRY_CODE = ? AND B.UPC = B.REORDER_UPC_NO AND A.DEPT_NO = C.DEPT_NO AND A.MFG_NO = C.MFG_NO AND A.DEPT_NO = D.DEPT_NO AND A.CLASS_NO = E.CLASS_NO AND D.DEPT_NO = E.DEPT_NO AND A.DEPT_NO = F.DEPT_NO';
+		
+		SET OutputRoot.XML.Query.RetrieveItemInfoBySKNOutputCollection.RetrieveItemInfoBySKNOutput[] = PASSTHRU(Query_RetrieveItemInfo,p_SKN,p_CountryCode);
+		
+		
+	END;
+END MODULE;

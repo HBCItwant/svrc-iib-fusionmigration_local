@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID" xmlns="http://www.w3.org/2001/XMLSchema">
+  <element name="process">
+    <complexType>
+      <sequence>
+        <element name="ItemID" type="string"/>
+        <element name="Group" type="string" minOccurs="0"/>
+        <element name="CountryCode" type="string" minOccurs="0"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="processResponse">
+    <complexType>
+      <sequence>
+        <element name="SSN" type="string"/>
+        <element name="SKU" type="string"/>
+        <element name="UPC" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

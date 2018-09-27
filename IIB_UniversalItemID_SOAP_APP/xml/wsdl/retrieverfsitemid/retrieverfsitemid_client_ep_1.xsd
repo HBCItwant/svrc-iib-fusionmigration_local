@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" xmlns:uidtyp="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" xmlns="http://www.w3.org/2001/XMLSchema">
+  <complexType name="RetrieveByIDandChainRequestType">
+    <sequence>
+      <element name="ItemID" type="uidtyp:ItemIDType"/>
+      <element name="Chain" type="uidtyp:ChainType"/>
+      <element name="Store" type="uidtyp:StoreType" minOccurs="0"/>
+      <element name="CountryCode" type="string" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveByBorderSKNRequestType">
+    <sequence>
+      <element name="Chain" type="uidtyp:ChainType"/>
+      <element name="UPC" type="uidtyp:UPCType"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveSKNByUPCRequestType">
+    <sequence>
+      <element name="Chain" type="uidtyp:ChainType"/>
+      <element name="CountryCode" type="string"/>
+      <element name="ItemIDList" type="uidtyp:ItemIDListType"/>
+    </sequence>
+  </complexType>
+  <complexType name="ItemIDListType">
+    <sequence>
+      <element name="ItemID" type="uidtyp:ItemIDType" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveItemIDList">
+    <sequence>
+      <element name="SKN" type="uidtyp:SKNType"/>
+      <element name="REORDER_UPC_NO" type="uidtyp:UPCType"/>
+    </sequence>
+  </complexType>
+  <complexType name="InvalidItemList">
+    <sequence>
+      <element name="ItemID" type="uidtyp:ItemIDType"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveSKNByUPCResponseType">
+    <sequence>
+      <element name="ItemID" type="uidtyp:RetrieveItemIDList" maxOccurs="unbounded"/>
+      <element name="InvalidItemID" type="uidtyp:InvalidItemList" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveByBorderSKNResponseType">
+    <sequence>
+      <element name="Chain" type="uidtyp:ChainType"/>
+      <element name="SSN" type="uidtyp:SSNType"/>
+      <element name="SKN" type="uidtyp:SKNType"/>
+      <element name="SVS" type="uidtyp:SVSType"/>
+      <element name="UPC" type="uidtyp:UPCType"/>
+      <element name="ReorderUPC" type="uidtyp:ReorderUPCType"/>
+      <element name="CountryCode" type="string"/>
+      <element name="severity" type="uidtyp:severityType"/>
+      <element name="code" type="uidtyp:codeType"/>
+      <element name="message" type="uidtyp:messageType"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveByIDandChainResponseType">
+    <sequence>
+      <element name="SSN" type="uidtyp:SSNType"/>
+      <element name="SKN" type="uidtyp:SKNType"/>
+      <element name="UPC" type="uidtyp:UPCType"/>
+      <element name="SVS" type="uidtyp:SVSType"/>
+      <element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+      <element name="VendorNum" type="uidtyp:VendorNumType"/>
+      <element name="MdseVendorNum" type="uidtyp:VendorNumType"/>
+      <element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+      <element name="DMMName" type="uidtyp:DMMNameType"/>
+      <element name="DMMNo" type="uidtyp:DMMNoType"/>
+      <element name="GMMName" type="uidtyp:GMMNameType"/>
+      <element name="GMMNo" type="uidtyp:GMMNoType"/>
+      <element name="DeptNo" type="uidtyp:DeptNoType"/>
+      <element name="DeptDesc" type="uidtyp:DeptDescType"/>
+      <element name="ClassNo" type="uidtyp:ClassNoType"/>
+      <element name="ClassDesc" type="uidtyp:ClassDescType"/>
+      <element name="MfgName" type="uidtyp:MfgNameType"/>
+      <element name="MfgNo" type="uidtyp:MfgNoType"/>
+      <element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+      <element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+      <element name="PriceStatus" type="uidtyp:PriceStatusType"/>
+      <element name="PriceTypeCode" type="string"/>
+      <element name="ReqReasonCode" type="string"/>
+      <element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+      <element name="SizeCode" type="uidtyp:SizeCodeType"/>
+      <element name="SizeDesc" type="uidtyp:SizeDescType"/>
+      <element name="ColorCode" type="uidtyp:ColorCodeType"/>
+      <element name="ColorDesc" type="uidtyp:ColorDescType"/>
+      <element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+      <element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+      <element name="OwnedOrigPctOff" type="string"/>
+      <element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+      <element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+      <element name="CompareAtPrice" type="uidtyp:CompareAtPriceType"/>
+      <element name="CatalogCode" type="uidtyp:CatalogCodeType"/>
+      <element name="OrigOwnRtlDol" type="uidtyp:OrigOwnRtlDolType"/>
+      <element name="OrigTktRtlDol" type="decimal"/>
+      <element name="EffectiveDate" type="uidtyp:EffectiveDateType"/>
+      <element name="PermPrice" maxOccurs="unbounded">
+        <complexType>
+          <sequence>
+            <element name="Price" type="decimal"/>
+            <element name="StartDate" type="string"/>
+            <element name="StartTime" type="string"/>
+            <element name="RegionTypeCode" type="string"/>
+            <element name="PriceTypeCode" type="string"/>
+            <element name="PriceStatus" type="string"/>
+            <element name="ReqReasonNo" type="integer"/>
+            <element name="OwnedOrigPctOff" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PromoPrices">
+        <complexType>
+          <sequence>
+            <element name="PriceInfo" maxOccurs="unbounded">
+              <complexType>
+                <sequence>
+                  <element name="PriceEffectiveDate" type="date"/>
+                  <element name="Price" type="decimal"/>
+                  <element name="TotalDisc" type="decimal"/>
+                  <element name="PromoID" type="integer"/>
+                  <element name="PromoType" type="string"/>
+                  <element name="PromoAmount" type="decimal"/>
+                  <element name="PromoStartDate" type="date"/>
+                  <element name="PromoEndDate" type="date"/>
+                  <element name="PromoStartTime" type="integer"/>
+                  <element name="PromoEndTime" type="integer"/>
+                  <element name="DiscAmt" type="decimal"/>
+                  <element name="RcptTxt" type="string"/>
+                  <element name="OriginalPrice" type="decimal"/>
+                  <element name="PromoChangeType" type="string"/>
+                  <element name="Status" type="string"/>
+                </sequence>
+              </complexType>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveInfoBySKNRequestType">
+    <sequence>
+      <element name="SKN" type="uidtyp:SKNType"/>
+      <element name="CountryCode" type="string" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveInfoBySKNResponseType">
+    <sequence>
+      <element name="SSN" type="uidtyp:SSNType"/>
+      <element name="SKN" type="uidtyp:SKNType"/>
+      <element name="UPC" type="uidtyp:UPCType"/>
+      <element name="SVS" type="uidtyp:SVSType"/>
+      <element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+      <element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+      <element name="DeptNo" type="uidtyp:DeptNoType"/>
+      <element name="ClassNo" type="uidtyp:ClassNoType"/>
+      <element name="MfgName" type="uidtyp:MfgNameType"/>
+      <element name="MfgNo" type="uidtyp:MfgNoType"/>
+      <element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+      <element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+      <element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+      <element name="SizeCode" type="uidtyp:SizeCodeType"/>
+      <element name="SizeDesc" type="uidtyp:SizeDescType"/>
+      <element name="ColorCode" type="uidtyp:ColorCodeType"/>
+      <element name="ColorDesc" type="uidtyp:ColorDescType"/>
+      <element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+      <element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+      <element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+      <element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+      <element name="PermPrice" maxOccurs="unbounded">
+        <complexType>
+          <sequence>
+            <element name="Price" type="decimal"/>
+            <element name="StartDate" type="string"/>
+            <element name="StartTime" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PromoPrice" maxOccurs="unbounded">
+        <complexType>
+          <sequence>
+            <element name="StartDate" type="string"/>
+            <element name="StartTime" type="string"/>
+            <element name="OriginalPrice" type="decimal"/>
+            <element name="Price" type="decimal"/>
+            <element name="PromoChangeType" type="string"/>
+            <element name="EndDate" type="string"/>
+            <element name="EndTime" type="string"/>
+            <element name="Status" type="string"/>
+          </sequence>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveByDeptClassRequestType">
+    <sequence>
+      <element name="DeptNo" type="uidtyp:DeptNoType"/>
+      <element name="ClassNo" type="uidtyp:ClassNoType"/>
+      <element name="StyleNo" type="uidtyp:StyleNoType" minOccurs="0"/>
+      <element name="CountryCode" type="string" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveByDeptClassResponseType">
+    <sequence>
+      <element name="SSN" type="uidtyp:SSNType"/>
+      <element name="SKN" type="uidtyp:SKNType"/>
+      <element name="UPC" type="uidtyp:UPCType"/>
+      <element name="SVS" type="uidtyp:SVSType"/>
+      <element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+      <element name="element1"/>
+      <element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+      <element name="DeptNo" type="uidtyp:DeptNoType"/>
+      <element name="ClassNo" type="uidtyp:ClassNoType"/>
+      <element name="MfgNo" type="uidtyp:MfgNoType"/>
+      <element name="MfgName" type="uidtyp:MfgNameType"/>
+      <element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+      <element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+      <element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+      <element name="SizeCode" type="uidtyp:SizeCodeType"/>
+      <element name="SizeDesc" type="uidtyp:SizeDescType"/>
+      <element name="ColorCode" type="uidtyp:ColorCodeType"/>
+      <element name="ColorDesc" type="uidtyp:ColorDescType"/>
+      <element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+      <element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+      <element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+      <element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveInfoBySSNRequestType">
+    <sequence>
+      <element name="SSN" type="uidtyp:SSNType"/>
+      <element name="CountryCode" type="string" minOccurs="0"/>
+      <element name="Chain" type="uidtyp:ChainType" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveInfoBySSNResponseType">
+    <sequence>
+      <element name="SSN" type="uidtyp:SSNType"/>
+      <element name="SKN" type="uidtyp:SKNType"/>
+      <element name="UPC" type="uidtyp:UPCType"/>
+      <element name="SVS" type="uidtyp:SVSType"/>
+      <element name="Chain" type="uidtyp:ChainType"/>
+      <element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+      <element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+      <element name="DeptNo" type="uidtyp:DeptNoType"/>
+      <element name="ClassNo" type="uidtyp:ClassNoType"/>
+      <element name="MfgName" type="uidtyp:MfgNameType"/>
+      <element name="MfgNo" type="uidtyp:MfgNoType"/>
+      <element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+      <element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+      <element name="PriceStatus" type="uidtyp:PriceStatusType"/>
+      <element name="PriceTypeCode" type="string"/>
+      <element name="ReqReasonCode" type="string"/>
+      <element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+      <element name="SizeCode" type="uidtyp:SizeCodeType"/>
+      <element name="SizeDesc" type="uidtyp:SizeDescType"/>
+      <element name="ColorCode" type="uidtyp:ColorCodeType"/>
+      <element name="ColorDesc" type="uidtyp:ColorDescType"/>
+      <element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+      <element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+      <element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+      <element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+    </sequence>
+  </complexType>
+  <complexType name="UniversalItemIDFaultType">
+    <sequence>
+      <element name="severity" type="uidtyp:severityType"/>
+      <element name="code" type="uidtyp:codeType"/>
+      <element name="message" type="uidtyp:messageType"/>
+    </sequence>
+  </complexType>
+  <element name="AMSInput">
+    <complexType>
+      <sequence>
+        <element name="PriceRequest">
+          <complexType>
+            <sequence>
+              <element name="SKN" type="integer" minOccurs="1"/>
+              <element name="Banner" type="integer" minOccurs="1"/>
+              <element name="Store" type="integer" minOccurs="0"/>
+              <element name="NumberOfDays" type="integer" minOccurs="0"/>
+              <element name="Pricing" minOccurs="0">
+                <complexType>
+                  <sequence>
+                    <element name="PriceRec" maxOccurs="unbounded" minOccurs="0">
+                      <complexType>
+                        <sequence>
+                          <element name="Price" type="decimal" minOccurs="0"/>
+                          <element name="EffectiveDate" type="string" minOccurs="0"/>
+                          <element name="PriceStatus" type="integer" minOccurs="0"/>
+                        </sequence>
+                      </complexType>
+                    </element>
+                  </sequence>
+                </complexType>
+              </element>
+            </sequence>
+          </complexType>
+        </element>
+      </sequence>
+    </complexType>
+  </element>
+  <simpleType name="CatalogCodeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ChainType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ClassDescType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ClassNoType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="ColorCodeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ColorDescType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="codeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="CompareAtPriceType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="ConsignmentCodeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="CurOwnedRetailDollarsType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="CurOwnedPriceType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="CurTicketPriceDollarsType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="DeptDescType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="DeptNoType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="DMMNameType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="DMMNoType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="GMMNameType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="GMMNoType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="EffectiveDateType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="FashionStyleNoType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="ItemIDType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="ItemDescShortType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ItemDescLongType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="messageType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MfgNameType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MfgNoType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="OrigOwnRtlDolType">
+    <restriction base="decimal"/>
+  </simpleType>
+  <simpleType name="PriceStatusType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SeasonCdeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="severityType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SizeCodeType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="SizeDescType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SKNType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="SpecInstTxtType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SSNType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="StoreType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="StyleNoType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SVSType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="UPCType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="ReorderUPCType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="VendorNumType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="VendorStyleType">
+    <restriction base="string"/>
+  </simpleType>
+</schema>

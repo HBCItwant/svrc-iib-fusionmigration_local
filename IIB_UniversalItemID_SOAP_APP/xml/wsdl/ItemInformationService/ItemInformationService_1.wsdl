@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ItemInformationService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/UID/UniversalItemID/ItemInformationService" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/UID/UniversalItemID/ItemInformationService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:msg_in_out="http://xmlns.saksinc.com/CommonModules/UniversalItemID" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/ItemInformationService.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plt:partnerLinkType name="retrieveBorderSKNInfo_plt">
+    <plt:role name="retrieveBorderSKNInfo_role">
+      <plt:portType name="tns:retrieveBorderSKNInfo_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID" schemaLocation="ItemInformationService.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RetrieveByBorderSKNRequest_msg_in">
+    <wsdl:part name="RetrieveByBorderSKNRequest" element="msg_in_out:RetrieveByBorderSKNRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveByBorderSKNResponse_msg_out">
+    <wsdl:part name="RetrieveByBorderSKNResponse" element="msg_in_out:RetrieveByBorderSKNResponse"/>
+  </wsdl:message>
+  <wsdl:message name="FaultMessage">
+    <wsdl:part name="FaultPart" element="msg_in_out:UniversalItemIDFault"/>
+  </wsdl:message>
+  <wsdl:portType name="retrieveBorderSKNInfo_ptt">
+    <wsdl:operation name="retrieveBorderSKNInfo">
+      <wsdl:input message="tns:RetrieveByBorderSKNRequest_msg_in"/>
+      <wsdl:output message="tns:RetrieveByBorderSKNResponse_msg_out"/>
+      <wsdl:fault name="Fault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="retrieveBorderSKNInfo_pttBinding" type="tns:retrieveBorderSKNInfo_ptt">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveBorderSKNInfo">
+      <soap:operation style="document" soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault name="Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="retrieveBorderSKNInfo_ptHttpGET" type="tns:retrieveBorderSKNInfo_ptt">
+    <http:binding verb="GET" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+    <wsdl:operation name="retrieveBorderSKNInfo">
+      <http:operation location="" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+      <wsdl:input>
+        <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ItemInformationService">
+    <wsdl:port name="retrieveBorderSKNInfo_pt_soappt" binding="tns:retrieveBorderSKNInfo_pttBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/ItemInformationService"/>
+    </wsdl:port>
+    <wsdl:port name="retrieveBorderSKNInfo_pt" binding="tns:retrieveBorderSKNInfo_ptHttpGET">
+      <http:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/ItemInformationService" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

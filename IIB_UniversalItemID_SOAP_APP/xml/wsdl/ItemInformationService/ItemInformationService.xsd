@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID" xmlns:uid="http://xmlns.saksinc.com/CommonModules/UniversalItemID" xmlns:uidtyp="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" schemaLocation="ItemInformationService_1.xsd"/>
+  <element name="RetrieveByIDandChainRequest" type="uidtyp:RetrieveByIDandChainRequestType"/>
+  <element name="RetrieveByIDandChainResponse" type="uidtyp:RetrieveByIDandChainResponseType"/>
+  <element name="RetrieveInfoBySKNRequest" type="uidtyp:RetrieveInfoBySKNRequestType"/>
+  <element name="RetrieveInfoBySKNResponse" type="uidtyp:RetrieveInfoBySKNResponseType"/>
+  <element name="RetrieveByDeptClassRequest" type="uidtyp:RetrieveByDeptClassRequestType"/>
+  <element name="RetrieveByDeptClassResponse" type="uid:RetrieveItemInfoByDeptClassOutputCollection"/>
+  <element name="RetrieveInfoBySSNRequest" type="uidtyp:RetrieveInfoBySSNRequestType"/>
+  <element name="RetrieveInfoBySSNResponse" type="uid:RetrieveItemInfoBySSNOutputCollection"/>
+  <element name="RetrieveByBorderSKNRequest" type="uidtyp:RetrieveByBorderSKNRequestType"/>
+  <element name="RetrieveByBorderSKNResponse" type="uid:RetrieveByBorderSKNResponseCollection"/>
+  <element name="RetrieveSKNByUPCRequest" type="uidtyp:RetrieveSKNByUPCRequestType"/>
+  <element name="RetrieveSKNByUPCResponse" type="uidtyp:RetrieveSKNByUPCResponseType"/>
+  <complexType name="RetrieveItemInfoByDeptClassOutputCollection">
+    <sequence>
+      <element name="RetrieveItemInfoByDeptClassOutput" type="uidtyp:RetrieveByDeptClassResponseType" minOccurs="0" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveItemInfoBySSNOutputCollection">
+    <sequence>
+      <element name="RetrieveInfoBySSNResponse" type="uidtyp:RetrieveInfoBySSNResponseType" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="RetrieveByBorderSKNResponseCollection">
+    <sequence>
+      <element name="RetrieveByBorderSKNResp" type="uidtyp:RetrieveByBorderSKNResponseType" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <element name="UniversalItemIDFault" type="uidtyp:UniversalItemIDFaultType"/>
+</schema>

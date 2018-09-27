@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RetrieveByIDandChain" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" xmlns:ns1="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:client="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/RetrieveByIDandChain.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="RetrieveByIDandChain">
+    <plnk:role name="RetrieveByIDandChainProvider" portType="client:RetrieveByIDandChain"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" schemaLocation="RetrieveByIDandChainService_ep.xsd"/>
+    </schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" schemaLocation="RetrieveByIDandChainService_ep_1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RetrieveByIDandChainRequestMessage">
+    <wsdl:part name="payload" element="client:RetrieveByIDandChainRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveByIDandChainResponseMessage">
+    <wsdl:part name="payload" element="client:RetrieveByIDandChainResponse"/>
+  </wsdl:message>
+  <wsdl:message name="FaultMessageRetrieveByIDandChain">
+    <wsdl:part name="part" element="client:RetrieveByIDandChainFault"/>
+  </wsdl:message>
+  <wsdl:portType name="RetrieveByIDandChain">
+    <wsdl:operation name="retrieveByIDandChain">
+      <wsdl:input message="client:RetrieveByIDandChainRequestMessage"/>
+      <wsdl:output message="client:RetrieveByIDandChainResponseMessage"/>
+      <wsdl:fault name="part" message="client:FaultMessageRetrieveByIDandChain"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RetrieveByIDandChainBinding" type="client:RetrieveByIDandChain">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveByIDandChain">
+      <soap:operation style="document" soapAction="retrieveByIDandChain"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="part">
+        <soap:fault name="part" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RetrieveByIDandChainService_ep">
+    <wsdl:port name="RetrieveByIDandChain_pt" binding="client:RetrieveByIDandChainBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/RetrieveByIDandChainService_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

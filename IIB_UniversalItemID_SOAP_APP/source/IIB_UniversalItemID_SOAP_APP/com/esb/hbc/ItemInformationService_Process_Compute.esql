@@ -1,0 +1,52 @@
+BROKER SCHEMA com.esb.hbc
+DECLARE ns NAMESPACE 'http://xmlns.saksinc.com/CommonModules/UniversalItemID';
+
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : ItemInformationService_Process_Compute
+* DESCRIPTION : Call to the opertaion ItemInformationService_Process_Compute in ItemInformationService_Process.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			09/05/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+
+CREATE COMPUTE MODULE ItemInformationService_Process_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+				
+		--Input variable declaration
+		DECLARE p_Chain, p_UPC, Query CHARACTER;
+		
+		--Input assignment
+		SET p_Chain =  FIELDVALUE(InputRoot.XMLNSC.ns:RetrieveByBorderSKNRequest.ns0:Chain);
+		SET p_UPC = FIELDVALUE(InputRoot.XMLNSC.ns:RetrieveByBorderSKNRequest.ns0:UPC);
+		
+		--Select query construction
+		SET Query = 'SELECT *  FROM RF_UPC u JOIN RF_ITEM i on u.SKN_NO = i.SKN_NO where u.UPC  = ? AND u.CHAIN = ?';
+		
+		--Invoke DB to fetch Results
+		SET OutputRoot.XML.Query.Result[] = PASSTHRU(Query,p_UPC,p_Chain);
+		
+	END;
+END MODULE;

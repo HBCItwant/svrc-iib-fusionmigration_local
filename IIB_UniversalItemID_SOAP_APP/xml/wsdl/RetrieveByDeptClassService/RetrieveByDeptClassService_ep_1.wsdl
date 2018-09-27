@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RetrieveByDeptClass" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByDeptClass" xmlns:ns1="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:client="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByDeptClass" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/RetrieveByDeptClass.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="RetrieveByDeptClass">
+    <plnk:role name="RetrieveByDeptClassProvider" portType="client:RetrieveByDeptClass"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" schemaLocation="RetrieveByDeptClassService_ep.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RetrieveByDeptClassRequestMessage">
+    <wsdl:part name="payload" element="ns1:RetrieveByDeptClassRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveByDeptClassResponseMessage">
+    <wsdl:part name="payload" element="ns1:RetrieveByDeptClassResponse"/>
+  </wsdl:message>
+  <wsdl:message name="FaultMessageRetrieveByDeptClass">
+    <wsdl:part name="part" element="ns1:RetrieveByDeptClassFault"/>
+  </wsdl:message>
+  <wsdl:portType name="RetrieveByDeptClass">
+    <wsdl:operation name="retrieveByDeptClass">
+      <wsdl:input message="client:RetrieveByDeptClassRequestMessage"/>
+      <wsdl:output message="client:RetrieveByDeptClassResponseMessage"/>
+      <wsdl:fault name="FaultMessageRetrieveByDeptClass" message="client:FaultMessageRetrieveByDeptClass"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RetrieveByDeptClassBinding" type="client:RetrieveByDeptClass">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveByDeptClass">
+      <soap:operation style="document" soapAction="retrieveByDeptClass"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="FaultMessageRetrieveByDeptClass">
+        <soap:fault name="FaultMessageRetrieveByDeptClass" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RetrieveByDeptClassService_ep">
+    <wsdl:port name="RetrieveByDeptClass_pt" binding="client:RetrieveByDeptClassBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/RetrieveByDeptClassService_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

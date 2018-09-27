@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="UniversalItemIDMediator" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID" xmlns:uid="http://xmlns.saksinc.com/CommonModules/UniversalItemID" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/UniversalItemIDMediator.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID" schemaLocation="UniversalItemIDMediator_ep.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RetrieveByIDandChainRequest">
+    <wsdl:part name="input" element="uid:RetrieveByIDandChainRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveByIDandChainResponse">
+    <wsdl:part name="output" element="uid:RetrieveByIDandChainResponse"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveInfoBySKNRequest">
+    <wsdl:part name="input" element="uid:RetrieveInfoBySKNRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveInfoBySKNResponse">
+    <wsdl:part name="output" element="uid:RetrieveInfoBySKNResponse"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveByDeptClassRequest">
+    <wsdl:part name="input" element="uid:RetrieveByDeptClassRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveByDeptClassResponse">
+    <wsdl:part name="output" element="uid:RetrieveByDeptClassResponse"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveInfoBySSNRequest">
+    <wsdl:part name="part" element="uid:RetrieveInfoBySSNRequest"/>
+  </wsdl:message>
+  <wsdl:message name="RetrieveInfoBySSNResponse">
+    <wsdl:part name="part" element="uid:RetrieveInfoBySSNResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="execute_ptt">
+    <wsdl:operation name="retrieveByIDandChain">
+      <wsdl:input message="uid:RetrieveByIDandChainRequest"/>
+      <wsdl:output message="uid:RetrieveByIDandChainResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInfoBySKN">
+      <wsdl:input message="uid:RetrieveInfoBySKNRequest"/>
+      <wsdl:output message="uid:RetrieveInfoBySKNResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveByDeptClass">
+      <wsdl:input message="uid:RetrieveByDeptClassRequest"/>
+      <wsdl:output message="uid:RetrieveByDeptClassResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInfoBySSN">
+      <wsdl:input message="uid:RetrieveInfoBySSNRequest"/>
+      <wsdl:output message="uid:RetrieveInfoBySSNResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveRFSItemID">
+      <wsdl:input message="uid:RetrieveByIDandChainRequest"/>
+      <wsdl:output message="uid:RetrieveByIDandChainResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="execute_pttBinding" type="uid:execute_ptt">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveByIDandChain">
+      <soap:operation style="document" soapAction="retrieveByIDandChain"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInfoBySKN">
+      <soap:operation style="document" soapAction="retrieveInfoBySKN"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveByDeptClass">
+      <soap:operation style="document" soapAction="retrieveByDeptClass"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveInfoBySSN">
+      <soap:operation style="document" soapAction="retrieveInfoBySSN"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveRFSItemID">
+      <soap:operation style="document" soapAction="retrieveRFSItemID"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UniversalItemIDMediator_ep">
+    <wsdl:port name="execute_pt" binding="uid:execute_pttBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/UniversalItemIDMediator_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

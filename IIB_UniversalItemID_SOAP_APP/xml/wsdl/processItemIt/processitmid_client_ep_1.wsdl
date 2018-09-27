@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ProcessItmID" targetNamespace="http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID" xmlns:ns1="http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/ProcessItmID.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="ProcessItmID">
+    <plnk:role name="ProcessItmIDProvider" portType="client:ProcessItmID"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID" schemaLocation="processitmid_client_ep.xsd"/>
+    </schema>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID" schemaLocation="processitmid_client_ep.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="ProcessItmIDRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="ProcessItmIDResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ProcessItmID">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:ProcessItmIDRequestMessage"/>
+      <wsdl:output message="client:ProcessItmIDResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProcessItmIDBinding" type="client:ProcessItmID">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="processitmid_client_ep">
+    <wsdl:port name="ProcessItmID_pt" binding="client:ProcessItmIDBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/processitmid_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

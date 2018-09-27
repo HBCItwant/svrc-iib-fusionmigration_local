@@ -1,0 +1,84 @@
+BROKER SCHEMA com.esb.hbc
+DECLARE ns66 NAMESPACE 'http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID';
+
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : processItemID_Process_Compute
+* DESCRIPTION : Call to the opertaion processItemID_Process_Compute in processItemID_Process.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			09/06/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+
+CREATE COMPUTE MODULE processItemID_Process_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		
+		--Variables Declaration
+		DECLARE p_Group, p_Item, p_CountryCode,p_MSC_MDSE_NUM1,p_MSC_MDSE_NUM,Query_ItemIDLookupTMI121Select, Query_ItemIDLookupTMI131, Query_ItemIDLookupTMI121DefaultSelect CHARACTER;
+		
+		--Assign input to variables
+		SET p_CountryCode = FIELDVALUE(InputRoot.XMLNSC.ns66:process.ns66:CountryCode);
+		SET p_Group =  FIELDVALUE(InputRoot.XMLNSC.ns66:process.ns66:Group);
+		SET p_Item =  FIELDVALUE(InputRoot.XMLNSC.ns66:process.ns66:ItemID);
+		
+		IF (TRIM(p_Group) IS NOT NULL OR TRIM(p_Group) <> '' ) THEN
+			
+			SET Query_ItemIDLookupTMI121Select = 'SELECT STYL_SEQ_NUM, MSC_MDSE_NUM, VEN_UPC_NUM, GRP_CDE FROM TMI121ITM_SKU WHERE ((GRP_CDE = ?) AND (STR_CNTRY_CDE = ?) AND ((MSC_MDSE_NUM = ?) OR (VEN_UPC_NUM = ?)))';
+--			SET OutputRoot.XML.Query.ItemIDLookupTMI121SelectOutputCollection.ItemIDLookupTMI121SelectOutput[] = PASSTHRU(Query_ItemIDLookupTMI121Select,p_Group,p_CountryCode,p_Item,p_Item);
+			SET OutputRoot.XML.Query.ItemIDLookupTMI121DefaultSelectOutputCollection.ItemIDLookupTMI121DefaultSelectOutput[] = PASSTHRU(Query_ItemIDLookupTMI121Select,p_Group,p_CountryCode,p_Item,p_Item);
+		 	SET p_MSC_MDSE_NUM = OutputRoot.XML.Query.ItemIDLookupTMI121DefaultSelectOutputCollection.ItemIDLookupTMI121DefaultSelectOutput.MSC_MDSE_NUM;
+		ELSE
+			
+			SET p_Group = '10';
+			
+			SET Query_ItemIDLookupTMI121DefaultSelect ='SELECT STYL_SEQ_NUM, MSC_MDSE_NUM, VEN_UPC_NUM, GRP_CDE FROM TMI121ITM_SKU WHERE  (STR_CNTRY_CDE = ?) AND ((MSC_MDSE_NUM = ?) OR (VEN_UPC_NUM = ?))';
+			SET OutputRoot.XML.Query.ItemIDLookupTMI121DefaultSelectOutputCollection.ItemIDLookupTMI121DefaultSelectOutput[] = PASSTHRU(Query_ItemIDLookupTMI121DefaultSelect,p_CountryCode,p_Item,p_Item);
+			SET p_MSC_MDSE_NUM = OutputRoot.XML.Query.ItemIDLookupTMI121DefaultSelectOutputCollection.ItemIDLookupTMI121DefaultSelectOutput.MSC_MDSE_NUM;
+		END IF;
+		
+		IF (TRIM(p_MSC_MDSE_NUM) IS NULL OR TRIM(p_MSC_MDSE_NUM) = '' ) THEN
+			
+		 SET Query_ItemIDLookupTMI131 = 'SELECT STYL_SEQ_NUM, MSC_MDSE_NUM, VEN_UPC_NUM, GRP_CDE FROM TMI131ITM_ALT_UPC WHERE ((GRP_CDE = ?) AND (STR_CNTRY_CDE = ?) AND ((MSC_MDSE_NUM = ?) OR (VEN_UPC_NUM = ?)))';
+		 SET OutputRoot.XML.Query.ItemIDLookupTMI121DefaultSelectOutputCollection.ItemIDLookupTMI121DefaultSelectOutput[] = PASSTHRU(Query_ItemIDLookupTMI131,p_Group,p_CountryCode,p_Item,p_Item);
+		 SET p_MSC_MDSE_NUM1 = OutputRoot.XML.Query.ItemIDLookupTMI121DefaultSelectOutputCollection.ItemIDLookupTMI121DefaultSelectOutput.MSC_MDSE_NUM;
+		
+			  IF (TRIM(p_MSC_MDSE_NUM1) IS NULL OR TRIM(p_MSC_MDSE_NUM1) = '' ) THEN 
+			  	SET OutputRoot.XMLNSC.ns66:processResponse.ns66:SKU = '0000000000000';
+			  	SET OutputRoot.XMLNSC.ns66:processResponse.ns66:SSN = '0000000000000';
+			  	SET OutputRoot.XMLNSC.ns66:processResponse.ns66:UPC = '0000000000000';
+			  	PROPAGATE TO TERMINAL 'out1';
+			  END IF;
+			   	PROPAGATE TO TERMINAL 'out2';
+		ELSE
+			   PROPAGATE TO TERMINAL 'out2';
+--				IF p_MSC_MDSE_NUM > 0 THEN
+--			      PROPAGATE TO TERMINAL 'out3';
+--				ELSE
+--				  PROPAGATE TO TERMINAL 'out4';
+--				END IF;
+		END IF;
+		
+		
+	END;
+END MODULE;

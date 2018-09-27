@@ -1,0 +1,176 @@
+BROKER SCHEMA com.esb.hbc
+DECLARE ns11 NAMESPACE 'http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySSN';
+
+DECLARE ERROR_retrieveInfoBySSN_NoData_ID CONSTANT CHARACTER '0036';
+DECLARE ERROR_retrieveInfoBySSN_NoData_MSG CONSTANT CHARACTER 'No Item Information for the SVS provided on LT ITEM Table.';
+DECLARE ERROR_retrieveInfoBySSN_NoData_SAKS_ID CONSTANT CHARACTER '0005';
+DECLARE ERROR_retrieveInfoBySSN_NoData_SAKS_MSG CONSTANT CHARACTER 'No Item Information for the SSN provided on ITEM Table.';
+
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : retrieveInfoBySSN_SAKS_Process_Compute
+* DESCRIPTION : Call to the opertaion retrieveInfoBySSN_SAKS_Process_Compute in retrieveInfoBySSN_SAKS_Process.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			09/07/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+
+CREATE COMPUTE MODULE retrieveInfoBySSN_SAKS_Process_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		DECLARE p_CountryCode, p_SSN, p_Chain, Query_RetrieveItemInfoBySSNOutput CHARACTER;
+		
+		SET p_CountryCode = FIELDVALUE(InputRoot.XMLNSC.ns11:RetrieveInfoBySSNRequest.ns0:CountryCode);
+		SET p_SSN =  FIELDVALUE(InputRoot.XMLNSC.ns11:RetrieveInfoBySSNRequest.ns0:SSN);
+		SET p_Chain =  FIELDVALUE(InputRoot.XMLNSC.ns11:RetrieveInfoBySSNRequest.ns0:Chain);
+		
+		SET Query_RetrieveItemInfoBySSNOutput = 'SELECT SSN,A.SKN_NO,B.UPC,A.SVS,B.CHAIN,B.MDSE_COUNTRY_CODE,A.FASHION_STYLE_NO,A.VENDOR_STYLE,A.DEPT_NO,A.CLASS_NO,C.MFG_NAME,C.MFG_NO,ITEM_DESC_SHORT,ITEM_DESC_LONG,SIZE_CODE,SIZE_DESC,COLOR_CODE,COLOR_DESC,CONSIGNMENT_CODE,CUR_TKT_PRICE_DOL,CUR_OWN_RETAIL_DOL,COST_AMOUNT_DOL, SEASON_TYPE_CODE FROM RFS.RF_ITEM A LEFT JOIN RFS.RF_UPC B ON A.SKN_NO = B.SKN_NO AND B.UPC = B.REORDER_UPC_NO LEFT JOIN RFS.RF_DEPT_MFG C ON A.DEPT_NO = C.DEPT_NO AND A.MFG_NO = C.MFG_NO WHERE(A.SSN = ? ) AND (B.MDSE_COUNTRY_CODE = ?)';
+		
+		SET OutputRoot.XML.RetrieveItemInfoBySSNOutputCollection.RetrieveItemInfoBySSNOutput[] = PASSTHRU(Query_RetrieveItemInfoBySSNOutput,p_SSN,p_CountryCode);
+		
+		DECLARE Count_Query INTEGER CARDINALITY(OutputRoot.XML.RetrieveItemInfoBySSNOutputCollection.RetrieveItemInfoBySSNOutput[] );
+		
+		IF Count_Query <= 0 THEN
+			
+			SET Environment.variables.ERROR_msg_ID = ERROR_retrieveInfoBySSN_NoData_SAKS_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_retrieveInfoBySSN_NoData_SAKS_MSG;
+			SET errorMsg = ERROR_retrieveInfoBySSN_NoData_SAKS_MSG;
+			THROW USER EXCEPTION CATALOG 'retrieveInfoBySSN_NO_Data_Found' MESSAGE 1005 VALUES(errorMsg) ;
+		END IF;
+		
+		
+		
+		
+	END;
+END MODULE;
+
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : retrieveInfoBySSN_LT_Process_Compute
+* DESCRIPTION : Call to the opertaion retrieveInfoBySSN_LT_Process_Compute in retrieveInfoBySSN_SAKS_Process.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			09/07/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+CREATE COMPUTE MODULE retrieveInfoBySSN_LT_Process_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		
+		DECLARE p_CountryCode, p_SSN, p_Chain, Query_GetLTItemInfoBySVSOutput CHARACTER;
+		
+		SET p_CountryCode = FIELDVALUE(InputRoot.XMLNSC.ns11:RetrieveInfoBySSNRequest.ns0:CountryCode);
+		SET p_SSN =  FIELDVALUE(InputRoot.XMLNSC.ns11:RetrieveInfoBySSNRequest.ns0:SSN);
+		SET p_Chain =  FIELDVALUE(InputRoot.XMLNSC.ns11:RetrieveInfoBySSNRequest.ns0:Chain);
+		
+		SET Query_GetLTItemInfoBySVSOutput = 'SELECT A.SKN_NO,B.UPC,A.SVS,A.FASHION_STYLE_NO,A.VENDOR_STYLE,A.DEPT_NO,A.CLASS_NO,C.MFG_NAME,C.MFG_NO,ITEM_DESC_SHORT,ITEM_DESC_LONG,SIZE_CODE,SIZE_DESC,COLOR_CODE,COLOR_DESC,CONSIGNMENT_CODE,CUR_TKT_PRICE_DOL,CUR_OWN_RETAIL_DOL,COST_AMOUNT_DOL, SEASON_TYPE_CODE FROM LT.RF_ITEM A LEFT JOIN LT.RF_UPC B ON A.SKN_NO = B.SKN_NO LEFT JOIN LT.RF_DEPT_MFG C ON A.DEPT_NO = C.DEPT_NO WHERE(A.SVS = ? ) AND A.MFG_NO = C.MFG_NO ';
+		
+		SET OutputRoot.XML.GetLTItemInfoBySVSOutputCollection.GetLTItemInfoBySVSOutput[] = PASSTHRU(Query_GetLTItemInfoBySVSOutput,p_SSN);
+		
+		DECLARE Count_Query INTEGER CARDINALITY(OutputRoot.XML.GetLTItemInfoBySVSOutputCollection.GetLTItemInfoBySVSOutput[]);
+		
+		IF Count_Query <= 0 THEN
+			
+			SET Environment.variables.ERROR_msg_ID = ERROR_retrieveInfoBySSN_NoData_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_retrieveInfoBySSN_NoData_MSG;
+			SET errorMsg = ERROR_retrieveInfoBySSN_NoData_MSG;
+			THROW USER EXCEPTION CATALOG 'retrieveInfoBySSN_NO_Data_Found' MESSAGE 1005 VALUES(errorMsg) ;
+		END IF;
+		
+		
+	END;
+END MODULE;
+
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : retrieveInfoBySSN_LTPriceStatus_Process_Compute
+* DESCRIPTION : Call to the opertaion retrieveInfoBySSN_LTPriceStatus_Process_Compute in retrieveInfoBySSN_SAKS_Process.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			09/07/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+CREATE COMPUTE MODULE retrieveInfoBySSN_LTPriceStatus_Process_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		
+		DECLARE SKNCounter INTEGER CARDINALITY (InputRoot.XMLNSC.ns11:RetrieveInfoBySSNResponse.ns11:RetrieveInfoBySSNOutput[]);
+		DECLARE I INTEGER 1;
+		DECLARE Query_GetLTPriceStatus,p_SKN_NO2,p_SKN_NO1,p_SKN_NO3 CHARACTER;
+		WHILE I <= SKNCounter DO
+			SET p_SKN_NO1 = InputRoot.XMLNSC.ns11:RetrieveInfoBySSNResponse.ns11:RetrieveInfoBySSNOutput[I].ns0:SKN;
+			SET Query_GetLTPriceStatus = 'SELECT * FROM   (SELECT SKN_NO,     EFFECTIVE_DATE,     REGION_TYPE_CODE,     PRICE_TYPE_CODE,     DECODE (REQ_REASON_NO, 21, ''R'', 22, ''M'', 23, ''C'', 24, ''F'') PRICE_STATUS,     REQ_REASON_NO,     OWNED_ORIG_PCT_OFF,     TICKET_RETAIL_DOL,     ''N'' AS FUTURE_PERM   FROM LT.RF_ITEM_PRICING   WHERE skn_no        = ''' || Cast(p_SKN_NO1 as char) || ''' AND PRICE_TYPE_CODE = ''Z''   AND effective_date  < CURRENT_DATE   ORDER BY effective_date DESC   ) WHERE rownum = 1 UNION ALL SELECT * FROM   (SELECT SKN_NO,     EFFECTIVE_DATE,     REGION_TYPE_CODE,     PRICE_TYPE_CODE,     DECODE (REQ_REASON_NO, 21, ''R'', 22, ''M'', 23, ''C'', 24, ''F'') PRICE_STATUS,     REQ_REASON_NO,     OWNED_ORIG_PCT_OFF,     TICKET_RETAIL_DOL,     ''Z'' AS FUTURE_PERM   FROM LT.RF_ITEM_PRICING   WHERE skn_no       = ' || COALESCE(Cast(p_SKN_NO3 as char),'''''')  || 'AND effective_date < CURRENT_DATE   ORDER BY effective_date DESC   ) WHERE rownum = 1 UNION ALL SELECT SKN_NO,   EFFECTIVE_DATE,   REGION_TYPE_CODE,   PRICE_TYPE_CODE,   DECODE (REQ_REASON_NO, 21, ''R'', 22, ''M'', 23, ''C'', 24, ''F'') PRICE_STATUS,   REQ_REASON_NO,   OWNED_ORIG_PCT_OFF,   TICKET_RETAIL_DOL,   ''Y'' AS FUTURE_PERM FROM LT.RF_ITEM_PRICING WHERE skn_no       = ' || COALESCE(Cast(p_SKN_NO3 as char),'''''')  || ' AND effective_date > CURRENT_DATE';
+			SET Environment.Variables.XML.GetLTPriceStatusOutputCollection.GetLTPriceStatusOutput[] = PASSTHRU(Query_GetLTPriceStatus);
+			
+			SET OutputRoot.XMLNSC.ns11:RetrieveInfoBySSNResponse.ns11:RetrieveInfoBySSNOutput[I].ns0:PriceTypeCode = Environment.Variables.XML.GetLTPriceStatusOutputCollection.GetLTPriceStatusOutput.PRICE_TYPE_CODE;
+			SET OutputRoot.XMLNSC.ns11:RetrieveInfoBySSNResponse.ns11:RetrieveInfoBySSNOutput[I].ns0:PriceStatus = Environment.Variables.XML.GetLTPriceStatusOutputCollection.GetLTPriceStatusOutput.PRICE_STATUS;
+			SET OutputRoot.XMLNSC.ns11:RetrieveInfoBySSNResponse.ns11:RetrieveInfoBySSNOutput[I].ns0:ReqReasonCode = Environment.Variables.XML.GetLTPriceStatusOutputCollection.GetLTPriceStatusOutput.REQ_REASON_NO;
+			 
+			
+			SET I = I + 1;
+		END WHILE;
+		
+			
+	END;
+END MODULE;
+
