@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prom="http://www.xmln.saksinc.com/CommonModules/PromoPrices">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prom:PromoPriceRequest>
+     <prom:RESTInput>CHAIN=8&amp;amp;STORE=689&amp;amp;UPC=3605520572487&amp;amp;CallBack=jQuery21108537780717987642_1511890604709</prom:RESTInput>
+      </prom:PromoPriceRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+

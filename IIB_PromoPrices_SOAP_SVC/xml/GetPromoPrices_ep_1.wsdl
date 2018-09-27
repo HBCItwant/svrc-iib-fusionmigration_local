@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--File RemoteFiles\GetPromoPrices_ep.wsdl, application IIB_PromoPrices_SOAP_SVC--><wsdl:definitions name="GetPromoPrices" targetNamespace="http://xmlns.saksinc.com/CommonModules/PromoPrices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:client="http://xmlns.saksinc.com/CommonModules/PromoPrices" xmlns:ns1="http://www.xmln.saksinc.com/CommonModules/PromoPrices" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/PromoPrices!2.0/GetPromoPrices.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetPromoPricesBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="GetPromoPrices">
+    <plnk:role name="GetPromoPricesProvider" portType="client:GetPromoPrices"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.xmln.saksinc.com/CommonModules/PromoPrices" schemaLocation="GetPromoPrices_ep.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPromoPricesRequestMessage">
+    <wsdl:part element="ns1:PromoPriceRequest" name="payload"/>
+  </wsdl:message>
+  <wsdl:message name="GetPromoPricesResponseMessage">
+    <wsdl:part element="ns1:PromoPriceResponse" name="payload"/>
+  </wsdl:message>
+  <wsdl:portType name="GetPromoPrices">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:GetPromoPricesRequestMessage"/>
+      <wsdl:output message="client:GetPromoPricesResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetPromoPricesBinding" type="client:GetPromoPrices">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation soapAction="process" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetPromoPrices_ep">
+    <wsdl:port binding="client:GetPromoPricesBinding" name="GetPromoPrices_pt">
+      <soap:address location="http://10.6.37.88:7800/soa-infra/services/CommonModules/PromoPrices/GetPromoPrices_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

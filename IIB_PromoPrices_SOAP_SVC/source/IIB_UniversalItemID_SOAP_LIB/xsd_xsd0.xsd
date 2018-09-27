@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:tns="http://tempuri.org/">
+  <xsd:import namespace="http://schemas.datacontract.org/2004/07/Saks.StoreSystems.Domain.PriceInquiry" schemaLocation="xsd_xsd2.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="GetItems">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="UPC" type="xsd:long"/>
+        <xsd:element minOccurs="0" name="store" type="xsd:int"/>
+        <xsd:element minOccurs="0" name="chain" type="xsd:int"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="GetItemsResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="GetItemsResult" nillable="true" type="q1:Item" xmlns:q1="http://schemas.datacontract.org/2004/07/Saks.StoreSystems.Domain.PriceInquiry"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

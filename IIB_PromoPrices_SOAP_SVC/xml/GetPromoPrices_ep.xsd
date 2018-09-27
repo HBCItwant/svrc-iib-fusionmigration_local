@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--File RemoteFiles\PromoPrices.xsd, application IIB_PromoPrices_SOAP_SVC--><xsd:schema elementFormDefault="qualified" targetNamespace="http://www.xmln.saksinc.com/CommonModules/PromoPrices" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.xmln.saksinc.com/CommonModules/PromoPrices" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+  <xsd:element ibmSchExtn:docRoot="true" name="PromoPriceRequest">
+    <xsd:annotation>
+      <xsd:documentation>A sample element</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="RESTInput" type="xsd:string"/>
+        <xsd:element name="Chain" type="xsd:integer"/>
+        <xsd:element name="Store" type="xsd:integer"/>
+        <xsd:element name="UPC" type="xsd:integer"/>
+        <xsd:element minOccurs="0" name="EventNum" type="xsd:string"/>
+        <xsd:element minOccurs="0" name="FuturePromoDate" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="PromoPriceResponse">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="0">
+        <xsd:element name="ClassNumber" type="xsd:integer"/>
+        <xsd:element name="ColorCode" type="xsd:integer"/>
+        <xsd:element name="ColorDesc" type="xsd:string"/>
+        <xsd:element name="CostAmountDollars" type="xsd:decimal"/>
+        <xsd:element name="CurOwnedRetailDollars" type="xsd:decimal"/>
+        <xsd:element name="CurTicketPriceDollars" type="xsd:decimal"/>
+        <xsd:element name="CompareAtPrice" type="xsd:decimal"/>
+        <xsd:element name="Department" type="xsd:integer"/>
+        <xsd:element name="FashionStyleNo" type="xsd:string"/>
+        <xsd:element name="ItemDescLong" type="xsd:string"/>
+        <xsd:element name="ItemDescShort" type="xsd:string"/>
+        <xsd:element name="ManufacturerNumber" type="xsd:integer"/>
+        <xsd:element name="SKN" type="xsd:integer"/>
+        <xsd:element name="SSN" type="xsd:integer"/>
+        <xsd:element name="SVS" type="xsd:integer"/>
+        <xsd:element name="SizeCode" type="xsd:integer"/>
+        <xsd:element name="SizeDesc" type="xsd:string"/>
+        <xsd:element name="Status" type="xsd:string"/>
+        <xsd:element name="UPC" type="xsd:integer"/>
+        <xsd:element name="VendorStyle" type="xsd:string"/>
+        <xsd:element maxOccurs="unbounded" name="PermPrice">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="Price" type="xsd:decimal"/>
+              <xsd:element name="StartDate" type="xsd:string"/>
+              <xsd:element name="StartTime" type="xsd:string"/>
+              <xsd:element name="Status" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element maxOccurs="unbounded" name="PromoPrice">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="StartDate" type="xsd:string"/>
+              <xsd:element name="StartTime" type="xsd:string"/>
+              <xsd:element name="OriginalPrice" type="xsd:decimal"/>
+              <xsd:element name="Price" type="xsd:decimal"/>
+              <xsd:element name="PromoChangeType" type="xsd:string"/>
+              <xsd:element name="EndDate" type="xsd:string"/>
+              <xsd:element name="EndTime" type="xsd:string"/>
+              <xsd:element name="Status" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

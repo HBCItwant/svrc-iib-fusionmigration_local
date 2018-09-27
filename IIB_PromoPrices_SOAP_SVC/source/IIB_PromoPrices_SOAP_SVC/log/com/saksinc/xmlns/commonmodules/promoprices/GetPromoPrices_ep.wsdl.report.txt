@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Vijay\Development\workspace\POC\IIB_PromoPrices_SOAP_SVC\RemoteFiles\GetPromoPrices_ep.wsdl
+
+Copying source WSDL GetPromoPrices_ep.wsdl to GetPromoPrices_ep.wsdl.
+The WSDL import will proceed with bindings GetPromoPricesBinding.
+Creating wsdl schema document for file:///C:/Vijay/Development/workspace/POC/IIB_PromoPrices_SOAP_SVC/RemoteFiles/GetPromoPrices_ep.wsdl.
+Parsing wsdl binding {http://xmlns.saksinc.com/CommonModules/PromoPrices}GetPromoPricesBinding.
+Parsing wsdl binding input process.
+Parsing wsdl binding output process.
+Processing doc style for operation process.
+Populating WSDL schema GetPromoPrices_ep.xsd.
+Creating file GetPromoPrices_ep.xsd in the workspace.
+Creating file /IIB_PromoPrices_SOAP_SVC/PromoPrices.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.187 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

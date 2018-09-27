@@ -1,0 +1,22 @@
+<PromoPriceResponse xmlns:ns0="http://www.xmln.saksinc.com/CommonModules/PromoPrices" xmlns="http://www.xmln.saksinc.com/CommonModules/PromoPrices">
+         <ns0:ClassNumber>21</ns0:ClassNumber>
+         <ns0:ColorCode>0</ns0:ColorCode>
+         <ns0:ColorDesc>NO COLOR</ns0:ColorDesc>
+         <ns0:CostAmountDollars>15.00</ns0:CostAmountDollars>
+         <ns0:CurOwnedRetailDollars>25.00</ns0:CurOwnedRetailDollars>
+         <ns0:CurTicketPriceDollars>25.00</ns0:CurTicketPriceDollars>
+         <ns0:CompareAtPrice>0.00</ns0:CompareAtPrice>
+         <ns0:Department>432</ns0:Department>
+         <ns0:FashionStyleNo>537</ns0:FashionStyleNo>
+         <ns0:ItemDescLong>#62 ARMANISILK CAFFE</ns0:ItemDescLong>
+         <ns0:ItemDescShort>#62 ARMANISILK C</ns0:ItemDescShort>
+         <ns0:ManufacturerNumber>1</ns0:ManufacturerNumber>
+         <ns0:SKN>26638</ns0:SKN>
+         <ns0:SSN>443200026638</ns0:SSN>
+         <ns0:SVS>0443200026638</ns0:SVS>
+         <ns0:SizeCode>0</ns0:SizeCode>
+         <ns0:SizeDesc>NO SIZE</ns0:SizeDesc>
+         <ns0:Status>R</ns0:Status>
+         <ns0:UPC>3605520572487</ns0:UPC>
+         <ns0:VendorStyle>288758</ns0:VendorStyle>
+      </PromoPriceResponse>

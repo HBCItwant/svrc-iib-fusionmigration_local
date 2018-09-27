@@ -1,0 +1,13 @@
+
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prom="http://www.xmln.saksinc.com/CommonModules/PromoPrices">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prom:PromoPriceRequest>
+         <prom:Chain>8</prom:Chain>
+         <prom:Store>689</prom:Store>
+         <prom:UPC>3605520572487</prom:UPC>
+
+      </prom:PromoPriceRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Saks.StoreSystems.Domain.PriceInquiry" xmlns:tns="http://schemas.datacontract.org/2004/07/Saks.StoreSystems.Domain.PriceInquiry">
+  <xsd:complexType name="Item">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="PermPrices" nillable="true" type="tns:ArrayOfPermPrice"/>
+      <xsd:element minOccurs="0" name="PromoPrices" nillable="true" type="tns:ArrayOfPromoPrice"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Item" nillable="true" type="tns:Item"/>
+  <xsd:complexType name="ArrayOfPermPrice">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="PermPrice" nillable="true" type="tns:PermPrice"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ArrayOfPermPrice" nillable="true" type="tns:ArrayOfPermPrice"/>
+  <xsd:complexType name="PermPrice">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Price" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="PriceStatus" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="StartDate" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="StartTime" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PermPrice" nillable="true" type="tns:PermPrice"/>
+  <xsd:complexType name="ArrayOfPromoPrice">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="PromoPrice" nillable="true" type="tns:PromoPrice"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ArrayOfPromoPrice" nillable="true" type="tns:ArrayOfPromoPrice"/>
+  <xsd:complexType name="PromoPrice">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="EndDate" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="EndTime" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="OffPercentage" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="OriginalPrice" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="Price" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="PriceStatus" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="PromoChangeType" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="PromoEventNumber" type="xsd:long"/>
+      <xsd:element minOccurs="0" name="StartDate" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="StartTime" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="PromoPrice" nillable="true" type="tns:PromoPrice"/>
+</xsd:schema>
