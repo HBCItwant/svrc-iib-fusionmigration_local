@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmXslMqsi.msgnode="ComIbmXslMqsi.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/retrieveMerchOrgInfo_Request_Response.subflow" nsPrefix="gen_retrieveMerchOrgInfo_Request_Response.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.schemaName_rfs" name="schemaName_rfs" defaultValueLiteral="RFS">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="retrieveMerchOrgInfo_Request_Response" bundleName="gen/retrieveMerchOrgInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_RFS_Hierarchy_DataService_SOAP_SVC/icons/full/obj16/retrieveMerchOrgInfo_Request_Response"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_RFS_Hierarchy_DataService_SOAP_SVC/icons/full/obj30/retrieveMerchOrgInfo_Request_Response"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="13,87">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/retrieveMerchOrgInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="490,171">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/retrieveMerchOrgInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.FaultByDMM" location="471,32">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.FaultByDMM" bundleName="gen/retrieveMerchOrgInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="126,87" dataSource="CMSFindIt" computeExpression="esql://routine/gen#retrieveMerchOrgInfo_Request_Response_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="retrieveMerchInfo_Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="296,156" stylesheetName="TransformationByChain.xsl">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform Chain"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="300,88" stylesheetName="TransformationByDMM.xsl">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform DMM"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="297,234" stylesheetName="TransformationByGMMOutput.xsl">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform GMM"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="OutTerminal.FaultByDMM" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out3" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out2" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="OutTerminal.FaultByDMM" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="OutTerminal.FaultByDMM" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="OutTerminal.FaultByDMM" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.schemaName_rfs">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.schemaName_rfs" bundleName="gen/retrieveMerchOrgInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

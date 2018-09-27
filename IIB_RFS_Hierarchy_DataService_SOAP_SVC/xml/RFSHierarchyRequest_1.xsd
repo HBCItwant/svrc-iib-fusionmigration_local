@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--File RFSHierarchyDataServiceTypes.xsd, application FUS_RFS_Hierarchy_DataService_SOAP_SVC--><xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSHierarchyService/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rfsdatatyp="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes" xmlns:rfshdtyp="http://xmlns.hbc.com/CommonModules/RFSHierarchyService/Types">
+  <xsd:import namespace="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes" schemaLocation="RFSHierarchyRequest_1_2.xsd"/>
+  <xsd:complexType name="RFSHierarchyByMerchOrgRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="DMMNo" nillable="true" type="rfsdatatyp:DMMNoType"/>
+      <xsd:element minOccurs="0" name="GMMNo" nillable="true" type="rfsdatatyp:GMMNoType"/>
+      <xsd:element minOccurs="1" name="chain" type="rfsdatatyp:chainType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyByUDARequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="UdaID" nillable="true" type="rfsdatatyp:UdaIDType"/>
+      <xsd:element minOccurs="1" name="chain" type="rfsdatatyp:chainType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyDeptByChainRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="chain" type="rfsdatatyp:chainType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyClassByChainDeptRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="chain" type="rfsdatatyp:chainType"/>
+      <xsd:element minOccurs="0" name="departmentNo" nillable="true" type="rfsdatatyp:deptNoType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyVendStyleByChainDeptClassRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="chain" type="rfsdatatyp:chainType"/>
+      <xsd:element minOccurs="0" name="classNo" nillable="true" type="rfsdatatyp:classNoType"/>
+      <xsd:element minOccurs="0" name="departmentNo" nillable="true" type="rfsdatatyp:deptNoType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyMfgByChainDeptRequestType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" name="chain" type="rfsdatatyp:chainType"/>
+      <xsd:element minOccurs="1" name="departmentNo" type="rfsdatatyp:deptNoType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyDataResponseListType">
+    <xsd:sequence>
+      <xsd:element name="RFSHDataList" type="rfshdtyp:RFSHierarchyDataResponseType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyDataResponseType">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="RFSHData" type="rfshdtyp:RFSHierarchyDataOutputType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyDataOutputType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="deptNum" nillable="true" type="rfsdatatyp:deptNoType"/>
+      <xsd:element minOccurs="0" name="deptDesc" nillable="true" type="rfsdatatyp:deptDescType"/>
+      <xsd:element minOccurs="0" name="GMMNum" nillable="true" type="rfsdatatyp:GMMNoType"/>
+      <xsd:element minOccurs="0" name="GMMDesc" nillable="true" type="rfsdatatyp:GMMDescType"/>
+      <xsd:element minOccurs="0" name="DMMNum" nillable="true" type="rfsdatatyp:DMMNoType"/>
+      <xsd:element minOccurs="0" name="DMMDesc" nillable="true" type="rfsdatatyp:DMMDescType"/>
+      <xsd:element minOccurs="0" name="vendorNumber" nillable="true" type="rfsdatatyp:vendorNumType"/>
+      <xsd:element minOccurs="0" name="labelNm" nillable="true" type="rfsdatatyp:mfgNameType"/>
+      <xsd:element minOccurs="0" name="MfgNo" nillable="true" type="rfsdatatyp:mfgNoType"/>
+      <xsd:element minOccurs="0" name="brandNm" nillable="true" type="rfsdatatyp:brandDescType"/>
+      <xsd:element minOccurs="0" name="classNum" nillable="true" type="rfsdatatyp:classNoType"/>
+      <xsd:element minOccurs="0" name="className" nillable="true" type="rfsdatatyp:classNameType"/>
+      <xsd:element minOccurs="0" name="vendorStyleNo" nillable="true" type="rfsdatatyp:vendorStyleType"/>
+      <xsd:element minOccurs="0" name="chain" nillable="true" type="rfsdatatyp:chainType"/>
+      <xsd:element minOccurs="0" name="UdaDesc" nillable="true" type="rfsdatatyp:UdaDescType"/>
+      <xsd:element minOccurs="0" name="UdaID" nillable="true" type="rfsdatatyp:UdaIDType"/>
+      <xsd:element minOccurs="0" name="UdaValue" nillable="true" type="rfsdatatyp:UdaValueType"/>
+      <xsd:element minOccurs="0" name="UdaValueDesc" nillable="true" type="rfsdatatyp:UdaValueDescType"/>
+      <xsd:element minOccurs="0" name="severity" nillable="true" type="rfsdatatyp:severityType"/>
+      <xsd:element minOccurs="0" name="code" nillable="true" type="rfsdatatyp:codeType"/>
+      <xsd:element minOccurs="0" name="message" nillable="true" type="rfsdatatyp:messageType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RFSHierarchyFaultType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="severity" nillable="true" type="rfsdatatyp:severityType"/>
+      <xsd:element minOccurs="0" name="code" nillable="true" type="rfsdatatyp:codeType"/>
+      <xsd:element minOccurs="0" name="message" nillable="true" type="rfsdatatyp:messageType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

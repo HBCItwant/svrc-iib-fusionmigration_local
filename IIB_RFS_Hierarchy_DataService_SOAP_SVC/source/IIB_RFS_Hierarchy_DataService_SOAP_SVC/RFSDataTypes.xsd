@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes" xmlns:rfsdatatyp="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes">
+    <xsd:simpleType name="address1Type">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="address2Type">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="brandDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="chainType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="chainNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="chainLangType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="classNoType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="classNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="colorCodeType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="colorDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="compAtAmtDollarsType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="consignmentCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="curOwnedPriceType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="curOwnedRetailDollarsType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="curTicketPriceDollarsType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="deptDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="deptNoType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DMMDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DMMNoType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="divisionType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="fashionStyleNoType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GMMDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GMMNoType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="IPAddressType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="itemDescLongType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="itemDescShortType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="itemIDType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="messageType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="mfgNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="mfgNoType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="origOwnRtlDolType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="priceChangeEffectiveDateType">
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="priceCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="priceStatusType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="seasonType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SKNType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeBusinessDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeBusinessType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="sizeCodeType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="sizeDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="specInstTxtType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeCityType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeCloseDateType">
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeNumType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeOpenDateType">
+        <xsd:restriction base="xsd:date"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storePhoneType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeSellIndType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeStateType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeStatusDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeStatusType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeTypDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeZipPlus4Type">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="storeZipType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="styleNumType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="stylDesc">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SVSType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ticketCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ticketRetailDolType">
+        <xsd:restriction base="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UPCType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="vendorNumType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="VenNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="vendorStyleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="vendorStyleType20Ch">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaIDType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaValueType">
+        <xsd:restriction base="xsd:int"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UdaValueDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="severityType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="codeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="msgType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+</xsd:schema>

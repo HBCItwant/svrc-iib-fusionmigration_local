@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--File RFSHierarchyDataService.xsd, application FUS_RFS_Hierarchy_DataService_SOAP_SVC--><xsd:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSHierarchyService" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:rfshd="http://xmlns.hbc.com/CommonModules/RFSHierarchyService" xmlns:rfshdtyp="http://xmlns.hbc.com/CommonModules/RFSHierarchyService/Types">
+  <xsd:import namespace="http://xmlns.hbc.com/CommonModules/RFSHierarchyService/Types" schemaLocation="RFSHierarchyRequest_1.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyClassByChainDeptRequest" type="rfshdtyp:RFSHierarchyClassByChainDeptRequestType"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyDeptByChainRequest" type="rfshdtyp:RFSHierarchyDeptByChainRequestType"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyMerchOrgRequest" type="rfshdtyp:RFSHierarchyByMerchOrgRequestType"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyVendStyleByChainDeptClassRequest" type="rfshdtyp:RFSHierarchyVendStyleByChainDeptClassRequestType"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyDataResponse" type="rfshdtyp:RFSHierarchyDataResponseListType"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyMfgByChainDeptRequest" type="rfshdtyp:RFSHierarchyMfgByChainDeptRequestType"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyByUDARequest" type="rfshdtyp:RFSHierarchyByUDARequestType"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RFSHierarchyFault" type="rfshdtyp:RFSHierarchyFaultType"/>
+</xsd:schema>

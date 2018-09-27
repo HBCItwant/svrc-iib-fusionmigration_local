@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmXslMqsi.msgnode="ComIbmXslMqsi.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/retrieveUDAInfo_Request_Response.subflow" nsPrefix="gen_retrieveUDAInfo_Request_Response.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.schemaName_hbtc" name="schemaName_hbtc" defaultValueLiteral="HBTC">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="retrieveUDAInfo_Request_Response" bundleName="gen/retrieveUDAInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_RFS_Hierarchy_DataService_SOAP_SVC/icons/full/obj16/retrieveUDAInfo_Request_Response"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_RFS_Hierarchy_DataService_SOAP_SVC/icons/full/obj30/retrieveUDAInfo_Request_Response"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="22,114">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/retrieveUDAInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="524,196">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/retrieveUDAInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Fault" location="517,11">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Fault" bundleName="gen/retrieveUDAInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="137,114" dataSource="CMSFindIt" computeExpression="esql://routine/gen#retrieveUDAInfo_Request_Response_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="retrieveUDAInfo_Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="352,192" stylesheetName="TransformationUDAOutput.xsl">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="333,115" stylesheetName="TransformationUdaIDOutPut.xsl">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform UDA ID"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="OutTerminal.Fault" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="OutTerminal.Fault" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out2" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="OutTerminal.Fault" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.schemaName_hbtc">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.schemaName_hbtc" bundleName="gen/retrieveUDAInfo_Request_Response" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

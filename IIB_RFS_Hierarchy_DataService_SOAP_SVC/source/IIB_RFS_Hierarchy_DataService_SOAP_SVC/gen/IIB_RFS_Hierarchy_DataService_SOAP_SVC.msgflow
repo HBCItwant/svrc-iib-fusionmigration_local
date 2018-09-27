@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputCatchHandler.subflow="gen/IIB_RFS_Hierarchy_DataService_SOAP_SVCInputCatchHandler.subflow"
+    xmlns:gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputFailureHandler.subflow="gen/IIB_RFS_Hierarchy_DataService_SOAP_SVCInputFailureHandler.subflow" xmlns:gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputHTTPTimeoutHandler.subflow="gen/IIB_RFS_Hierarchy_DataService_SOAP_SVCInputHTTPTimeoutHandler.subflow" xmlns:gen_retrieveClassInfo_Request_Response.subflow="gen/retrieveClassInfo_Request_Response.subflow" xmlns:gen_retrieveDeptInfo_Request_Response.subflow="gen/retrieveDeptInfo_Request_Response.subflow"
+    xmlns:gen_retrieveMerchOrgInfo_Request_Response.subflow="gen/retrieveMerchOrgInfo_Request_Response.subflow" xmlns:gen_retrieveMfgInfo_Request_Response.subflow="gen/retrieveMfgInfo_Request_Response.subflow" xmlns:gen_retrieveUDAInfo_Request_Response.subflow="gen/retrieveUDAInfo_Request_Response.subflow" xmlns:gen_retrieveVendStyleInfo_Request_Response.subflow="gen/retrieveVendStyleInfo_Request_Response.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/IIB_RFS_Hierarchy_DataService_SOAP_SVC.msgflow" nsPrefix="gen_IIB_RFS_Hierarchy_DataService_SOAP_SVC.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.schemaName_rfs" name="schemaName_rfs" defaultValueLiteral="RFS">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.schemaName_hbtc" name="schemaName_hbtc" defaultValueLiteral="HBTC">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="IIB_RFS_Hierarchy_DataService_SOAP_SVC" bundleName="gen/IIB_RFS_Hierarchy_DataService_SOAP_SVC" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_RFS_Hierarchy_DataService_SOAP_SVC/icons/full/obj16/IIB_RFS_Hierarchy_DataService_SOAP_SVC.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_RFS_Hierarchy_DataService_SOAP_SVC/icons/full/obj30/IIB_RFS_Hierarchy_DataService_SOAP_SVC.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="20,100" wsdlFileName="RFSHierarchyRequest.wsdl" selectedPortType="retrieveRFSHierarchyData_ptt" selectedBinding="retrieveRFSHierarchyData_pttBinding" selectedPort="retrieveRFSHierarchyData_pt_soappt" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/RFSREST/RFSHierarchyDataService/RFSHierarchyRequest" useHTTPTransport="true" urlSelector="/soa-infra/services/CommonModules/RFSHierarchyDataService/RFSHierarchyRequest"
+          allowQueryWSDL="true" extractSOAPBody="true" parserXmlnscBuildTreeUsingXMLSchema="false" validateMaster="none">
+        <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="220,230">
+        <translation xmi:type="utility:ConstantString" string="Route To Label"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="892,215">
+        <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>
+      </nodes>
+      <nodes xmi:type="gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputFailureHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="501,81">
+        <translation xmi:type="utility:ConstantString" string="IIB_RFS_Hierarchy_DataService_SOAP_SVCInputFailureHandler"/>
+      </nodes>
+      <nodes xmi:type="gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputHTTPTimeoutHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="486,161">
+        <translation xmi:type="utility:ConstantString" string="IIB_RFS_Hierarchy_DataService_SOAP_SVCInputHTTPTimeoutHandler"/>
+      </nodes>
+      <nodes xmi:type="gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputCatchHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="510,231">
+        <translation xmi:type="utility:ConstantString" string="IIB_RFS_Hierarchy_DataService_SOAP_SVCInputCatchHandler"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="220,310" labelName="retrieveClassInfo">
+        <translation xmi:type="utility:ConstantString" string="retrieveClassInfo"/>
+      </nodes>
+      <nodes xmi:type="gen_retrieveClassInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="370,310">
+        <translation xmi:type="utility:ConstantString" string="retrieveClassInfo_Request_Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="220,390" labelName="retrieveDeptInfo">
+        <translation xmi:type="utility:ConstantString" string="retrieveDeptInfo"/>
+      </nodes>
+      <nodes xmi:type="gen_retrieveDeptInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="370,390">
+        <translation xmi:type="utility:ConstantString" string="retrieveDeptInfo_Request_Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="206,472" labelName="retrieveMerchOrgInfo">
+        <translation xmi:type="utility:ConstantString" string="retrieveMerchOrgInfo"/>
+      </nodes>
+      <nodes xmi:type="gen_retrieveMerchOrgInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_12" location="370,470">
+        <translation xmi:type="utility:ConstantString" string="retrieveMerchOrgInfo_Request_Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="220,550" labelName="retrieveMfgInfo">
+        <translation xmi:type="utility:ConstantString" string="retrieveMfgInfo"/>
+      </nodes>
+      <nodes xmi:type="gen_retrieveMfgInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_14" location="370,550">
+        <translation xmi:type="utility:ConstantString" string="retrieveMfgInfo_Request_Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="220,630" labelName="retrieveUDAInfo">
+        <translation xmi:type="utility:ConstantString" string="retrieveUDAInfo"/>
+      </nodes>
+      <nodes xmi:type="gen_retrieveUDAInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_16" location="370,630">
+        <translation xmi:type="utility:ConstantString" string="retrieveUDAInfo_Request_Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="220,710" labelName="retrieveVendStyleInfo">
+        <translation xmi:type="utility:ConstantString" string="retrieveVendStyleInfo"/>
+      </nodes>
+      <nodes xmi:type="gen_retrieveVendStyleInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_18" location="370,710">
+        <translation xmi:type="utility:ConstantString" string="retrieveVendStyleInfo_Request_Response"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_19" location="774,141" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log">
+        <translation xmi:type="utility:ConstantString" string="Failure_Trace"/>
+        <shortDescription xmi:type="utility:ConstantString" string="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_20" location="767,338" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log">
+        <translation xmi:type="utility:ConstantString" string="Response_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_21" location="295,280" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreiveClassInfo request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="retreiveClassInfo_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_22" location="294,364" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreiveDepthInfo request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="retrieveDepthInfo_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_23" location="296,441" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreivemerchInfo request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="retreiveMerchInfo_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_24" location="304,520" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreivemfgInfo request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="retreivemfgInfo_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_25" location="304,602" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreiveUDAInfo request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="retrieveUDAInfo_Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_26" location="304,679" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreiveVendStyleInfo request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="retreiveVendStyle_Trace"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.timeout" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.FaultByClass" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.FaultByDept" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.FaultByDMM" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.MfgInfoFault" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.Fault" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_25" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_18" sourceTerminalName="OutTerminal.FaultByVendStyle" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_19" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_26" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_19" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_27" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_28" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_20" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_29" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_30" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_31" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_32" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_33" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_18" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_34" targetNode="FCMComposite_1_19" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_35" targetNode="FCMComposite_1_19" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_36" targetNode="FCMComposite_1_21" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_37" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_21" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_38" targetNode="FCMComposite_1_22" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_39" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_22" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_40" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_41" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_23" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_42" targetNode="FCMComposite_1_24" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_43" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_24" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_44" targetNode="FCMComposite_1_25" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_45" targetNode="FCMComposite_1_16" sourceNode="FCMComposite_1_25" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_46" targetNode="FCMComposite_1_26" sourceNode="FCMComposite_1_17" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_47" targetNode="FCMComposite_1_18" sourceNode="FCMComposite_1_26" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.schemaName_rfs">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.schemaName_rfs" bundleName="gen/IIB_RFS_Hierarchy_DataService_SOAP_SVC" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.schemaName_hbtc">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.schemaName_hbtc" bundleName="gen/IIB_RFS_Hierarchy_DataService_SOAP_SVC" pluginId="IIB_RFS_Hierarchy_DataService_SOAP_SVC"/>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <stickyBoard>
+      <stickyNote location="5,5">
+        <body xmi:type="utility:ConstantString" string="This is an automatically generated message flow.&#xA;Any changes you make may be overwritten without warning.&#xA;"/>
+      </stickyNote>
+    </stickyBoard>
+  </eClassifiers>
+</ecore:EPackage>

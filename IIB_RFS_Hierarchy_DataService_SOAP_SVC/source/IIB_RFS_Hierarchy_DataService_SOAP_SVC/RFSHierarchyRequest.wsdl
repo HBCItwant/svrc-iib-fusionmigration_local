@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="RFSHierarchyRequest" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/RFSREST/RFSHierarchyDataService/RFSHierarchyRequest" xmlns:msg_in_out="http://xmlns.hbc.com/CommonModules/RFSHierarchyService" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/RFSREST/RFSHierarchyDataService/RFSHierarchyRequest">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-IIBion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSHierarchyDataService!3.0/RFSHierarchyRequest.wsdl</abstractWSDL>
+    
+  <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="retrieveRFSHierarchyData_pttBinding" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="retrieveRFSHierarchyData_ptHttpGET" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plt:partnerLinkType name="retrieveRFSHierarchyData_plt">
+        <plt:role name="retrieveRFSHierarchyData_role">
+            <plt:portType name="tns:retrieveRFSHierarchyData_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:import namespace="http://xmlns.hbc.com/CommonModules/RFSHierarchyService" schemaLocation="RFSHierarchyDataService.xsd"/>
+</xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="RFSHierarchyDMMInfoRequest_msg_in">
+        <wsdl:part element="msg_in_out:RFSHierarchyMerchOrgRequest" name="RFSHierarchyDMMInfoRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyDataResponseByDMM_msg_out">
+        <wsdl:part element="msg_in_out:RFSHierarchyDataResponse" name="RFSHierarchyDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHFault">
+        <wsdl:part element="msg_in_out:RFSHierarchyFault" name="RFSHFaultPart"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyDeptByChainInput">
+        <wsdl:part element="msg_in_out:RFSHierarchyDeptByChainRequest" name="DeptByChainPart"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyDeptByChainOutput">
+        <wsdl:part element="msg_in_out:RFSHierarchyDataResponse" name="DeptByChainPartOutput"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyByChainClassDeptRequest">
+        <wsdl:part element="msg_in_out:RFSHierarchyVendStyleByChainDeptClassRequest" name="ChainDeptClassRequestPart"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyByChainClassDeptResponse">
+        <wsdl:part element="msg_in_out:RFSHierarchyDataResponse" name="ChainClassDeptPartResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyClassInfoRequest">
+        <wsdl:part element="msg_in_out:RFSHierarchyClassByChainDeptRequest" name="ClassByChainDeptPartRequest"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyClassInfoResponse">
+        <wsdl:part element="msg_in_out:RFSHierarchyDataResponse" name="ClassByChainDeptPartResponse"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyMfgInfoRequest">
+        <wsdl:part element="msg_in_out:RFSHierarchyMfgByChainDeptRequest" name="MfgByChainRequestPart"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyMfgInfoResponse">
+        <wsdl:part element="msg_in_out:RFSHierarchyDataResponse" name="MfgInfoResponsePart"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyUDARequest">
+        <wsdl:part element="msg_in_out:RFSHierarchyByUDARequest" name="RFSHierarchyUDARequestPart"/>
+    </wsdl:message>
+    <wsdl:message name="RFSHierarchyUDAResponse">
+        <wsdl:part element="msg_in_out:RFSHierarchyDataResponse" name="RFSHUDAResponsePart"/>
+    </wsdl:message>
+    <wsdl:portType name="retrieveRFSHierarchyData_ptt">
+        <wsdl:operation name="retrieveMerchOrgInfo">
+            <wsdl:input message="tns:RFSHierarchyDMMInfoRequest_msg_in"/>
+            <wsdl:output message="tns:RFSHierarchyDataResponseByDMM_msg_out"/>
+            <wsdl:fault message="tns:RFSHFault" name="FaultByDMM"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveDeptInfo">
+            <wsdl:input message="tns:RFSHierarchyDeptByChainInput"/>
+            <wsdl:output message="tns:RFSHierarchyDeptByChainOutput"/>
+            <wsdl:fault message="tns:RFSHFault" name="FaultByDept"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveVendStyleInfo">
+            <wsdl:input message="tns:RFSHierarchyByChainClassDeptRequest"/>
+            <wsdl:output message="tns:RFSHierarchyByChainClassDeptResponse"/>
+            <wsdl:fault message="tns:RFSHFault" name="FaultByVendStyle"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveClassInfo">
+            <wsdl:input message="tns:RFSHierarchyClassInfoRequest"/>
+            <wsdl:output message="tns:RFSHierarchyClassInfoResponse"/>
+            <wsdl:fault message="tns:RFSHFault" name="FaultByClass"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveMfgInfo">
+            <wsdl:input message="tns:RFSHierarchyMfgInfoRequest"/>
+            <wsdl:output message="tns:RFSHierarchyMfgInfoResponse"/>
+            <wsdl:fault message="tns:RFSHFault" name="MfgInfoFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveUDAInfo">
+            <wsdl:input message="tns:RFSHierarchyUDARequest"/>
+            <wsdl:output message="tns:RFSHierarchyUDAResponse"/>
+            <wsdl:fault message="tns:RFSHFault" name="Fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="retrieveRFSHierarchyData_pttBinding" type="tns:retrieveRFSHierarchyData_ptt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="retrieveMerchOrgInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="FaultByDMM">
+                <soap:fault name="FaultByDMM" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveDeptInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="FaultByDept">
+                <soap:fault name="FaultByDept" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveVendStyleInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="FaultByVendStyle">
+                <soap:fault name="FaultByVendStyle" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveClassInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="FaultByClass">
+                <soap:fault name="FaultByClass" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveMfgInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="MfgInfoFault">
+                <soap:fault name="MfgInfoFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveUDAInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault name="Fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="retrieveRFSHierarchyData_ptHttpGET" type="tns:retrieveRFSHierarchyData_ptt">
+        <http:binding xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" verb="GET"/>
+        <wsdl:operation name="retrieveMerchOrgInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveDeptInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location=""/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveVendStyleInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location=""/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveClassInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location=""/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveMfgInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location=""/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveUDAInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location=""/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="RFSHierarchyRequest">
+        <wsdl:port binding="tns:retrieveRFSHierarchyData_pttBinding" name="retrieveRFSHierarchyData_pt_soappt">
+            <soap:address location="http://jxn-ux-IIBion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSHierarchyDataService/RFSHierarchyRequest"/>
+        </wsdl:port>
+        <wsdl:port binding="tns:retrieveRFSHierarchyData_ptHttpGET" name="retrieveRFSHierarchyData_pt">
+            <http:address xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location="http://jxn-ux-IIBion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSHierarchyDataService/RFSHierarchyRequest"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
