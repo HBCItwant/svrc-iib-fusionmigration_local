@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/Other/VertexSalesTax/GetSalesTax" xmlns:ns2="http://www.example.org">
+  <import namespace="http://www.example.org" schemaLocation="VertexOutput.xsd"/>
+  <import namespace="http://www.example.org" schemaLocation="VertexInput.xsd"/>
+
+<!-- BEGIN Global group petaining to all wsdl:message definitions -->
+<!-- END Global group -->
+
+
+<!-- BEGIN Message Definitions for the wsdl:operations  -->
+<!-- END Message Definitions -->
+
+
+</schema>

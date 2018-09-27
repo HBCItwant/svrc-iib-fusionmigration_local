@@ -1,0 +1,58 @@
+
+==============================================
+
+!Wed Sep 26 09:39:25 EDT 2018
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\VertexSalesTax.msgflow to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\DB2TansformToVertex.xsl to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\IBMdefined\org\w3\www\xml\_1998\namespace\xml.xsd to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\IBMdefined\org\xmlsoap\schemas\soap\envelope\soapenv11.xsd to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\IBMdefined\soap.xsd to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\OracleTransformToVertex.xsl to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\RemoteFiles\VertexInput.xsd to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\RemoteFiles\VertexOutput.xsd to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\RemoteFiles\getsalestax_ep.wsdl to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\RemoteFiles\getsalestax_ep.xsd to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\RemoveNamespaces.xsl to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\TransformVertexToOutput.xsl to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\TransformationRFSVertex.xsl to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\Transformation_1.xsl to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\ErrorHandlingVertexSalesTaxInputFailureHandler_Compute.esql to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\ErrorHandlingVertexSalesTaxInputFailureHandler_Compute.esql to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\VertexSalesTaxInputCatchHandler.subflow to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\VertexSalesTaxInputFailureHandler.subflow to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\VertexSalesTaxInputHTTPTimeoutHandler.subflow to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\calculateTax60_CalculateTax60_1_processVertex_Request_Response.subflow to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\processVertex_Request_Response.subflow to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\gen\processVertex_Request_Response_Compute.esql to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\service.descriptor to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\service.descriptor to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\service.descriptor to BAR file.
+
+Successfully added file IIB_VertexSalesTax_SOAP_SVC\service.descriptor to BAR file.
+
+Successfully added file HBC_Common_Variables to BAR file.

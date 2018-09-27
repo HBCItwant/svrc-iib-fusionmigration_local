@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" 
+xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmXslMqsi.msgnode="ComIbmXslMqsi.msgnode" xmlns:gen_calculateTax60_CalculateTax60_1_processVertex_Request_Response.subflow="gen/calculateTax60_CalculateTax60_1_processVertex_Request_Response.subflow" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" 
+xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/processVertex_Request_Response.subflow" 
+nsPrefix="gen_processVertex_Request_Response.subflow">
+<eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+<eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+<eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.schemaName_rfs" name="schemaName_rfs"  defaultValueLiteral="RFS">
+  <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+</eStructuralFeatures>
+<translation xmi:type="utility:TranslatableString" key="processVertex_Request_Response" bundleName="gen/processVertex_Request_Response" pluginId="flowAPIgenerated"/>
+<colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/flowAPIgenerated/icons/full/obj16/processVertex_Request_Response.gif"/>
+<colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/flowAPIgenerated/icons/full/obj30/processVertex_Request_Response.gif"/>
+<composition>
+<nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="17,53">
+<translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/processVertex_Request_Response" pluginId="flowAPIgenerated"/>
+</nodes>
+<nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="803,55">
+<translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/processVertex_Request_Response" pluginId="flowAPIgenerated"/>
+</nodes>
+<nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="82,53" dataSource="CMSTAX" connectDatasourceBeforeFlowStarts="true" computeExpression="esql://routine/gen#processVertex_Request_Response_Compute.Main" computeMode="all">
+<translation xmi:type="utility:ConstantString" string="VertaxSalesTax_Compute"/>
+</nodes>
+<nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="272,51" stylesheetName="TransformationRFSVertex.xsl" messageDomainProperty="XMLNSC">
+<translation xmi:type="utility:ConstantString" string="XSL_Transform_RFSVertex"/>
+</nodes>
+<nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="471,190" stylesheetName="TransformVertexToOutput.xsl" messageDomainProperty="XMLNSC">
+<translation xmi:type="utility:ConstantString" string="XSL_VertexToOutput"/>
+</nodes>
+<nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output1" location="808,154">
+<translation xmi:type="utility:TranslatableString" key="OutTerminal.fault" bundleName="gen/processVertex_Request_Response" pluginId="flowAPIgenerated"/>
+</nodes>
+<nodes xmi:type="gen_calculateTax60_CalculateTax60_1_processVertex_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="351,123">
+<translation xmi:type="utility:ConstantString" string="calculateTax60_CalculateTax60_1"/>
+<shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
+<longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
+</nodes>
+<nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="531,51" stylesheetName="RemoveNamespaces.xsl" messageDomainProperty="XMLNSC">
+<translation xmi:type="utility:ConstantString" string="XSL_Transform_RemoveNamespaces"/>
+</nodes>
+<nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="210,192" dataSource="DBT1TEST" connectDatasourceBeforeFlowStarts="true" computeExpression="esql://routine/gen#processVertex_DB2_Compute.Main">
+<translation xmi:type="utility:ConstantString" string="DB2_Compute"/>
+</nodes>
+<nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="69,119" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_VertaxSalesTaxService.log" pattern="${CURRENT_TIMESTAMP} VertaxSalesTax request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+<translation xmi:type="utility:ConstantString" string="Input_Trace"/>
+</nodes>
+<nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="713,18" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_VertaxSalesTaxService.log" pattern="${CURRENT_TIMESTAMP} VertaxSalesTax response trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+<translation xmi:type="utility:ConstantString" string="Output_Trace"/>
+</nodes>
+<nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="719,154" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_VertaxSalesTaxService.log" pattern="${CURRENT_TIMESTAMP} VertaxSalesTax failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+<translation xmi:type="utility:ConstantString" string="Failure_Trace"/>
+</nodes>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.VertexEnvelope" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="OutTerminal.Output1" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+<connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+</composition>
+<propertyOrganizer>
+<propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.schemaName_rfs">
+<propertyName xmi:type="utility:TranslatableString" key="Property.schemaName_rfs" bundleName="gen/processVertex_Request_Response" pluginId="flowAPIgenerated"/>
+</propertyDescriptor>
+</propertyOrganizer>
+<stickyBoard/>
+</eClassifiers>
+</ecore:EPackage>

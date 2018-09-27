@@ -1,0 +1,200 @@
+BROKER SCHEMA gen
+DECLARE ns NAMESPACE 'http://www.example.org';
+
+		DECLARE ERROR_environment_ID 					CONSTANT CHARACTER 	'1000';
+		DECLARE ERROR_environment_MSG 					CONSTANT CHARACTER 	'Input environment element is not provided';  
+		DECLARE ERROR_opco_ID 							CONSTANT CHARACTER 	'1001';
+		DECLARE ERROR_opco_MSG 							CONSTANT CHARACTER 	'Input opco element is not provided';  
+		DECLARE ERROR_store_ID 							CONSTANT CHARACTER 	'1002';
+		DECLARE ERROR_store_MSG 						CONSTANT CHARACTER 	'Input store element is not provided';  
+		DECLARE ERROR_zip_ID 							CONSTANT CHARACTER 	'1003';
+		DECLARE ERROR_zip_MSG 							CONSTANT CHARACTER 	'Input zip element is not provided';  
+		DECLARE ERROR_dept_ID 							CONSTANT CHARACTER 	'1004';
+		DECLARE ERROR_dept_MSG 							CONSTANT CHARACTER 	'Input dept element is not provided';  
+		DECLARE ERROR_deptClass_ID 						CONSTANT CHARACTER 	'1005';
+		DECLARE ERROR_deptClass_MSG 					CONSTANT CHARACTER 	'Input deptClass element is not provided';  
+		DECLARE ERROR_Price_ID 							CONSTANT CHARACTER 	'1004';
+		DECLARE ERROR_Price_MSG 						CONSTANT CHARACTER 	'Input Price element is not provided';  
+		DECLARE ERROR_Caller_ID 						CONSTANT CHARACTER 	'1005';
+		DECLARE ERROR_Caller_MSG 						CONSTANT CHARACTER 	'Input Caller element is not provided'; 
+		
+		DECLARE errorMsg            CHARACTER;
+		
+CREATE COMPUTE MODULE processVertex_Request_Response_Compute
+	DECLARE schemaName_rfs EXTERNAL CHARACTER;
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		
+--		SET OutputRoot.XML.X.*[] = InputRoot.XMLNSC.*[];
+		
+		DECLARE p_environment,p_opco,p_store,p_zip,p_dept,p_deptClass,p_Price,p_Caller,schemaName_rfs,Query,castDate CHARACTER;
+		DECLARE SaksTaxStrPattern CHARACTER '099' ;
+		DECLARE pattern CHARACTER '###';
+		
+		SET p_environment   = InputRoot.XMLNSC.ns:getItemTax.ns:environment;
+		SET p_opco 		    = InputRoot.XMLNSC.ns:getItemTax.ns:opco;
+		SET p_store 	    = InputRoot.XMLNSC.ns:getItemTax.ns:store;
+		SET p_zip 		    = InputRoot.XMLNSC.ns:getItemTax.ns:zip;
+		SET p_dept 			= InputRoot.XMLNSC.ns:getItemTax.ns:dept;
+		SET p_deptClass 	= InputRoot.XMLNSC.ns:getItemTax.ns:deptClass;
+		SET p_Price 		= CAST(InputRoot.XMLNSC.ns:getItemTax.ns:Price AS DECIMAL);
+		SET p_Caller 		= InputRoot.XMLNSC.ns:getItemTax.ns:Caller;
+		
+		
+				-- Create the request if the p_environment is populated
+		IF (TRIM(p_environment) IS NULL OR TRIM(p_environment) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_environment_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_environment_MSG;
+			SET errorMsg =  ERROR_environment_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_RestXML is populated
+		IF (TRIM(p_opco) IS NULL OR TRIM(p_opco) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_opco_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_opco_MSG;
+			SET errorMsg =  ERROR_opco_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_RestXML is populated
+		IF (TRIM(p_store) IS NULL OR TRIM(p_store) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_store_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_store_MSG;
+			SET errorMsg =  ERROR_store_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_RestXML is populated
+		IF (TRIM(p_zip) IS NULL OR TRIM(p_zip) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_zip_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_zip_MSG;
+			SET errorMsg =  ERROR_zip_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_RestXML is populated
+		IF (TRIM(p_dept) IS NULL OR TRIM(p_dept) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_dept_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_dept_MSG;
+			SET errorMsg =  ERROR_dept_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_deptClass is populated
+		IF (TRIM(p_deptClass) IS NULL OR TRIM(p_deptClass) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_deptClass_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_deptClass_MSG;
+			SET errorMsg =  ERROR_deptClass_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_Price is populated
+		IF (TRIM(p_Price) IS NULL OR TRIM(p_Price) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_Price_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_Price_MSG;
+			SET errorMsg =  ERROR_Price_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+				-- Create the request if the p_Caller is populated
+		IF (TRIM(p_Caller) IS NULL OR TRIM(p_Caller) ='' ) THEN
+			-- set the ERROR_base64Data_ID and ERROR_base64Data_Msg
+			SET Environment.variables.ERROR_msg_ID  = ERROR_Caller_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_Caller_MSG;
+			SET errorMsg =  ERROR_Caller_MSG;
+		    THROW USER EXCEPTION CATALOG 'IIB_vertaxSalesTaxDataValidation' MESSAGE 1000 VALUES(errorMsg) ;
+		END IF;
+		
+--		SET schemaName_rfs = 'RFS';
+		
+		SET Environment.variables.DEPT_NO  = p_dept;
+		SET Environment.variables.CLASS_NO = p_deptClass;
+		
+		SET Environment.variables.STORE  	= p_store;
+		SET Environment.variables.ZIP		= p_zip;
+		SET Environment.variables.PRICE		= p_Price;
+		SET Environment.variables.CALLER	= p_Caller;
+		
+		
+		SET Query = 'SELECT  SAKS_TAX_CODE FROM '||schemaName_rfs||'.RF_DEPT_CLASS   WHERE DEPT_NO = ? and CLASS_NO = ?';
+		SET OutputRoot.XML.X.getItemTax.Result = PASSTHRU(Query,p_dept,p_deptClass);
+		SET OutputRoot.XML.X.getItemTax.Result = RIGHT('000'||OutputRoot.XML.X.getItemTax.Result.SAKS_TAX_CODE,3 ) ;
+		SET OutputRoot.XML.X.getItemTax.store  = Environment.variables.STORE;
+		SET OutputRoot.XML.X.getItemTax.zip    = Environment.variables.ZIP;
+		SET OutputRoot.XML.X.getItemTax.Price  = Environment.variables.PRICE;
+		SET OutputRoot.XML.X.getItemTax.Caller = Environment.variables.CALLER;
+		SET OutputRoot.XML.X.getItemTax.castDate = CURRENT_DATE;
+		
+		
+	END;
+END MODULE;
+CREATE COMPUTE MODULE processVertex_DB2_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		
+		DECLARE p_dpt_cde,p_cla_cde,Query CHARACTER;	
+		SET p_dpt_cde = Environment.variables.DEPT_NO;
+		SET p_cla_cde = Environment.variables.CLASS_NO; 
+		
+--		SET Query = 'select left(right('0000' || char(merch_tax_ind), 4),3) as merch_tax_ind from MRSQ.tms006dept_class where dpt_cde = ? and cla_cde = ?';
+		SET Query = 'select merch_tax_ind as merch_tax_ind from MRSQ.tms006dept_class where dpt_cde = ? and cla_cde = ?';
+		SET OutputRoot.XML.X.getItemTax.Result 	 = PASSTHRU(Query,p_dpt_cde,p_cla_cde) ;
+		SET OutputRoot.XML.X.getItemTax.Result 	 = RIGHT('000'||OutputRoot.XML.X.getItemTax.Result.MERCH_TAX_IND,3 ) ;
+		SET OutputRoot.XML.X.getItemTax.store    = Environment.variables.STORE;
+		SET OutputRoot.XML.X.getItemTax.zip      = Environment.variables.ZIP;
+		SET OutputRoot.XML.X.getItemTax.Price    = Environment.variables.PRICE;
+		SET OutputRoot.XML.X.getItemTax.Caller   = Environment.variables.CALLER;
+		SET OutputRoot.XML.X.getItemTax.castDate = CURRENT_DATE;
+	END;
+END MODULE;
+
+
+
+
+
+
+
+

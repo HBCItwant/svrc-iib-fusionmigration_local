@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.example.org" xmlns="http://www.example.org" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:element ibmSchExtn:docRoot="true" name="getItemTax">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="environment" type="xsd:string"/>
+                <xsd:element name="opco" type="xsd:integer"/>
+                <xsd:element name="store" type="xsd:integer"/>
+                <xsd:element name="zip" type="xsd:string"/>
+                <xsd:element name="dept" type="xsd:integer"/>
+                <xsd:element name="deptClass" type="xsd:integer"/>
+                <xsd:element name="Price" type="xsd:float"/>
+                <xsd:element name="Caller" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

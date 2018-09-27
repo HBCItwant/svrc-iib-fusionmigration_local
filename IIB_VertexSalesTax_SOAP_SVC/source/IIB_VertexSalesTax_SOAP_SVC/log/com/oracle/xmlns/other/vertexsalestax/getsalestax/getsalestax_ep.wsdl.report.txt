@@ -1,0 +1,15 @@
+
+
+Importing file: C:\Users\C997518\IBM\IIBT10\workspace_Fusion\VertexSalesTax\RemoteFiles\getsalestax_ep.wsdl
+
+The WSDL import will proceed with bindings GetSalesTaxBinding.
+Creating wsdl schema document for platform:/resource/VertexSalesTax/RemoteFiles/getsalestax_ep.wsdl.
+Parsing wsdl binding {http://xmlns.oracle.com/Other/VertexSalesTax/GetSalesTax}GetSalesTaxBinding.
+Parsing wsdl binding input processVertex.
+Parsing wsdl binding output processVertex.
+Processing doc style for operation processVertex.
+Populating WSDL schema RemoteFiles/getsalestax_ep.xsd.
+Creating file RemoteFiles/getsalestax_ep.xsd in the workspace.
+Creating file /VertexSalesTax/VertexSalesTax/RemoteFiles/VertexInput.xsd in the workspace.
+Creating file /VertexSalesTax/VertexSalesTax/RemoteFiles/VertexOutput.xsd in the workspace.
+Copying source WSDL getsalestax_ep.wsdl to getsalestax_ep.wsdl.

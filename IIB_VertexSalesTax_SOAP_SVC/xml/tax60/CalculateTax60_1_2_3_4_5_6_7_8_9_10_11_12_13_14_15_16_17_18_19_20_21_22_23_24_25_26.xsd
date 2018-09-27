@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.5-hudson-$BUILD_NUMBER-.--><xsd:schema targetNamespace="urn:vertexinc:o-series:tps:6:0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0" xml:lang="en-us" xmlns="urn:vertexinc:o-series:tps:6:0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation>Copyright Vertex Inc. 2007-2009 All Rights Reserved</xsd:documentation>
+  </xsd:annotation>
+  <xsd:annotation>
+    <xsd:documentation>Tax Area lookup composite messages. Declararion of structure and data types.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:include schemaLocation="CalculateTax60_1_2.xsd"/>
+  <xsd:include schemaLocation="CalculateTax60_1.xsd"/>
+  <xsd:complexType name="FindChangedTaxAreaIdsResponseType">
+    <xsd:annotation>
+      <xsd:documentation>List of tax areas changed during an identified period of time.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="TaxgisResponseType">
+        <xsd:sequence>
+          <xsd:element name="TaxAreaId" type="TaxAreaIdType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:annotation>
+              <xsd:documentation>A Vertex-specific number that identifies a tax area.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

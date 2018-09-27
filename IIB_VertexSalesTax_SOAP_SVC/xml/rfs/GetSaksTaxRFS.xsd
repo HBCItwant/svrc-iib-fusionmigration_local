@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetSaksTaxRFS" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/GetSaksTaxRFS" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="GetSaksTaxRFSInput" type="GetSaksTaxRFSInput"/>
+   <xs:complexType name="GetSaksTaxRFSInput">
+      <xs:sequence>
+         <xs:element name="DEPT_NO" type="xs:decimal" nillable="true"/>
+         <xs:element name="CLASS_NO" type="xs:decimal" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="GetSaksTaxRFSOutputCollection" type="GetSaksTaxRFSOutputCollection"/>
+   <xs:complexType name="GetSaksTaxRFSOutputCollection">
+      <xs:sequence>
+         <xs:element name="GetSaksTaxRFSOutput" type="GetSaksTaxRFSOutput" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="GetSaksTaxRFSOutput">
+      <xs:sequence>
+         <xs:element name="LTRIM_TO_CHAR_SAKS_TAX_CODE_099__" type="xs:string" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Body>
+      <getItemTaxResponse>
+         <getItemTaxResult>
+            <StatusCode></StatusCode>
+            <TaxAmount>5.95</TaxAmount>
+         </getItemTaxResult>
+      </getItemTaxResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="GetSaksTaxRFS" 
+targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/Vertex/VertexSalesTax/GetSaksTaxRFS" 
+xmlns:db="http://xmlns.oracle.com/pcbpel/adapter/db/GetSaksTaxRFS" 
+xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/Vertex/VertexSalesTax/GetSaksTaxRFS" 
+xmlns:client="http://xmlns.oracle.com/pcbpel/adapter/db/Vertex/VertexSalesTax/GetSaksTaxRFS"  
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+   <plt:partnerLinkType name="GetSaksTaxRFS_plt">
+      <plt:role name="GetSaksTaxRFS_role">
+         <plt:portType name="tns:GetSaksTaxRFS_ptt"/>
+      </plt:role>
+   </plt:partnerLinkType>
+   <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema">
+         <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/GetSaksTaxRFS" schemaLocation="GetSaksTaxRFS.xsd"/>
+      </schema>
+   </wsdl:types>
+   <wsdl:message name="GetSaksTaxRFSInput_msg">
+      <wsdl:part name="GetSaksTaxRFSInput_msg" element="db:GetSaksTaxRFSInput"/>
+   </wsdl:message>
+   <wsdl:message name="GetSaksTaxRFSOutputCollection_msg">
+      <wsdl:part name="GetSaksTaxRFSOutputCollection" element="db:GetSaksTaxRFSOutputCollection"/>
+   </wsdl:message>
+   <wsdl:portType name="GetSaksTaxRFS_ptt">
+      <wsdl:operation name="GetSaksTaxRFS">
+         <wsdl:input message="tns:GetSaksTaxRFSInput_msg"/>
+         <wsdl:output message="tns:GetSaksTaxRFSOutputCollection_msg"/>
+      </wsdl:operation>
+   </wsdl:portType>
+    <wsdl:binding name="GetSalesTaxRFSBinding" type="client:GetSaksTaxRFS">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="processVertex">
+      <soap:operation soapAction="http://xmlns.oracle.com/pcbpel/adapter/db/Vertex/VertexSalesTax/GetSaksTaxRFS"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+	  <wsdl:service name="getsalestaxRFS_client_ep">
+        <wsdl:port binding="client:GetSalesTaxRFSBinding" name="GetSalesTaxRFS_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/VertexSalesTax/getsalestaxRFS_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

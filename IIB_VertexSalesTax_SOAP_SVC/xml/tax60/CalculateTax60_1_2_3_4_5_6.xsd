@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.1.5-hudson-$BUILD_NUMBER-.--><xsd:schema targetNamespace="urn:vertexinc:o-series:tps:6:0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="6.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:vertexinc:o-series:tps:6:0">
+  <xsd:annotation>
+    <xsd:documentation>Copyright Vertex Inc. 2007-2009 All Rights Reserved</xsd:documentation>
+  </xsd:annotation>
+  <xsd:annotation>
+    <xsd:documentation>Taxing type specification. Declararion of structures and data types.</xsd:documentation>
+  </xsd:annotation>
+  <xsd:simpleType name="TaxingType">
+    <xsd:annotation>
+      <xsd:documentation>Tax type enumerations.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:NMTOKEN">
+      <xsd:enumeration value="SALES"/>
+      <xsd:enumeration value="SELLER_USE"/>
+      <xsd:enumeration value="CONSUMERS_USE"/>
+      <xsd:enumeration value="VAT"/>
+      <xsd:enumeration value="IMPORT_VAT"/>
+      <xsd:enumeration value="NONE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

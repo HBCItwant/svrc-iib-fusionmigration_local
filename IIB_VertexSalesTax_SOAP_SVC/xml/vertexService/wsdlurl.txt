@@ -1,0 +1,1 @@
+http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/VertexSalesTax/getsalestax_ep?WSDL

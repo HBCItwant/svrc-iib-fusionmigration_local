@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+ name="GetSalesTax" targetNamespace="http://xmlns.oracle.com/Other/VertexSalesTax/GetSalesTax"
+  xmlns:client="http://xmlns.oracle.com/Other/VertexSalesTax/GetSalesTax"
+   xmlns:ns1="http://www.example.org" xmlns:ns2="http://www.example.org" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" 
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/VertexSalesTax!3.1/GetSalesTax.wsdl</abstractWSDL>
+    
+  <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetSalesTaxBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="GetSalesTax">
+        <plnk:role name="GetSalesTaxProvider" portType="client:GetSalesTax"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.example.org" schemaLocation="VertexInput.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.example.org" schemaLocation="VertexOutput.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetSalesTaxRequestMessage">
+        <wsdl:part element="ns1:getItemTax" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="GetSalesTaxResponseMessage">
+        <wsdl:part element="ns1:getItemTaxResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:portType name="GetSalesTax">
+        <wsdl:operation name="processVertex">
+            <wsdl:input message="client:GetSalesTaxRequestMessage"/>
+            <wsdl:output message="client:GetSalesTaxResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetSalesTaxBinding" type="client:GetSalesTax">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="processVertex">
+      <soap:operation soapAction="http://xmlns.oracle.com/Other/VertexSalesTax/GetSalesTax/processVertex"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="getsalestax_client_ep">
+        <wsdl:port binding="client:GetSalesTaxBinding" name="GetSalesTax_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/VertexSalesTax/getsalestax_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

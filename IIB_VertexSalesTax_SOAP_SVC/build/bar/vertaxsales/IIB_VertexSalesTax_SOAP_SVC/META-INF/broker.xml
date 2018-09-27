@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><Broker>
+<CompiledApplication>
+<ConfigurableProperty uri="startMode"/>
+<ConfigurableProperty uri="javaIsolation"/>
+</CompiledApplication>
+<CompiledMessageFlow name="gen.VertexSalesTaxInputFailureHandler" type="subflow">
+<ConfigurableProperty uri="gen.VertexSalesTaxInputFailureHandler#ErrorHandling_Compute.dataSource"/>
+<ConfigurableProperty uri="gen.VertexSalesTaxInputFailureHandler#ErrorHandling_Compute.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="gen.VertexSalesTaxInputFailureHandler#ErrorHandling_Compute.validateMaster"/>
+</CompiledMessageFlow>
+<CompiledMessageFlow name="gen.VertexSalesTax">
+<ConfigurableProperty uri="gen.VertexSalesTax#additionalInstances"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#notificationThresholdMsgsPerSec"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#maximumRateMsgsPerSec"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#processingTimeoutSec"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#processingTimeoutAction"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#wlmPolicy"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#commitCount"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#commitInterval"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#coordinatedTransaction"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#consumerPolicySet"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#providerPolicySet"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#consumerPolicySetBindings"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#providerPolicySetBindings"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#securityProfileName"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#monitoringProfile"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#startMode"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#startInstancesWhenFlowStarts"/>
+<ConfigurableProperty override="/soa-infra/services/CommonModules/VertexSalesTax/getsalestax_ep" uri="gen.VertexSalesTax#SOAP Input.urlSelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.useHTTPS"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.maxClientWaitTime"/>
+<ConfigurableProperty override="yes" uri="gen.VertexSalesTax#SOAP Input.allowQueryWSDL"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.initialContextFactory"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.locationJndiBindings"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.connectionFactoryName"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.backoutDestination"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.backoutThreshold"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.propertySelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.timeStampSelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.messageDeliveryModeSelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.messagePrioritySelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.messageIDSelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.messageRedeliveredSelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.messageCorrelationIDSelector"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.targetService"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.securityProfileName"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.policySet"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.policySetBindings"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.sendProcessingFaultsToFailure"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.validateMaster"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.validateFailureAction"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.componentLevel"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Input.additionalInstances"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Reply.allowMTOM"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Reply.validateMaster"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#SOAP Reply.securityProfileName"/>
+<ConfigurableProperty uri="gen.VertexSalesTax#processVertex_Request_Response.schemaName_rfs"/>
+</CompiledMessageFlow>
+<CompiledMessageFlow name="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response" type="subflow">
+<ConfigurableProperty override="http://jxn-ms-vertx1t.intranet.saksroot.saksinc.com:8095/vertex-ws/services/CalculateTax60" uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.webServiceURL"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.requestTimeout"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.httpProxyLocation"/>
+<ConfigurableProperty override="TLS" uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.sslProtocol"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.allowedSSLCiphers"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.requestCompressionType"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.acceptCompressedResponses"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.hostnameChecking"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.keyAlias"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.enableCRLCheck"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.jmsDestination"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.jmsReplyToDestination"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.requestTimeoutJMS"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.initialContextFactory"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.locationJndiBindings"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.connectionFactoryName"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.targetService"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.deliveryMode"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.messagePriority"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.messageExpiration"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.messageType"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.securityProfileName"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.policySet"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.policySetBindings"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.allowMTOM"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.validateMaster"/>
+<ConfigurableProperty uri="gen.calculateTax60_CalculateTax60_1_processVertex_Request_Response#Request.validateFailureAction"/>
+</CompiledMessageFlow>
+<CompiledMessageFlow name="gen.processVertex_Request_Response" type="subflow">
+<ConfigurableProperty override="RFS" uri="gen.processVertex_Request_Response#schemaName_rfs"/>
+<ConfigurableProperty override="CMSTAX" uri="gen.processVertex_Request_Response#VertaxSalesTax_Compute.dataSource"/>
+<ConfigurableProperty override="yes" uri="gen.processVertex_Request_Response#VertaxSalesTax_Compute.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="gen.processVertex_Request_Response#VertaxSalesTax_Compute.validateMaster"/>
+<ConfigurableProperty override="TransformationRFSVertex.xsl" uri="gen.processVertex_Request_Response#XSL_Transform_RFSVertex.stylesheetName"/>
+<ConfigurableProperty uri="gen.processVertex_Request_Response#XSL_Transform_RFSVertex.stylesheetPath"/>
+<ConfigurableProperty override="TransformVertexToOutput.xsl" uri="gen.processVertex_Request_Response#XSL_VertexToOutput.stylesheetName"/>
+<ConfigurableProperty uri="gen.processVertex_Request_Response#XSL_VertexToOutput.stylesheetPath"/>
+<ConfigurableProperty override="RemoveNamespaces.xsl" uri="gen.processVertex_Request_Response#XSL_Transform_RemoveNamespaces.stylesheetName"/>
+<ConfigurableProperty uri="gen.processVertex_Request_Response#XSL_Transform_RemoveNamespaces.stylesheetPath"/>
+<ConfigurableProperty override="DBT1TEST" uri="gen.processVertex_Request_Response#DB2_Compute.dataSource"/>
+<ConfigurableProperty override="yes" uri="gen.processVertex_Request_Response#DB2_Compute.connectDatasourceBeforeFlowStarts"/>
+<ConfigurableProperty uri="gen.processVertex_Request_Response#DB2_Compute.validateMaster"/>
+<ConfigurableProperty override="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_VertaxSalesTaxService.log" uri="gen.processVertex_Request_Response#Input_Trace.filePath"/>
+<ConfigurableProperty override="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_VertaxSalesTaxService.log" uri="gen.processVertex_Request_Response#Output_Trace.filePath"/>
+<ConfigurableProperty override="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_VertaxSalesTaxService.log" uri="gen.processVertex_Request_Response#Failure_Trace.filePath"/>
+</CompiledMessageFlow>
+<CompiledMessageFlow name="gen.VertexSalesTaxInputHTTPTimeoutHandler" type="subflow"/>
+<CompiledMessageFlow name="gen.VertexSalesTaxInputCatchHandler" type="subflow"/>
+</Broker>

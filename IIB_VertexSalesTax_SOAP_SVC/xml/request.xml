@@ -1,0 +1,15 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:exam="http://www.example.org">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <exam:getItemTax>
+         <exam:environment>Q</exam:environment>
+         <exam:opco>6</exam:opco>
+         <exam:store>689</exam:store>
+         <exam:zip>08833</exam:zip>
+         <exam:dept>1</exam:dept>
+         <exam:deptClass>1</exam:deptClass>
+         <exam:Price>85.00</exam:Price>
+         <exam:Caller></exam:Caller>
+      </exam:getItemTax>
+   </soapenv:Body>
+</soapenv:Envelope>

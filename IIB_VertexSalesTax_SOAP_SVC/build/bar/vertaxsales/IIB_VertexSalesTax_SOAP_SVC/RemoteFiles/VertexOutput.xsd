@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.example.org" xmlns="http://www.example.org" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:element ibmSchExtn:docRoot="true" name="getItemTaxResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="getItemTaxResult">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="StatusCode" type="xsd:string"/>
+                            <xsd:element name="TaxAmount" type="xsd:float"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
