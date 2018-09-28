@@ -1,0 +1,56 @@
+BROKER SCHEMA gen
+DECLARE ns1 NAMESPACE 'http://xmlns.hbc.com/Finance/StockRepairService/Types';
+DECLARE ns NAMESPACE 'http://xmlns.hbc.com/Finance/StockRepairService';
+DECLARE db NAMESPACE 'http://xmlns.oracle.com/pcbpel/adapter/db/sp/GetStockeRepairInfo';
+
+
+CREATE COMPUTE MODULE retrieveStockRepairByPO_Request_Response_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		
+		DECLARE I_chain,I_po_no,O_dept_no,O_po_no,O_supplier,O_terms_id,O_total_cost,O_total_ticket_retail,O_total_owned_retail,O_error_code      INTEGER;
+		
+		DECLARE O_written_date DATE;
+		DECLARE O_status,O_error_message CHARACTER;
+		
+		SET I_chain = InputRoot.XMLNSC.ns:StockRepairRequest.ns1:Chain;
+		SET I_po_no = InputRoot.XMLNSC.ns:StockRepairRequest.ns1:PONo;
+
+		CALL STOCK_REPAIR_GET_ORDER (I_chain, I_po_no , O_dept_no , O_po_no , O_supplier , O_written_date , O_status , O_terms_id , O_total_cost , O_total_ticket_retail , O_total_owned_retail , O_error_code , O_error_message);
+		
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_PO_NO = O_po_no;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_WRITTEN_DATE = O_written_date;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_SUPPLIER = O_supplier;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_TERMS_ID = O_terms_id;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_STATUS = O_status;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_TOTAL_COST = O_total_cost;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_DEPT_NO = O_dept_no;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_TOTAL_TICKET_RETAIL = O_total_ticket_retail;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_TOTAL_OWNED_RETAIL = O_total_owned_retail;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_ERROR_CODE = O_error_code;
+		SET OutputRoot.XMLNSC.db:OutputParameters.db:O_ERROR_MESSAGE = O_error_message;
+		
+	
+	END;
+END MODULE;
+
+CREATE PROCEDURE STOCK_REPAIR_GET_ORDER(IN I_chain INTEGER,INOUT I_po_no INTEGER,OUT O_dept_no INTEGER,OUT O_po_no INTEGER,OUT O_supplier INTEGER,OUT O_written_date DATE,OUT O_status CHAR,OUT O_terms_id INTEGER,OUT O_total_cost INTEGER,OUT O_total_ticket_retail INTEGER,OUT O_total_owned_retail INTEGER,INOUT O_error_code INTEGER,INOUT O_error_message CHAR) LANGUAGE DATABASE EXTERNAL NAME "RTK.PO_INQUIRY.STOCK_REPAIR_GET_ORDER";
+

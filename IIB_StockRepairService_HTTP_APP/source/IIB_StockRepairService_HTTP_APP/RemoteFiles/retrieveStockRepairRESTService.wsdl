@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="retrieveStockRepairRESTService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService" xmlns:msg_in_out="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Finance/StockRepairService!2.0/retrieveStockRepairRESTService.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="false" name="retrieveStockRepairByPO_ptHttpGET" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="true" name="retrieveStockRepairByPO_pttBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plt:partnerLinkType name="retrieveStockRepairByPO_plt">
+        <plt:role name="retrieveStockRepairByPO_role">
+            <plt:portType name="tns:retrieveStockRepairByPO_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.hbc.com/Finance/StockRepairService" schemaLocation="StockRepair.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="StockRepairRequest_msg_in">
+        <wsdl:part element="msg_in_out:StockRepairRequest" name="StockRepairRequest"/>
+    </wsdl:message>
+    <wsdl:message name="StockRepairResponse_msg_out">
+        <wsdl:part element="msg_in_out:StockRepairResponse" name="StockRepairResponse"/>
+    </wsdl:message>
+    <wsdl:message name="FaultMsg">
+        <wsdl:part element="msg_in_out:StockRepairFault" name="FaultPart"/>
+    </wsdl:message>
+    <wsdl:message name="VendorAccrual_msg_in">
+        <wsdl:part element="msg_in_out:VendorAccrualRequest" name="VendorAccrual_msg_in_part"/>
+    </wsdl:message>
+    <wsdl:portType name="retrieveStockRepairByPO_ptt">
+        <wsdl:operation name="retrieveStockRepairByPO">
+            <wsdl:input message="tns:StockRepairRequest_msg_in"/>
+            <wsdl:output message="tns:StockRepairResponse_msg_out"/>
+            <wsdl:fault message="tns:FaultMsg" name="Fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveVendorAccrualInfo">
+            <wsdl:input message="tns:VendorAccrual_msg_in"/>
+            <wsdl:output message="tns:StockRepairResponse_msg_out"/>
+            <wsdl:fault message="tns:FaultMsg" name="Fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="retrieveStockRepairByPO_pttBinding" type="tns:retrieveStockRepairByPO_ptt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="retrieveStockRepairByPO">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault name="Fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveVendorAccrualInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault name="Fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="retrieveStockRepairByPO_ptHttpGET" type="tns:retrieveStockRepairByPO_ptt">
+        <http:binding xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" verb="GET"/>
+        <wsdl:operation name="retrieveStockRepairByPO">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" />
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="retrieveVendorAccrualInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location=""/>
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="retrieveStockRepairRESTService">
+        <wsdl:port binding="tns:retrieveStockRepairByPO_pttBinding" name="retrieveStockRepairByPO_pt_soappt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService"/>
+        </wsdl:port>
+        <wsdl:port binding="tns:retrieveStockRepairByPO_ptHttpGET" name="retrieveStockRepairByPO_pt">
+            <http:address xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

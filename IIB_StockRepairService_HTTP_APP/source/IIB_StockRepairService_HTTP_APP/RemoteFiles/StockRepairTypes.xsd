@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/Finance/StockRepairService/Types" xmlns:rfsdatatyp="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes" xmlns:srt="http://xmlns.hbc.com/Finance/StockRepairService/Types">
+    <xsd:import namespace="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes" schemaLocation="RFSDataTypes.xsd"/>
+    <xsd:complexType name="StockRepairRequestType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="Chain" type="rfsdatatyp:chainType"/>
+            <xsd:element minOccurs="1" name="PONo" type="rfsdatatyp:PONoType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="VendorAccrualRequestType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="Chain" type="rfsdatatyp:chainType"/>
+            <xsd:element minOccurs="1" name="VendorSiteCode" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="BeginDate" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="EndDate" nillable="true" type="xsd:date"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StockRepairResponseTypeResponseListType">
+        <xsd:sequence>
+            <xsd:element name="StockRepairResponseTypeDataList" type="srt:StockRepairResponseType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StockRepairResponseType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="StockRepairResponseTypeData" type="srt:StockRepairOutputType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StockRepairOutputType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="ChainID" nillable="true" type="rfsdatatyp:chainType"/>
+            <xsd:element minOccurs="0" name="PONumber" nillable="true" type="rfsdatatyp:PONoType"/>
+            <xsd:element minOccurs="0" name="POCreateDate" nillable="true" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="POLastUpdateDate" nillable="true" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="VendorID" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="VendorSiteCode" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="Buyer" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="Store" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="VendorTermsID" nillable="true" type="xsd:int"/>
+            <xsd:element minOccurs="0" name="AuthorizationStatus" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StatusDate" nillable="true" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="CloseDate" nillable="true" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="POTotalAmount" nillable="true" type="xsd:double"/>
+            <!-- xsd:element minOccurs="0" name="POLastUpdateDate" nillable="true" type="xsd:date"/--> 
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="POList" nillable="true" type="srt:VendorAccrualType"/>
+            <xsd:element minOccurs="0" name="severity" nillable="true" type="rfsdatatyp:severityType"/>
+            <xsd:element minOccurs="0" name="code" nillable="true" type="rfsdatatyp:codeType"/>
+            <xsd:element minOccurs="0" name="message" nillable="true" type="rfsdatatyp:msgType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="VendorAccrualType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="ORDER_NO" nillable="true" type="rfsdatatyp:PONoType"/>
+            <xsd:element minOccurs="0" name="DEPT_NO" nillable="true" type="rfsdatatyp:deptNoType"/>
+            <xsd:element minOccurs="0" name="MFG_NO" nillable="true" type="rfsdatatyp:mfgNoType"/>
+            <xsd:element minOccurs="0" name="MFG_NAME" nillable="true" type="rfsdatatyp:mfgNameType"/>
+            <xsd:element minOccurs="0" name="SHIP_DATE" nillable="true" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="TOTAL_COST" nillable="true" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="TOTAL_TICKET_RETAIL" nillable="true" type="xsd:double"/>
+            <xsd:element minOccurs="0" name="TOTAL_OWNED_RETAIL" nillable="true" type="xsd:double"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StockRepairFaultType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="severity" type="rfsdatatyp:severityType"/>
+            <xsd:element minOccurs="1" name="code" type="rfsdatatyp:codeType"/>
+            <xsd:element minOccurs="1" name="message" type="rfsdatatyp:msgType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

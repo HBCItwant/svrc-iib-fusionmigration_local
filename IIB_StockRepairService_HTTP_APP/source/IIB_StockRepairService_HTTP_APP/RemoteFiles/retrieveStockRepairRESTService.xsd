@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService" xmlns:msg_in_out="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService">
+  <import namespace="http://xmlns.hbc.com/Finance/StockRepairService" schemaLocation="StockRepair.xsd"/>
+
+<!-- BEGIN Global group petaining to all wsdl:message definitions -->
+<!-- END Global group -->
+
+
+<!-- BEGIN Message Definitions for the wsdl:operations  -->
+<!-- END Message Definitions -->
+
+
+</schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmXslMqsi.msgnode="ComIbmXslMqsi.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/retrieveStockRepairByPO_Request_Response.subflow" nsPrefix="gen_retrieveStockRepairByPO_Request_Response.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="retrieveStockRepairByPO_Request_Response" bundleName="gen/retrieveStockRepairByPO_Request_Response" pluginId="IIB_StockRepairService_HTTP_APP"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_StockRepairService_HTTP_APP/icons/full/obj16/retrieveStockRepairByPO_Request_Response.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_StockRepairService_HTTP_APP/icons/full/obj30/retrieveStockRepairByPO_Request_Response.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="20,20">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/retrieveStockRepairByPO_Request_Response" pluginId="IIB_StockRepairService_HTTP_APP"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="389,7">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/retrieveStockRepairByPO_Request_Response" pluginId="IIB_StockRepairService_HTTP_APP"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Fault" location="362,147">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Fault" bundleName="gen/retrieveStockRepairByPO_Request_Response" pluginId="IIB_StockRepairService_HTTP_APP"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="158,77" dataSource="SKSCMS" computeExpression="esql://routine/gen#retrieveStockRepairByPO_Request_Response_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="207,5" stylesheetName="TransformationStockRepairOutput.xsl">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform"/>
+      </nodes>
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="218,143" stylesheetName="TransformationStockRepairError.xsl">
+        <translation xmi:type="utility:ConstantString" string="XSL Transform1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="81,131" destination="file" filePath="C:\Vijay\IIB\logs\IIB_StockRepairService_HTTP_APP.log" pattern="${CURRENT_TIMESTAMP} StockRepairService retrieveStockRepairByPO Request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="304,71" destination="file" filePath="C:\Vijay\IIB\logs\IIB_StockRepairService_HTTP_APP.log" pattern="${CURRENT_TIMESTAMP} StockRepairService retrieveStockRepairByPO Response trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="Trace1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="299,209" destination="file" filePath="C:\Vijay\IIB\logs\IIB_StockRepairService_HTTP_APP.log" pattern="${CURRENT_TIMESTAMP} StockRepairService retrieveStockRepairByPO Response trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+        <translation xmi:type="utility:ConstantString" string="Trace2"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_4" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="OutTerminal.Fault" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

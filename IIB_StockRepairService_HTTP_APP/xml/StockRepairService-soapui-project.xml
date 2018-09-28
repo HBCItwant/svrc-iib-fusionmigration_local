@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="0ca8fbc4-8f06-4cec-a2ba-9fcd0238121c" activeEnvironment="Default" name="StockRepairService" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="b899129d-b181-4409-8d6a-6a0245e68ca6" wsaVersion="NONE" name="retrieveStockRepairByPO_pttBinding" type="wsdl" bindingName="{http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService}retrieveStockRepairByPO_pttBinding" soapVersion="1_1" anonymous="optional" definition="http://soa.qa.saksinc.com/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://soa.qa.saksinc.com/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?wsdl"><con:part><con:url>http://soa.qa.saksinc.com/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="retrieveStockRepairRESTService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:msg_in_out="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService!2.0/retrieveStockRepairRESTService.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plt:partnerLinkType name="retrieveStockRepairByPO_plt">
+    <plt:role name="retrieveStockRepairByPO_role">
+      <plt:portType name="tns:retrieveStockRepairByPO_ptt"/>
+    </plt:role>
+  </plt:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.hbc.com/Finance/StockRepairService" schemaLocation="http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?XSD=xsd/StockRepair.xsd"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="StockRepairRequest_msg_in">
+    <wsdl:part name="StockRepairRequest" element="msg_in_out:StockRepairRequest"/>
+  </wsdl:message>
+  <wsdl:message name="StockRepairResponse_msg_out">
+    <wsdl:part name="StockRepairResponse" element="msg_in_out:StockRepairResponse"/>
+  </wsdl:message>
+  <wsdl:message name="FaultMsg">
+    <wsdl:part name="FaultPart" element="msg_in_out:StockRepairFault"/>
+  </wsdl:message>
+  <wsdl:message name="VendorAccrual_msg_in">
+    <wsdl:part name="VendorAccrual_msg_in_part" element="msg_in_out:VendorAccrualRequest"/>
+  </wsdl:message>
+  <wsdl:portType name="retrieveStockRepairByPO_ptt">
+    <wsdl:operation name="retrieveStockRepairByPO">
+      <wsdl:input message="tns:StockRepairRequest_msg_in"/>
+      <wsdl:output message="tns:StockRepairResponse_msg_out"/>
+      <wsdl:fault name="Fault" message="tns:FaultMsg"/>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveVendorAccrualInfo">
+      <wsdl:input message="tns:VendorAccrual_msg_in"/>
+      <wsdl:output message="tns:StockRepairResponse_msg_out"/>
+      <wsdl:fault name="Fault" message="tns:FaultMsg"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="retrieveStockRepairByPO_pttBinding" type="tns:retrieveStockRepairByPO_ptt">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="retrieveStockRepairByPO">
+      <soap:operation style="document" soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault name="Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveVendorAccrualInfo">
+      <soap:operation style="document" soapAction=""/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault name="Fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="retrieveStockRepairByPO_ptHttpGET" type="tns:retrieveStockRepairByPO_ptt">
+    <http:binding verb="GET" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+    <wsdl:operation name="retrieveStockRepairByPO">
+      <http:operation location="" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+      <wsdl:input>
+        <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="retrieveVendorAccrualInfo">
+      <http:operation location="" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+      <wsdl:input>
+        <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content type="text/xml" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="retrieveStockRepairRESTService">
+    <wsdl:port name="retrieveStockRepairByPO_pt_soappt" binding="tns:retrieveStockRepairByPO_pttBinding">
+      <soap:address location="http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService"/>
+    </wsdl:port>
+    <wsdl:port name="retrieveStockRepairByPO_pt" binding="tns:retrieveStockRepairByPO_ptHttpGET">
+      <http:address location="http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?XSD=xsd/StockRepair.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.hbc.com/Finance/StockRepairService" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sr="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:srt="http://xmlns.hbc.com/Finance/StockRepairService/Types">
+  <xsd:import namespace="http://xmlns.hbc.com/Finance/StockRepairService/Types" schemaLocation="http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?XSD=xsd/StockRepairTypes.xsd"/>
+  <xsd:element name="StockRepairRequest" type="srt:StockRepairRequestType"/>
+  <xsd:element name="VendorAccrualRequest" type="srt:VendorAccrualRequestType"/>
+  <xsd:element name="StockRepairResponse" type="srt:StockRepairResponseTypeResponseListType"/>
+  <xsd:element name="StockRepairFault" type="srt:StockRepairFaultType"/>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?XSD=xsd/StockRepairTypes.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.hbc.com/Finance/StockRepairService/Types" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:srt="http://xmlns.hbc.com/Finance/StockRepairService/Types" xmlns:rfsdatatyp="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes">
+  <xsd:import namespace="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes" schemaLocation="http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?XSD=xsd/RFSDataTypes.xsd"/>
+  <xsd:complexType name="StockRepairRequestType">
+    <xsd:sequence>
+      <xsd:element name="Chain" type="rfsdatatyp:chainType" minOccurs="1"/>
+      <xsd:element name="PONo" type="rfsdatatyp:PONoType" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="VendorAccrualRequestType">
+    <xsd:sequence>
+      <xsd:element name="Chain" type="rfsdatatyp:chainType" minOccurs="1"/>
+      <xsd:element name="VendorSiteCode" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="BeginDate" type="xsd:date" minOccurs="1"/>
+      <xsd:element name="EndDate" type="xsd:date" minOccurs="0" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StockRepairResponseTypeResponseListType">
+    <xsd:sequence>
+      <xsd:element name="StockRepairResponseTypeDataList" type="srt:StockRepairResponseType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StockRepairResponseType">
+    <xsd:sequence>
+      <xsd:element name="StockRepairResponseTypeData" type="srt:StockRepairOutputType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StockRepairOutputType">
+    <xsd:sequence>
+      <xsd:element name="ChainID" type="rfsdatatyp:chainType" minOccurs="0" nillable="true"/>
+      <xsd:element name="PONumber" type="rfsdatatyp:PONoType" nillable="true" minOccurs="0"/>
+      <xsd:element name="POCreateDate" type="xsd:date" minOccurs="0" nillable="true"/>
+      <xsd:element name="POLastUpdateDate" type="xsd:date" minOccurs="0" nillable="true"/>
+      <xsd:element name="VendorID" type="xsd:string" minOccurs="0" nillable="true"/>
+      <xsd:element name="VendorSiteCode" type="xsd:string" minOccurs="0" nillable="true"/>
+      <xsd:element name="Buyer" type="xsd:string" minOccurs="0" nillable="true"/>
+      <xsd:element name="Store" type="xsd:string" minOccurs="0" nillable="true"/>
+      <xsd:element name="VendorTermsID" type="xsd:int" minOccurs="0" nillable="true"/>
+      <xsd:element name="AuthorizationStatus" type="xsd:string" minOccurs="0" nillable="true"/>
+      <xsd:element name="StatusDate" type="xsd:date" minOccurs="0" nillable="true"/>
+      <xsd:element name="CloseDate" type="xsd:date" minOccurs="0" nillable="true"/>
+      <xsd:element name="POTotalAmount" type="xsd:double" minOccurs="0" nillable="true"/>
+      <xsd:element name="POLastUpdateDate" type="xsd:date" minOccurs="0" nillable="true"/>
+      <xsd:element name="POList" type="srt:VendorAccrualType" minOccurs="0" nillable="true" maxOccurs="unbounded"/>
+      <xsd:element name="severity" type="rfsdatatyp:severityType" minOccurs="0" nillable="true"/>
+      <xsd:element name="code" type="rfsdatatyp:codeType" minOccurs="0" nillable="true"/>
+      <xsd:element name="message" type="rfsdatatyp:msgType" minOccurs="0" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="VendorAccrualType">
+    <xsd:sequence>
+      <xsd:element name="ORDER_NO" type="rfsdatatyp:PONoType" minOccurs="0" nillable="true"/>
+      <xsd:element name="DEPT_NO" type="rfsdatatyp:deptNoType" minOccurs="0" nillable="true"/>
+      <xsd:element name="MFG_NO" type="rfsdatatyp:mfgNoType" minOccurs="0" nillable="true"/>
+      <xsd:element name="MFG_NAME" type="rfsdatatyp:mfgNameType" minOccurs="0" nillable="true"/>
+      <xsd:element name="SHIP_DATE" type="xsd:date" minOccurs="0" nillable="true"/>
+      <xsd:element name="TOTAL_COST" type="xsd:double" minOccurs="0" nillable="true"/>
+      <xsd:element name="TOTAL_TICKET_RETAIL" type="xsd:double" minOccurs="0" nillable="true"/>
+      <xsd:element name="TOTAL_OWNED_RETAIL" type="xsd:double" minOccurs="0" nillable="true"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StockRepairFaultType">
+    <xsd:sequence>
+      <xsd:element name="severity" type="rfsdatatyp:severityType" minOccurs="1"/>
+      <xsd:element name="code" type="rfsdatatyp:codeType" minOccurs="1"/>
+      <xsd:element name="message" type="rfsdatatyp:msgType" minOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService?XSD=xsd/RFSDataTypes.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:rfsdatatyp="http://xmlns.hbc.com/MDS/RFSHierarchyDataService/DataTypes">
+  <xsd:simpleType name="address1Type">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="address2Type">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="brandDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="chainType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="chainNameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="chainLangType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="classNoType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="classNameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="colorCodeType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="colorDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="compAtAmtDollarsType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="consignmentCodeType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="curOwnedPriceType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="curOwnedRetailDollarsType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="curTicketPriceDollarsType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="deptDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="deptNoType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DMMDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="DMMNoType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="divisionType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="fashionStyleNoType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="IPAddressType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="itemDescLongType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="itemDescShortType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="itemIDType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="messageType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="mfgNameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="mfgNoType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="origOwnRtlDolType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="PONoType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="priceChangeEffectiveDateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="priceCodeType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="priceStatusType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="seasonType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="SKNType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeBusinessDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeBusinessType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="sizeCodeType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="sizeDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="specInstTxtType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeCityType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeCloseDateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeNameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeNumType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeOpenDateType">
+    <xsd:restriction base="xsd:date"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storePhoneType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeSellIndType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeStateType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeStatusDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeStatusType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeTypDescType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeZipPlus4Type">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="storeZipType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="styleNumType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="stylDesc">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="SVSType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ticketCodeType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="ticketRetailDolType">
+    <xsd:restriction base="xsd:double"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="UPCType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="vendorNumType">
+    <xsd:restriction base="xsd:int"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="VenNameType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="vendorStyleType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="vendorStyleType20Ch">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="severityType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="codeType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+  <xsd:simpleType name="msgType">
+    <xsd:restriction base="xsd:string"/>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:7800/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService</con:endpoint><con:endpoint>http://soa.qa.saksinc.com:80/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService</con:endpoint></con:endpoints><con:operation id="c81a1d36-c1ba-4f3b-b3a6-eae355a3799b" isOneWay="false" action="" name="retrieveStockRepairByPO" bindingOperationName="retrieveStockRepairByPO" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="43d59c90-1d25-4cb0-a715-bac0a674676f" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stoc="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:typ="http://xmlns.hbc.com/Finance/StockRepairService/Types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <stoc:StockRepairRequest>\r
+         <typ:Chain>8</typ:Chain>\r
+         <typ:PONo>1212</typ:PONo>\r
+      </stoc:StockRepairRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService/retrieveStockRepairByPO_ptt/retrieveStockRepairByPORequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="c3ea10f5-3e72-422e-9eff-a26c0cc4d32c" isOneWay="false" action="" name="retrieveVendorAccrualInfo" bindingOperationName="retrieveVendorAccrualInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a1af2e5e-fbc1-42cf-9a88-ecd8fa2967cc" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/soa-infra/services/Finance/StockRepairService/retrieveStockRepairRESTService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stoc="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:typ="http://xmlns.hbc.com/Finance/StockRepairService/Types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <stoc:VendorAccrualRequest>\r
+         <typ:Chain>8</typ:Chain>\r
+         <typ:VendorSiteCode>12121</typ:VendorSiteCode>\r
+         <typ:BeginDate>09/12/2018</typ:BeginDate>\r
+         <!--Optional:-->\r
+         
+      </stoc:VendorAccrualRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://xmlns.oracle.com/pcbpel/adapter/http/Stock/StockRepairService/retrieveStockRepairRESTService/retrieveStockRepairByPO_ptt/retrieveVendorAccrualInfoRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

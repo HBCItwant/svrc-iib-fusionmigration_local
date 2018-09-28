@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:sr="http://xmlns.hbc.com/Finance/StockRepairService" xmlns:srt="http://xmlns.hbc.com/Finance/StockRepairService/Types">
+    <xsd:import namespace="http://xmlns.hbc.com/Finance/StockRepairService/Types" schemaLocation="StockRepairTypes.xsd"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StockRepairRequest" type="srt:StockRepairRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="VendorAccrualRequest" type="srt:VendorAccrualRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StockRepairResponse" type="srt:StockRepairResponseTypeResponseListType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StockRepairFault" type="srt:StockRepairFaultType"/>
+</xsd:schema>
