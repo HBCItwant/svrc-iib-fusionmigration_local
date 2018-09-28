@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+    <xsd:element name="SQLStatement" type="SqlStatementType"/>
+    <xsd:element name="StoreResultSet" type="StoreResultSetType"/>
+    <xsd:element name="DistListResultSet" type="DistListResultSetType"/>
+    <xsd:complexType name="SqlStatementType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" name="SQLStatementStrg" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StoreResultSetType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ROW" type="StoreRowType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DistListResultSetType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="ROW" type="DistListRowType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StoreRowType">
+        <xsd:sequence>
+            <xsd:element name="ITEMID" type="xsd:long"/>
+            <xsd:element name="ITEMDESC" type="xsd:string"/>
+            <xsd:element name="STORENUM" type="xsd:short"/>
+            <xsd:element name="STORENAME" type="xsd:string"/>
+            <xsd:element name="ATP" type="xsd:byte"/>
+            <xsd:element name="SUPPLY" type="xsd:byte"/>
+            <xsd:element name="DEMANDS" type="xsd:byte"/>
+            <xsd:element name="SAFETYFACTOR" type="xsd:byte"/>
+        </xsd:sequence>
+        <xsd:attribute name="num" type="xsd:byte" use="optional"/>
+    </xsd:complexType>
+    <xsd:complexType name="DistListRowType">
+        <xsd:sequence>
+            <xsd:element name="ITEMID" type="xsd:long"/>
+            <xsd:element name="ITEMDESC" type="xsd:string"/>
+            <xsd:element name="DISTGROUP" type="xsd:string"/>
+            <xsd:element name="ATP" type="xsd:byte"/>
+            <xsd:element name="SUPPLY" type="xsd:byte"/>
+            <xsd:element name="DEMANDS" type="xsd:byte"/>
+            <xsd:element name="SAFETYFACTOR" type="xsd:byte"/>
+        </xsd:sequence>
+        <xsd:attribute name="num" type="xsd:byte" use="optional"/>
+    </xsd:complexType>
+    <xsd:element name="BuildSQLStatement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="BuildSelectStmt" type="xsd:string"/>
+                <xsd:element name="BuildWhereStmt" type="BuildWhereClause"/>
+                <xsd:element name="BuildOrderByStmt" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="BuildWhereClause">
+        <xsd:sequence>
+            <xsd:element maxOccurs="1" minOccurs="1" name="WhereItemID" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="WhereOrgCode" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="WhereUnitOfMeasure" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="WhereProductClass" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="WhereDistGroup" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="WhereStoreList" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="WhereQuantity" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

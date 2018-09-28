@@ -1,0 +1,653 @@
+BROKER SCHEMA gen
+DECLARE ns8 NAMESPACE 'http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID';
+DECLARE ns10 NAMESPACE 'http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP';
+DECLARE ns NAMESPACE 'http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL';
+
+
+CREATE COMPUTE MODULE GetLocatorATP_UniversalIDRequest_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET Environment.variables.InputRoot.Properties = InputRoot.Properties;
+
+		DECLARE p_StoreNum,Query_GetCountryCodeForStore,p_SKU,p_Qty CHARACTER;
+		--Assign input to Environment Variable
+		SET Environment.variables.p_StoreNum = SUBSTRING('000'||InputRoot.XMLNSC.ns:process.ns:StoreNum FROM LENGTH(InputRoot.XMLNSC.ns:process.ns:StoreNum)+1 FOR 3) ;
+
+		SET Environment.variables.p_SKU = InputRoot.XMLNSC.ns:process.ns:SKU;
+		SET Environment.variables.p_Qty = InputRoot.XMLNSC.ns:process.ns:Qty;
+		--InvokeGetCountryCode
+		SET Query_GetCountryCodeForStore = 'SELECT STR_CNTRY_CDE   FROM tms016stor_xref WHERE stor_cde = ? ';
+
+		SET Environment.variables.p_STR_CNTRY_CDE[] = PASSTHRU(Query_GetCountryCodeForStore,Environment.variables.p_StoreNum);
+		--Input to UniversalItemId Service
+		SET OutputRoot.XMLNSC.ns8:process.ns8:ItemID = Environment.variables.p_SKU;
+		SET OutputRoot.XMLNSC.ns8:process.ns8:CountryCode = Environment.variables.p_STR_CNTRY_CDE.STR_CNTRY_CDE;
+
+	END;
+END MODULE;
+
+
+
+
+
+CREATE COMPUTE MODULE GetLocatorATP_SaksOMSATPRequest_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+
+		SET OutputRoot.XML.XSLT.payload.processResponse.SKU = InputRoot.XMLNSC.ns8:processResponse.ns8:SKU;
+		SET Environment.variables.UniversalItemIDResponse[] = InputRoot.XMLNSC.ns8:processResponse[];
+
+		SET OutputRoot.XML.XSLT.SaksOMSATPRequest.QTY = Environment.variables.p_Qty;
+		SET OutputRoot.XML.XSLT.SaksOMSATPRequest.CountryCode = Environment.variables.p_STR_CNTRY_CDE.STR_CNTRY_CDE;
+
+		DECLARE p_SSN,Query_GetOpenOrderDB , Query_GetBroadcastingStoreDB, p_GRP_CDE, Query_GetSafetyStockDB,p_storeList CHARACTER;
+
+		SET p_SSN = InputRoot.XMLNSC.ns8:processResponse.ns8:SSN;
+		--IfZerosInUniversalItemID
+		IF InputRoot.XMLNSC.ns8:processResponse.ns8:SKU='0000000000000' THEN
+			-- Zeros
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0001';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Invalid SKU/UPC number.';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode = 'NO';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:SKU = Environment.variables.p_SKU;
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'INVALID SKU/UPC NUMBER. ';
+			PROPAGATE TO TERMINAL 'out1';
+
+		END IF;
+
+		SET Query_GetOpenOrderDB = 'SELECT COALESCE(SUM(ORDR_QTY),0)  AS OPENORDERS   FROM  TLO483LO_ORDR_ITM A,  TLO506ORDER_NUM   B, TLO485LO_ITM_STAT C  WHERE                      A.CUST_ORDR_NUM = C.CUST_ORDR_NUM                                 AND B.CUST_ORDR_NUM = C.CUST_ORDR_NUM                              AND A.CUST_ORDR_NUM = B.CUST_ORDR_NUM                               AND C.MDSE_NUM = ?      AND C.MDSE_NUM = A.MDSE_NUM                                    AND     C.ORDR_STTS_DCD =   ''OPEN''                         AND   TIMESTAMP(C.DATE_STTS,C.TIME_MODIFIED) =                  ( SELECT MAX(TIMESTAMP(DATE_STTS,TIME_MODIFIED))                    FROM  TLO485LO_ITM_STAT D                       WHERE C.CUST_ORDR_NUM = D.CUST_ORDR_NUM                         AND C.MDSE_NUM    = D.MDSE_NUM)    WITH UR';
+
+		SET Environment.variables.GetOpenOrderDB[] = PASSTHRU(Query_GetOpenOrderDB, Environment.variables.p_SKU);
+
+		SET Query_GetBroadcastingStoreDB ='SELECT      a.stor_cde  AS store_num, CASE  WHEN a.grp_cde = 10  THEN    (''8''||RIGHT(''000'' || RTRIM(CAST(CAST(CAST(a.stor_cde AS INTEGER) AS CHAR(4)) AS VARCHAR(3))),     3))        WHEN a.grp_cde = 30 THEN    (''7''||RIGHT(''000'' || RTRIM(CAST(CAST(CAST(a.stor_cde AS INTEGER) AS CHAR(4)) AS VARCHAR(4))),     3)) END AS store_num4,   UPPER(a.dcd_3) AS store_abbv, UPPER(a.dcd_12) AS store_name,   a.grp_cde, a.BROADCAST_GROUP,a.STOR_FILL_TYP, a.STOR_PLACE_TYP,                  ( CASE                          WHEN  ((a.BROADCAST_GROUP = b.BROADCAST_GROUP)   AND ( a.grp_cde = 10)    AND (a.STOR_FILL_TYP = ''W'')) THEN ''A''                         WHEN ((a.BROADCAST_GROUP <>  b.BROADCAST_GROUP)   AND ( a.grp_cde = 10)    AND (a.STOR_FILL_TYP = ''W''))  THEN ''S''                         WHEN ((a.STOR_FILL_TYP IN (''M'',''N''))) THEN '' ''                         WHEN ((a.BROADCAST_GROUP = b.BROADCAST_GROUP)    AND  ( a.grp_cde = 30)   AND (a.STOR_FILL_TYP = ''W'')                                        AND (( CASE    WHEN a.BROADCAST_GROUP > 10 THEN ''WEST''                                                                       WHEN a.BROADCAST_GROUP <= 10 THEN ''EAST''  END ) = ( CASE    WHEN b.BROADCAST_GROUP > 10 THEN ''WEST''                                                                                                                                                                                           WHEN b.BROADCAST_GROUP <= 10 THEN ''EAST''  END )))THEN ''A''                         WHEN ((a.BROADCAST_GROUP <>  b.BROADCAST_GROUP)   AND  ( a.grp_cde = 30)   AND (a.STOR_FILL_TYP = ''W'')                                        AND  (( CASE    WHEN a.BROADCAST_GROUP > 10 THEN ''WEST''                                                                  WHEN a.BROADCAST_GROUP <=10 THEN ''EAST''  END ) = ( CASE    WHEN b.BROADCAST_GROUP > 10 THEN ''WEST''                                                                                                                                                                                            WHEN b.BROADCAST_GROUP <=10 THEN ''EAST''  END )) ) THEN ''S''                       WHEN ( ( a.grp_cde = 30)   AND (a.STOR_FILL_TYP = ''W'')                                        AND  (( CASE    WHEN a.BROADCAST_GROUP > 10 THEN ''WEST''                                                                  WHEN a.BROADCAST_GROUP <=10 THEN ''EAST''  END ) <> ( CASE    WHEN b.BROADCAST_GROUP > 10 THEN ''WEST''                                                                                                                                                                                           WHEN b.BROADCAST_GROUP <=10 THEN ''EAST''  END )) ) THEN '' ''                     END ) broadcast FROM  TMS016STOR_XREF a,             ( SELECT stor_cde, grp_cde, SUB_GRP_CDE, BROADCAST_GROUP,STOR_FILL_TYP,   STOR_PLACE_TYP, str_cntry_cde              FROM  TMS016STOR_XREF              WHERE stor_cde = ?) b  WHERE a.broadcast_group NOT IN ( 99, 0)    AND a.STOR_FILL_TYP <> ''X''    AND a.grp_cde = b.grp_cde    AND a.STOR_PLACE_TYP = ''C''    AND (a.str_cntry_cde = b.str_cntry_cde) ORDER BY a.stor_cde';
+		SET OutputRoot.XML.XSLT.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] = PASSTHRU(Query_GetBroadcastingStoreDB,Environment.variables.p_StoreNum);
+		SET Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] = OutputRoot.XML.XSLT.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[];
+
+
+		DECLARE Count_Query_GetBroadcastingStoreDB INTEGER CARDINALITY(OutputRoot.XML.XSLT.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[]);
+		--IfEmptyStoreList
+		IF Count_Query_GetBroadcastingStoreDB <= 0 THEN
+			--NoStores
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0003';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:SKU = Environment.variables.UniversalItemIDResponse.ns8:SKU;
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:UPC = Environment.variables.UniversalItemIDResponse.ns8:UPC;
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.p_StoreNum;
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'The store number '|| CAST(Environment.variables.p_StoreNum AS CHARACTER)||' is not valid.';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'THE STORE NUMBER '|| CAST(Environment.variables.p_StoreNum AS CHARACTER)||' IS NOT VALID.';
+			PROPAGATE TO TERMINAL 'out1';
+		END IF;
+
+		SET p_GRP_CDE = OutputRoot.XML.XSLT.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[1].GRP_CDE;
+
+
+		SET Query_GetSafetyStockDB = 'SELECT COALESCE(( CASE       WHEN   A.PRICE_STATUS = ''M'' THEN SAFETY_STOCK_NUM_M        WHEN   A.PRICE_STATUS = ''C'' THEN  SAFETY_STOCK_NUM_C      ELSE SAFETY_STOCK_NUM_R    END   ),0) SAFETY_STOCK     FROM  (SELECT MAX(price_status) price_status FROM (SELECT price_status FROM  TMI118ITM_STYLE  WHERE STYL_SEQ_NUM = ? UNION  SELECT ''-1'' price_status FROM SYSIBM.sysdummy1 )A) A,  (SELECT SAFETY_STOCK_NUM_R, SAFETY_STOCK_NUM_M, SAFETY_STOCK_NUM_C    FROM  TLO488LO_PARM   WHERE GRP_CDE = ? ) B';
+
+		SET Environment.variables.GetSafetyStockDBOutputCollection.GetSafetyStockDBOutput[] = PASSTHRU(Query_GetSafetyStockDB,p_SSN,p_GRP_CDE);
+
+		SET OutputRoot.XML.XSLT.SaksOMSATPRequest.storeList = 1;
+
+		DECLARE I INTEGER 1;
+		WHILE I < Count_Query_GetBroadcastingStoreDB DO
+
+			SET OutputRoot.XML.XSLT.SaksOMSATPRequest.storeList= OutputRoot.XML.XSLT.SaksOMSATPRequest.storeList||','''|| OutputRoot.XML.XSLT.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[I].STORE_NUM||''','''||OutputRoot.XML.XSLT.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[I].STORE_NUM4||'''' ;
+			SET I = I + 1;
+		END WHILE;
+		--SET Environment.variables.SaksOMSATPRequest = OutputRoot.XML.XSLT.SaksOMSATPRequest;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE GetLocatorATP_Response_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		DECLARE count_distGroupATP INTEGER CARDINALITY (InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[]);
+
+		DECLARE I INTEGER 1;
+		DECLARE RequestStoreATP,AnyStoreHasATP BOOLEAN FALSE;
+		DECLARE count_InputATP,count_InputATPweb,StoreNum,calculate_val,Count_storeATPList,count_storeATP1,count_storeATP2,count_storeATP3,Count_storeATP,Count_Out_storeATPList INTEGER 0;
+
+		SET count_InputATP = THE(SELECT COUNT(*) FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[] AS I WHERE I.ns10:distGroupName = Environment.variables.SaksOMSATPRequest.ns10:distGroup);
+		SET count_InputATPweb = THE(SELECT COUNT(*) FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[] AS I WHERE I.ns10:distGroupName = 'Web');
+		-- IF InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP.ns10:ATP = Environment.variables.SaksOMSATPRequest.ns10:distGroup THEN
+		--
+		-- WHILE I < count_distGroupATP DO
+		--
+		-- IF InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[I].ns10:distGroupName = Environment.variables.SaksOMSATPRequest.ns10:distGroup THEN
+		--
+		-- SET count_InputATP = count_InputATP+1;
+		-- SET Environment.variables.DistributionATP[I] = InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[I];
+		--
+		-- END IF;
+		--
+		-- IF InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[I].ns10:distGroupName = 'Web' THEN
+		--
+		-- SET count_InputATPweb = count_InputATPweb+1;
+		-- SET Environment.variables.WebDistATP[I] = InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[I];
+		--
+		-- END IF;
+		-- SET I = I + 1;
+		-- END WHILE;
+
+		DECLARE p_SAKSNUM, p_OFFSUM INTEGER ;
+		SET p_SAKSNUM = Cast(Environment.variables.p_StoreNum AS INTEGER) + Cast(8000 as INTEGER);
+		SET p_OFFSUM = Cast(Environment.variables.p_StoreNum AS INTEGER) + Cast(7000 as INTEGER);
+		
+		--IfCompanyATPExists
+		IF count_InputATP > 0 or count_InputATPweb > 0 THEN
+			--CompanyATP
+			
+			--IfCoATP
+			IF count_InputATP > 0 THEN
+				--CompanyATP
+				SET Environment.variables.DistributionATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[] AS I WHERE I.ns10:distGroupName = Environment.variables.SaksOMSATPRequest.ns10:distGroup);
+				SET StoreNum = CARDINALITY (InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[]);
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:SKU = Environment.variables.UniversalItemIDResponse.ns8:SKU;
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:UPC = Environment.variables.UniversalItemIDResponse.ns8:UPC;
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:CompanyATP = Environment.variables.DistributionATP.ns10:ATP;
+			END IF;
+			
+			
+			--IfWebATP
+			IF count_InputATPweb >0 THEN
+				--WebATP
+				SET Environment.variables.DistributionATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[] AS I WHERE I.ns10:distGroupName = 'Web');
+				
+			END IF;
+
+			SET calculate_val = (Environment.variables.p_Qty+Environment.variables.GetOpenOrderDB.OPENORDERS+Environment.variables.GetSafetyStockDBOutputCollection.GetSafetyStockDBOutput.SAFETY_STOCK);
+			SET Count_storeATPList = CARDINALITY(InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList[]);
+			
+			--If Company ATP
+			IF (Environment.variables.DistributionATP.ns10:ATP >= calculate_val) and Count_storeATPList > 0 THEN
+				-- Has ATP
+
+				SET count_storeATP1 = THE(SELECT COUNT(*) FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = Environment.variables.p_StoreNum);
+				SET count_storeATP2 = THE(SELECT COUNT(*) FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_SAKSNUM);
+				SET count_storeATP3 = THE(SELECT COUNT(*) FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_OFFSUM);
+				--IfRequestedStoreExist
+				IF count_storeATP1 > 0 or count_storeATP2 > 0 or count_storeATP3 > 0 THEN
+					--RequestedStoreExist
+
+					SET Environment.variables.ATP1 = THE(SELECT I.ns10:ATP FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = Environment.variables.p_StoreNum);
+					SET Environment.variables.ATP2 = THE(SELECT I.ns10:ATP FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_SAKSNUM);
+					SET Environment.variables.ATP3 = THE(SELECT I.ns10:ATP FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_OFFSUM);
+
+					IF Environment.variables.ATP1.ns10:ATP >= Environment.variables.p_Qty or Environment.variables.ATP2.ns10:ATP >= Environment.variables.p_Qty or Environment.variables.ATP3.ns10:ATP >= Environment.variables.p_Qty THEN
+						--3DigitStrNum
+						IF LENGTH(Environment.variables.p_StoreNum) < 4 THEN
+							--if 3digitNum
+							IF Environment.variables.SaksOMSATPRequest.ns10:orgCode = 'SaksUSA'THEN
+								-- if SaksUSA
+								SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Your store has available quantity = '|| Environment.variables.StoreATP.ns10:ATP||' for this item.';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'YOUR STORE HAS AVAILABLE QUANTITY = '|| Environment.variables.StoreATP.ns10:ATP||' FOR THIS ITEM.';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0005';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+								SET RequestStoreATP = TRUE;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+
+
+							ELSEIF Environment.variables.SaksOMSATPRequest.ns10:orgCode = 'SAKS' THEN
+								-- IF SAKS
+								SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_SAKSNUM);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Your store has available quantity = '|| CAST(Environment.variables.StoreATP.ns10:ATP AS CHARACTER)||' for this item.';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'YOUR STORE HAS AVAILABLE QUANTITY = '|| CAST(Environment.variables.StoreATP.ns10:ATP AS CHARACTER)||' FOR THIS ITEM.';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0005';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+								SET RequestStoreATP = TRUE;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+
+							ELSE
+								-- IF off5
+								SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_OFFSUM);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Your store has available quantity = '|| Environment.variables.StoreATP.ns10:ATP||' for this item.';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'YOUR STORE HAS AVAILABLE QUANTITY = '|| Environment.variables.StoreATP.ns10:ATP||' FOR THIS ITEM.';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0005';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+								SET RequestStoreATP = TRUE;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+
+							END IF;
+
+
+						ELSE
+							--FourDight num
+							SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = Environment.variables.p_StoreNum);
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Your store has available quantity = '|| Environment.variables.StoreATP.ns10:ATP||' for this item.';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'YOUR STORE HAS AVAILABLE QUANTITY = '|| Environment.variables.StoreATP.ns10:ATP||' FOR THIS ITEM.';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0005';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='Y';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+							SET RequestStoreATP = TRUE;
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.StoreATP.ns10:storeNum);
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.StoreATP.ns10:storeNum);
+
+
+						END IF;
+
+					ELSE
+						--RequestedStoreNoATP
+						--3DigitStrNum
+						IF LENGTH(Environment.variables.p_StoreNum) < 4 THEN
+							--if 3digitNum
+							IF Environment.variables.SaksOMSATPRequest.ns10:orgCode = 'SaksUSA'THEN
+								-- if SaksUSA
+								SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+
+
+							ELSEIF Environment.variables.SaksOMSATPRequest.ns10:orgCode = 'SAKS' THEN
+								-- IF SAKS
+								SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_SAKSNUM);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+
+							ELSE
+								-- IF off5
+								SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = p_OFFSUM);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+								SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+							END IF;
+
+						ELSE
+							--FourDight num
+							SET Environment.variables.StoreATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[] AS I WHERE I.ns10:storeNum = Environment.variables.p_StoreNum);
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.StoreATP.ns10:storeNum;
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:ATP;
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreName = Environment.variables.StoreATP.ns10:storeName;
+							SET RequestStoreATP = TRUE;
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+							SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqBroadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = Environment.variables.p_StoreNum);
+
+
+						END IF;
+
+					END IF;
+
+
+				ELSE
+					--RequestedStoreNoExist
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqStoreNum = Environment.variables.p_StoreNum;
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='Y';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:SKU=Environment.variables.UniversalItemIDResponse.ns8:SKU;
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:UPC=Environment.variables.UniversalItemIDResponse.ns8:UPC;
+
+
+
+				END IF;
+
+			ELSE
+				-- No Company ATP
+				IF Environment.variables.WebDistATP.ns10:ATP >= Environment.variables.p_Qty THEN
+
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Requested quantity for this item is not available in any store, but is currently available at saks.com. Please assist your customer by ordering on saks.com. You will earn productivity on the sale just as you do for merchandise you sell from your store or on Locator.';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:CompanyATP= Environment.variables.WebDistATP.ns10:ATP;
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='N';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+
+				ELSE
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Requested quantity for this item is not available in any store.';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:CompanyATP= Environment.variables.WebDistATP.ns10:ATP;
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='N';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'REQUESTED QUANTITY FOR THIS ITEM IS NOT AVAILABLE IN ANY STORE.';
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0006';
+
+
+				END IF;
+			
+				PROPAGATE TO TERMINAL 'out1';
+
+			END IF;
+
+		ELSE
+			--NoCompanyATP
+			--IfDistGroupExist
+			IF count_InputATP > 0 THEN
+				--DistGroupExists
+				SET Environment.variables.DistributionATP = THE(SELECT * FROM InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:distGroupATPList.ns10:distGroupATP[] AS I WHERE I.ns10:distGroupName = Environment.variables.SaksOMSATPRequest.ns10:distGroup);
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:CompanyATP = Environment.variables.DistributionATP.ns10:ATP;
+
+			END IF;
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:SKU='N';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:UPC='OK';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Requested quantity for this item is not available in any store.';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:FindInd ='N';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:InStoreInd='N';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode='OK';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'REQUESTED QUANTITY FOR THIS ITEM IS NOT AVAILABLE IN ANY STORE.';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0004';
+
+			PROPAGATE TO TERMINAL 'out1';
+
+		END IF;
+
+
+
+		IF OutputRoot.XMLNSC.ns:processResponse.ns:Message = '' THEN
+
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = '';
+
+		END IF;
+
+
+		SET OutputRoot.XMLNSC.ns:processResponse.ns:ReqATP = Environment.variables.StoreATP.ns10:storeATP.ns10:ATP;
+
+		DECLARE J,K INTEGER 1;
+		SET Count_storeATP = CARDINALITY(InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[]);
+
+		WHILE J<Count_storeATP DO
+
+			IF InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[J].ns10:storeNum <> Environment.variables.StoreATP.ns10:storeNum and OutputRoot.XMLNSC.ns:processResponse.ns:CompanyATP >= Environment.variables.p_Qty THEN
+
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[K].ns:Broadcasting ='';
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[K].ns:StoreNum = InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[J].ns10:storeNum;
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[K].ns:StoreAbbrv ='';
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[K].ns:StoreName = (InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[J].ns10:storeName);
+				SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[K].ns:ATP = (InputRoot.XMLNSC.ns10:SaksOMSATPResponse.ns10:storeATPList.ns10:storeATP[J].ns10:ATP);
+
+
+				SET K=K+1;
+			END IF;
+
+			SET J = J + 1;
+
+		END WHILE;
+
+		SET Count_Out_storeATPList = CARDINALITY(OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[]);
+
+		IF Count_Out_storeATPList > 0 THEN
+
+			DECLARE L INTEGER 1;
+
+			WHILE L <= Count_Out_storeATPList DO
+
+				IF OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:StoreNum < 4 THEN
+
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:StoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:StoreNum);
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:Broadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM = OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:StoreNum);
+
+
+				ELSE
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:StoreAbbrv = THE( SELECT ITEM FIELDVALUE(D.STORE_ABBV) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM4 = OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:StoreNum);
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:Broadcasting = THE( SELECT ITEM FIELDVALUE(D.BROADCAST) FROM Environment.variables.GetBroadcastingStoreDBOutputCollection.GetBroadcastingStoreDBOutput[] AS D WHERE D.STORE_NUM4 = OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:StoreNum);
+
+
+				END IF;
+
+
+				IF OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:ATP >= Environment.variables.p_Qty THEN
+					--IfAnyStoreHasATP
+					SET AnyStoreHasATP = 'TRUE';
+
+				ELSE
+					--NoStoreHasIt
+					SET OutputRoot.XMLNSC.ns:processResponse.ns:StoreATPList[L].ns:Broadcasting = 'X';
+
+				END IF;
+
+				SET L = L+1;
+			END WHILE;
+
+		END IF;
+
+		IF (AnyStoreHasATP = 'FALSE' and RequestStoreATP = 'FALSE') and Count_Out_storeATPList > 0 THEN
+			--NoStoreWithATP
+
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Requested QTY is not available in any one store.  Consider multiple orders.';
+
+		ELSEIF AnyStoreHasATP = 'FALSE' and RequestStoreATP = 'TRUE' and Count_Out_storeATPList = 0 and Environment.variables.WebDistATP.ns10:ATP >= Environment.variables.p_Qty THEN
+			--OnlyReqStoreWeb
+
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = OutputRoot.XMLNSC.ns:processResponse.ns:Message || ' Requested quantity for this item is not available in any store, but is currently available at saks.com. Please assist your customer by ordering on saks.com. You will earn productivity on the sale just as you do for merchandise you sell from your store or on Locator';
+
+		ELSEIF AnyStoreHasATP = 'FALSE' and Count_Out_storeATPList > 0 and RequestStoreATP = 'TRUE' THEN
+			--ReqStoreOtherStore
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = OutputRoot.XMLNSC.ns:processResponse.ns:Message || ' No one other store has QTY ordered. Consider multiple orders.';
+
+		ELSEIF AnyStoreHasATP = 'FALSE' and RequestStoreATP = 'TRUE' and Count_Out_storeATPList = 0 THEN
+			--OnlyReqStore
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = OutputRoot.XMLNSC.ns:processResponse.ns:Message || ' No one other store has QTY ordered.';
+
+
+		ELSE
+			--ATP
+
+
+		END IF;
+
+
+
+	END;
+END MODULE;
+
+
+
+
+CREATE COMPUTE MODULE GetLocatorATP_SaksOMSATPRequest_Subflow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		SET Environment.variables.SaksOMSATPRequest[] = InputRoot.XMLNSC.ns10:SaksOMSATPRequest[];
+	
+
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE IIB_GetLocatorATP_SOAP_SVCInputCatchHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE IIB_GetLocatorATP_SOAP_SVCInputFailureHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE IIB_GetLocatorATP_SOAP_SVCInputHTTPTimeoutHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE GetLocatorATP_Error_Response_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot.Properties = Environment.variables.InputRoot.Properties;
+		--DELETE FIELD OutputRoot.*[<];
+		
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorCode = 'GLA0001';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:Message = 'Invalid SKU/UPC number.';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:StatusCode = 'NO';
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:SKU = Environment.variables.p_SKU;
+			SET OutputRoot.XMLNSC.ns:processResponse.ns:ErrorMessage = 'Error Invoking the UNIVERSAL Item ID service ';
+			
+		
+	END;
+END MODULE;

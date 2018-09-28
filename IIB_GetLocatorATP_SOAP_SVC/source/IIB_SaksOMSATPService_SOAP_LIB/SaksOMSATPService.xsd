@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" xmlns="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:element ibmSchExtn:docRoot="true" name="SaksOMSATPRequest" type="SaksOMSATPRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="SaksOMSATPResponse" type="SaksOMSATPResponseType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="SaksOMSATPFault" type="SaksOMSATPFaultType"/>
+    <xsd:element name="distGroupATP" type="distGroupATPType"/>
+    <xsd:element name="storeATP" type="storeATPType"/>
+    <xsd:complexType name="SaksOMSATPRequestType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="itemID" type="xsd:string"/>
+            <xsd:element minOccurs="1" name="chain" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="grpCode" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="CountryCode" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="orgCode" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="UOM" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="productClass" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="distGroup" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="storeList" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="QTY" nillable="true" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SaksOMSATPResponseType">
+        <xsd:sequence>
+            <xsd:element name="SKU" type="xsd:string"/>
+            <xsd:element name="UPC" type="xsd:string"/>
+            <xsd:element name="SSN" type="xsd:string"/>
+            <xsd:element name="itemDesc" type="xsd:string"/>
+            <xsd:element name="itemOMSSafetyFactor" type="xsd:integer"/>
+            <xsd:element name="distGroupATPList" type="distGroupATPListType"/>
+            <xsd:element name="storeATPList" type="storeATPListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SaksOMSATPFaultType">
+        <xsd:sequence>
+            <xsd:element name="severity" type="xsd:string"/>
+            <xsd:element name="code" type="xsd:string"/>
+            <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="distGroupATPListType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="distGroupATP" type="distGroupATPType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="distGroupATPType">
+        <xsd:sequence>
+            <xsd:element name="distGroupName" type="xsd:string"/>
+            <xsd:element name="ATP" type="xsd:integer"/>
+            <xsd:element name="supply" type="xsd:integer"/>
+            <xsd:element name="demand" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="storeATPListType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="storeATP" type="storeATPType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="storeATPType">
+        <xsd:sequence>
+            <xsd:element name="storeNum" type="xsd:string"/>
+            <xsd:element name="storeName" type="xsd:string"/>
+            <xsd:element name="ATP" type="xsd:integer"/>
+            <xsd:element name="supply" type="xsd:integer"/>
+            <xsd:element name="demand" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

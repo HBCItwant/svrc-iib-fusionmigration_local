@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="retrieveATP" targetNamespace="http://xmlns.saksinc.com/Stores/OMS/SaksOMSATPService" xmlns:client="http://xmlns.saksinc.com/Stores/OMS/SaksOMSATPService" xmlns:ns1="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11d.saksinc.com:8001/soa-infra/services/OMS/SaksOMSATPService!6.0.1/retrieveATP.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="retrieveATPBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="retrieveATP">
+        <plnk:role name="retrieveATPProvider" portType="client:retrieveATP"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" schemaLocation="SaksOMSATPService.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:include schemaLocation="OMSATPQueryElements.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="retrieveATPRequestMessage">
+        <wsdl:part element="ns1:SaksOMSATPRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="retrieveATPResponseMessage">
+        <wsdl:part element="ns1:SaksOMSATPResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="FaultMessage">
+        <wsdl:part element="ns1:SaksOMSATPFault" name="part"/>
+    </wsdl:message>
+    <wsdl:portType name="retrieveATP">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:retrieveATPRequestMessage"/>
+            <wsdl:output message="client:retrieveATPResponseMessage"/>
+            <wsdl:fault message="client:FaultMessage" name="FaultNotification"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="retrieveATPBinding" type="client:retrieveATP">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation soapAction="process" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="FaultNotification">
+                <soap:fault name="FaultNotification" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="retrieveatp_client_ep">
+        <wsdl:port binding="client:retrieveATPBinding" name="retrieveATP_pt">
+            <soap:address location="http://jxn-ux-fusion11d.saksinc.com:8001/soa-infra/services/OMS/SaksOMSATPService/retrieveatp_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

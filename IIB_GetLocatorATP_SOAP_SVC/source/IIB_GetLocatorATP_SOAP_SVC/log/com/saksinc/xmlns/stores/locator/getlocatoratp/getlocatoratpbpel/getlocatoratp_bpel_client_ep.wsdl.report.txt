@@ -1,0 +1,14 @@
+
+
+Importing file: C:\Vijay\Development\workspace\Fusion_to_IIB\git\Fusion_IIB_Migration\IIB_GetLocatorATP_SOAP_SVC\RemoteFiles\getlocatoratp_bpel_client_ep.wsdl
+
+The WSDL import will proceed with bindings GetLocatorATP_BPELBinding.
+Creating wsdl schema document for platform:/resource/IIB_GetLocatorATP_SOAP_SVC/RemoteFiles/getlocatoratp_bpel_client_ep.wsdl.
+Parsing wsdl binding {http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL}GetLocatorATP_BPELBinding.
+Parsing wsdl binding input process.
+Parsing wsdl binding output process.
+Processing doc style for operation process.
+Populating WSDL schema RemoteFiles/getlocatoratp_bpel_client_ep.xsd.
+Creating file RemoteFiles/getlocatoratp_bpel_client_ep.xsd in the workspace.
+Creating file /IIB_GetLocatorATP_SOAP_SVC/RemoteFiles/GetLocatorATP_BPEL.xsd in the workspace.
+Copying source WSDL getlocatoratp_bpel_client_ep.wsdl to getlocatoratp_bpel_client_ep.wsdl.

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetLocatorATP_BPEL" targetNamespace="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" xmlns:client="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" xmlns:ns1="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP!4.0/GetLocatorATP_BPEL.wsdl</abstractWSDL>
+    
+  
+  <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetLocatorATP_BPELBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="GetLocatorATP_BPEL">
+        <plnk:role name="GetLocatorATP_BPELProvider" portType="client:GetLocatorATP_BPEL"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" schemaLocation="GetLocatorATP_BPEL.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="process_BPELRequestMessage">
+        <wsdl:part element="client:process" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="process_BPELResponseMessage">
+        <wsdl:part element="client:processResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:portType name="GetLocatorATP_BPEL">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:process_BPELRequestMessage"/>
+            <wsdl:output message="client:process_BPELResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetLocatorATP_BPELBinding" type="client:GetLocatorATP_BPEL">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+      <soap:operation soapAction="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL/process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="getlocatoratp_bpel_client_ep">
+        <wsdl:port binding="client:GetLocatorATP_BPELBinding" name="GetLocatorATP_BPEL_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

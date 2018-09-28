@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" xmlns="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:element ibmSchExtn:docRoot="true" name="process">
+        <xsd:complexType>
+            <xsd:sequence maxOccurs="1">
+                <xsd:element maxOccurs="1" minOccurs="1" name="SKU" type="xsd:string"/>
+                <xsd:element minOccurs="1" name="StoreNum" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="Qty" type="xsd:integer"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="processResponse">
+        <xsd:complexType>
+            <xsd:sequence maxOccurs="unbounded">
+                <xsd:element maxOccurs="1" minOccurs="1" name="SKU" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="UPC" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="FindInd" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="InStoreInd" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="StatusCode" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="Message" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="CompanyATP" type="xsd:integer"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ReqBroadcasting" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ReqStoreNum" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ReqStoreAbbrv" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ReqStoreName" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ReqATP" type="xsd:string"/>
+                <xsd:element maxOccurs="unbounded" name="StoreATPList" type="StoreATP"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ErrorCode" type="xsd:string"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ErrorMessage" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="StoreATP">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element maxOccurs="1" minOccurs="1" name="Broadcasting" nillable="false" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="StoreNum" nillable="false" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="StoreAbbrv" nillable="false" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="StoreName" nillable="false" type="xsd:string"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="ATP" nillable="false" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CompositeTitle">
+        <xsd:sequence>
+            <xsd:element name="CompositeTitleStrg" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

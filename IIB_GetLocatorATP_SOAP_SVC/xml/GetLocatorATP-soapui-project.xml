@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="09beaeb7-8a38-41ad-9885-fef58c031178" activeEnvironment="Default" name="GetLocatorATP" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="1ab87247-7f0e-4032-b79c-fd40702ca380" wsaVersion="NONE" name="GetLocatorATP_BPELBinding" type="wsdl" bindingName="{http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL}GetLocatorATP_BPELBinding" soapVersion="1_1" anonymous="optional" definition="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep?WSDL"><con:part><con:url>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="GetLocatorATP_BPEL" targetNamespace="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" xmlns:ns1="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:client="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP!4.0/GetLocatorATP_BPEL.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="GetLocatorATP_BPEL">
+    <plnk:role name="GetLocatorATP_BPELProvider" portType="client:GetLocatorATP_BPEL"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" schemaLocation="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep?XSD=xsd/GetLocatorATP_BPEL.xsd"/>
+    </schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" schemaLocation="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep?XSD=xsd/SaksOMSATPService.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="GetLocatorATP_BPELRequestMessage">
+    <wsdl:part name="payload" element="client:process"/>
+  </wsdl:message>
+  <wsdl:message name="GetLocatorATP_BPELResponseMessage">
+    <wsdl:part name="payload" element="client:processResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="GetLocatorATP_BPEL">
+    <wsdl:operation name="process">
+      <wsdl:input message="client:GetLocatorATP_BPELRequestMessage"/>
+      <wsdl:output message="client:GetLocatorATP_BPELResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetLocatorATP_BPELBinding" type="client:GetLocatorATP_BPEL">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="process">
+      <soap:operation style="document" soapAction="process"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="getlocatoratp_bpel_client_ep">
+    <wsdl:port name="GetLocatorATP_BPEL_pt" binding="client:GetLocatorATP_BPELBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep?XSD=xsd/GetLocatorATP_BPEL.xsd</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" targetNamespace="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL">
+  <xsd:element name="process">
+    <xsd:complexType>
+      <xsd:sequence maxOccurs="1">
+        <xsd:element name="SKU" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="StoreNum" type="xsd:string" minOccurs="1"/>
+        <xsd:element name="Qty" type="xsd:integer" maxOccurs="1" minOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="processResponse">
+    <xsd:complexType>
+      <xsd:sequence maxOccurs="unbounded">
+        <xsd:element name="SKU" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="UPC" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="FindInd" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="InStoreInd" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="StatusCode" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="Message" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="CompanyATP" type="xsd:integer" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="ReqBroadcasting" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="ReqStoreNum" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="ReqStoreAbbrv" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="ReqStoreName" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="ReqATP" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="StoreATPList" type="StoreATP" maxOccurs="unbounded"/>
+        <xsd:element name="ErrorCode" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        <xsd:element name="ErrorMessage" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="StoreATP">
+    <xsd:sequence maxOccurs="unbounded">
+      <xsd:element name="Broadcasting" type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false"/>
+      <xsd:element name="StoreNum" type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false"/>
+      <xsd:element name="StoreAbbrv" type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false"/>
+      <xsd:element name="StoreName" type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false"/>
+      <xsd:element name="ATP" type="xsd:string" maxOccurs="1" minOccurs="1" nillable="false"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CompositeTitle">
+    <xsd:sequence>
+      <xsd:element name="CompositeTitleStrg" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep?XSD=xsd/SaksOMSATPService.xsd</con:url><con:content><![CDATA[<xsd:schema elementFormDefault="qualified" attributeFormDefault="unqualified" targetNamespace="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://xmlns.saks.com/Stores/OMS/SaksOMSATPService/retrieveOMSATP">
+  <xsd:element name="SaksOMSATPRequest" type="SaksOMSATPRequestType"/>
+  <xsd:element name="SaksOMSATPResponse" type="SaksOMSATPResponseType"/>
+  <xsd:element name="SaksOMSATPFault" type="SaksOMSATPFaultType"/>
+  <xsd:element name="distGroupATP" type="distGroupATPType"/>
+  <xsd:element name="storeATP" type="storeATPType"/>
+  <xsd:complexType name="SaksOMSATPRequestType">
+    <xsd:sequence>
+      <xsd:element name="itemID" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="chain" type="xsd:string" minOccurs="1"/>
+      <xsd:element name="grpCode" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="CountryCode" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="orgCode" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="UOM" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="productClass" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="distGroup" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="storeList" type="xsd:string" nillable="true" minOccurs="0"/>
+      <xsd:element name="QTY" type="xsd:integer" nillable="true" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SaksOMSATPResponseType">
+    <xsd:sequence>
+      <xsd:element name="SKU" type="xsd:string"/>
+      <xsd:element name="UPC" type="xsd:string"/>
+      <xsd:element name="SSN" type="xsd:string"/>
+      <xsd:element name="itemDesc" type="xsd:string"/>
+      <xsd:element name="itemOMSSafetyFactor" type="xsd:integer"/>
+      <xsd:element name="distGroupATPList" type="distGroupATPListType"/>
+      <xsd:element name="storeATPList" type="storeATPListType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SaksOMSATPFaultType">
+    <xsd:sequence>
+      <xsd:element name="severity" type="xsd:string"/>
+      <xsd:element name="code" type="xsd:string"/>
+      <xsd:element name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="distGroupATPListType">
+    <xsd:sequence>
+      <xsd:element name="distGroupATP" type="distGroupATPType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="distGroupATPType">
+    <xsd:sequence>
+      <xsd:element name="distGroupName" type="xsd:string"/>
+      <xsd:element name="ATP" type="xsd:integer"/>
+      <xsd:element name="supply" type="xsd:integer"/>
+      <xsd:element name="demand" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="storeATPListType">
+    <xsd:sequence>
+      <xsd:element name="storeATP" type="storeATPType" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="storeATPType">
+    <xsd:sequence>
+      <xsd:element name="storeNum" type="xsd:string"/>
+      <xsd:element name="storeName" type="xsd:string"/>
+      <xsd:element name="ATP" type="xsd:integer"/>
+      <xsd:element name="supply" type="xsd:integer"/>
+      <xsd:element name="demand" type="xsd:integer"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep</con:endpoint><con:endpoint>http://localhost:7800/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep</con:endpoint><con:endpoint>http://soa.stage.saksinc.com/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep</con:endpoint></con:endpoints><con:operation id="d3ab67b5-f9de-46ab-9252-6945444d2098" isOneWay="false" action="process" name="process" bindingOperationName="process" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4c7676a6-c6ee-4720-891e-f8fc3e54ec5d" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/soa-infra/services/Locator/GetLocatorATP/getlocatoratp_bpel_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:get="http://xmlns.saksinc.com/Stores/Locator/GetLocatorATP/GetLocatorATP_BPEL">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <get:process>
+         <get:SKU>0000048553542</get:SKU>
+         <get:StoreNum>673</get:StoreNum>
+         <get:Qty>1</get:Qty>
+      </get:process>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="process"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
