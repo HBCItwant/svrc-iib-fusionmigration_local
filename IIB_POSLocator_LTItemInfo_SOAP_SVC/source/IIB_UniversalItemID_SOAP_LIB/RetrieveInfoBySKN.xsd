@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySKN" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:rssn="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySKN" xmlns:uidtyp="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types">
+    <xsd:import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" schemaLocation="UniversalItemIDTypes.xsd"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="RetrieveInfoBySKNRequest" type="uidtyp:RetrieveInfoBySKNRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="RetrieveInfoBySKNResponse" type="uidtyp:RetrieveInfoBySKNResponseType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="RetrieveInfoBySKNFault" type="uidtyp:UniversalItemIDFaultType"/>
+</xsd:schema>

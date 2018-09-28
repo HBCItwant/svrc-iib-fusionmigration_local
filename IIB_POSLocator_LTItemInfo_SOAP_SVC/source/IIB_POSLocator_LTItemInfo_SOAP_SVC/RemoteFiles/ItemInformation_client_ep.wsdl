@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ItemInformation" targetNamespace="http://xmlns.saksinc.com/Locator/POSLocatorItemInfo/ItemInformation" xmlns:client="http://xmlns.saksinc.com/Locator/POSLocatorItemInfo/ItemInformation" xmlns:ns1="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:ns2="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo!2.0/ItemInformation.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="ItemInformationBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="ItemInformation">
+        <plnk:role name="ItemInformationProvider" portType="client:ItemInformation"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" schemaLocation="POSLocateItemInfo.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ItemInformationRequestMessage">
+        <wsdl:part element="ns1:ItemInfoRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="ItemInformationResponseMessage">
+        <wsdl:part element="ns1:ItemInfoResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:portType name="ItemInformation">
+        <wsdl:operation name="ProcessItemInfo">
+            <wsdl:input message="client:ItemInformationRequestMessage"/>
+            <wsdl:output message="client:ItemInformationResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ItemInformationBinding" type="client:ItemInformation">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ProcessItemInfo">
+            <soap:operation soapAction="ProcessItemInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ItemInformation_client_ep">
+        <wsdl:port binding="client:ItemInformationBinding" name="ItemInformation_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

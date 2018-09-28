@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="51915948-0b57-41c3-9809-ab1ef7e243ec" activeEnvironment="Default" name="POSLocatorLTItemInfo" soapui-version="5.4.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="7955eef4-b6e3-44b3-880f-192275b806f2" wsaVersion="NONE" name="ItemInformationBinding" type="wsdl" bindingName="{http://xmlns.saksinc.com/Locator/POSLocatorItemInfo/ItemInformation}ItemInformationBinding" soapVersion="1_1" anonymous="optional" definition="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?WSDL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?WSDL"><con:part><con:url>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?WSDL</con:url><con:content><![CDATA[<wsdl:definitions name="ItemInformation" targetNamespace="http://xmlns.saksinc.com/Locator/POSLocatorItemInfo/ItemInformation" xmlns:ns2="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" xmlns:ns1="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:client="http://xmlns.saksinc.com/Locator/POSLocatorItemInfo/ItemInformation" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:documentation>
+    <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo!2.0/ItemInformation.wsdl</abstractWSDL>
+  </wsdl:documentation>
+  <plnk:partnerLinkType name="ItemInformation">
+    <plnk:role name="ItemInformationProvider" portType="client:ItemInformation"/>
+  </plnk:partnerLinkType>
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" schemaLocation="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?XSD=xsd/POSLocateItemInfo.xsd"/>
+    </schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" schemaLocation="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?XSD=xsd/POSLocateItemInfoTypes.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ItemInformationRequestMessage">
+    <wsdl:part name="payload" element="ns1:ItemInfoRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ItemInformationResponseMessage">
+    <wsdl:part name="payload" element="ns1:ItemInfoResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ItemInformation">
+    <wsdl:operation name="ProcessItemInfo">
+      <wsdl:input message="client:ItemInformationRequestMessage"/>
+      <wsdl:output message="client:ItemInformationResponseMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ItemInformationBinding" type="client:ItemInformation">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ProcessItemInfo">
+      <soap:operation style="document" soapAction="ProcessItemInfo"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ItemInformation_client_ep">
+    <wsdl:port name="ItemInformation_pt" binding="client:ItemInformationBinding">
+      <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?XSD=xsd/POSLocateItemInfo.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:posloc="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:postyp="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" schemaLocation="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?XSD=xsd/POSLocateItemInfoTypes.xsd"/>
+  <element name="ItemInfoRequest">
+    <complexType>
+      <sequence>
+        <element name="Header" type="postyp:Header"/>
+        <element name="SearchCriteria" type="postyp:SearchCriteria"/>
+        <element name="PreSellInfo" type="postyp:PresellInfo"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="ItemInfoResponse">
+    <complexType>
+      <sequence>
+        <element name="Header" type="postyp:Header"/>
+        <element name="RecordCount" type="postyp:RecordCountType"/>
+        <element name="StatusInformation" type="postyp:StatusInformation"/>
+        <element name="ItemInfoList" type="postyp:ItemInfoList" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element name="SSNList">
+    <complexType>
+      <sequence>
+        <element name="SSN" type="postyp:SSNType" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep?XSD=xsd/POSLocateItemInfoTypes.xsd</con:url><con:content><![CDATA[<schema targetNamespace="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:postyp="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types">
+  <element name="SSNListCollection">
+    <complexType>
+      <sequence>
+        <element name="SSNList" type="postyp:ItemsStylesList" maxOccurs="unbounded"/>
+      </sequence>
+    </complexType>
+  </element>
+  <complexType name="Header">
+    <sequence>
+      <element name="Chain" type="postyp:ChainType" minOccurs="1"/>
+      <element name="CountryCode" type="postyp:CountryCode" minOccurs="0"/>
+      <element name="StoreNumber" type="postyp:StoreNumberType" minOccurs="0"/>
+      <element name="OperatorNumber" type="postyp:OperatorNumberType" minOccurs="0"/>
+      <element name="TerminalNumber" type="postyp:TerminalNumberType" minOccurs="0"/>
+      <element name="POSTransactionNumber" type="postyp:POSTransactonNumberType" minOccurs="0"/>
+      <element name="POSSubTransNumber" type="postyp:POSSubTransNumberType" minOccurs="0"/>
+      <element name="LanguageIndicator" type="postyp:LanguageIndicatorType" minOccurs="0"/>
+      <element name="MessageType" type="postyp:MessageTypeType" minOccurs="0"/>
+      <element name="VersionInfo" type="postyp:VersionInfoType" minOccurs="0"/>
+      <element name="MsgLength" type="postyp:MsgLengthType" minOccurs="0"/>
+      <element name="Reserved" type="postyp:ReservedType" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="SearchCriteria">
+    <sequence>
+      <element name="ItemNumber" type="postyp:ItemNumberType" minOccurs="0"/>
+      <element name="Department" type="postyp:DepartmentType" minOccurs="0"/>
+      <element name="MFG" type="postyp:MFGNumType" minOccurs="0"/>
+      <element name="VendorStyle" type="postyp:VendorStyleType" minOccurs="0"/>
+      <element name="Class" type="postyp:ClassType" minOccurs="0"/>
+      <element name="Reserved" type="postyp:ReservedType" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="PresellInfo">
+    <sequence>
+      <element name="EventNum" type="postyp:EventNumType" minOccurs="0"/>
+      <element name="DateRelease" type="postyp:DateReleaseType" minOccurs="0"/>
+      <element name="Reserved" type="postyp:ReservedType" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="StatusInformation">
+    <sequence>
+      <element name="StatusCode" type="postyp:StatusCodeType" minOccurs="0"/>
+      <element name="ErrorCode" type="postyp:ErrorCodeType" minOccurs="0"/>
+      <element name="ErrorMessage" type="postyp:ErrorMessageType" minOccurs="0"/>
+      <element name="Reserved" type="postyp:ReservedType" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <complexType name="ItemInfoList">
+    <sequence maxOccurs="unbounded">
+      <element name="SKN" type="postyp:SKNType"/>
+      <element name="UPC" type="postyp:UPCType"/>
+      <element name="SSN" type="postyp:SSNType"/>
+      <element name="Department" type="postyp:DepartmentType"/>
+      <element name="Class" type="postyp:ClassType"/>
+      <element name="MFGNumber" type="postyp:MFGNumberType"/>
+      <element name="VendorStyle" type="postyp:VendorStyleType"/>
+      <element name="Season" type="postyp:SeasonType"/>
+      <element name="Description" type="postyp:DescriptionType"/>
+      <element name="LabelName" type="postyp:LabelNameType"/>
+      <element name="CurrentRetailPrice" type="postyp:CurrentRetailPriceType"/>
+      <element name="SellRetailPrice" type="postyp:SellRetailPriceType"/>
+      <element name="OriginalOwnRetailDollar" type="postyp:OriginalOwnRetailDollarType"/>
+      <element name="ItemInfoStyles" type="postyp:ItemsStylesList" maxOccurs="unbounded"/>
+    </sequence>
+  </complexType>
+  <complexType name="ItemsStylesList">
+    <sequence maxOccurs="100">
+      <element name="SKN" type="postyp:SKNType"/>
+      <element name="UPC" type="postyp:UPCType"/>
+      <element name="ColorDescription" type="postyp:ColorDescriptionType"/>
+      <element name="Size" type="postyp:SizeType"/>
+      <element name="SellretailPrice" type="postyp:SellRetailPriceType"/>
+      <element name="Reserved" type="postyp:ReservedType" minOccurs="0"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ChainType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="StoreNumberType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="OperatorNumberType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="TerminalNumberType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="POSTransactonNumberType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="POSSubTransNumberType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="LanguageIndicatorType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MessageTypeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="VersionInfoType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MsgLengthType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="ItemNumberType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="CountryCode">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="DepartmentType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="MFGNumType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="VendorStyleType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ClassType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SeasonType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MaxRecordsType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="EventNumType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="DateReleaseType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="RecordCountType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="ErrorCodeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ErrorMessageType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SSNType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="MFGNumberType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="DescriptionType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="LabelNameType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="CurrentRetailPriceType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SKNType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="UPCType">
+    <restriction base="integer"/>
+  </simpleType>
+  <simpleType name="SellRetailPriceType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ColorDescriptionType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SizeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="StatusCodeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="StyleType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="GSTthresholdType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="GSTType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="GSTDescriptorType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ManualGSTCategoryType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ReservedType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="GSTExemptIndicatorType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="PSTthresholdType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="PSTType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="PSTDescriptorType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ManualPSTCategoryType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="PSTExemptIndicatorType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="HSTThresholdType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="HSTType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="HSTDescriptorType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ManualHSTCategoryType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="HSTExemptIndicatorType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="RewardsEligibilityType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="DiscountEligibilityType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="EcofeeLinkedItemType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="EcofeeAmtType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="SignForEcofeeAmtType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ProductClassType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ShippedAllowedType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="PickupAllowedType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ShippingSurchargeType">
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="OriginalOwnRetailDollarType">
+    <restriction base="decimal"/>
+  </simpleType>
+</schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint><con:endpoint>http://localhost:7800/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint><con:endpoint>http://soa.qa.saksinc.com/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint></con:endpoints><con:operation id="a072e2eb-4527-4188-9499-0b48ec5eb0cd" isOneWay="false" action="ProcessItemInfo" name="ProcessItemInfo" bindingOperationName="ProcessItemInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7e293723-12c9-45c7-a86d-f9fa0f70acf2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pos="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:typ="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pos:ItemInfoRequest>
+         <pos:Header>
+           
+            <typ:CountryCode>US</typ:CountryCode>
+            <!--Optional:-->
+            <typ:StoreNumber>689</typ:StoreNumber>
+            <!--Optional:-->
+            <typ:OperatorNumber>12121</typ:OperatorNumber>
+            <!--Optional:-->
+            <typ:TerminalNumber>1212</typ:TerminalNumber>
+            <!--Optional:-->
+            <typ:POSTransactionNumber>1212121</typ:POSTransactionNumber>
+            <!--Optional:-->
+            <typ:POSSubTransNumber>12121212</typ:POSSubTransNumber>
+            <!--Optional:-->
+            <typ:LanguageIndicator>11</typ:LanguageIndicator>
+          
+         </pos:Header>
+         <pos:SearchCriteria>
+            <!--Optional:-->
+            <typ:ItemNumber>4610937</typ:ItemNumber>
+            
+         </pos:SearchCriteria>
+         <pos:PreSellInfo>
+            <!--Optional:-->
+            <typ:EventNum>9</typ:EventNum>
+            
+         </pos:PreSellInfo>
+      </pos:ItemInfoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="ProcessItemInfo"/><con:wsrmConfig version="1.2"/></con:call><con:call id="7f8d8d7d-55bb-4be1-a158-bd08fc86f348" name="Request ElseIF"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pos="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:typ="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pos:ItemInfoRequest>
+         <pos:Header>
+            
+            <!--Optional:-->
+            <typ:CountryCode>US</typ:CountryCode>
+            <!--Optional:-->
+            <typ:StoreNumber>689</typ:StoreNumber>
+            <!--Optional:-->
+            <typ:OperatorNumber>12121</typ:OperatorNumber>
+            <!--Optional:-->
+            <typ:TerminalNumber>1212</typ:TerminalNumber>
+            <!--Optional:-->
+            <typ:POSTransactionNumber>1212121</typ:POSTransactionNumber>
+            <!--Optional:-->
+            <typ:POSSubTransNumber>12121212</typ:POSSubTransNumber>
+            <!--Optional:-->
+            <typ:LanguageIndicator>11</typ:LanguageIndicator>
+            <!--Optional:-->
+        
+         </pos:Header>
+         <pos:SearchCriteria>
+            <typ:Department>939</typ:Department>
+            <!--Optional:-->
+            <typ:MFG>317</typ:MFG>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            <typ:Class>78</typ:Class>
+            <!--Optional:-->
+         </pos:SearchCriteria>
+         <pos:PreSellInfo>
+            <!--Optional:-->
+            <typ:EventNum>9</typ:EventNum>
+         
+         </pos:PreSellInfo>
+      </pos:ItemInfoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="ProcessItemInfo"/><con:wsrmConfig version="1.2"/></con:call><con:call id="66b37ceb-16a4-44d0-864b-bb080d766617" name="DeptClassMfgVendorStyle"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pos="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:typ="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <pos:ItemInfoRequest>\r
+         <pos:Header>\r
+            <!--Optional:-->\r
+            <typ:CountryCode>US</typ:CountryCode>\r
+            <!--Optional:-->\r
+            <typ:StoreNumber>689</typ:StoreNumber>\r
+            <!--Optional:-->\r
+            <typ:OperatorNumber>12121</typ:OperatorNumber>\r
+            <!--Optional:-->\r
+            <typ:TerminalNumber>1212</typ:TerminalNumber>\r
+            <!--Optional:-->\r
+            <typ:POSTransactionNumber>1212121</typ:POSTransactionNumber>\r
+            <!--Optional:-->\r
+            <typ:POSSubTransNumber>12121212</typ:POSSubTransNumber>\r
+            <!--Optional:-->\r
+            <typ:LanguageIndicator>11</typ:LanguageIndicator>\r
+            <!--Optional:-->\r
+         </pos:Header>\r
+         <pos:SearchCriteria>\r
+            <typ:Department>939</typ:Department>\r
+            <typ:VendorStyle>B2111270</typ:VendorStyle>\r
+         </pos:SearchCriteria>\r
+         <pos:PreSellInfo>\r
+            <!--Optional:-->\r
+            <typ:EventNum>9</typ:EventNum>\r
+         </pos:PreSellInfo>\r
+      </pos:ItemInfoRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="ProcessItemInfo"/><con:wsrmConfig version="1.2"/></con:call><con:call id="68242ce6-f0e5-4a27-818b-6ffc4e0673d7" name="ClassMfgDpt"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pos="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:typ="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pos:ItemInfoRequest>
+         <pos:Header>
+            
+            <!--Optional:-->
+            <typ:CountryCode>US</typ:CountryCode>
+            <!--Optional:-->
+            <typ:StoreNumber>689</typ:StoreNumber>
+            <!--Optional:-->
+            <typ:OperatorNumber>12121</typ:OperatorNumber>
+            <!--Optional:-->
+            <typ:TerminalNumber>1212</typ:TerminalNumber>
+            <!--Optional:-->
+            <typ:POSTransactionNumber>1212121</typ:POSTransactionNumber>
+            <!--Optional:-->
+            <typ:POSSubTransNumber>12121212</typ:POSSubTransNumber>
+            <!--Optional:-->
+            <typ:LanguageIndicator>11</typ:LanguageIndicator>
+            <!--Optional:-->
+        
+         </pos:Header>
+         <pos:SearchCriteria>
+            <typ:Department>939</typ:Department>
+            <!--Optional:-->
+            <typ:MFG>317</typ:MFG>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            <typ:Class>78</typ:Class>
+            <!--Optional:-->
+         </pos:SearchCriteria>
+         <pos:PreSellInfo>
+            <!--Optional:-->
+            <typ:EventNum>9</typ:EventNum>
+         
+         </pos:PreSellInfo>
+      </pos:ItemInfoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="ProcessItemInfo"/><con:wsrmConfig version="1.2"/></con:call><con:call id="581004da-a32e-43fb-a0c9-e9aec5f7f12e" name="Copy of Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7800/soa-infra/services/Locator/POSLocatorLTItemInfo/ItemInformation_client_ep</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pos="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:typ="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <pos:ItemInfoRequest>
+         <pos:Header>
+           
+            <typ:CountryCode>US</typ:CountryCode>
+            <!--Optional:-->
+            <typ:StoreNumber>689</typ:StoreNumber>
+            <!--Optional:-->
+            <typ:OperatorNumber>12121</typ:OperatorNumber>
+            <!--Optional:-->
+            <typ:TerminalNumber>1212</typ:TerminalNumber>
+            <!--Optional:-->
+            <typ:POSTransactionNumber>1212121</typ:POSTransactionNumber>
+            <!--Optional:-->
+            <typ:POSSubTransNumber>12121212</typ:POSSubTransNumber>
+            <!--Optional:-->
+            <typ:LanguageIndicator>11</typ:LanguageIndicator>
+          
+         </pos:Header>
+         <pos:SearchCriteria>
+            <!--Optional:-->
+            <typ:ItemNumber>0500004610937</typ:ItemNumber>
+            
+         </pos:SearchCriteria>
+         <pos:PreSellInfo>
+            <!--Optional:-->
+            <typ:EventNum>9</typ:EventNum>
+            
+         </pos:PreSellInfo>
+      </pos:ItemInfoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="ProcessItemInfo"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

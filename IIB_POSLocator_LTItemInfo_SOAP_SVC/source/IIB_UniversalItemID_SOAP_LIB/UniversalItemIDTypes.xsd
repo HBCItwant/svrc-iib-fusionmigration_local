@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types" xmlns:uidtyp="http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types">
+    <xsd:complexType name="RetrieveByIDandChainRequestType">
+        <xsd:sequence>
+            <xsd:element name="ItemID" type="uidtyp:ItemIDType"/>
+            <xsd:element name="Chain" type="uidtyp:ChainType"/>
+            <xsd:element minOccurs="0" name="Store" type="uidtyp:StoreType"/>
+            <xsd:element minOccurs="0" name="CountryCode" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveByBorderSKNRequestType">
+        <xsd:sequence>
+            <xsd:element name="Chain" type="uidtyp:ChainType"/>
+            <xsd:element name="UPC" type="uidtyp:UPCType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveSKNByUPCRequestType">
+        <xsd:sequence>
+            <xsd:element name="Chain" type="uidtyp:ChainType"/>
+            <xsd:element name="CountryCode" type="xsd:string"/>
+            <xsd:element name="ItemIDList" type="uidtyp:ItemIDListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ItemIDListType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="ItemID" type="uidtyp:ItemIDType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveItemIDList">
+        <xsd:sequence>
+            <xsd:element name="SKN" type="uidtyp:SKNType"/>
+            <xsd:element name="REORDER_UPC_NO" type="uidtyp:UPCType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="InvalidItemList">
+        <xsd:sequence>
+            <xsd:element name="ItemID" type="uidtyp:ItemIDType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveSKNByUPCResponseType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="ItemID" type="uidtyp:RetrieveItemIDList"/>
+            <xsd:element maxOccurs="unbounded" name="InvalidItemID" type="uidtyp:InvalidItemList"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveByBorderSKNResponseType">
+        <xsd:sequence>
+            <xsd:element name="Chain" type="uidtyp:ChainType"/>
+            <xsd:element name="SSN" type="uidtyp:SSNType"/>
+            <xsd:element name="SKN" type="uidtyp:SKNType"/>
+            <xsd:element name="SVS" type="uidtyp:SVSType"/>
+            <xsd:element name="UPC" type="uidtyp:UPCType"/>
+            <xsd:element name="ReorderUPC" type="uidtyp:ReorderUPCType"/>
+            <xsd:element name="CountryCode" type="xsd:string"/>
+            <xsd:element name="severity" type="uidtyp:severityType"/>
+            <xsd:element name="code" type="uidtyp:codeType"/>
+            <xsd:element name="message" type="uidtyp:messageType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveByIDandChainResponseType">
+        <xsd:sequence>
+            <xsd:element name="SSN" type="uidtyp:SSNType"/>
+            <xsd:element name="SKN" type="uidtyp:SKNType"/>
+            <xsd:element name="UPC" type="uidtyp:UPCType"/>
+            <xsd:element name="SVS" type="uidtyp:SVSType"/>
+            <xsd:element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+            <xsd:element name="VendorNum" type="uidtyp:VendorNumType"/>
+            <xsd:element name="MdseVendorNum" type="uidtyp:VendorNumType"/>
+            <xsd:element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+            <xsd:element name="DMMName" type="uidtyp:DMMNameType"/>
+            <xsd:element name="DMMNo" type="uidtyp:DMMNoType"/>
+            <xsd:element name="GMMName" type="uidtyp:GMMNameType"/>
+            <xsd:element name="GMMNo" type="uidtyp:GMMNoType"/>
+            <xsd:element name="DeptNo" type="uidtyp:DeptNoType"/>
+            <xsd:element name="DeptDesc" type="uidtyp:DeptDescType"/>
+            <xsd:element name="ClassNo" type="uidtyp:ClassNoType"/>
+            <xsd:element name="ClassDesc" type="uidtyp:ClassDescType"/>
+            <xsd:element name="MfgName" type="uidtyp:MfgNameType"/>
+            <xsd:element name="MfgNo" type="uidtyp:MfgNoType"/>
+            <xsd:element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+            <xsd:element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+            <xsd:element name="PriceStatus" type="uidtyp:PriceStatusType"/>
+            <xsd:element name="PriceTypeCode" type="xsd:string"/>
+            <xsd:element name="ReqReasonCode" type="xsd:string"/>
+            <xsd:element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+            <xsd:element name="SizeCode" type="uidtyp:SizeCodeType"/>
+            <xsd:element name="SizeDesc" type="uidtyp:SizeDescType"/>
+            <xsd:element name="ColorCode" type="uidtyp:ColorCodeType"/>
+            <xsd:element name="ColorDesc" type="uidtyp:ColorDescType"/>
+            <xsd:element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+            <xsd:element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+            <xsd:element name="OwnedOrigPctOff" type="xsd:string"/>
+            <xsd:element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+            <xsd:element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+            <xsd:element name="CompareAtPrice" type="uidtyp:CompareAtPriceType"/>
+            <xsd:element name="CatalogCode" type="uidtyp:CatalogCodeType"/>
+            <xsd:element name="OrigOwnRtlDol" type="uidtyp:OrigOwnRtlDolType"/>
+            <xsd:element name="OrigTktRtlDol" type="xsd:decimal"/>
+            <xsd:element name="EffectiveDate" type="uidtyp:EffectiveDateType"/>
+            <xsd:element maxOccurs="unbounded" name="PermPrice">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Price" type="xsd:decimal"/>
+                        <xsd:element name="StartDate" type="xsd:string"/>
+                        <xsd:element name="StartTime" type="xsd:string"/>
+                        <xsd:element name="RegionTypeCode" type="xsd:string"/>
+                        <xsd:element name="PriceTypeCode" type="xsd:string"/>
+                        <xsd:element name="PriceStatus" type="xsd:string"/>
+                        <xsd:element name="ReqReasonNo" type="xsd:integer"/>
+                        <xsd:element name="OwnedOrigPctOff" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="PromoPrices">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element maxOccurs="unbounded" name="PriceInfo">
+                            <xsd:complexType>
+                                <xsd:sequence>
+                                    <xsd:element name="PriceEffectiveDate" type="xsd:date"/>
+                                    <xsd:element name="Price" type="xsd:decimal"/>
+                                    <xsd:element name="TotalDisc" type="xsd:decimal"/>
+                                    <xsd:element name="PromoID" type="xsd:integer"/>
+                                    <xsd:element name="PromoType" type="xsd:string"/>
+                                    <xsd:element name="PromoAmount" type="xsd:decimal"/>
+                                    <xsd:element name="PromoStartDate" type="xsd:date"/>
+                                    <xsd:element name="PromoEndDate" type="xsd:date"/>
+                                    <xsd:element name="PromoStartTime" type="xsd:integer"/>
+                                    <xsd:element name="PromoEndTime" type="xsd:integer"/>
+                                    <xsd:element name="DiscAmt" type="xsd:decimal"/>
+                                    <xsd:element name="RcptTxt" type="xsd:string"/>
+                                    <xsd:element name="OriginalPrice" type="xsd:decimal"/>
+                                    <xsd:element name="PromoChangeType" type="xsd:string"/>
+                                    <xsd:element name="Status" type="xsd:string"/>
+                                </xsd:sequence>
+                            </xsd:complexType>
+                        </xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveInfoBySKNRequestType">
+        <xsd:sequence>
+            <xsd:element name="SKN" type="uidtyp:SKNType"/>
+            <xsd:element minOccurs="0" name="CountryCode" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveInfoBySKNResponseType">
+        <xsd:sequence>
+            <xsd:element name="SSN" type="uidtyp:SSNType"/>
+            <xsd:element name="SKN" type="uidtyp:SKNType"/>
+            <xsd:element name="UPC" type="uidtyp:UPCType"/>
+            <xsd:element name="SVS" type="uidtyp:SVSType"/>
+            <xsd:element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+            <xsd:element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+            <xsd:element name="DeptNo" type="uidtyp:DeptNoType"/>
+            <xsd:element name="ClassNo" type="uidtyp:ClassNoType"/>
+            <xsd:element name="MfgName" type="uidtyp:MfgNameType"/>
+            <xsd:element name="MfgNo" type="uidtyp:MfgNoType"/>
+            <xsd:element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+            <xsd:element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+            <xsd:element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+            <xsd:element name="SizeCode" type="uidtyp:SizeCodeType"/>
+            <xsd:element name="SizeDesc" type="uidtyp:SizeDescType"/>
+            <xsd:element name="ColorCode" type="uidtyp:ColorCodeType"/>
+            <xsd:element name="ColorDesc" type="uidtyp:ColorDescType"/>
+            <xsd:element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+            <xsd:element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+            <xsd:element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+            <xsd:element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+            <xsd:element maxOccurs="unbounded" name="PermPrice">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Price" type="xsd:decimal"/>
+                        <xsd:element name="StartDate" type="xsd:string"/>
+                        <xsd:element name="StartTime" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" name="PromoPrice">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="StartDate" type="xsd:string"/>
+                        <xsd:element name="StartTime" type="xsd:string"/>
+                        <xsd:element name="OriginalPrice" type="xsd:decimal"/>
+                        <xsd:element name="Price" type="xsd:decimal"/>
+                        <xsd:element name="PromoChangeType" type="xsd:string"/>
+                        <xsd:element name="EndDate" type="xsd:string"/>
+                        <xsd:element name="EndTime" type="xsd:string"/>
+                        <xsd:element name="Status" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveByDeptClassRequestType">
+        <xsd:sequence>
+            <xsd:element name="DeptNo" type="uidtyp:DeptNoType"/>
+            <xsd:element name="ClassNo" type="uidtyp:ClassNoType"/>
+            <xsd:element minOccurs="0" name="StyleNo" type="uidtyp:StyleNoType"/>
+            <xsd:element minOccurs="0" name="CountryCode" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveByDeptClassResponseType">
+        <xsd:sequence>
+            <xsd:element name="SSN" type="uidtyp:SSNType"/>
+            <xsd:element name="SKN" type="uidtyp:SKNType"/>
+            <xsd:element name="UPC" type="uidtyp:UPCType"/>
+            <xsd:element name="SVS" type="uidtyp:SVSType"/>
+            <xsd:element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+            <xsd:element name="element1"/>
+            <xsd:element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+            <xsd:element name="DeptNo" type="uidtyp:DeptNoType"/>
+            <xsd:element name="ClassNo" type="uidtyp:ClassNoType"/>
+            <xsd:element name="MfgNo" type="uidtyp:MfgNoType"/>
+            <xsd:element name="MfgName" type="uidtyp:MfgNameType"/>
+            <xsd:element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+            <xsd:element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+            <xsd:element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+            <xsd:element name="SizeCode" type="uidtyp:SizeCodeType"/>
+            <xsd:element name="SizeDesc" type="uidtyp:SizeDescType"/>
+            <xsd:element name="ColorCode" type="uidtyp:ColorCodeType"/>
+            <xsd:element name="ColorDesc" type="uidtyp:ColorDescType"/>
+            <xsd:element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+            <xsd:element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+            <xsd:element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+            <xsd:element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveInfoBySSNRequestType">
+        <xsd:sequence>
+            <xsd:element name="SSN" type="uidtyp:SSNType"/>
+            <xsd:element minOccurs="0" name="CountryCode" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="Chain" type="uidtyp:ChainType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RetrieveInfoBySSNResponseType">
+        <xsd:sequence>
+            <xsd:element name="SSN" type="uidtyp:SSNType"/>
+            <xsd:element name="SKN" type="uidtyp:SKNType"/>
+            <xsd:element name="UPC" type="uidtyp:UPCType"/>
+            <xsd:element name="SVS" type="uidtyp:SVSType"/>
+            <xsd:element name="Chain" type="uidtyp:ChainType"/>
+            <xsd:element name="FashionStyleNo" type="uidtyp:FashionStyleNoType"/>
+            <xsd:element name="VendorStyle" type="uidtyp:VendorStyleType"/>
+            <xsd:element name="DeptNo" type="uidtyp:DeptNoType"/>
+            <xsd:element name="ClassNo" type="uidtyp:ClassNoType"/>
+            <xsd:element name="MfgName" type="uidtyp:MfgNameType"/>
+            <xsd:element name="MfgNo" type="uidtyp:MfgNoType"/>
+            <xsd:element name="ItemDescShort" type="uidtyp:ItemDescShortType"/>
+            <xsd:element name="ItemDescLong" type="uidtyp:ItemDescLongType"/>
+            <xsd:element name="PriceStatus" type="uidtyp:PriceStatusType"/>
+            <xsd:element name="PriceTypeCode" type="xsd:string"/>
+            <xsd:element name="ReqReasonCode" type="xsd:string"/>
+            <xsd:element name="SeasonCde" type="uidtyp:SeasonCdeType"/>
+            <xsd:element name="SizeCode" type="uidtyp:SizeCodeType"/>
+            <xsd:element name="SizeDesc" type="uidtyp:SizeDescType"/>
+            <xsd:element name="ColorCode" type="uidtyp:ColorCodeType"/>
+            <xsd:element name="ColorDesc" type="uidtyp:ColorDescType"/>
+            <xsd:element name="ConsignmentCode" type="uidtyp:ConsignmentCodeType"/>
+            <xsd:element name="CurTicketPriceDollars" type="uidtyp:CurTicketPriceDollarsType"/>
+            <xsd:element name="CurOwnedRetailDollars" type="uidtyp:CurOwnedRetailDollarsType"/>
+            <xsd:element name="CostAmountDollars" type="uidtyp:CurOwnedPriceType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="UniversalItemIDFaultType">
+        <xsd:sequence>
+            <xsd:element name="severity" type="uidtyp:severityType"/>
+            <xsd:element name="code" type="uidtyp:codeType"/>
+            <xsd:element name="message" type="uidtyp:messageType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="AMSInput">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="PriceRequest">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element minOccurs="1" name="SKN" type="xsd:integer"/>
+                            <xsd:element minOccurs="1" name="Banner" type="xsd:integer"/>
+                            <xsd:element minOccurs="0" name="Store" type="xsd:integer"/>
+                            <xsd:element minOccurs="0" name="NumberOfDays" type="xsd:integer"/>
+                            <xsd:element minOccurs="0" name="Pricing">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element maxOccurs="unbounded" minOccurs="0" name="PriceRec">
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                    <xsd:element minOccurs="0" name="Price" type="xsd:decimal"/>
+                                                    <xsd:element minOccurs="0" name="EffectiveDate" type="xsd:string"/>
+                                                    <xsd:element minOccurs="0" name="PriceStatus" type="xsd:integer"/>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:simpleType name="CatalogCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ChainType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ClassDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ClassNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ColorCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ColorDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="codeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CompareAtPriceType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ConsignmentCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CurOwnedRetailDollarsType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CurOwnedPriceType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CurTicketPriceDollarsType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DeptDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DeptNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DMMNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DMMNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GMMNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GMMNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="EffectiveDateType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="FashionStyleNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ItemIDType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ItemDescShortType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ItemDescLongType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="messageType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MfgNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MfgNoType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="OrigOwnRtlDolType">
+        <xsd:restriction base="xsd:decimal"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PriceStatusType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SeasonCdeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="severityType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SizeCodeType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SizeDescType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SKNType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SpecInstTxtType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SSNType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StoreType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StyleNoType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SVSType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UPCType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ReorderUPCType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="VendorNumType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="VendorStyleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+</xsd:schema>

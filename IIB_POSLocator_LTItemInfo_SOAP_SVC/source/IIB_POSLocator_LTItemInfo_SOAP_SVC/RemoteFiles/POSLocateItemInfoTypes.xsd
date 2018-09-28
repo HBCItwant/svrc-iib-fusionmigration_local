@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" xmlns:postyp="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types">
+    <xsd:element name="SSNListCollection">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="SSNList" type="postyp:ItemsStylesList"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="Header">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="Chain" type="postyp:ChainType"/>
+            <xsd:element minOccurs="0" name="CountryCode" type="postyp:CountryCode"/>
+            <xsd:element minOccurs="0" name="StoreNumber" type="postyp:StoreNumberType"/>
+            <xsd:element minOccurs="0" name="OperatorNumber" type="postyp:OperatorNumberType"/>
+            <xsd:element minOccurs="0" name="TerminalNumber" type="postyp:TerminalNumberType"/>
+            <xsd:element minOccurs="0" name="POSTransactionNumber" type="postyp:POSTransactonNumberType"/>
+            <xsd:element minOccurs="0" name="POSSubTransNumber" type="postyp:POSSubTransNumberType"/>
+            <xsd:element minOccurs="0" name="LanguageIndicator" type="postyp:LanguageIndicatorType"/>
+            <xsd:element minOccurs="0" name="MessageType" type="postyp:MessageTypeType"/>
+            <xsd:element minOccurs="0" name="VersionInfo" type="postyp:VersionInfoType"/>
+            <xsd:element minOccurs="0" name="MsgLength" type="postyp:MsgLengthType"/>
+            <xsd:element minOccurs="0" name="Reserved" type="postyp:ReservedType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SearchCriteria">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="ItemNumber" type="postyp:ItemNumberType"/>
+            <xsd:element minOccurs="0" name="Department" type="postyp:DepartmentType"/>
+            <xsd:element minOccurs="0" name="MFG" type="postyp:MFGNumType"/>
+            <xsd:element minOccurs="0" name="VendorStyle" type="postyp:VendorStyleType"/>
+            <xsd:element minOccurs="0" name="Class" type="postyp:ClassType"/>
+            <xsd:element minOccurs="0" name="Reserved" type="postyp:ReservedType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PresellInfo">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="EventNum" type="postyp:EventNumType"/>
+            <xsd:element minOccurs="0" name="DateRelease" type="postyp:DateReleaseType"/>
+            <xsd:element minOccurs="0" name="Reserved" type="postyp:ReservedType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StatusInformation">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="StatusCode" type="postyp:StatusCodeType"/>
+            <xsd:element minOccurs="0" name="ErrorCode" type="postyp:ErrorCodeType"/>
+            <xsd:element minOccurs="0" name="ErrorMessage" type="postyp:ErrorMessageType"/>
+            <xsd:element minOccurs="0" name="Reserved" type="postyp:ReservedType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ItemInfoList">
+        <xsd:sequence maxOccurs="unbounded">
+            <xsd:element name="SKN" type="postyp:SKNType"/>
+            <xsd:element name="UPC" type="postyp:UPCType"/>
+            <xsd:element name="SSN" type="postyp:SSNType"/>
+            <xsd:element name="Department" type="postyp:DepartmentType"/>
+            <xsd:element name="Class" type="postyp:ClassType"/>
+            <xsd:element name="MFGNumber" type="postyp:MFGNumberType"/>
+            <xsd:element name="VendorStyle" type="postyp:VendorStyleType"/>
+            <xsd:element name="Season" type="postyp:SeasonType"/>
+            <xsd:element name="Description" type="postyp:DescriptionType"/>
+            <xsd:element name="LabelName" type="postyp:LabelNameType"/>
+            <xsd:element name="CurrentRetailPrice" type="postyp:CurrentRetailPriceType"/>
+            <xsd:element name="SellRetailPrice" type="postyp:SellRetailPriceType"/>
+            <xsd:element name="OriginalOwnRetailDollar" type="postyp:OriginalOwnRetailDollarType"/>
+            <xsd:element maxOccurs="unbounded" name="ItemInfoStyles" type="postyp:ItemsStylesList"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ItemsStylesList">
+        <xsd:sequence maxOccurs="100">
+            <xsd:element name="SKN" type="postyp:SKNType"/>
+            <xsd:element name="UPC" type="postyp:UPCType"/>
+            <xsd:element name="ColorDescription" type="postyp:ColorDescriptionType"/>
+            <xsd:element name="Size" type="postyp:SizeType"/>
+            <xsd:element name="SellretailPrice" type="postyp:SellRetailPriceType"/>
+            <xsd:element minOccurs="0" name="Reserved" type="postyp:ReservedType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="ChainType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StoreNumberType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="OperatorNumberType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="TerminalNumberType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="POSTransactonNumberType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="POSSubTransNumberType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="LanguageIndicatorType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MessageTypeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="VersionInfoType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MsgLengthType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ItemNumberType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CountryCode">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DepartmentType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MFGNumType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="VendorStyleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ClassType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SeasonType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MaxRecordsType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="EventNumType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DateReleaseType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="RecordCountType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ErrorCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ErrorMessageType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SSNType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MFGNumberType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DescriptionType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="LabelNameType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="CurrentRetailPriceType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SKNType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="UPCType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SellRetailPriceType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ColorDescriptionType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SizeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StatusCodeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StyleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GSTthresholdType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GSTType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GSTDescriptorType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ManualGSTCategoryType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ReservedType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="GSTExemptIndicatorType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PSTthresholdType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PSTType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PSTDescriptorType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ManualPSTCategoryType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PSTExemptIndicatorType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="HSTThresholdType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="HSTType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="HSTDescriptorType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ManualHSTCategoryType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="HSTExemptIndicatorType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="RewardsEligibilityType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="DiscountEligibilityType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="EcofeeLinkedItemType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="EcofeeAmtType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="SignForEcofeeAmtType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ProductClassType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ShippedAllowedType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="PickupAllowedType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ShippingSurchargeType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="OriginalOwnRetailDollarType">
+        <xsd:restriction base="xsd:decimal"/>
+    </xsd:simpleType>
+</xsd:schema>

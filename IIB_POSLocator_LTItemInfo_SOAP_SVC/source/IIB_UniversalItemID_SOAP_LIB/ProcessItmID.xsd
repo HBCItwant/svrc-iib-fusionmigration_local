@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.oracle.com/UPCConversion/UniversalItemID/ProcessItmID" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:element ibmSchExtn:docRoot="true" name="process">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ItemID" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="Group" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="CountryCode" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="processResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="SSN" type="xsd:string"/>
+                <xsd:element name="SKU" type="xsd:string"/>
+                <xsd:element name="UPC" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:posloc="http://xmlns.saksinc.com/Locator/POSLocateItemInfo" xmlns:postyp="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <import namespace="http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types" schemaLocation="POSLocateItemInfoTypes.xsd"/>
+    <element ibmSchExtn:docRoot="true" name="ItemInfoRequest">
+        <complexType>
+            <sequence>
+                <element name="Header" type="postyp:Header"/>
+                <element name="SearchCriteria" type="postyp:SearchCriteria"/>
+                <element name="PreSellInfo" type="postyp:PresellInfo"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element ibmSchExtn:docRoot="true" name="ItemInfoResponse">
+        <complexType>
+            <sequence>
+                <element name="Header" type="postyp:Header"/>
+                <element name="RecordCount" type="postyp:RecordCountType"/>
+                <element name="StatusInformation" type="postyp:StatusInformation"/>
+                <element maxOccurs="unbounded" name="ItemInfoList" type="postyp:ItemInfoList"/>
+            </sequence>
+        </complexType>
+    </element>
+    <element name="SSNList">
+        <complexType>
+            <sequence>
+                <element maxOccurs="unbounded" name="SSN" type="postyp:SSNType"/>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

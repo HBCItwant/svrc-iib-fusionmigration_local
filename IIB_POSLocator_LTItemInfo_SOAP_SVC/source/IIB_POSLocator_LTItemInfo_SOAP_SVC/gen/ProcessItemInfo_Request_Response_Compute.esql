@@ -1,0 +1,363 @@
+
+
+
+
+BROKER SCHEMA gen
+DECLARE ns2 NAMESPACE 'http://www.xmlns.saksinc.com/Locator/POSLocateItemInfo/Types';
+DECLARE ns14 NAMESPACE 'http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain';
+DECLARE ns20 NAMESPACE 'http://xmlns.saksinc.com/CommonModules/UniversalItemID/Types';
+DECLARE ns NAMESPACE 'http://xmlns.saksinc.com/Locator/POSLocateItemInfo';
+DECLARE top NAMESPACE 'http://xmlns.oracle.com/pcbpel/adapter/db/top/GetItemInfoByDeptClassMfgVendorStyle';
+DECLARE ns32 NAMESPACE 'http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySSN';
+DECLARE ns5 NAMESPACE 'http://xmlns.saksinc.com/CommonModules/UniversalItemID';
+
+
+
+CREATE COMPUTE MODULE ProcessItemInfo_MainFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+
+		SET Environment.variables.InputRoot = InputRoot;
+
+		DECLARE v_ItemNumber, v_Department, v_Chain,v_CountryCode, v_Class,v_VendorStyle,v_MFG,GetItemInfoByDeptClassMfgVendorStyle_Query CHARACTER;
+		SET v_Chain = InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.ns2:Chain;
+		SET v_ItemNumber = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:ItemNumber;
+		SET v_Department = InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:Department;
+		SET v_Class = InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:Class;
+		SET v_VendorStyle = InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:VendorStyle;
+		SET v_MFG = InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:MFG;
+		--CheckInputs
+		--IDandChainOnly
+
+
+		IF v_ItemNumber > 0 THEN
+			--IfValidChainInput
+			IF LENGTH(v_Chain) = 0 THEN
+				SET OutputRoot = InputRoot;
+				SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'ValidChainInput';
+
+				PROPAGATE TO TERMINAL 'out1';
+			END IF;
+
+			SET OutputRoot.XMLNSC.ns14:RetrieveByIDandChainRequest.ns20:Chain =v_Chain;
+			SET OutputRoot.XMLNSC.ns14:RetrieveByIDandChainRequest.ns20:ItemID =v_ItemNumber;
+			--Dept/Class/MFG/VendorStyle
+		ELSEIF v_Department > 0 THEN
+			--Else of CheckInputs
+			IF (((length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:Department) <>0) and(length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:MFG) <>0) and (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:VendorStyle) <>0) and (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.ns2:Chain) <>0) ) or ( (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:Class) <>0) and (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:Department) <>0) and(length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:MFG) <>0) and (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.ns2:Chain) <>0)) or ( (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:Department) <>0) and(length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:MFG) <>0) and(length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:VendorStyle) <>0) and (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.ns2:Chain) <>0)) or ( (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:Department) <>0) and (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:VendorStyle) <>0) and (length(InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.ns2:Chain) <>0) )) THEN --AssignInvalidInp
+
+				SET GetItemInfoByDeptClassMfgVendorStyle_Query = 'SELECT I.CLASS_NO,I.VENDOR_STYLE,I.ITEM_DESC_LONG,I.CUR_OWN_RETAIL_DOL,I.CUR_TKT_PRICE_DOL,I.CONSIGNMENT_CODE,I.SEASON_TYPE_CODE,I.SVS,D.DEPT_NO,D.MFG_NO,D.MFG_NAME,D.MFG_TYPE_CODE, U.UPC,U.SKN_NO  FROM LT.RF_ITEM I JOIN LT.RF_DEPT_MFG D ON I.MFG_NO = D.MFG_NO and I.DEPT_NO= D.DEPT_NO JOIN LT.RF_UPC U ON I.SKN_NO = U.SKN_NO WHERE  ';
+
+
+				IF LENGTH(v_Class) <> 0 THEN
+
+					SET GetItemInfoByDeptClassMfgVendorStyle_Query = GetItemInfoByDeptClassMfgVendorStyle_Query || ' I.CLASS_NO='||cast(v_Class as CHAR);
+
+				END IF;
+
+				IF LENGTH(v_VendorStyle) <> 0 THEN
+
+					IF LENGTH(v_Class) <> 0 THEN
+						SET GetItemInfoByDeptClassMfgVendorStyle_Query = GetItemInfoByDeptClassMfgVendorStyle_Query || ' AND ';
+					END IF;
+					SET GetItemInfoByDeptClassMfgVendorStyle_Query = GetItemInfoByDeptClassMfgVendorStyle_Query || ' I.VENDOR_STYLE='''||cast(v_VendorStyle as CHAR)||'''';
+
+				END IF;
+
+				IF LENGTH(v_Department) <> 0 THEN
+
+					IF LENGTH(v_Class) <> 0 or LENGTH(v_VendorStyle) <> 0 THEN
+						SET GetItemInfoByDeptClassMfgVendorStyle_Query = GetItemInfoByDeptClassMfgVendorStyle_Query || ' AND ';
+					END IF;
+					SET GetItemInfoByDeptClassMfgVendorStyle_Query = GetItemInfoByDeptClassMfgVendorStyle_Query || ' D.DEPT_NO='||cast(v_Department as CHAR);
+
+				END IF;
+
+				IF LENGTH(v_MFG) <> 0 THEN
+
+					IF LENGTH(v_Class) <> 0 or LENGTH(v_VendorStyle) <> 0 or LENGTH(v_Department) <> 0 THEN
+						SET GetItemInfoByDeptClassMfgVendorStyle_Query = GetItemInfoByDeptClassMfgVendorStyle_Query || ' AND ';
+					END IF;
+					SET GetItemInfoByDeptClassMfgVendorStyle_Query = GetItemInfoByDeptClassMfgVendorStyle_Query || ' D.MFG_NO='||cast(v_MFG as CHAR);
+
+				END IF;
+
+				SET OutputRoot.XMLNSC.Output.top:RfItemCollection.top:RfItem[] = PASSTHRU(GetItemInfoByDeptClassMfgVendorStyle_Query);
+				
+				IF LENGTH(cast(OutputRoot.XMLNSC.Output.top:RfItemCollection.top:RfItem.CLASS_NO as CHARACTER)) <> 0 THEN
+
+				--IF 1=1 THEN
+
+					IF OutputRoot.XMLNSC.Output.top:RfItemCollection.top:RfItem.MFG_TYPE_CODE = 'C' or OutputRoot.XMLNSC.Output.top:RfItemCollection.top:RfItem.MFG_TYPE_CODE = 'c' THEN
+
+
+						SET OutputRoot = InputRoot;
+						SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'AssignNotLocatorOrder1';
+						PROPAGATE TO TERMINAL 'out1';
+
+
+					ELSE
+
+						SET OutputRoot.Properties = Environment.variables.InputRoot.Properties;
+						SET OutputRoot.XMLNSC.Output.ns:ItemInfoRequest.ns:Header = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header;
+						SET OutputRoot.XMLNSC.Output.ns:ItemInfoRequest.ns:PreSellInfo = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo;
+						SET OutputRoot.XMLNSC.Output.ns:ItemInfoRequest.ns:SearchCriteria = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria;
+
+						PROPAGATE TO TERMINAL 'out2';
+
+					END IF;
+
+				ELSE
+
+					SET OutputRoot = InputRoot;
+					SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'AssignInValidDCMVSError';
+					PROPAGATE TO TERMINAL 'out1';
+
+
+				END IF;
+
+			END IF;
+
+
+			SET OutputRoot = InputRoot;
+			SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'AssignInvalidInp';
+			PROPAGATE TO TERMINAL 'out1';
+
+
+		ELSE
+
+			SET OutputRoot = InputRoot;
+			SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'CheckInputs';
+
+			PROPAGATE TO TERMINAL 'out1';
+
+		END IF; ----CheckInputs
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ProcessItemInfo_RetrieveInfoBySSN_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET Environment.variables.GetItemInfo_Output = InputRoot.XMLNSC;
+
+		SET OutputRoot.XMLNSC.ns32:RetrieveInfoBySSNRequest.ns20:SSN = InputRoot.XMLNSC.ns14:RetrieveByIDandChainResponse.ns20:SVS;
+		SET OutputRoot.XMLNSC.ns32:RetrieveInfoBySSNRequest.ns20:Chain = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.ns2:Chain;
+
+
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ProcessItemInfo_RetrieveByIDandChainResponse_Error_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		--SET OutputRoot = InputRoot;
+
+		SET OutputRoot.XMLNSC.ns32:RetrieveInfoBySSNRequest.ns20:SSN = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:ItemNumber;
+		SET OutputRoot.XMLNSC.ns32:RetrieveInfoBySSNRequest.ns20:Chain = '21';
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ProcessItemInfo_Response_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+
+		DECLARE GetConsignmentFlag,p_DeptNo,p_MfgNo CHARACTER;
+
+		SET p_DeptNo = Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:DeptNo;
+		SET p_MfgNo = Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:MfgNo;
+
+		SET GetConsignmentFlag = 'SELECT DEPT_NO, MFG_NO, MFG_TYPE_CODE FROM LT.RF_DEPT_MFG WHERE ((DEPT_NO = ? ) AND (MFG_NO = ?))';
+
+		SET Environment.variables.GetConsignFlagOutput.RfDeptMfgCollection = PASSTHRU(GetConsignmentFlag,p_DeptNo,p_MfgNo);
+
+
+		IF LENGTH(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:SKN) <> 0 AND LENGTH( Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:UPC) <> 0 THEN
+			IF Environment.variables.GetConsignFlagOutput.RfDeptMfgCollection.MFG_TYPE_CODE = 'C' or Environment.variables.GetConsignFlagOutput.RfDeptMfgCollection.MFG_TYPE_CODE = 'c' THEN
+
+				SET OutputRoot.Properties = Environment.variables.InputRoot.Properties;
+				SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header;
+				SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo;
+				SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria;
+				SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'AssignNotLocatorOrder';
+
+				PROPAGATE TO TERMINAL 'out1';
+
+
+			END IF;
+
+		ELSE
+			SET OutputRoot.Properties = InputRoot.Properties;
+			SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header;
+			SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo;
+			SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria;
+			SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'AssignInValidItemIDError';
+
+			PROPAGATE TO TERMINAL 'out1';
+		END IF;
+		SET OutputRoot.Properties = Environment.variables.InputRoot.Properties;
+		SET OutputRoot.XMLNSC.Output.ns:ItemInfoRequest.ns:Header = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header;
+		SET OutputRoot.XMLNSC.Output.ns:ItemInfoRequest.ns:PreSellInfo = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo;
+		SET OutputRoot.XMLNSC.Output.ns:ItemInfoRequest.ns:SearchCriteria = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria;
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.SSN = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:SSN) ;
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.UPC = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:UPC) ;
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.SVS = Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:SVS;
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.DeptNo = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:DeptNo);
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.ClassNo = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:ClassNo);
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.MfgNo = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:MfgNo );
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.VendorStyle = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:VendorStyle );
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.SizeCode = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:SizeCode );
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.ItemDescLong = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:ItemDescLong );
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.MfgName = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:MfgName );
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.CurTicketPriceDollars = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:CurTicketPriceDollars );
+		SET OutputRoot.XMLNSC.Output.GetItemInfo_Output.RetrieveByIDandChainResponse.OrigOwnRtlDol = FIELDVALUE(Environment.variables.GetItemInfo_Output.ns14:RetrieveByIDandChainResponse.ns20:OrigOwnRtlDol );
+
+
+
+		SET OutputRoot.XMLNSC.Output.GetStyleInfo_Output = InputRoot.XMLNSC;
+
+
+
+	END;
+END MODULE;
+
+
+
+CREATE COMPUTE MODULE ProcessItemInfo_Error_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+
+		SET OutputRoot.Properties = Environment.variables.InputRoot.Properties;
+
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header;
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo;
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria;
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'SVSError';
+
+
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE ProcessItemInfo_Replay_Main_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+
+		IF InputRoot.XMLNSC.ns32:RetrieveInfoBySSNResponse.ns32:RetrieveInfoBySSNOutput.ns20:SKN <> '' THEN
+
+			SET OutputRoot = Environment.variables.InputRoot;
+			SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria.ns2:ItemNumber = InputRoot.XMLNSC.ns32:RetrieveInfoBySSNResponse.ns32:RetrieveInfoBySSNOutput.ns20:SKN;
+
+			PROPAGATE TO TERMINAL 'out1';
+		END IF;
+
+
+		SET OutputRoot.Properties = InputRoot.Properties;
+
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header;
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:PreSellInfo;
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria = Environment.variables.InputRoot.XMLNSC.ns:ItemInfoRequest.ns:SearchCriteria;
+		SET OutputRoot.XMLNSC.ns:ItemInfoRequest.ns:Header.Checkpoint = 'ItemnotinRFS';
+
+	END;
+END MODULE;
