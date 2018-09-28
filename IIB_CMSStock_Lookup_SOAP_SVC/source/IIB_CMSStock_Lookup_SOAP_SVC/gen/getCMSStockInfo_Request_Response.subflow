@@ -35,10 +35,10 @@
       <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output1" location="825,70">
         <translation xmi:type="utility:TranslatableString" key="OutTerminal.failure" bundleName="gen/getCMSStockInfo_Request_Response" pluginId="IIB_CMSStock_Lookup_SOAP_SVC"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="76,193" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="76,193" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup Input trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
         <translation xmi:type="utility:ConstantString" string="Input_Trace"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="701,140" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="701,140" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup Output trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
         <translation xmi:type="utility:ConstantString" string="Output_Trace"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="709,70" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_CMSStock_Lookup.log" pattern="${CURRENT_TIMESTAMP} CMSStock_lookup failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
