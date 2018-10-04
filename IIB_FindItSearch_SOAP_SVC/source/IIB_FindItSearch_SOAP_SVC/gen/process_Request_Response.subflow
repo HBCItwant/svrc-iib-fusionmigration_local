@@ -2,32 +2,32 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFlowOrder.msgnode="ComIbmFlowOrder.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmXslMqsi.msgnode="ComIbmXslMqsi.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="gen/process_Request_Response.subflow" nsPrefix="gen_process_Request_Response.subflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <translation xmi:type="utility:TranslatableString" key="process_Request_Response" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch"/>
-    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_FindItSearch/icons/full/obj16/process_Request_Response.gif"/>
-    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_FindItSearch/icons/full/obj30/process_Request_Response.gif"/>
+    <translation xmi:type="utility:TranslatableString" key="process_Request_Response" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch_SOAP_SVC"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_FindItSearch_SOAP_SVC/icons/full/obj16/process_Request_Response.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IIB_FindItSearch_SOAP_SVC/icons/full/obj30/process_Request_Response.gif"/>
     <composition>
       <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="23,185">
-        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch"/>
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch_SOAP_SVC"/>
       </nodes>
       <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="1007,110">
-        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch"/>
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch_SOAP_SVC"/>
       </nodes>
       <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output1" location="1011,211">
-        <translation xmi:type="utility:TranslatableString" key="OutTerminal.fault" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch"/>
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.fault" bundleName="gen/process_Request_Response" pluginId="IIB_FindItSearch_SOAP_SVC"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="554,80" computeExpression="esql://routine/gen#FindItSearch_process_Request_Response_Compute.Main">
         <translation xmi:type="utility:ConstantString" string="findItSearch_Compute"/>
       </nodes>
-      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="134,204" stylesheetName="xformHTMLEncoding.xsl" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="134,204" stylesheetName="xformfinditHTMLEncoding.xsl" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="XSL_TransformHTMLEncoding"/>
       </nodes>
-      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="269,85" stylesheetName="xformRESTElements.xsl" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="269,85" stylesheetName="xformfinditRESTElements.xsl" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="XSL_TranformRESTElements"/>
       </nodes>
-      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="564,221" stylesheetName="xformWhereClause.xsl" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="564,221" stylesheetName="xformfinditWhereClause.xsl" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="XSL_TransformWhereClause"/>
       </nodes>
-      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="672,120" stylesheetName="xformConcatWhereClause.xsl" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="672,120" stylesheetName="xformfinditWhereClause.xsl" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="XSL_ConcatWhereClause"/>
       </nodes>
       <nodes xmi:type="ComIbmFlowOrder.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="435,160">
