@@ -24,7 +24,7 @@
       <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="892,215">
         <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>
       </nodes>
-      <nodes xmi:type="gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputFailureHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="501,81">
+      <nodes xmi:type="gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputFailureHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="502,78">
         <translation xmi:type="utility:ConstantString" string="IIB_RFS_Hierarchy_DataService_SOAP_SVCInputFailureHandler"/>
       </nodes>
       <nodes xmi:type="gen_IIB_RFS_Hierarchy_DataService_SOAP_SVCInputHTTPTimeoutHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="486,161">
