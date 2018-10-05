@@ -7,7 +7,7 @@ xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/RFSREST/RFSHierarchyDataS
       <xsl:template match="/">
       <msg_in_out:RFSHierarchyDataResponse>
          <ns0:RFSHDataList>
-            <xsl:for-each select="Test/Result">
+            <xsl:for-each select="Query/Result">
                <ns0:RFSHData>
                   <ns0:deptNum>
                      <xsl:value-of select="format-number(normalize-space(DEPT_NO), '000')"/>
