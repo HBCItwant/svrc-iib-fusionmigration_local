@@ -26,19 +26,23 @@
 	
 	<target name="build">
 		<echo message="Building the IIB Project @ ${workspace.dir}\${application.name}_SOAP_SVC" />
-		<echo message="Building the IIB Project @ ${mqsipackagebar.home}\build" />
-		<exec executable="${mqsipackagebar.home}\build\mqsipackagebar.bat"  spawn="false" failonerror="true">
-			<arg line="-a" />
-			<arg line="${bar.name}" />
-			<arg line="-w" />
-			<arg line="${workspace.dir}\source" />
-			<arg line="-k IIB_${application.name}_SOAP_SVC" />
-			<arg line="-y IIB_Storesystem_SOAP_LIB" />
-		
+		<echo message="Building the IIB Project @ ${toolkit.home}/tools/" />
+		<exec executable="${toolkit.home}/tools/mqsicreatebar.exe"  spawn="false" failonerror="true">
+			<arg value="-data" />
+			<arg value="${workspace.dir}\source" />
+			<arg value="-b" />
+			<arg value="${bar.location}\${bar.name}" />		
+			<arg value="-cleanBuild"/>
+			<arg value="-l" />
+			<arg value="IIB_Storesystem_SOAP_LIB" />
+			<arg value="-a" />
+			<arg value="IIB_${application.name}_SOAP_SVC" />
+			<arg value="-deployAsSource" />
 		</exec>
 		<echo message="Bar file created sucessfully - ${bar.location}\${bar.name}" />
-		<move file="${bar.name}" todir="${bar.location}" />
 	</target>
+	
+
 	<target name="modifybar">
 		<echo message="Overriding Broker Archive file - ${bar.name} " />
 		<echo
