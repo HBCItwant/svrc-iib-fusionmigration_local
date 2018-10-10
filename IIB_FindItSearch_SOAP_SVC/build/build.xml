@@ -3,9 +3,9 @@
 	<target name="run" description="">
 		<!-- <property name="toolkit.home" value="${toolkit_home}" /> -->
 		<property name="toolkit.home" value="C:\Program Files\ibm\IIB\10.0.0.11" />
-		<property name="mqsipackagebar.home" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_FindItSearch_SOAP_SVC\" />
+		<!--property name="mqsipackagebar.home" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_FindItSearch_SOAP_SVC\" /-->
 		<!-- <property name="workspace.dir" value="${base_dir}" /> -->
-		<property name="workspace.dir" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_FindItSearch_SOAP_SVC" />
+		<property name="workspace.dir" value="C:\Users\C997518\git\svrc-iib-fusionmigration_local\IIB_FindItSearch_SOAP_SVC" />
 		<property name="env" value="dev" />
 		
 		<!-- Application projects name-->
