@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="project" default="run">
+<project name="project" default="run" basedir=".">
 	<target name="run" description="">
 		<!-- <property name="toolkit.home" value="${toolkit_home}" /> -->
 		<property name="toolkit.home" value="C:\Program Files\ibm\IIB\10.0.0.11" />
 		<!--property name="mqsipackagebar.home" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_FindItSearch_SOAP_SVC\" /-->
-		<!-- <property name="workspace.dir" value="${base_dir}" /> -->
-		<property name="workspace.dir" value="C:\Users\C997518\git\svrc-iib-fusionmigration_local\IIB_FindItSearch_SOAP_SVC" />
+	    <property name="workspace.dir" value="${basedir}/../" /> 
+		<!--property name="workspace.dir" value="C:\Users\C997518\git\svrc-iib-fusionmigration_local\IIB_FindItSearch_SOAP_SVC" /-->
 		<property name="env" value="dev" />
 		
 		<!-- Application projects name-->
@@ -45,9 +45,11 @@
 	<target name="modifybar">
 		<echo message="Overriding Broker Archive file - ${bar.name} " />
 		<echo
-	      message="${toolkit.home}\mqsiapplybaroverride.exe 
+	      message="${toolkit.home}\server\bin\mqsiapplybaroverride.exe 
 	            -b  ${bar.name} -p ${bar.override.properties} -k ${application.name}" />
-		<exec dir="${toolkit.home}\server\bin" executable="mqsiapplybaroverride.bat" spawn="false" failonerror="true">
+			<exec executable="${toolkit.home}\server\bin\mqsiprofile.cmd" spawn="false" logerror="true" failonerror="false">
+		   	<arg value="&amp;"/> 
+			<arg value="mqsiapplybaroverride.bat" />	
 			<arg value="-b" />
 			<arg value="${bar.location}\${bar.name}" />
 			<arg value="-p" />
