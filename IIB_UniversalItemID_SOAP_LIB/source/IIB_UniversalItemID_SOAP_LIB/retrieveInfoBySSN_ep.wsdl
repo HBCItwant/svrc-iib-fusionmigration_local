@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="RetrieveInfoBySSN" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySSN" xmlns:client="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySSN" xmlns:ns1="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySSN" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/RetrieveInfoBySSN.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="RetrieveInfoBySSNBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="RetrieveInfoBySSN">
+        <plnk:role name="RetrieveInfoBySSNProvider" portType="client:RetrieveInfoBySSN"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveInfoBySSN" schemaLocation="RetrieveInfoBySSN.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="RetrieveInfoBySSNRequestMessage">
+        <wsdl:part element="client:RetrieveInfoBySSNRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="RetrieveInfoBySSNResponseMessage">
+        <wsdl:part element="client:RetrieveInfoBySSNResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="FaultMessageRetrieveBySSN">
+        <wsdl:part element="client:RetrieveInfoBySSNFault" name="part"/>
+    </wsdl:message>
+    <wsdl:portType name="RetrieveInfoBySSN">
+        <wsdl:operation name="retrieveInfoBySSN">
+            <wsdl:input message="client:RetrieveInfoBySSNRequestMessage"/>
+            <wsdl:output message="client:RetrieveInfoBySSNResponseMessage"/>
+            <wsdl:fault message="client:FaultMessageRetrieveBySSN" name="part"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RetrieveInfoBySSNBinding" type="client:RetrieveInfoBySSN">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="retrieveInfoBySSN">
+            <soap:operation soapAction="retrieveInfoBySSN" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="part">
+                <soap:fault name="part" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="retrieveInfoBySSN_ep">
+        <wsdl:port binding="client:RetrieveInfoBySSNBinding" name="RetrieveInfoBySSN_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/retrieveInfoBySSN_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

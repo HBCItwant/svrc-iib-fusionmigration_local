@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="RetrieveRFSItemID" targetNamespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveRFSItemID" xmlns:client="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveRFSItemID" xmlns:ns1="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID!5.5/RetrieveRFSItemID.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="RetrieveRFSItemIDBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="RetrieveRFSItemID">
+        <plnk:role name="RetrieveRFSItemIDProvider" portType="client:RetrieveRFSItemID"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.saksinc.com/CommonModules/UniversalItemID/RetrieveByIDandChain" schemaLocation="RetrieveByIDandChain.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="RetrieveRFSItemIDRequestMessage">
+        <wsdl:part element="ns1:RetrieveByIDandChainRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="RetrieveRFSItemIDResponseMessage">
+        <wsdl:part element="ns1:RetrieveByIDandChainResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="RFSItemIDFault">
+        <wsdl:part element="ns1:RetrieveByIDandChainFault" name="ItemIDFaultPart"/>
+    </wsdl:message>
+    <wsdl:portType name="RetrieveRFSItemID">
+        <wsdl:operation name="retrieveRFSItemID">
+            <wsdl:input message="client:RetrieveRFSItemIDRequestMessage"/>
+            <wsdl:output message="client:RetrieveRFSItemIDResponseMessage"/>
+            <wsdl:fault message="client:RFSItemIDFault" name="RFSItemIDFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="RetrieveRFSItemIDBinding" type="client:RetrieveRFSItemID">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="retrieveRFSItemID">
+            <soap:operation soapAction="retrieveRFSItemID" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="RFSItemIDFault">
+                <soap:fault name="RFSItemIDFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="retrieverfsitemid_client_ep">
+        <wsdl:port binding="client:RetrieveRFSItemIDBinding" name="RetrieveRFSItemID_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/UniversalItemID/retrieverfsitemid_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
