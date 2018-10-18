@@ -19,7 +19,7 @@ DECLARE ns NAMESPACE 'http://www.example.org';
 		DECLARE ERROR_Caller_MSG 						CONSTANT CHARACTER 	'Input Caller element is not provided'; 
 		
 		DECLARE errorMsg            CHARACTER;
-		
+	    DECLARE p_environment,p_opco,p_store,p_zip,p_dept,p_deptClass,p_Price,p_Caller,schemaName_rfs,Query,castDate CHARACTER;	
 CREATE COMPUTE MODULE processVertex_Request_Response_Compute
 	DECLARE schemaName_rfs EXTERNAL CHARACTER;
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -45,7 +45,7 @@ CREATE COMPUTE MODULE processVertex_Request_Response_Compute
 		
 --		SET OutputRoot.XML.X.*[] = InputRoot.XMLNSC.*[];
 		
-		DECLARE p_environment,p_opco,p_store,p_zip,p_dept,p_deptClass,p_Price,p_Caller,schemaName_rfs,Query,castDate CHARACTER;
+		
 		DECLARE SaksTaxStrPattern CHARACTER '099' ;
 		DECLARE pattern CHARACTER '###';
 		
@@ -174,6 +174,24 @@ CREATE COMPUTE MODULE processVertex_DB2_Compute
 
 	CREATE PROCEDURE CopyEntireMessage() BEGIN
 		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		
+		SET p_environment   = InputRoot.XMLNSC.ns:getItemTax.ns:environment;
+		SET p_opco 		    = InputRoot.XMLNSC.ns:getItemTax.ns:opco;
+		SET p_store 	    = InputRoot.XMLNSC.ns:getItemTax.ns:store;
+		SET p_zip 		    = InputRoot.XMLNSC.ns:getItemTax.ns:zip;
+		SET p_dept 			= InputRoot.XMLNSC.ns:getItemTax.ns:dept;
+		SET p_deptClass 	= InputRoot.XMLNSC.ns:getItemTax.ns:deptClass;
+		SET p_Price 		= CAST(InputRoot.XMLNSC.ns:getItemTax.ns:Price AS DECIMAL);
+		SET p_Caller 		= InputRoot.XMLNSC.ns:getItemTax.ns:Caller;
+		
+		SET Environment.variables.DEPT_NO  = p_dept;
+		SET Environment.variables.CLASS_NO = p_deptClass;
+		
+		SET Environment.variables.STORE  	= p_store;
+		SET Environment.variables.ZIP		= p_zip;
+		SET Environment.variables.PRICE		= p_Price;
+		SET Environment.variables.CALLER	= p_Caller;
 		
 		DECLARE p_dpt_cde,p_cla_cde,Query CHARACTER;	
 		SET p_dpt_cde = Environment.variables.DEPT_NO;

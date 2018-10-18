@@ -16,7 +16,7 @@
       <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="803,55">
         <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="gen/processVertex_Request_Response" pluginId="IIB_VertexSalesTax_SOAP_SVC"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="82,53" dataSource="CMSTAX" connectDatasourceBeforeFlowStarts="true" computeExpression="esql://routine/gen#processVertex_Request_Response_Compute.Main" computeMode="all">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="82,53" dataSource="CMSTAX11" connectDatasourceBeforeFlowStarts="true" computeExpression="esql://routine/gen#processVertex_Request_Response_Compute.Main">
         <translation xmi:type="utility:ConstantString" string="VertaxSalesTax_Compute"/>
       </nodes>
       <nodes xmi:type="ComIbmXslMqsi.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="272,51" stylesheetName="TransformationRFSVertex.xsl" messageDomainProperty="XMLNSC">
@@ -64,6 +64,7 @@
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer>
       <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.schemaName_rfs">
