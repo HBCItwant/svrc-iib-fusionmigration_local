@@ -8,6 +8,7 @@ CREATE COMPUTE MODULE FindItSearch_process_Request_Response_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();
+		
 		 CALL CopyEntireMessage();
 		RETURN TRUE;
 	END;
