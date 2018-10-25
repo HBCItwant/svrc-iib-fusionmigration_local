@@ -2,10 +2,10 @@
 <project name="project" default="run">
 	<target name="run" description="">
 		<!-- <property name="toolkit.home" value="${toolkit_home}" /> -->
-		<property name="toolkit.home" value="C:\Program Files\ibm\IIB\10.0.0.11" />
-		<property name="mqsipackagebar.home" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_RFS_Hierarchy_DataService_SOAP_SVC\" />
+		<property name="toolkit.home" value="C:\Program Files\ibm\IIB\10.0.0.13" />
+		<property name="mqsipackagebar.home" value="C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_Hierarchy_DataService_SOAP_SVC\" />
 		<!-- <property name="workspace.dir" value="${base_dir}" /> -->
-		<property name="workspace.dir" value="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\IIB_RFS_Hierarchy_DataService_SOAP_SVC" />
+		<property name="workspace.dir" value="C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_Hierarchy_DataService_SOAP_SVC" />
 		<property name="env" value="dev" />
 		
 		<!-- Application projects name-->

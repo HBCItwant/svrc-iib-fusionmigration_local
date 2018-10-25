@@ -69,11 +69,11 @@
       <nodes xmi:type="gen_retrieveVendStyleInfo_Request_Response.subflow:FCMComposite_1" xmi:id="FCMComposite_1_18" location="370,710">
         <translation xmi:type="utility:ConstantString" string="retrieveVendStyleInfo_Request_Response"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_19" location="774,141" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_19" location="774,141" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreiveClassInfo Failure trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
         <translation xmi:type="utility:ConstantString" string="Failure_Trace"/>
         <shortDescription xmi:type="utility:ConstantString" string="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_20" location="767,338" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_20" location="767,338" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreiveClassInfo Response trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
         <translation xmi:type="utility:ConstantString" string="Response_Trace"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_21" location="295,280" destination="file" filePath="C:\Users\C997518\Documents\myfiles\HBC\projects\IIB\logs\IIB_RFSHierarchyService.log" pattern="${CURRENT_TIMESTAMP} RFS_Hierarchy_retreiveClassInfo request trace- ${CAST(ASBITSTREAM(Root OPTIONS BITOR(FolderBitStream, ValidateNone)) AS CHARACTER CCSID 1208)}">
