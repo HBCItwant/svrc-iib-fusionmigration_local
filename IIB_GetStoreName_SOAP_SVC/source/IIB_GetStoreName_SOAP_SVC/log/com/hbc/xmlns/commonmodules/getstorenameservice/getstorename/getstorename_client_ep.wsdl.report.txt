@@ -1,0 +1,23 @@
+
+
+Importing file: C:\Vijay\Development\workspace\POC\IIB_GetStoreName_SOAP_SVC\RemoteFiles\getstorename_client_ep.wsdl
+
+Copying source WSDL getstorename_client_ep.wsdl to getstorename_client_ep.wsdl.
+The WSDL import will proceed with bindings getStoreNameBinding.
+Creating wsdl schema document for file:///C:/Vijay/Development/workspace/POC/IIB_GetStoreName_SOAP_SVC/RemoteFiles/getstorename_client_ep.wsdl.
+Parsing wsdl binding {http://xmlns.hbc.com/CommonModules/GetStoreNameService/getStoreName}getStoreNameBinding.
+Parsing wsdl binding input process.
+Parsing wsdl binding output process.
+Parsing wsdl binding fault StoreFault.
+Processing doc style for operation process.
+Populating WSDL schema getstorename_client_ep.xsd.
+Creating file getstorename_client_ep.xsd in the workspace.
+Creating file /IIB_GetStoreName_SOAP_SVC/StoreName.xsd in the workspace.
+
+Elapsed time processing this message definition file: 0.299 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

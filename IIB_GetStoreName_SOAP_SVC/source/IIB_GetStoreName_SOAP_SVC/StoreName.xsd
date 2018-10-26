@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.hbc.com/CommonModules/GetStoreName" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:str="http://www.hbc.com/CommonModules/GetStoreName">
+    <xsd:element ibmSchExtn:docRoot="true" name="StrNameRequest" type="str:StrNameRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StrNameResponse" type="str:StrNameResponseType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StrNameFault" type="str:StrNameFaultType"/>
+    <xsd:complexType name="StrNameRequestType">
+        <xsd:sequence>
+            <xsd:element name="Chain" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StrNameResponseType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="StrNameResponse" type="str:StoreNameResponseType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StoreNameResponseType">
+        <xsd:sequence>
+            <xsd:element name="StoreNum" type="xsd:string"/>
+            <xsd:element name="StoreName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StrNameFaultType">
+        <xsd:sequence>
+            <xsd:element name="severity" type="xsd:string"/>
+            <xsd:element name="code" type="xsd:string"/>
+            <xsd:element name="message" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

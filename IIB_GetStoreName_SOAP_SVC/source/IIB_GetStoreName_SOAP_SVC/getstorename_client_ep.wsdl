@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="getStoreName" targetNamespace="http://xmlns.hbc.com/CommonModules/GetStoreNameService/getStoreName" xmlns:client="http://xmlns.hbc.com/CommonModules/GetStoreNameService/getStoreName" xmlns:ns1="http://www.hbc.com/CommonModules/GetStoreName" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/GetStoreNameService!2.0/getStoreName.wsdl</abstractWSDL>
+    
+  <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="getStoreNameBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="getStoreName">
+        <plnk:role name="getStoreNameProvider" portType="client:getStoreName"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:import namespace="http://www.hbc.com/CommonModules/GetStoreName" schemaLocation="StoreName.xsd"/>
+</xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="getStoreNameRequestMessage">
+        <wsdl:part element="ns1:StrNameRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="getStoreNameResponseMessage">
+        <wsdl:part element="ns1:StrNameResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="FaultMessage">
+        <wsdl:part element="ns1:StrNameFault" name="FaultPart"/>
+    </wsdl:message>
+    <wsdl:portType name="getStoreName">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:getStoreNameRequestMessage"/>
+            <wsdl:output message="client:getStoreNameResponseMessage"/>
+            <wsdl:fault message="client:FaultMessage" name="StoreFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="getStoreNameBinding" type="client:getStoreName">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="process">
+            <soap:operation soapAction="process" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="StoreFault">
+                <soap:fault name="StoreFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="getstorename_client_ep">
+        <wsdl:port binding="client:getStoreNameBinding" name="getStoreName_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/GetStoreNameService/getstorename_client_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
