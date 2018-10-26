@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="StoreInfoService" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/StoreInfo/RFSStoreInfo/StoreInfoService" xmlns:msg_in_out="http://xmlns.hbc.com/CommonModules/StoreInfoService" xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/http/StoreInfo/RFSStoreInfo/StoreInfoService">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo!4.0/StoreInfoService.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="StoreInfo_pttBinding" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="StoreInfo_ptHttpGET" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plt:partnerLinkType name="StoreInfo_plt">
+        <plt:role name="StoreInfo_role">
+            <plt:portType name="tns:StoreInfo_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://xmlns.hbc.com/CommonModules/StoreInfoService" schemaLocation="StoreInfo.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="StoreInfoRequest_msg_in">
+        <wsdl:part element="msg_in_out:StoreInfoRequest" name="StoreInfoRequest"/>
+    </wsdl:message>
+    <wsdl:message name="StoreInfoResponse_msg_out">
+        <wsdl:part element="msg_in_out:StoreInfoResponse" name="StoreInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="StoreInfoFault">
+        <wsdl:part element="msg_in_out:StoreInfoFault" name="FaultPart"/>
+    </wsdl:message>
+    <wsdl:portType name="StoreInfo_ptt">
+        <wsdl:operation name="StoreInfo">
+            <wsdl:input message="tns:StoreInfoRequest_msg_in"/>
+            <wsdl:output message="tns:StoreInfoResponse_msg_out"/>
+            <wsdl:fault message="tns:StoreInfoFault" name="Fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="StoreInfo_pttBinding" type="tns:StoreInfo_ptt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="StoreInfo">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="Fault">
+                <soap:fault name="Fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="StoreInfo_ptHttpGET" type="tns:StoreInfo_ptt">
+        <http:binding xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" verb="GET"/>
+        <wsdl:operation name="StoreInfo">
+            <http:operation xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" />
+            <wsdl:input>
+                <http:urlEncoded xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"/>
+            </wsdl:input>
+            <wsdl:output>
+                <mime:content xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" type="text/xml"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="StoreInfoService">
+        <wsdl:port binding="tns:StoreInfo_pttBinding" name="StoreInfo_pt_soappt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo/StoreInfoService"/>
+        </wsdl:port>
+        <wsdl:port binding="tns:StoreInfo_ptHttpGET" name="StoreInfo_pt">
+            <http:address xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo/StoreInfoService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

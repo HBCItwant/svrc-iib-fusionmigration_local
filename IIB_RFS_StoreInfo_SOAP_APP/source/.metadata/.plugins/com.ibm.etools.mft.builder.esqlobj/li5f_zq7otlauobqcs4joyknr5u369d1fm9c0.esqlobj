@@ -1,0 +1,37 @@
+CREATE PROCEDURE createJSONArrays(IN root REFERENCE ) 
+	BEGIN
+		-- track the start and end of 'arrays' ( sequences of same-named siblings )
+		DECLARE firstArrayElementRef REFERENCE TO root;
+		DECLARE siblingRef REFERENCE TO root;
+		DECLARE arraySize INTEGER 0;
+
+		WHILE LASTMOVE(siblingRef) DO
+			
+			-- Process any child elements first 
+			DECLARE firstChildRef REFERENCE TO siblingRef;
+			MOVE firstChildRef FIRSTCHILD;
+			IF LASTMOVE(firstChildRef) THEN
+				CALL createJSONArrays(firstChildRef);
+			END IF;
+
+			-- IF this sibling's name is different from the previous one.
+			IF FIELDNAME(siblingRef) = FIELDNAME(firstArrayElementRef) THEN
+				SET arraySize = arraySize + 1;
+			ELSE
+				-- IF there was a sequence of two or more siblings with the same name
+				IF arraySize > 1 THEN
+					CALL createJSONArray(firstArrayElementRef, arraySize);
+				END IF;				
+
+				-- start scanning for a new array
+				MOVE firstArrayElementRef TO siblingRef;
+				SET arraySize = 1;
+			END IF;
+			
+			MOVE siblingRef NEXTSIBLING;
+		END WHILE;
+		
+		IF arraySize > 1 THEN
+			CALL createJSONArray(firstArrayElementRef, arraySize);
+		END IF;
+	END;

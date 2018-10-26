@@ -1,0 +1,105 @@
+CREATE PROCEDURE GetErrorContext(IN InputExceptionList REFERENCE,IN Environment REFERENCE) BEGIN
+		-- The character variable used to hold the Exception Type name
+		DECLARE cExceptionType CHARACTER;
+		-- The character variable used to hold the Error Description
+		DECLARE cErrorDescription CHARACTER;
+		-- The character variable used to hold the Error Code which is getting from the Catalog field in the Exception list tree
+		DECLARE cErrorCode CHARACTER;
+		-- The reference variable which is referring to Exception list tree
+		DECLARE rInputTree REFERENCE TO InputExceptionList;
+		-- The reference variable which is every time referring to the first child of Exception list tree
+		DECLARE rPtrException REFERENCE TO rInputTree.*[1];
+		-- Loop for getting the exception type, The last child of exception list tree gives you the type of that exception
+		WHILE LASTMOVE(rPtrException) DO
+			IF rPtrException.Number IS NOT NULL THEN
+				-- Is the unique number for every child in the exception list tree
+				SET cExceptionType=FIELDNAME(rPtrException);
+			END IF;
+			MOVE rPtrException LASTCHILD;
+		END WHILE;
+		-- For data base exceptions and user exceptions the exception list tree would be the same and the root cause
+		-- of the exception will be available in last insert field from the last child of the exception list tree.
+		IF cExceptionType ='DatabaseException'OR cExceptionType = 'UserException' THEN
+
+			DECLARE rPtrException REFERENCE TO rInputTree.*[1];
+			WHILE LASTMOVE(rPtrException) DO
+				IF rPtrException.Number is NOT NULL THEN
+					SET cErrorCode = rPtrException.Number;
+					--For getting the insert field of last child having the root cause of the error
+					IF rPtrException.Insert[1].Text IS NOT NULL AND rPtrException.Insert[1].Text <> '0' THEN
+						SET cErrorDescription = 'Code-'||cErrorCode||' Description-'||rPtrException.Insert[1].Text;
+					ELSE
+						SET cErrorDescription = 'Code-'||cErrorCode||' Description-'||rPtrException.Text;
+					END IF;
+					SET Environment.Exception.ErrorTpe=cExceptionType;
+					SET Environment.Exception.ErrorCde=LEFT(cErrorCode,4);
+					SET Environment.Exception.ErrorDes=LEFT((cExceptionType||':'||cErrorDescription),200);
+				END IF;
+				MOVE rPtrException LASTCHILD;
+			END WHILE;
+			-- For all types of MQ related message exceptions the third insert field of last child of Exception list tree wiil be given the MQRC code( Error code ) for that perticular error
+		ELSEIF cExceptionType='MessageException'THEN
+			DECLARE rPtrException REFERENCE TO rInputTree.*[1];
+			WHILE LASTMOVE(rPtrException) DO
+				IF rPtrException.Number is NOT NULL THEN
+					--For Message exceptions related to MQ, the third insert field of last child of Exception list tree wiil be given the MQRC code for that perticular error
+					IF rPtrException.Insert[3].Text IS NOT NULL AND rPtrException.Insert[3].Text <> '0' THEN
+
+						SET cErrorCode=rPtrException.Insert[3].Text;
+					ELSE
+						SET cErrorCode=rPtrException.Number;
+					END IF;
+					SET cErrorDescription = 'Code-'||cErrorCode||' Description-'||rPtrException.Text;
+					SET Environment.Exception.ErrorTpe=cExceptionType;
+					SET Environment.Exception.ErrorCde=LEFT(cErrorCode,4);
+					SET Environment.Exception.ErrorDes=LEFT((cExceptionType||':'||cErrorDescription),200);
+				END IF;
+				MOVE rPtrException LASTCHILD;
+			END WHILE;
+			-- For all types of ConversionException,SecurityException,ParserException and CastExceptions the Exception list tree would be the same
+		ELSEIF cExceptionType='ConversionException'OR cExceptionType='SecurityException'OR cExceptionType='CastException'OR cExceptionType='ParserException' OR cExceptionType='SocketException' OR cExceptionType='SocketTimeoutException' THEN
+			DECLARE rPtrException REFERENCE TO rInputTree.*[1];
+			WHILE LASTMOVE(rPtrException) DO
+				IF rPtrException.Number is NOT NULL THEN
+
+					SET cErrorCode=rPtrException.Number;
+					SET cErrorDescription = 'Code-'||cErrorCode||' Description-'||rPtrException.Text;
+					SET Environment.Exception.ErrorTpe=cExceptionType;
+					SET Environment.Exception.ErrorCde=LEFT(cErrorCode,4);
+					SET Environment.Exception.ErrorDes=LEFT((cExceptionType||':'||cErrorDescription),200);
+				END IF;
+				MOVE rPtrException LASTCHILD;
+			END WHILE;
+
+		ELSE
+			-- If any error occurs beyond the above mentioned errors then it will take the text field of last child and text field of last child insert field.
+			DECLARE rPtrException REFERENCE TO rInputTree.*[1];
+			-- The character variable used to hold the Error text which is getting from the insert field of last child
+			DECLARE cErrorTxt CHARACTER;
+			-- The character variable used to store the error description and error text.
+			DECLARE cErrorContent CHARACTER;
+
+			WHILE LASTMOVE(rPtrException) DO
+
+				IF rPtrException.Number is NOT NULL THEN
+
+					SET cErrorCode=rPtrException.Number;
+					SET cErrorDescription = rPtrException.Text;
+					--For getting the insert field of last child having the root cause of the error
+					SET cErrorTxt=rPtrException.Insert[<].Text;
+					--For some Recovarable exceptions the insert field is not available
+					IF cErrorTxt IS NOT NULL THEN
+
+						SET cErrorContent=cExceptionType||' : '||cErrorDescription||' and '||cErrorTxt;
+					ELSE
+						SET cErrorContent=cExceptionType||':'||cErrorDescription;
+					END IF;
+					SET cErrorDescription = 'Code-'||cErrorCode||' Description-'||cErrorContent;
+					SET Environment.Exception.ErrorTpe=cExceptionType;
+					SET Environment.Exception.ErrorCde=LEFT(cErrorCode,4);
+					SET Environment.Exception.ErrorDes=LEFT((cExceptionType||':'||cErrorDescription),200);
+				END IF;
+				MOVE rPtrException LASTCHILD;
+			END WHILE;
+		END IF;
+	END;

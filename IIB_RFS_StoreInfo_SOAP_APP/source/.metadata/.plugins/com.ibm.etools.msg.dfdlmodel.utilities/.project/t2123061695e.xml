@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?><MessageBroker name="IIB_RFS_StoreInfo_SOAP_LIB">
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreInformation.xsd" prefix="" targetNamespace="http://www.xmlns.hbc.com">
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreInformation.xsd#//GetStoreInformationRequest;XSDElementDeclaration" name="GetStoreInformationRequest"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreInformation.xsd#//GetStoreInormationResponse;XSDElementDeclaration=1" name="GetStoreInormationResponse"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreInformation.xsd#//Faults;XSDElementDeclaration=2" name="Faults"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreInformation.xsd#//StoreInformationType;XSDComplexTypeDefinition" name="StoreInformationType"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd" prefix="xml" targetNamespace="http://www.w3.org/XML/1998/namespace">
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//lang;XSDAttributeDeclaration" name="lang"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//space;XSDAttributeDeclaration=1" name="space"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//base;XSDAttributeDeclaration=2" name="base"/>
+    <attributeGroup href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd#//specialAttrs;XSDAttributeGroupDefinition" name="specialAttrs"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoresByChain_ep.xsd" prefix="client" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoresByChain">
+    <import name="GetStoreInformation.xsd" targetNamespace="http://www.xmlns.hbc.com"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetAllStores_ep.xsd" prefix="client" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetAllStores">
+    <import name="GetStoreInformation.xsd" targetNamespace="http://www.xmlns.hbc.com"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreInformation_ep.xsd" prefix="tns" targetNamespace="http://xmlns.oracle.com/CommonModules/RFSStoreInfo/GetStoreInformation">
+    <import name="GetStoreInformation.xsd" targetNamespace="http://www.xmlns.hbc.com"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/soap.xsd" prefix="" targetNamespace="">
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/soap.xsd#//SOAP_Domain_Msg;XSDElementDeclaration" name="SOAP_Domain_Msg" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{}SOAP_Msg_type"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/soap.xsd#//MIME_Headers_type;XSDComplexTypeDefinition" name="MIME_Headers_type"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/soap.xsd#//Attachment_type;XSDComplexTypeDefinition=1" name="Attachment_type"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/soap.xsd#//SOAP_Msg_type;XSDComplexTypeDefinition=2" name="SOAP_Msg_type"/>
+    <group href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/soap.xsd#//MIME_header_fields;XSDModelGroupDefinition" name="MIME_header_fields"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd" prefix="rfsdatatyp" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService/DataTypes">
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//ABBR2Type;XSDSimpleTypeDefinition" name="ABBR2Type" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//ABBR3Type;XSDSimpleTypeDefinition=1" name="ABBR3Type" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//ABBR8Type;XSDSimpleTypeDefinition=2" name="ABBR8Type" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//address1Type;XSDSimpleTypeDefinition=3" name="address1Type" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//address2Type;XSDSimpleTypeDefinition=4" name="address2Type" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//brandDescType;XSDSimpleTypeDefinition=5" name="brandDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//chainType;XSDSimpleTypeDefinition=6" name="chainType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//cityType;XSDSimpleTypeDefinition=7" name="cityType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//classNoType;XSDSimpleTypeDefinition=8" name="classNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//colorCodeType;XSDSimpleTypeDefinition=9" name="colorCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//colorDescType;XSDSimpleTypeDefinition=10" name="colorDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//consignmentCodeType;XSDSimpleTypeDefinition=11" name="consignmentCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//countryCodeType;XSDSimpleTypeDefinition=12" name="countryCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//currencyCodType;XSDSimpleTypeDefinition=13" name="currencyCodType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//curOwnedPriceType;XSDSimpleTypeDefinition=14" name="curOwnedPriceType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//curOwnedRetailDollarsType;XSDSimpleTypeDefinition=15" name="curOwnedRetailDollarsType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//curTicketPriceDollarsType;XSDSimpleTypeDefinition=16" name="curTicketPriceDollarsType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//deptDescType;XSDSimpleTypeDefinition=17" name="deptDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//deptNoType;XSDSimpleTypeDefinition=18" name="deptNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//divisionType;XSDSimpleTypeDefinition=19" name="divisionType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//fashionStyleNoType;XSDSimpleTypeDefinition=20" name="fashionStyleNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//fulfillmentPriorityType;XSDSimpleTypeDefinition=21" name="fulfillmentPriorityType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//IPAddressType;XSDSimpleTypeDefinition=22" name="IPAddressType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//itemDescLongType;XSDSimpleTypeDefinition=23" name="itemDescLongType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//itemDescShortType;XSDSimpleTypeDefinition=24" name="itemDescShortType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//itemIDType;XSDSimpleTypeDefinition=25" name="itemIDType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//langType;XSDSimpleTypeDefinition=26" name="langType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//localityCodeType;XSDSimpleTypeDefinition=27" name="localityCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//localCodeType;XSDSimpleTypeDefinition=28" name="localCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//managerEmailType;XSDSimpleTypeDefinition=29" name="managerEmailType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//mfgNameType;XSDSimpleTypeDefinition=30" name="mfgNameType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//mfgNoType;XSDSimpleTypeDefinition=31" name="mfgNoType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//PickUpEligibleIndType;XSDSimpleTypeDefinition=32" name="PickUpEligibleIndType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//SKNType;XSDSimpleTypeDefinition=33" name="SKNType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//shipFromStoreType;XSDSimpleTypeDefinition=34" name="shipFromStoreType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeActivityDateType;XSDSimpleTypeDefinition=35" name="storeActivityDateType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeBusinessDescType;XSDSimpleTypeDefinition=36" name="storeBusinessDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeBusinessType;XSDSimpleTypeDefinition=37" name="storeBusinessType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeClassType;XSDSimpleTypeDefinition=38" name="storeClassType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//sizeCodeType;XSDSimpleTypeDefinition=39" name="sizeCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//sizeDescType;XSDSimpleTypeDefinition=40" name="sizeDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeFaxNumType;XSDSimpleTypeDefinition=41" name="storeFaxNumType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//specInstTxtType;XSDSimpleTypeDefinition=42" name="specInstTxtType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeCityType;XSDSimpleTypeDefinition=43" name="storeCityType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeCloseDateType;XSDSimpleTypeDefinition=44" name="storeCloseDateType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeDescType;XSDSimpleTypeDefinition=45" name="storeDescType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeGeoRegionType;XSDSimpleTypeDefinition=46" name="storeGeoRegionType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeNameType;XSDSimpleTypeDefinition=47" name="storeNameType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeNumType;XSDSimpleTypeDefinition=48" name="storeNumType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeNum4DigitType;XSDSimpleTypeDefinition=49" name="storeNum4DigitType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeOrgRegionType;XSDSimpleTypeDefinition=50" name="storeOrgRegionType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeOpenDateType;XSDSimpleTypeDefinition=51" name="storeOpenDateType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storePhoneType;XSDSimpleTypeDefinition=52" name="storePhoneType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeSellIndType;XSDSimpleTypeDefinition=53" name="storeSellIndType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeStateType;XSDSimpleTypeDefinition=54" name="storeStateType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeStatusType;XSDSimpleTypeDefinition=55" name="storeStatusType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeStatusCodeType;XSDSimpleTypeDefinition=56" name="storeStatusCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeTimeZoneType;XSDSimpleTypeDefinition=57" name="storeTimeZoneType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeTypCodeType;XSDSimpleTypeDefinition=58" name="storeTypCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeType;XSDSimpleTypeDefinition=59" name="storeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeZipPlus4Type;XSDSimpleTypeDefinition=60" name="storeZipPlus4Type" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//storeZipType;XSDSimpleTypeDefinition=61" name="storeZipType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//SVSType;XSDSimpleTypeDefinition=62" name="SVSType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//UPCType;XSDSimpleTypeDefinition=63" name="UPCType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//vendorNumType;XSDSimpleTypeDefinition=64" name="vendorNumType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//venNameType;XSDSimpleTypeDefinition=65" name="venNameType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//vendorStyleType;XSDSimpleTypeDefinition=66" name="vendorStyleType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//ZipCodeType;XSDSimpleTypeDefinition=67" name="ZipCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//severityType;XSDSimpleTypeDefinition=68" name="severityType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//errorCodeType;XSDSimpleTypeDefinition=69" name="errorCodeType" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/RFSDataTypes.xsd#//errorMessageType;XSDSimpleTypeDefinition=70" name="errorMessageType" variety="atomic"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreInfoByStore_ep.xsd" prefix="client" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoreInfoByStore">
+    <import name="GetStoreInformation.xsd" targetNamespace="http://www.xmlns.hbc.com"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfo.xsd" prefix="str" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService">
+    <import name="StoreInfoTypes.xsd" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService/Types"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfo.xsd#//StoreInfoRequest;XSDElementDeclaration" name="StoreInfoRequest" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://xmlns.hbc.com/CommonModules/StoreInfoService/Types}StoreInfoRequestType"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfo.xsd#//StoreInfoResponse;XSDElementDeclaration=1" name="StoreInfoResponse" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://xmlns.hbc.com/CommonModules/StoreInfoService/Types}StoreInfoResponseType"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfo.xsd#//StoreInfoFault;XSDElementDeclaration=2" name="StoreInfoFault" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://xmlns.hbc.com/CommonModules/StoreInfoService/Types}StoreInfoFaultType"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd" prefix="tns" targetNamespace="http://schemas.xmlsoap.org/soap/encoding/">
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Array;XSDElementDeclaration" name="Array" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}Array"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Struct;XSDElementDeclaration=1" name="Struct" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}Struct"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//duration;XSDElementDeclaration=2" name="duration" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}duration"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//dateTime;XSDElementDeclaration=3" name="dateTime" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}dateTime"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NOTATION;XSDElementDeclaration=4" name="NOTATION" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}NOTATION"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//time;XSDElementDeclaration=5" name="time" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}time"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//date;XSDElementDeclaration=6" name="date" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}date"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gYearMonth;XSDElementDeclaration=7" name="gYearMonth" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}gYearMonth"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gYear;XSDElementDeclaration=8" name="gYear" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}gYear"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gMonthDay;XSDElementDeclaration=9" name="gMonthDay" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}gMonthDay"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gDay;XSDElementDeclaration=10" name="gDay" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}gDay"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gMonth;XSDElementDeclaration=11" name="gMonth" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}gMonth"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//boolean;XSDElementDeclaration=12" name="boolean" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}boolean"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//base64Binary;XSDElementDeclaration=13" name="base64Binary" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}base64Binary"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//hexBinary;XSDElementDeclaration=14" name="hexBinary" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}hexBinary"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//float;XSDElementDeclaration=15" name="float" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}float"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//double;XSDElementDeclaration=16" name="double" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}double"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//anyURI;XSDElementDeclaration=17" name="anyURI" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}anyURI"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//QName;XSDElementDeclaration=18" name="QName" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}QName"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//string;XSDElementDeclaration=19" name="string" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}string"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//normalizedString;XSDElementDeclaration=20" name="normalizedString" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}normalizedString"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//token;XSDElementDeclaration=21" name="token" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}token"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//language;XSDElementDeclaration=22" name="language" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}language"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Name;XSDElementDeclaration=23" name="Name" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}Name"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NMTOKEN;XSDElementDeclaration=24" name="NMTOKEN" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}NMTOKEN"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NCName;XSDElementDeclaration=25" name="NCName" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}NCName"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NMTOKENS;XSDElementDeclaration=26" name="NMTOKENS" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}NMTOKENS"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//ID;XSDElementDeclaration=27" name="ID" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}ID"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//IDREF;XSDElementDeclaration=28" name="IDREF" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}IDREF"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//ENTITY;XSDElementDeclaration=29" name="ENTITY" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}ENTITY"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//IDREFS;XSDElementDeclaration=30" name="IDREFS" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}IDREFS"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//ENTITIES;XSDElementDeclaration=31" name="ENTITIES" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}ENTITIES"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//decimal;XSDElementDeclaration=32" name="decimal" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}decimal"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//integer;XSDElementDeclaration=33" name="integer" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}integer"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//nonPositiveInteger;XSDElementDeclaration=34" name="nonPositiveInteger" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}nonPositiveInteger"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//negativeInteger;XSDElementDeclaration=35" name="negativeInteger" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}negativeInteger"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//long;XSDElementDeclaration=36" name="long" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}long"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//int;XSDElementDeclaration=37" name="int" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}int"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//short;XSDElementDeclaration=38" name="short" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}short"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//byte;XSDElementDeclaration=39" name="byte" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}byte"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//nonNegativeInteger;XSDElementDeclaration=40" name="nonNegativeInteger" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}nonNegativeInteger"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedLong;XSDElementDeclaration=41" name="unsignedLong" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}unsignedLong"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedInt;XSDElementDeclaration=42" name="unsignedInt" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}unsignedInt"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedShort;XSDElementDeclaration=43" name="unsignedShort" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}unsignedShort"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedByte;XSDElementDeclaration=44" name="unsignedByte" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}unsignedByte"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//positiveInteger;XSDElementDeclaration=45" name="positiveInteger" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/encoding/}positiveInteger"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//anyType;XSDElementDeclaration=46" name="anyType" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Array;XSDComplexTypeDefinition" name="Array"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Struct;XSDComplexTypeDefinition=1" name="Struct"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//duration;XSDComplexTypeDefinition=2" name="duration"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//dateTime;XSDComplexTypeDefinition=3" name="dateTime"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NOTATION;XSDComplexTypeDefinition=4" name="NOTATION"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//time;XSDComplexTypeDefinition=5" name="time"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//date;XSDComplexTypeDefinition=6" name="date"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gYearMonth;XSDComplexTypeDefinition=7" name="gYearMonth"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gYear;XSDComplexTypeDefinition=8" name="gYear"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gMonthDay;XSDComplexTypeDefinition=9" name="gMonthDay"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gDay;XSDComplexTypeDefinition=10" name="gDay"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//gMonth;XSDComplexTypeDefinition=11" name="gMonth"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//boolean;XSDComplexTypeDefinition=12" name="boolean"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//base64Binary;XSDComplexTypeDefinition=13" name="base64Binary"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//hexBinary;XSDComplexTypeDefinition=14" name="hexBinary"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//float;XSDComplexTypeDefinition=15" name="float"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//double;XSDComplexTypeDefinition=16" name="double"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//anyURI;XSDComplexTypeDefinition=17" name="anyURI"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//QName;XSDComplexTypeDefinition=18" name="QName"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//string;XSDComplexTypeDefinition=19" name="string"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//normalizedString;XSDComplexTypeDefinition=20" name="normalizedString"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//token;XSDComplexTypeDefinition=21" name="token"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//language;XSDComplexTypeDefinition=22" name="language"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Name;XSDComplexTypeDefinition=23" name="Name"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NMTOKEN;XSDComplexTypeDefinition=24" name="NMTOKEN"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NCName;XSDComplexTypeDefinition=25" name="NCName"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//NMTOKENS;XSDComplexTypeDefinition=26" name="NMTOKENS"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//ID;XSDComplexTypeDefinition=27" name="ID"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//IDREF;XSDComplexTypeDefinition=28" name="IDREF"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//ENTITY;XSDComplexTypeDefinition=29" name="ENTITY"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//IDREFS;XSDComplexTypeDefinition=30" name="IDREFS"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//ENTITIES;XSDComplexTypeDefinition=31" name="ENTITIES"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//decimal;XSDComplexTypeDefinition=32" name="decimal"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//integer;XSDComplexTypeDefinition=33" name="integer"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//nonPositiveInteger;XSDComplexTypeDefinition=34" name="nonPositiveInteger"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//negativeInteger;XSDComplexTypeDefinition=35" name="negativeInteger"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//long;XSDComplexTypeDefinition=36" name="long"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//int;XSDComplexTypeDefinition=37" name="int"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//short;XSDComplexTypeDefinition=38" name="short"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//byte;XSDComplexTypeDefinition=39" name="byte"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//nonNegativeInteger;XSDComplexTypeDefinition=40" name="nonNegativeInteger"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedLong;XSDComplexTypeDefinition=41" name="unsignedLong"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedInt;XSDComplexTypeDefinition=42" name="unsignedInt"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedShort;XSDComplexTypeDefinition=43" name="unsignedShort"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//unsignedByte;XSDComplexTypeDefinition=44" name="unsignedByte"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//positiveInteger;XSDComplexTypeDefinition=45" name="positiveInteger"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//arrayCoordinate;XSDSimpleTypeDefinition" name="arrayCoordinate" variety="atomic"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//base64;XSDSimpleTypeDefinition=1" name="base64" variety="atomic"/>
+    <group href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Array;XSDModelGroupDefinition" name="Array"/>
+    <group href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//Struct;XSDModelGroupDefinition=1" name="Struct"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//root;XSDAttributeDeclaration" name="root"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//arrayType;XSDAttributeDeclaration=1" name="arrayType"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//offset;XSDAttributeDeclaration=2" name="offset"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//position;XSDAttributeDeclaration=3" name="position"/>
+    <attributeGroup href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//commonAttributes;XSDAttributeGroupDefinition" name="commonAttributes"/>
+    <attributeGroup href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//arrayAttributes;XSDAttributeGroupDefinition=1" name="arrayAttributes"/>
+    <attributeGroup href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd#//arrayMemberAttributes;XSDAttributeGroupDefinition=2" name="arrayMemberAttributes"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfoService.xsd" prefix="tns" targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/http/StoreInfo/RFSStoreInfo/StoreInfoService">
+    <import name="StoreInfo.xsd" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/GetStoreByIP_ep.xsd" prefix="client" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoreByIP">
+    <import name="GetStoreInformation.xsd" targetNamespace="http://www.xmlns.hbc.com"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfoTypes.xsd" prefix="strtyp" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService/Types">
+    <import name="RFSDataTypes.xsd" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService/DataTypes"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfoTypes.xsd#//StoreInfoRequestType;XSDComplexTypeDefinition" name="StoreInfoRequestType"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfoTypes.xsd#//StoreInfoResponseType;XSDComplexTypeDefinition=1" name="StoreInfoResponseType"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfoTypes.xsd#//StoreInfoDataResponseType;XSDComplexTypeDefinition=2" name="StoreInfoDataResponseType"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfoTypes.xsd#//StoreInfoOutputType;XSDComplexTypeDefinition=3" name="StoreInfoOutputType"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/StoreInfoTypes.xsd#//StoreInfoFaultType;XSDComplexTypeDefinition=4" name="StoreInfoFaultType"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd" prefix="tns" targetNamespace="http://schemas.xmlsoap.org/soap/envelope/">
+    <import name="IBMdefined/org/w3/www/xml/_1998/namespace/xml.xsd" targetNamespace="http://www.w3.org/XML/1998/namespace"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Envelope;XSDElementDeclaration" name="Envelope" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Envelope"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Header;XSDElementDeclaration=1" name="Header" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Header"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Body;XSDElementDeclaration=2" name="Body" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Body"/>
+    <element href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Fault;XSDElementDeclaration=3" name="Fault" type="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://schemas.xmlsoap.org/soap/envelope/}Fault"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Envelope;XSDComplexTypeDefinition" name="Envelope"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Header;XSDComplexTypeDefinition=1" name="Header"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Body;XSDComplexTypeDefinition=2" name="Body"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//Fault;XSDComplexTypeDefinition=3" name="Fault"/>
+    <complexType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//FaultString;XSDComplexTypeDefinition=4" name="FaultString"/>
+    <complexType baseType="mlib://IIB_RFS_StoreInfo_SOAP_LIB#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//detail;XSDComplexTypeDefinition=5" name="detail"/>
+    <simpleType href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//encodingStyle;XSDSimpleTypeDefinition" name="encodingStyle" variety="list"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//mustUnderstand;XSDAttributeDeclaration" name="mustUnderstand"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//actor;XSDAttributeDeclaration=1" name="actor"/>
+    <attribute href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//encodingStyle;XSDAttributeDeclaration=2" name="encodingStyle"/>
+    <attributeGroup href="platform:/resource/IIB_RFS_StoreInfo_SOAP_LIB/IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd#//encodingStyle;XSDAttributeGroupDefinition" name="encodingStyle"/>
+  </XSDCollection>
+</MessageBroker>

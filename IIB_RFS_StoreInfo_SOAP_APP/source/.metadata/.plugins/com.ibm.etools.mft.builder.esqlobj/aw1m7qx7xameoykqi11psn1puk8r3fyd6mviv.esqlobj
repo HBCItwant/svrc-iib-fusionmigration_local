@@ -1,0 +1,58 @@
+CREATE COMPUTE MODULE GetStoreByChain_ep_RFSStoreInfo_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		DECLARE p_chain,Query,p_CountryCode,errorMsg CHARACTER;
+		
+		SET p_chain = InputRoot.XMLNSC.ns6:GetStoreInformationRequest.ns6:Chain;
+		
+		IF (TRIM(p_chain) IS NULL OR TRIM(p_chain) ='' ) THEN
+			SET Environment.variables.ERROR_msg_ID = ERROR_p_chain_ID;
+			SET Environment.variables.ERROR_msg_MSG = ERROR_p_chain_MSG;
+			SET errorMsg = ERROR_p_chain_MSG;
+			THROW USER EXCEPTION CATALOG 'RFS_Hierarchy_Data_p_chain_Validation' MESSAGE 1001 VALUES(errorMsg) ;
+		END IF;
+		
+		
+		SET p_CountryCode = InputRoot.XMLNSC.ns6:GetStoreInformationRequest.ns6:CountryCode;
+		
+		SET Query = 'select * from RFS.RF_STORE r1 where r1.chain = '''|| Cast(p_chain as char)||'''';
+		--SET Query = 'select r1.STATE from RFS.RF_STORE r1 where r1.chain = ?';
+		--SET finalQuery = 'p_chain';
+
+		IF (TRIM(p_CountryCode) IS NOT NULL OR TRIM(p_CountryCode) <> '' ) THEN
+			SET Query = Query||' and r1.COUNTRY_ID = '''|| Cast(p_CountryCode as char)||'''';
+		
+			--SET Query = Query ||' and r1.COUNTRY_ID=?';
+			--SET finalQuery = finalQuery||',p_CountryCode';
+
+		end if;
+		
+		SET OutputRoot.XML.Query.Result[] = PASSTHRU(Query);
+		
+			IF EXISTS(OutputRoot.XML.Query.Result[])=FALSE THEN
+				SET Environment.variables.ERROR_msg_ID = p_chain;
+				SET Environment.variables.ERROR_msg_MSG = ERROR_RFS_DB_MSG||'GetStoreByChain';
+				SET errorMsg = ERROR_RFS_DB_MSG;
+		THROW USER EXCEPTION CATALOG 'RFS_Hierarchy_NoData_RFS_DB' MESSAGE 1003 VALUES(errorMsg) ;
+
+		END IF;
+	END;
+END MODULE;

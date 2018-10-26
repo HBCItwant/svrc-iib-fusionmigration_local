@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetStoresByChain" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoresByChain" xmlns:client="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoresByChain" xmlns:ns1="http://www.xmlns.hbc.com" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo!4.0/GetStoresByChain.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetStoresByChainBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="GetStoresByChain">
+        <plnk:role name="GetStoresByChainProvider" portType="client:GetStoresByChain"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.xmlns.hbc.com" schemaLocation="GetStoreInformation.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetStoresByChainRequestMessage">
+        <wsdl:part element="ns1:GetStoreInformationRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="GetStoresByChainResponseMessage">
+        <wsdl:part element="ns1:GetStoreInormationResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="FaultStoreInfoByChain">
+        <wsdl:part element="ns1:Faults" name="fault"/>
+    </wsdl:message>
+    <wsdl:portType name="GetStoresByChain">
+        <wsdl:operation name="GetStoresByChain">
+            <wsdl:input message="client:GetStoresByChainRequestMessage"/>
+            <wsdl:output message="client:GetStoresByChainResponseMessage"/>
+            <wsdl:fault message="client:FaultStoreInfoByChain" name="fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetStoresByChainBinding" type="client:GetStoresByChain">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetStoresByChain">
+            <soap:operation soapAction="GetStoresByChain" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GetStoresByChain_ep">
+        <wsdl:port binding="client:GetStoresByChainBinding" name="GetStoresByChain_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo/GetStoresByChain_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

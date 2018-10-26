@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.ipcontrol.diamondip.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://diamondip.com/ipcontrol/ws/" xmlns:intf="http://diamondip.com/ipcontrol/ws/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://service.ipcontrol.diamondip.com" xmlns:tns2="http://service.netcontrol.diamondip.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://diamondip.com/ipcontrol/ws/" schemaLocation="Gets_InlineSchema1.xsd"/>
+   <import namespace="http://service.netcontrol.diamondip.com" schemaLocation="Gets_InlineSchema3.xsd"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+   <complexType name="WSBlockACLInfo">
+    <sequence>
+     <element name="allowDelete" type="boolean"/>
+     <element name="allowRead" type="boolean"/>
+     <element name="allowWrite" type="boolean"/>
+     <element name="blockName" nillable="true" type="soapenc:string"/>
+     <element name="blockStatus" nillable="true" type="soapenc:string"/>
+     <element name="containerName" nillable="true" type="soapenc:string"/>
+     <element name="deviceApproveAccess" type="boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSBlockTypeSizeACL">
+    <sequence>
+     <element name="blockType" nillable="true" type="soapenc:string"/>
+     <element name="v4Abstain" type="boolean"/>
+     <element name="v4BlockSize" nillable="true" type="impl:ArrayOf_soapenc_int"/>
+     <element name="v6Abstain" type="boolean"/>
+     <element name="v6BlockSize" nillable="true" type="impl:ArrayOf_soapenc_int"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSContainerACLInfo">
+    <sequence>
+     <element name="allowDelete" type="boolean"/>
+     <element name="allowRead" type="boolean"/>
+     <element name="allowWrite" type="boolean"/>
+     <element name="applyToChildren" type="boolean"/>
+     <element name="containerName" nillable="true" type="soapenc:string"/>
+     <element name="deviceApproveAccess" type="boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSDomainACL">
+    <sequence>
+     <element name="RRAccess" type="boolean"/>
+     <element name="RRApproveAccess" type="boolean"/>
+     <element name="RRWriteAccess" type="boolean"/>
+     <element name="allowDelete" type="boolean"/>
+     <element name="allowRead" type="boolean"/>
+     <element name="allowWrite" type="boolean"/>
+     <element name="applyToChildren" type="boolean"/>
+     <element name="domainName" nillable="true" type="soapenc:string"/>
+     <element name="domainType" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSNetServiceACL">
+    <sequence>
+     <element name="allowDeploy" type="boolean"/>
+     <element name="allowRead" type="boolean"/>
+     <element name="allowWrite" type="boolean"/>
+     <element name="serverName" nillable="true" type="soapenc:string"/>
+     <element name="serverType" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSAdminOtherPolicies">
+    <sequence>
+     <element name="allowCLIAccess" type="boolean"/>
+     <element name="allowDupARecCheck" nillable="true" type="soapenc:string"/>
+     <element name="allowDupHostnameCheck" nillable="true" type="soapenc:string"/>
+     <element name="allowDupHwAddrCheck" nillable="true" type="soapenc:string"/>
+     <element name="dupHostnameCheckingStyle" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSAdminPolicies">
+    <sequence>
+     <element name="addressTypeAccess" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="authorizedFunctions" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element maxOccurs="unbounded" name="blockInfo" nillable="true" type="tns1:WSBlockACLInfo"/>
+     <element maxOccurs="unbounded" name="blockTypeSizeAccess" nillable="true" type="tns1:WSBlockTypeSizeACL"/>
+     <element maxOccurs="unbounded" name="containerInfo" nillable="true" type="tns1:WSContainerACLInfo"/>
+     <element name="deviceTypeAccess" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element maxOccurs="unbounded" name="domainAccess" nillable="true" type="tns1:WSDomainACL"/>
+     <element maxOccurs="unbounded" name="netServiceAccess" nillable="true" type="tns1:WSNetServiceACL"/>
+     <element name="policies" nillable="true" type="tns1:WSAdminOtherPolicies"/>
+     <element name="resourceRecTypeAccess" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSAdmin">
+    <sequence>
+     <element name="address1" nillable="true" type="soapenc:string"/>
+     <element name="address2" nillable="true" type="soapenc:string"/>
+     <element name="address3" nillable="true" type="soapenc:string"/>
+     <element name="adminType" nillable="true" type="soapenc:string"/>
+     <element name="assignableRoles" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="authorizeExternally" type="boolean"/>
+     <element name="email" nillable="true" type="soapenc:string"/>
+     <element name="enabled" type="boolean"/>
+     <element name="fax" nillable="true" type="soapenc:string"/>
+     <element name="firstName" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="lastName" nillable="true" type="soapenc:string"/>
+     <element name="loginId" nillable="true" type="soapenc:string"/>
+     <element name="pager" nillable="true" type="soapenc:string"/>
+     <element name="password" nillable="true" type="soapenc:string"/>
+     <element name="phone" nillable="true" type="soapenc:string"/>
+     <element name="policies" nillable="true" type="tns1:WSAdminPolicies"/>
+     <element name="roles" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="externallyCreated" type="boolean"/>
+     <element name="typeRoleManagedExt" type="boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSTag">
+    <sequence>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSDhcpServer">
+    <sequence>
+     <element name="agent" nillable="true" type="soapenc:string"/>
+     <element name="beginExtension" nillable="true" type="soapenc:string"/>
+     <element name="cliArgs" nillable="true" type="soapenc:string"/>
+     <element name="cliCommand" nillable="true" type="soapenc:string"/>
+     <element name="cliPassword" nillable="true" type="soapenc:string"/>
+     <element name="cliUserName" nillable="true" type="soapenc:string"/>
+     <element name="clientClasses" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="collectBackupSubnets" type="boolean"/>
+     <element name="collectionPassword" nillable="true" type="soapenc:string"/>
+     <element name="collectionPort" nillable="true" type="soapenc:int"/>
+     <element name="collectionType" nillable="true" type="soapenc:string"/>
+     <element name="collectionUser" nillable="true" type="soapenc:string"/>
+     <element name="configPath" nillable="true" type="soapenc:string"/>
+     <element name="ddns" nillable="true" type="soapenc:string"/>
+     <element name="defaultThreshold" nillable="true" type="soapenc:int"/>
+     <element name="endExtension" nillable="true" type="soapenc:string"/>
+     <element name="failoverIpAddress" nillable="true" type="soapenc:string"/>
+     <element name="failoverPeers" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="failoverPort" nillable="true" type="soapenc:int"/>
+     <element name="globalSync" type="boolean"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="ipAddress" nillable="true" type="soapenc:string"/>
+     <element name="leasePath" nillable="true" type="soapenc:string"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="optionSet" nillable="true" type="soapenc:string"/>
+     <element name="policySet" nillable="true" type="soapenc:string"/>
+     <element name="primaryPeers" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="product" nillable="true" type="soapenc:string"/>
+     <element name="startScript" nillable="true" type="soapenc:string"/>
+     <element name="stopScript" nillable="true" type="soapenc:string"/>
+     <element name="tags" nillable="true" type="impl:ArrayOf_tns1_WSTag"/>
+     <element name="v4V6Both" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSNetworkElement">
+    <sequence>
+     <element name="SNMPRetries" nillable="true" type="soapenc:int"/>
+     <element name="SNMPTimeout" nillable="true" type="soapenc:int"/>
+     <element name="SNMPVersion" nillable="true" type="soapenc:string"/>
+     <element name="SNMPsysDescr" nillable="true" type="soapenc:string"/>
+     <element name="SNMPsysLocation" nillable="true" type="soapenc:string"/>
+     <element name="SNMPsysName" nillable="true" type="soapenc:string"/>
+     <element name="SNMPsysServices" nillable="true" type="soapenc:string"/>
+     <element name="agentNames" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="globalSync" type="boolean"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="interfaceNames" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="interfaceStatus" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="interfaceTemplate" nillable="true" type="soapenc:string"/>
+     <element name="interfaceVrf" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="ipAddress" nillable="true" type="soapenc:string"/>
+     <element name="model" nillable="true" type="soapenc:string"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="readCommunityString" nillable="true" type="soapenc:string"/>
+     <element name="sshPass" nillable="true" type="soapenc:string"/>
+     <element name="sshUser" nillable="true" type="soapenc:string"/>
+     <element name="subnetCollectionType" nillable="true" type="soapenc:string"/>
+     <element name="type" nillable="true" type="soapenc:string"/>
+     <element name="v3AuthPassword" nillable="true" type="soapenc:string"/>
+     <element name="v3AuthProtocol" nillable="true" type="soapenc:string"/>
+     <element name="v3ContextName" nillable="true" type="soapenc:string"/>
+     <element name="v3EngineId" nillable="true" type="soapenc:string"/>
+     <element name="v3PrivacyPassword" nillable="true" type="soapenc:string"/>
+     <element name="v3PrivacyProtocol" nillable="true" type="soapenc:string"/>
+     <element name="v3Username" nillable="true" type="soapenc:string"/>
+     <element name="vendor" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSPrefixPool">
+    <sequence>
+     <element name="allowClientClasses" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="container" nillable="true" type="soapenc:string"/>
+     <element name="delegatedPrefixLength" nillable="true" type="soapenc:int"/>
+     <element name="denyClientClasses" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="dhcpOptionSet" nillable="true" type="soapenc:string"/>
+     <element name="dhcpPolicySet" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="length" nillable="true" type="soapenc:int"/>
+     <element name="longestPrefixLength" nillable="true" type="soapenc:int"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="overlapInterfaceIp" type="boolean"/>
+     <element name="primaryNetService" nillable="true" type="soapenc:string"/>
+     <element name="shortestPrefixLength" nillable="true" type="soapenc:int"/>
+     <element name="startAddr" nillable="true" type="soapenc:string"/>
+     <element name="type" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSNetElementInterface">
+    <sequence>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="interfaceName" nillable="true" type="soapenc:string"/>
+     <element name="netElementName" nillable="true" type="soapenc:string"/>
+     <element name="status" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSNetworkLink">
+    <sequence>
+     <element name="blockNames" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="containers" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="dhcpOptionSet" nillable="true" type="soapenc:string"/>
+     <element name="dhcpPolicySet" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="type" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSAdminRole">
+    <sequence>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="policies" nillable="true" type="tns1:WSAdminPolicies"/>
+     <element name="roleName" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSAllocationTemplateDetails">
+    <sequence>
+     <element name="netserviceName" nillable="true" type="soapenc:string"/>
+     <element name="offsetFromBeginningOfSubnet" type="boolean"/>
+     <element name="sharename" nillable="true" type="soapenc:string"/>
+     <element name="startingOffset" type="long"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSGenericBlock">
+    <sequence>
+     <element maxOccurs="unbounded" name="addrDetails" nillable="true" type="tns1:WSAllocationTemplateDetails"/>
+     <element name="allocationReason" nillable="true" type="soapenc:string"/>
+     <element name="allocationReasonDescription" nillable="true" type="soapenc:string"/>
+     <element name="allocationTemplateName" nillable="true" type="soapenc:string"/>
+     <element name="allowOverlappingSpace" type="boolean"/>
+     <element name="blockAddr" nillable="true" type="soapenc:string"/>
+     <element name="blockName" nillable="true" type="soapenc:string"/>
+     <element name="blockSize" nillable="true" type="soapenc:int"/>
+     <element name="blockStatus" nillable="true" type="soapenc:string"/>
+     <element name="blockType" nillable="true" type="soapenc:string"/>
+     <element name="container" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="createadmin" nillable="true" type="soapenc:string"/>
+     <element name="createdate" nillable="true" type="dateTime"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="excludeFromDiscovery" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="ignoreErrors" type="boolean"/>
+     <element name="inheritDiscoveryAgent" nillable="true" type="soapenc:int"/>
+     <element name="interfaceAddress" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="interfaceName" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="ipv6" type="boolean"/>
+     <element name="lastadminid" type="int"/>
+     <element name="lastupdate" nillable="true" type="dateTime"/>
+     <element name="nonBroadcast" type="boolean"/>
+     <element name="numaddressablehosts" nillable="true" type="soapenc:integer"/>
+     <element name="numallocatedhosts" nillable="true" type="soapenc:integer"/>
+     <element name="numassignedhosts" nillable="true" type="soapenc:integer"/>
+     <element name="numdynamichosts" nillable="true" type="soapenc:integer"/>
+     <element name="numleasablehosts" nillable="true" type="soapenc:integer"/>
+     <element name="numlockedhosts" nillable="true" type="soapenc:integer"/>
+     <element name="numreservedhosts" nillable="true" type="soapenc:integer"/>
+     <element name="numstatichosts" nillable="true" type="soapenc:integer"/>
+     <element name="numunallocatedhosts" nillable="true" type="soapenc:integer"/>
+     <element name="organizationId" nillable="true" type="soapenc:string"/>
+     <element name="primarySubnet" type="boolean"/>
+     <element name="rir" nillable="true" type="soapenc:string"/>
+     <element name="rootBlock" type="boolean"/>
+     <element name="rootBlocktype" nillable="true" type="soapenc:string"/>
+     <element name="subnet" nillable="true" type="tns2:WSSubnetPolicy"/>
+     <element name="subnetlosshosts" type="long"/>
+     <element name="swipname" nillable="true" type="soapenc:string"/>
+     <element name="userDefinedFields" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSInterface">
+    <sequence>
+     <element name="addressType" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="container" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="excludeFromDiscovery" nillable="true" type="soapenc:string"/>
+     <element name="hwType" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="ipAddress" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="macAddress" nillable="true" type="soapenc:string"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="relayAgentCircuitId" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="relayAgentRemoteId" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="sequence" nillable="true" type="soapenc:int"/>
+     <element name="virtual" nillable="true" type="impl:ArrayOf_soapenc_boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSDevice">
+    <sequence>
+     <element name="MACAddress" nillable="true" type="soapenc:string"/>
+     <element name="addressType" nillable="true" type="soapenc:string"/>
+     <element name="aliases" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="container" nillable="true" type="soapenc:string"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="deviceType" nillable="true" type="soapenc:string"/>
+     <element name="domainName" nillable="true" type="soapenc:string"/>
+     <element name="domainType" nillable="true" type="soapenc:string"/>
+     <element name="duid" nillable="true" type="soapenc:string"/>
+     <element name="dupWarning" nillable="true" type="soapenc:string"/>
+     <element name="excludeFromDiscovery" nillable="true" type="soapenc:string"/>
+     <element name="hostname" nillable="true" type="soapenc:string"/>
+     <element name="hwType" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element maxOccurs="unbounded" name="interfaces" nillable="true" type="tns1:WSInterface"/>
+     <element name="ipAddress" nillable="true" type="soapenc:string"/>
+     <element name="resourceRecordFlag" nillable="true" type="soapenc:string"/>
+     <element name="splitPool" nillable="true" type="soapenc:string"/>
+     <element name="userDefinedFields" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSTagAssociation">
+    <sequence>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="ipAddresses" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="tag" nillable="true" type="tns1:WSTag"/>
+     <element name="type" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSAddrpool">
+    <sequence>
+     <element name="allowClientClasses" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="container" nillable="true" type="soapenc:string"/>
+     <element name="denyClientClasses" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="dhcpOptionSet" nillable="true" type="soapenc:string"/>
+     <element name="dhcpPolicySet" nillable="true" type="soapenc:string"/>
+     <element name="endAddr" nillable="true" type="soapenc:string"/>
+     <element name="failoverNetService" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:string"/>
+     <element name="name" nillable="true" type="soapenc:string"/>
+     <element name="overlapInterfaceIp" type="boolean"/>
+     <element name="prefixLength" nillable="true" type="soapenc:string"/>
+     <element name="primaryNetService" nillable="true" type="soapenc:string"/>
+     <element name="sharename" nillable="true" type="soapenc:string"/>
+     <element name="startAddr" nillable="true" type="soapenc:string"/>
+     <element name="type" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSDomainResourceRec">
+    <sequence>
+     <element name="TTL" nillable="true" type="soapenc:string"/>
+     <element name="comment" nillable="true" type="soapenc:string"/>
+     <element name="data" nillable="true" type="soapenc:string"/>
+     <element name="deviceRecFlag" type="boolean"/>
+     <element name="domain" nillable="true" type="soapenc:string"/>
+     <element name="domainType" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="owner" nillable="true" type="soapenc:string"/>
+     <element name="resourceRecClass" nillable="true" type="soapenc:string"/>
+     <element name="resourceRecType" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSDeviceResourceRec">
+    <sequence>
+     <element name="TTL" nillable="true" type="soapenc:string"/>
+     <element name="comment" nillable="true" type="soapenc:string"/>
+     <element name="container" nillable="true" type="soapenc:string"/>
+     <element name="data" nillable="true" type="soapenc:string"/>
+     <element name="domain" nillable="true" type="soapenc:string"/>
+     <element name="domainType" nillable="true" type="soapenc:string"/>
+     <element name="hostname" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="ipAddress" nillable="true" type="soapenc:string"/>
+     <element name="owner" nillable="true" type="soapenc:string"/>
+     <element name="resourceRecClass" nillable="true" type="soapenc:string"/>
+     <element name="resourceRecType" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>

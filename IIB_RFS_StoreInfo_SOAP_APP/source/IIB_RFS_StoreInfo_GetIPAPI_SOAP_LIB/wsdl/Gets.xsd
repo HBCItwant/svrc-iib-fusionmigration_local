@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://diamondip.com/ipcontrol/ws/" xmlns:Q1="http://schemas.xmlsoap.org/soap/envelope/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:intf="http://diamondip.com/ipcontrol/ws/" xmlns:ns1="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://service.ipcontrol.diamondip.com" xmlns:tns2="http://service.netcontrol.diamondip.com">
+  <xsd:import namespace="http://schemas.xmlsoap.org/soap/envelope/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/envelope/soapenv11.xsd"/>
+  <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+  <xsd:import namespace="http://service.netcontrol.diamondip.com" schemaLocation="Gets_InlineSchema3.xsd"/>
+  <xsd:import namespace="http://service.ipcontrol.diamondip.com" schemaLocation="Gets_InlineSchema2.xsd"/>
+  <xsd:include schemaLocation="Gets_InlineSchema1.xsd"/>
+
+<!-- BEGIN Global group petaining to all wsdl:message definitions -->
+    <xsd:group name="getPrefixPoolByStartAddrRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="addr" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceResourceRecResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getDeviceResourceRecReturn" type="tns1:WSDeviceResourceRec"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getContainerParentHierarchyResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getContainerParentHierarchyReturn" type="intf:ArrayOf_soapenc_string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getEffectiveDhcpServersForContainerResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getEffectiveDhcpServersForContainerReturn" type="intf:ArrayOf_tns1_WSDhcpServer"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDhcpServerByIpAddressRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="ipAddress" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetworkElementByNameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getNetworkElementByNameReturn" type="tns1:WSNetworkElement"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getAddressPoolRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="startAddress" type="ns1:string"/>
+      <xsd:element name="container" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getTagAssociationByIpAddressesRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="tagName" type="ns1:string"/>
+      <xsd:element name="type" type="ns1:string"/>
+      <xsd:element name="ipAddresses" type="intf:ArrayOf_soapenc_string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDomainResourceRecRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="domainName" type="ns1:string"/>
+      <xsd:element name="domainTypeName" type="ns1:string"/>
+      <xsd:element name="owner" type="ns1:string"/>
+      <xsd:element name="type" type="ns1:string"/>
+      <xsd:element name="classtype" type="ns1:string"/>
+      <xsd:element name="rdata" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getAdminResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getAdminReturn" type="tns1:WSAdmin"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getAdminRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="adminName" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getBlockByNameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getBlockByNameReturn" type="tns1:WSGenericBlock"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDhcpServerByIpAddressResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getDhcpServerByIpAddressReturn" type="tns1:WSDhcpServer"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetworkElementByNameOrIpAddressResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getNetworkElementByNameOrIpAddressReturn" type="tns1:WSNetworkElement"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getEffectiveDhcpServersForContainerRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="container" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceByHostnameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getDeviceByHostnameReturn" type="tns1:WSDevice"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDomainResourceRecResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getDomainResourceRecReturn" type="tns1:WSDomainResourceRec"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceByIPAddrResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getDeviceByIPAddrReturn" type="tns1:WSDevice"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetworkLinkByNameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="netLinkName" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceResourceRecRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="domainName" type="ns1:string"/>
+      <xsd:element name="domainTypeName" type="ns1:string"/>
+      <xsd:element name="owner" type="ns1:string"/>
+      <xsd:element name="type" type="ns1:string"/>
+      <xsd:element name="classtype" type="ns1:string"/>
+      <xsd:element name="rdata" type="ns1:string"/>
+      <xsd:element name="hostname" type="ns1:string"/>
+      <xsd:element name="ipAddress" type="ns1:string"/>
+      <xsd:element name="container" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getAddressPoolResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getAddressPoolReturn" type="tns1:WSAddrpool"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getPrefixPoolByStartAddrResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getPrefixPoolByStartAddrReturn" type="tns1:WSPrefixPool"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getTagAssociationByIpAddressesResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getTagAssociationByIpAddressesReturn" type="tns1:WSTagAssociation"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceByMACAddressRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="macAddress" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getBlockByIpAddressRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="ipAddress" type="ns1:string"/>
+      <xsd:element name="container" type="ns1:string"/>
+      <xsd:element name="bsize" type="ns1:int"/>
+      <xsd:element name="status" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceByMACAddressResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getDeviceByMACAddressReturn" type="tns1:WSDevice"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getAdminRoleRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="adminRoleName" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetelementInterfaceRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="neName" type="ns1:string"/>
+      <xsd:element name="iName" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetworkElementByNameOrIpAddressRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="netElementName" type="ns1:string"/>
+      <xsd:element name="netElementIpAddress" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getTagAssociationByNameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getTagAssociationByNameReturn" type="tns1:WSTagAssociation"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetworkLinkByNameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getNetworkLinkByNameReturn" type="tns1:WSNetworkLink"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDhcpServerByNameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getDhcpServerByNameReturn" type="tns1:WSDhcpServer"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getTagAssociationByNameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="tagName" type="ns1:string"/>
+      <xsd:element name="type" type="ns1:string"/>
+      <xsd:element name="name" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getPrefixPoolByNameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="name" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDhcpServerByNameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="name" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceByIPAddrRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="ipAddress" type="ns1:string"/>
+      <xsd:element name="container" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetworkElementByNameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="netElementName" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getDeviceByHostnameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="hostname" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getContainerByNameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getContainerByNameReturn" type="tns2:WSContainer"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getPrefixPoolByNameResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getPrefixPoolByNameReturn" type="tns1:WSPrefixPool"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getBlockByNameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="name" type="ns1:string"/>
+      <xsd:element name="container" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getNetelementInterfaceResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getNetelementInterfaceReturn" type="tns1:WSNetElementInterface"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getContainerParentHierarchyRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="containerName" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getContainerByNameRequestGroup">
+    <xsd:sequence>
+      <xsd:element name="containerName" type="ns1:string"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getAdminRoleResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getAdminRoleReturn" type="tns1:WSAdminRole"/>
+    </xsd:sequence>
+  </xsd:group>
+    <xsd:group name="getBlockByIpAddressResponseGroup">
+    <xsd:sequence>
+      <xsd:element name="getBlockByIpAddressReturn" type="tns1:WSGenericBlock"/>
+    </xsd:sequence>
+  </xsd:group>
+<!-- END Global group -->
+
+
+<!-- BEGIN Message Definitions for the wsdl:operations  -->
+    <xsd:element ibmSchExtn:docRoot="true" name="getDhcpServerByName" type="intf:getDhcpServerByName_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getTagAssociationByName" type="intf:getTagAssociationByName_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getPrefixPoolByNameResponse" type="intf:getPrefixPoolByNameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getBlockByIpAddressResponse" type="intf:getBlockByIpAddressResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetworkElementByNameOrIpAddress" type="intf:getNetworkElementByNameOrIpAddress_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceByIPAddr" type="intf:getDeviceByIPAddr_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetelementInterfaceResponse" type="intf:getNetelementInterfaceResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceByMACAddressResponse" type="intf:getDeviceByMACAddressResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getAdminRole" type="intf:getAdminRole_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getBlockByIpAddress" type="intf:getBlockByIpAddress_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetworkElementByName" type="intf:getNetworkElementByName_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceByIPAddrResponse" type="intf:getDeviceByIPAddrResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getBlockByName" type="intf:getBlockByName_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getBlockByNameResponse" type="intf:getBlockByNameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getPrefixPoolByName" type="intf:getPrefixPoolByName_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getAdminRoleResponse" type="intf:getAdminRoleResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getTagAssociationByIpAddressesResponse" type="intf:getTagAssociationByIpAddressesResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceByHostname" type="intf:getDeviceByHostname_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getContainerByName" type="intf:getContainerByName_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetworkLinkByNameResponse" type="intf:getNetworkLinkByNameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDhcpServerByIpAddressResponse" type="intf:getDhcpServerByIpAddressResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getTagAssociationByNameResponse" type="intf:getTagAssociationByNameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceResourceRec" type="intf:getDeviceResourceRec_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetworkElementByNameResponse" type="intf:getNetworkElementByNameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceByMACAddress" type="intf:getDeviceByMACAddress_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getContainerParentHierarchy" type="intf:getContainerParentHierarchy_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDomainResourceRecResponse" type="intf:getDomainResourceRecResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceByHostnameResponse" type="intf:getDeviceByHostnameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetelementInterface" type="intf:getNetelementInterface_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetworkElementByNameOrIpAddressResponse" type="intf:getNetworkElementByNameOrIpAddressResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getContainerParentHierarchyResponse" type="intf:getContainerParentHierarchyResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getContainerByNameResponse" type="intf:getContainerByNameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getAddressPool" type="intf:getAddressPool_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getPrefixPoolByStartAddr" type="intf:getPrefixPoolByStartAddr_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getAdmin" type="intf:getAdmin_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getAddressPoolResponse" type="intf:getAddressPoolResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getEffectiveDhcpServersForContainerResponse" type="intf:getEffectiveDhcpServersForContainerResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDhcpServerByNameResponse" type="intf:getDhcpServerByNameResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getPrefixPoolByStartAddrResponse" type="intf:getPrefixPoolByStartAddrResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getAdminResponse" type="intf:getAdminResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getNetworkLinkByName" type="intf:getNetworkLinkByName_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDomainResourceRec" type="intf:getDomainResourceRec_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDeviceResourceRecResponse" type="intf:getDeviceResourceRecResponse_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getTagAssociationByIpAddresses" type="intf:getTagAssociationByIpAddresses_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getDhcpServerByIpAddress" type="intf:getDhcpServerByIpAddress_OperType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="getEffectiveDhcpServersForContainer" type="intf:getEffectiveDhcpServersForContainer_OperType"/>
+    <xsd:complexType name="getDhcpServerByName_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDhcpServerByNameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getTagAssociationByName_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getTagAssociationByNameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getPrefixPoolByNameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getPrefixPoolByNameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getBlockByIpAddressResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getBlockByIpAddressResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetworkElementByNameOrIpAddress_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetworkElementByNameOrIpAddressRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceByIPAddr_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceByIPAddrRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetelementInterfaceResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetelementInterfaceResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceByMACAddressResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceByMACAddressResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getAdminRole_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getAdminRoleRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getBlockByIpAddress_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getBlockByIpAddressRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetworkElementByName_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetworkElementByNameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceByIPAddrResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceByIPAddrResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getBlockByName_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getBlockByNameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getBlockByNameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getBlockByNameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getPrefixPoolByName_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getPrefixPoolByNameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getAdminRoleResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getAdminRoleResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getTagAssociationByIpAddressesResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getTagAssociationByIpAddressesResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceByHostname_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceByHostnameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getContainerByName_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getContainerByNameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetworkLinkByNameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetworkLinkByNameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDhcpServerByIpAddressResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDhcpServerByIpAddressResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getTagAssociationByNameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getTagAssociationByNameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceResourceRec_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceResourceRecRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetworkElementByNameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetworkElementByNameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceByMACAddress_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceByMACAddressRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getContainerParentHierarchy_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getContainerParentHierarchyRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDomainResourceRecResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDomainResourceRecResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceByHostnameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceByHostnameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetelementInterface_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetelementInterfaceRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetworkElementByNameOrIpAddressResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetworkElementByNameOrIpAddressResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getContainerParentHierarchyResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getContainerParentHierarchyResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getContainerByNameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getContainerByNameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getAddressPool_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getAddressPoolRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getPrefixPoolByStartAddr_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getPrefixPoolByStartAddrRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getAdmin_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getAdminRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getAddressPoolResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getAddressPoolResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getEffectiveDhcpServersForContainerResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getEffectiveDhcpServersForContainerResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDhcpServerByNameResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDhcpServerByNameResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getPrefixPoolByStartAddrResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getPrefixPoolByStartAddrResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getAdminResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getAdminResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getNetworkLinkByName_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getNetworkLinkByNameRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDomainResourceRec_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDomainResourceRecRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDeviceResourceRecResponse_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDeviceResourceRecResponseGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getTagAssociationByIpAddresses_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getTagAssociationByIpAddressesRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getDhcpServerByIpAddress_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getDhcpServerByIpAddressRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+    <xsd:complexType name="getEffectiveDhcpServersForContainer_OperType">
+    <xsd:choice maxOccurs="1" minOccurs="1">
+      <xsd:group ref="intf:getEffectiveDhcpServersForContainerRequestGroup"/>
+    </xsd:choice>
+    <xsd:attributeGroup ref="Q1:encodingStyle"/>
+  </xsd:complexType>
+<!-- END Message Definitions -->
+
+
+</xsd:schema>

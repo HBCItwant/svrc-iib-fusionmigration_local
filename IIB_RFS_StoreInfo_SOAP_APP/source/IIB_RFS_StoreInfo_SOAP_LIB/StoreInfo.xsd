@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:str="http://xmlns.hbc.com/CommonModules/StoreInfoService" xmlns:strtyp="http://xmlns.hbc.com/CommonModules/StoreInfoService/Types">
+    <xsd:import namespace="http://xmlns.hbc.com/CommonModules/StoreInfoService/Types" schemaLocation="StoreInfoTypes.xsd"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StoreInfoRequest" type="strtyp:StoreInfoRequestType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StoreInfoResponse" type="strtyp:StoreInfoResponseType"/>
+    <xsd:element ibmSchExtn:docRoot="true" name="StoreInfoFault" type="strtyp:StoreInfoFaultType"/>
+</xsd:schema>

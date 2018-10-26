@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://xmlns.hbc.com/CommonModules/StoreInfoService/Types" xmlns:rfsdatatyp="http://xmlns.hbc.com/CommonModules/StoreInfoService/DataTypes" xmlns:strtyp="http://xmlns.hbc.com/CommonModules/StoreInfoService/Types">
+    <xsd:import namespace="http://xmlns.hbc.com/CommonModules/StoreInfoService/DataTypes" schemaLocation="RFSDataTypes.xsd"/>
+    <xsd:complexType name="StoreInfoRequestType">
+        <xsd:sequence>
+            <xsd:element minOccurs="1" name="Chain" type="rfsdatatyp:chainType"/>
+            <xsd:element minOccurs="0" name="StoreNum" nillable="true" type="rfsdatatyp:storeNumType"/>
+            <xsd:element minOccurs="0" name="Store4Digit" nillable="true" type="rfsdatatyp:storeNum4DigitType"/>
+            <xsd:element minOccurs="0" name="CountryCode" nillable="true" type="rfsdatatyp:countryCodeType"/>
+            <xsd:element minOccurs="0" name="Lang" nillable="true" type="rfsdatatyp:langType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StoreInfoResponseType">
+        <xsd:sequence>
+            <xsd:element name="StoreInfoDataList" type="strtyp:StoreInfoDataResponseType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StoreInfoDataResponseType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="StoreInfo" type="strtyp:StoreInfoOutputType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StoreInfoOutputType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="Chain" type="rfsdatatyp:chainType"/>
+            <xsd:element minOccurs="0" name="StoreNum" type="rfsdatatyp:storeNumType"/>
+            <xsd:element minOccurs="0" name="ABBR2" type="rfsdatatyp:ABBR2Type"/>
+            <xsd:element minOccurs="0" name="ABBR3" type="rfsdatatyp:ABBR3Type"/>
+            <xsd:element minOccurs="0" name="ABBR8" type="rfsdatatyp:ABBR8Type"/>
+            <xsd:element minOccurs="0" name="StoreName" type="rfsdatatyp:storeNameType"/>
+            <xsd:element minOccurs="0" name="TypeCode" type="rfsdatatyp:storeTypCodeType"/>
+            <xsd:element minOccurs="0" name="StatusCode" type="rfsdatatyp:storeStatusCodeType"/>
+            <xsd:element minOccurs="0" name="OpenDate" type="rfsdatatyp:storeOpenDateType"/>
+            <xsd:element minOccurs="0" name="CloseDate" type="rfsdatatyp:storeCloseDateType"/>
+            <xsd:element minOccurs="0" name="ActivityDate" type="rfsdatatyp:storeActivityDateType"/>
+            <xsd:element minOccurs="0" name="TimeZone" type="rfsdatatyp:storeTimeZoneType"/>
+            <xsd:element minOccurs="0" name="ORGRegion" type="rfsdatatyp:storeOrgRegionType"/>
+            <xsd:element minOccurs="0" name="GEORegion" type="rfsdatatyp:storeGeoRegionType"/>
+            <xsd:element minOccurs="0" name="Address1" type="rfsdatatyp:address1Type"/>
+            <xsd:element minOccurs="0" name="Address2" type="rfsdatatyp:address2Type"/>
+            <xsd:element minOccurs="0" name="City" type="rfsdatatyp:storeCityType"/>
+            <xsd:element minOccurs="0" name="State" type="rfsdatatyp:storeStateType"/>
+            <xsd:element minOccurs="0" name="ZipcodeNo" type="rfsdatatyp:storeZipType"/>
+            <xsd:element minOccurs="0" name="PhoneNo" type="rfsdatatyp:storePhoneType"/>
+            <xsd:element minOccurs="0" name="Store4Digit" type="rfsdatatyp:storeNum4DigitType"/>
+            <xsd:element minOccurs="0" name="FaxNumber" type="rfsdatatyp:storeFaxNumType"/>
+            <xsd:element minOccurs="0" name="CurrencyCode" type="rfsdatatyp:currencyCodType"/>
+            <xsd:element minOccurs="0" name="Lang" type="rfsdatatyp:langType"/>
+            <xsd:element minOccurs="0" name="LocalityCode" type="rfsdatatyp:localityCodeType"/>
+            <xsd:element minOccurs="0" name="StoreClass" type="rfsdatatyp:storeClassType"/>
+            <xsd:element minOccurs="0" name="FullFillPriority" type="rfsdatatyp:fulfillmentPriorityType"/>
+            <xsd:element minOccurs="0" name="PickUPEligibleIND" type="rfsdatatyp:PickUpEligibleIndType"/>
+            <xsd:element minOccurs="0" name="ShipFromStore" type="rfsdatatyp:shipFromStoreType"/>
+            <xsd:element minOccurs="0" name="ManagerEmail" type="rfsdatatyp:managerEmailType"/>
+            <xsd:element minOccurs="0" name="LocaleCode" type="rfsdatatyp:localCodeType"/>
+            <xsd:element minOccurs="0" name="CountryID" type="rfsdatatyp:countryCodeType"/>
+            <xsd:element minOccurs="0" name="StoreStatus" type="rfsdatatyp:storeStatusType"/>
+            <xsd:element minOccurs="0" name="severity" type="rfsdatatyp:severityType"/>
+            <xsd:element minOccurs="0" name="ErrorCode" type="rfsdatatyp:errorCodeType"/>
+            <xsd:element minOccurs="0" name="ErrorMessage" type="rfsdatatyp:errorMessageType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="StoreInfoFaultType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="severity" type="rfsdatatyp:severityType"/>
+            <xsd:element minOccurs="0" name="ErrorCode" type="rfsdatatyp:errorCodeType"/>
+            <xsd:element minOccurs="0" name="ErrorMessage" type="rfsdatatyp:errorMessageType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

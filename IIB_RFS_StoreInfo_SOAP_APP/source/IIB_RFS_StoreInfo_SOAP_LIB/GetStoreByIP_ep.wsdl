@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetStoreByIP" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoreByIP" xmlns:client="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoreByIP" xmlns:ns1="http://www.xmlns.hbc.com" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo!4.0/GetStoreByIP.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetStoreByIPBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="GetStoreByIP">
+        <plnk:role name="GetStoreByIPProvider" portType="client:GetStoreByIP"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.xmlns.hbc.com" schemaLocation="GetStoreInformation.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetStoreByIPRequestMessage">
+        <wsdl:part element="ns1:GetStoreInformationRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="GetStoreByIPResponseMessage">
+        <wsdl:part element="ns1:GetStoreInormationResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="FaultStoreByIP">
+        <wsdl:part element="ns1:Faults" name="part"/>
+    </wsdl:message>
+    <wsdl:portType name="GetStoreByIP">
+        <wsdl:operation name="GetStoreByIP">
+            <wsdl:input message="client:GetStoreByIPRequestMessage"/>
+            <wsdl:output message="client:GetStoreByIPResponseMessage"/>
+            <wsdl:fault message="client:FaultStoreByIP" name="fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetStoreByIPBinding" type="client:GetStoreByIP">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetStoreByIP">
+            <soap:operation soapAction="GetStoreByIP" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GetStoreByIP_ep">
+        <wsdl:port binding="client:GetStoreByIPBinding" name="GetStoreByIP_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo/GetStoreByIP_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,46 @@
+CREATE COMPUTE MODULE GetStoreByIP_ep_RFSStoreInfo_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		DECLARE last_index INTEGER;
+		DECLARE substring_IP,concat_IP CHARACTER;
+		
+		SET OutputRoot.Properties.IdentitySourceType='usernameAndPassword';
+		SET OutputRoot.Properties.IdentitySourceToken = 'api_call_user';
+		SET OutputRoot.Properties.IdentitySourcePassword = 'HbC-@p1C@ll$';
+		
+		IF CONTAINS(InputRoot.XMLNSC.ns6:GetStoreInformationRequest.ns6:IPAddress, '10.36.95') THEN
+			
+			SET OutputRoot.XMLNSC.ns11:getDeviceByIPAddr.ipAddress = '10.36.94.1';
+			
+		ELSE
+			
+	 		SET last_index = lastPostionInChar('.', InputRoot.XMLNSC.ns6:GetStoreInformationRequest.ns6:IPAddress);
+	 		
+	 		SET substring_IP = LEFT(InputRoot.XMLNSC.ns6:GetStoreInformationRequest.ns6:IPAddress,last_index);
+	 		
+	 		SET OutputRoot.XMLNSC.ns11:getDeviceByIPAddr.ipAddress = substring_IP||'1';
+		   
+			
+			
+		END IF;
+		
+	END;
+END MODULE;

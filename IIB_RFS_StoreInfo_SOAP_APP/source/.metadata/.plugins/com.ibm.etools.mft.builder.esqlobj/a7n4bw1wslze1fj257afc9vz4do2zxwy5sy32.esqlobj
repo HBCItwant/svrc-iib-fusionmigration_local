@@ -1,0 +1,63 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		 CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		DECLARE p_chain,errorMsg,Query, finalQuery, p_CountryCode,p_Lang,p_Store4Digit, p_StoreNum CHARACTER;
+		set p_chain = InputRoot.XMLNSC.ns:StoreInfoRequest.ns1:Chain;
+		set p_CountryCode = InputRoot.XMLNSC.ns:StoreInfoRequest.ns1:CountryCode;
+		set p_Lang = InputRoot.XMLNSC.ns:StoreInfoRequest.ns1:Lang;
+		set p_Store4Digit = InputRoot.XMLNSC.ns:StoreInfoRequest.ns1:Store4Digit;
+		set p_StoreNum = InputRoot.XMLNSC.ns:StoreInfoRequest.ns1:StoreNum;
+
+		SET Query = 'select * from RFS.RF_STORE r1 where r1.chain = '''|| Cast(p_chain as char)||'''';
+		--SET Query = 'select r1.STATE from RFS.RF_STORE r1 where r1.chain = ?';
+		SET finalQuery = 'p_chain';
+
+		IF (TRIM(p_CountryCode) IS NOT NULL OR TRIM(p_CountryCode) <> '' ) THEN
+			SET Query = Query||' and r1.COUNTRY_ID = '''|| Cast(p_CountryCode as char)||'''';
+		
+			--SET Query = Query ||' and r1.COUNTRY_ID=?';
+			SET finalQuery = finalQuery||',p_CountryCode';
+
+		end if;
+		
+		IF (TRIM(p_Lang) IS NOT NULL OR TRIM(p_Lang) <> '' ) THEN
+			SET Query = Query||' and r1.LANG = '''|| Cast(p_Lang as char)||'''';
+			--SET Query = Query ||' and r1.LANG=?';
+			SET finalQuery = finalQuery||',p_Lang';
+
+		end if;
+		
+		IF (TRIM(p_Store4Digit) IS NOT NULL OR TRIM(p_Store4Digit) <> '' ) THEN
+			SET Query = Query||' and r1.STORE_NO_4_DIGIT = '''|| Cast(p_Store4Digit as char)||'''';
+			--	SET Query = Query ||' and r1.STORE_NO_4_DIGIT=?';
+			SET finalQuery = finalQuery||',p_Store4Digit';
+		end if;
+		
+		IF (TRIM(p_StoreNum) IS NOT NULL OR TRIM(p_StoreNum) <> '' ) THEN
+			SET Query = Query||' and r1.STORE_NO = '''|| Cast(p_StoreNum as char)||'''';
+			--	SET Query = Query ||' and r1.STORE_NO=?';
+			SET finalQuery = finalQuery||', p_StoreNum';				
+		END IF;
+		
+			--set OutputRoot.XMLNSC.Query = Query;
+		SET OutputRoot.XMLNSC.Query.Result[] = PASSTHRU(Query);
+		
+		
+	END;

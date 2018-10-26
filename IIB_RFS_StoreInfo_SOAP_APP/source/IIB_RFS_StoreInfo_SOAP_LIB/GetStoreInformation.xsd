@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.xmlns.hbc.com" xmlns="http://www.xmlns.hbc.com" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+    <xsd:element ibmSchExtn:docRoot="true" name="GetStoreInformationRequest">
+        <xsd:annotation>
+            <xsd:documentation>A sample element</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" name="StoreNumber" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="CountryCode" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="Chain" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="IPAddress" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="GetStoreInormationResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element maxOccurs="unbounded" name="GetStoreInformationCollection" type="StoreInformationType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="Faults">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element minOccurs="0" name="StoreNumber" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="Chain" type="xsd:string"/>
+                <xsd:element minOccurs="0" name="IPAddress" type="xsd:string"/>
+                <xsd:element name="Message" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="StoreInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="StoreNum" type="xsd:integer"/>
+            <xsd:element minOccurs="0" name="Chain" type="xsd:integer"/>
+            <xsd:element minOccurs="0" name="StoreName" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreDesc" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="Address1" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="Address2" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreCity" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreState" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreZip" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreZipPlus4" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StorePhone" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreType" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreTypeDesc" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreBusiness" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreBusinessDesc" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreStatus" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreStatusDesc" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreOpenDate" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreCloseDate" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="StoreSellInd" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="CountryID" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

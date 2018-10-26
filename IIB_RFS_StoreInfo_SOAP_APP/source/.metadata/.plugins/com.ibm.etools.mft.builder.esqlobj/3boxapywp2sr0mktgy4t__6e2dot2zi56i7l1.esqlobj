@@ -1,0 +1,23 @@
+CREATE PROCEDURE createJSONArray(IN firstArrayElementRef REFERENCE, IN arraySize INTEGER) BEGIN
+		-- Create a parent element for the array
+		DECLARE arrayParentRef REFERENCE TO firstArrayElementRef;
+		CREATE PREVIOUSSIBLING OF firstArrayElementRef 
+			AS arrayParentRef 
+			TYPE JSON.Array 
+			NAMESPACE FIELDNAMESPACE(firstArrayElementRef) 
+			NAME FIELDNAME(firstArrayElementRef);
+			
+		-- Make the array members children of the new parent element
+		DECLARE pos INTEGER 1;
+		WHILE pos <= arraySize DO
+			DECLARE tempRef REFERENCE TO firstArrayElementRef;
+			-- advance the reference. This should never fail because we have
+			-- already walked all of these siblings to discover the array.
+			MOVE firstArrayElementRef NEXTSIBLING;
+
+			DETACH tempRef;
+			ATTACH tempRef TO arrayParentRef AS LASTCHILD;
+			
+			SET pos = pos + 1;
+		END WHILE;
+	END;

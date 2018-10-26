@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetStoreInformation" targetNamespace="http://xmlns.oracle.com/CommonModules/RFSStoreInfo/GetStoreInformation" xmlns:inp1="http://www.xmlns.hbc.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://xmlns.oracle.com/CommonModules/RFSStoreInfo/GetStoreInformation">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo!4.0/GetStoreInformation.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetStoreInfoBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.xmlns.hbc.com" schemaLocation="GetStoreInformation.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="requestMessage">
+        <wsdl:part element="inp1:GetStoreInformationRequest" name="request"/>
+    </wsdl:message>
+    <wsdl:message name="replyMessage">
+        <wsdl:part element="inp1:GetStoreInormationResponse" name="reply"/>
+    </wsdl:message>
+    <wsdl:message name="fault">
+        <wsdl:part element="inp1:Faults" name="part"/>
+    </wsdl:message>
+    <wsdl:portType name="GetStoreInfo">
+        <wsdl:operation name="GetStoreByIP">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
+            <wsdl:fault message="tns:fault" name="fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetStoreInfoByStore">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
+            <wsdl:fault message="tns:fault" name="fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetStoresByChain">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
+            <wsdl:fault message="tns:fault" name="fault"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllStores">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:replyMessage"/>
+            <wsdl:fault message="tns:fault" name="fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetStoreInfoBinding" type="tns:GetStoreInfo">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetStoreByIP">
+            <soap:operation soapAction="GetStoreByIP" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetStoreInfoByStore">
+            <soap:operation soapAction="GetStoreInfoByStore" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetStoresByChain">
+            <soap:operation soapAction="GetStoresByChain" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllStores">
+            <soap:operation soapAction="GetAllStores" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GetStoreInformation_ep">
+        <wsdl:port binding="tns:GetStoreInfoBinding" name="GetStoreInfo_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo/GetStoreInformation_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,21 @@
+CREATE PROCEDURE AssignCommaDelimitedValueToList(IN commaDelimitedValue CHAR,IN iInputReference REFERENCE) BEGIN
+
+		DECLARE iCurrentCommaDelimitedValueIndex INT 0;							
+		DECLARE iCommaDelimitedValueList CHAR TRIM(commaDelimitedValue);
+		DECLARE iCommaDelimitedValueListCount INT LENGTH(iCommaDelimitedValueList) - LENGTH(REPLACE(iCommaDelimitedValueList, ',' )); 
+		WHILE iCurrentCommaDelimitedValueIndex <= iCommaDelimitedValueListCount DO
+			DECLARE iCommaDelimitedStartPosition INT 0;
+			DECLARE iCommaDelimitedEndPosition INT 0;
+			
+			SET iCommaDelimitedEndPosition = POSITION(',' IN iCommaDelimitedValueList);																						
+			IF iCommaDelimitedEndPosition = 0 OR iCommaDelimitedEndPosition IS NULL THEN  
+				SET iInputReference.List[iCurrentCommaDelimitedValueIndex+1] = TRIM(iCommaDelimitedValueList);
+			ELSE										
+				SET iInputReference.List[iCurrentCommaDelimitedValueIndex+1] = 
+							TRIM(SUBSTRING(iCommaDelimitedValueList FROM iCommaDelimitedStartPosition FOR iCommaDelimitedEndPosition));
+				SET iCommaDelimitedValueList = SUBSTRING(iCommaDelimitedValueList FROM iCommaDelimitedEndPosition+1);			
+			END IF;
+														
+			SET iCurrentCommaDelimitedValueIndex = iCurrentCommaDelimitedValueIndex + 1;										
+		END WHILE;								
+	END;

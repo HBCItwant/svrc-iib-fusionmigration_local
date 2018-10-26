@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.netcontrol.diamondip.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://diamondip.com/ipcontrol/ws/" xmlns:intf="http://diamondip.com/ipcontrol/ws/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://service.ipcontrol.diamondip.com" xmlns:tns2="http://service.netcontrol.diamondip.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.ipcontrol.diamondip.com" schemaLocation="Gets_InlineSchema2.xsd"/>
+   <import namespace="http://diamondip.com/ipcontrol/ws/" schemaLocation="Gets_InlineSchema1.xsd"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+   <complexType name="WSContainer">
+    <sequence>
+     <element name="allowedAllocFromParentBlocktypes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="allowedBlockTypes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="allowedDeviceTypes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="allowedRootBlockTypes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="applyDHCPToMultiparentDevContainer" type="boolean"/>
+     <element name="blockTypeInfoTemplates" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="containerName" nillable="true" type="soapenc:string"/>
+     <element name="containerType" nillable="true" type="soapenc:string"/>
+     <element name="description" nillable="true" type="soapenc:string"/>
+     <element name="deviceInfoTemplates" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="domainController" nillable="true" type="soapenc:string"/>
+     <element name="id" nillable="true" type="soapenc:int"/>
+     <element name="ignoreBlocktypeInUse" type="boolean"/>
+     <element name="informationTemplate" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="maintainHistoryRecs" type="boolean"/>
+     <element name="msSite" type="boolean"/>
+     <element name="msSiteName" nillable="true" type="soapenc:string"/>
+     <element name="parentName" nillable="true" type="soapenc:string"/>
+     <element name="replaceDHCPServer" nillable="true" type="soapenc:string"/>
+     <element name="replaceDHCPServerV6" nillable="true" type="soapenc:string"/>
+     <element name="requireSWIPNameBlockTypes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="userDefinedFields" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WSSubnetPolicy">
+    <sequence>
+     <element name="DHCPOptionsSet" nillable="true" type="soapenc:string"/>
+     <element name="DHCPPolicySet" nillable="true" type="soapenc:string"/>
+     <element name="DNSServers" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="cascadePrimaryDhcpServer" type="boolean"/>
+     <element name="defaultGateway" nillable="true" type="soapenc:string"/>
+     <element name="failoverDHCPServer" nillable="true" type="soapenc:string"/>
+     <element name="forwardDomainTypes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="forwardDomains" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="primaryDHCPServer" nillable="true" type="soapenc:string"/>
+     <element name="primaryWINSServer" nillable="true" type="soapenc:string"/>
+     <element name="reverseDomainTypes" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="reverseDomains" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+     <element name="networkLink" nillable="true" type="soapenc:string"/>
+    </sequence>
+   </complexType>
+  </schema>

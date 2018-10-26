@@ -1,0 +1,22 @@
+CREATE FUNCTION lastPostionInChar(IN char1 CHAR, IN char2 CHAR) RETURNS INT
+   -- Returns the number of occurences of char1 in char2
+   -- E.g.:     ('A', 'ABCDABCDABCD')    --> 3
+   --           ('ABC', 'ABCDABCD')    --> 2
+   --         ...   
+   BEGIN      
+      DECLARE count,position1,lastposition INT 0;      
+      IF char1 IS NOT NULL AND char2 IS NOT NULL THEN      
+         SET position1 = POSITION( char1 IN char2 REPEAT count+1 );         
+         WHILE position1 <> 0 DO
+            SET count = count + 1;  
+            SET position1 = POSITION( char1 IN char2 REPEAT count+1 );
+            IF position1 <> 0 then
+            set lastposition = position1;
+            end IF;
+         END WHILE;
+      
+         END IF; 
+         
+         RETURN lastposition;
+         
+   END;

@@ -1,0 +1,59 @@
+!SESSION 2018-10-26 13:23:27.194 -----------------------------------------------
+eclipse.buildId=4.2.2.M20140918-1444
+java.fullversion=8.0.5.15 - pwa6480sr5fp15-20180502_01(SR5 FP15)
+JRE 1.8.0 Windows 7 amd64-64 Compressed References 20180425_385365 (JIT enabled, AOT enabled)
+OpenJ9   - a7ffbfe
+OMR      - a531219
+IBM      - 59ef3dc
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -b C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_StoreInfo_SOAP_APP\build\bar\IIB_RFS_StoreInfo_dev.bar -cleanBuild -l IIB_RFS_StoreInfo_SOAP_LIB -a IIB_RFS_StoreInfo_SOAP_APP -deployAsSource
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -data C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_StoreInfo_SOAP_APP\source -b C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_StoreInfo_SOAP_APP\build\bar\IIB_RFS_StoreInfo_dev.bar -cleanBuild -l IIB_RFS_StoreInfo_SOAP_LIB -a IIB_RFS_StoreInfo_SOAP_APP -deployAsSource
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-10-26 13:23:30.247
+!MESSAGE Both 'com.ibm.etools.javaee.core' and 'com.ibm.etools.mft.service.model' register an extension parser for 'application'
+
+!ENTRY com.ibm.etools.mft.uri 0 0 2018-10-26 13:23:39.639
+!MESSAGE 
+
+!ENTRY org.eclipse.osgi 2 1 2018-10-26 13:23:48.072
+!MESSAGE NLS unused message: DFDLXSDResourceBuilder_errorSchemaInAppImportSchemaInSharedLib in: com.ibm.etools.msg.builder.messages
+
+!ENTRY org.eclipse.osgi 2 1 2018-10-26 13:23:48.074
+!MESSAGE NLS unused message: DFDLXSDResourceBuilder_errorProjectReferenceIsMissing in: com.ibm.etools.msg.builder.messages
+
+!ENTRY com.ibm.etools.references 4 0 2018-10-26 13:24:55.037
+!MESSAGE Link indexer shutdown-0[ERROR]Markers job was running at shutdown
+
+!ENTRY com.ibm.etools.references 4 0 2018-10-26 13:24:55.039
+!MESSAGE Link indexer shutdown-0[ERROR]Unsafe processor shutdown, index will be rebuilt on startup. (More exceptions may follow this message and likely can be ignored due to unsafe shutdown) 
+!SESSION 2018-10-26 15:21:31.464 -----------------------------------------------
+eclipse.buildId=4.2.2.M20140918-1444
+java.fullversion=8.0.5.15 - pwa6480sr5fp15-20180502_01(SR5 FP15)
+JRE 1.8.0 Windows 7 amd64-64 Compressed References 20180425_385365 (JIT enabled, AOT enabled)
+OpenJ9   - a7ffbfe
+OMR      - a531219
+IBM      - 59ef3dc
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -b C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_StoreInfo_SOAP_APP\build\bar\IIB_RFS_StoreInfo_dev.bar -cleanBuild -l IIB_RFS_StoreInfo_SOAP_LIB -a IIB_RFS_StoreInfo_SOAP_APP -deployAsSource
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -showlocation -product com.ibm.etools.msgbroker.tooling.ide -application com.ibm.etools.mft.bar.cmdline.mqsicreatebar -data C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_StoreInfo_SOAP_APP\source -b C:\Vijay\Development\workspace\svrc-iib-fusionmigration_local\GIT\svrc-iib-fusionmigration_local\IIB_RFS_StoreInfo_SOAP_APP\build\bar\IIB_RFS_StoreInfo_dev.bar -cleanBuild -l IIB_RFS_StoreInfo_SOAP_LIB -a IIB_RFS_StoreInfo_SOAP_APP -deployAsSource
+
+!ENTRY org.eclipse.core.resources 2 10035 2018-10-26 15:21:33.800
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.emf.ecore 2 0 2018-10-26 15:21:34.295
+!MESSAGE Both 'com.ibm.etools.javaee.core' and 'com.ibm.etools.mft.service.model' register an extension parser for 'application'
+
+!ENTRY org.eclipse.osgi 2 1 2018-10-26 15:21:39.168
+!MESSAGE NLS unused message: DFDLXSDResourceBuilder_errorSchemaInAppImportSchemaInSharedLib in: com.ibm.etools.msg.builder.messages
+
+!ENTRY org.eclipse.osgi 2 1 2018-10-26 15:21:39.169
+!MESSAGE NLS unused message: DFDLXSDResourceBuilder_errorProjectReferenceIsMissing in: com.ibm.etools.msg.builder.messages
+
+!ENTRY com.ibm.etools.mft.uri 0 0 2018-10-26 15:21:44.308
+!MESSAGE 
+
+!ENTRY com.ibm.etools.references 4 0 2018-10-26 15:22:46.880
+!MESSAGE Link indexer shutdown-0[ERROR]Markers job was running at shutdown
+
+!ENTRY com.ibm.etools.references 4 0 2018-10-26 15:22:46.883
+!MESSAGE Link indexer shutdown-0[ERROR]Unsafe processor shutdown, index will be rebuilt on startup. (More exceptions may follow this message and likely can be ignored due to unsafe shutdown) 

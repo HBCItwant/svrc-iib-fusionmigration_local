@@ -1,0 +1,141 @@
+BROKER SCHEMA com.esb.hbc
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME   : SOAP_InputCatchHandler_Compute
+* DESCRIPTION : Call to the opertaion SOAP_InputCatchHandler_Compute in SOAP_InputCatchHandler.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 			Comments
+* 1.0 			08/30/2018 				vijay 			Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+CREATE COMPUTE MODULE SOAP_InputCatchHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME : SOAP_MessageFailure_Handler_Compute
+* DESCRIPTION : Call to the opertaion SOAP_MessageFailure_Handler_Compute in SOAP_MessageFailure_Handler.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 		Comments
+* 1.0 			08/30/2018 				vijay 		Initial Creation
+* 
+* ------------------------------------------------------------------------------------------------------------*/
+
+CREATE COMPUTE MODULE SOAP_MessageFailure_Handler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE pException REFERENCE TO InputExceptionList;
+		DECLARE messageNumber INTEGER ;
+		DECLARE messageText CHARACTER;
+		DECLARE UserGenErrorMsg CONSTANT CHARACTER 'User generated exception';
+
+		SET messageNumber = Environment.variables.ERROR_msg_ID;
+		CALL HBC_Common.GetErrorContext(InputExceptionList,Environment.Exception);
+
+		SET pException.ErrorType = Environment.Exception.ErrorTpe;
+		SET pException.Text = Environment.Exception.ErrorDes;
+		SET pException.Number = Environment.Exception.ErrorCde;
+		-- constructing the exception output message
+		DECLARE rOutput REFERENCE TO OutputRoot.XMLNSC.ns:RFSHierarchyFault;
+		CREATE FIELD OutputRoot.XMLNSC.ns6:Faults AS rOutput;
+
+		IF pException.ErrorType = 'UserException' THEN
+			DECLARE errorCodeID INTEGER;
+			DECLARE errorText CHARACTER;
+			DECLARE errorDetails CHARACTER;
+
+			SET errorCodeID = Environment.variables.ERROR_msg_ID;
+			SET errorText = Environment.variables.ERROR_msg_MSG;
+			SET errorDetails = Environment.variables.ERROR_msg_MSG;
+
+			SET rOutput.Chain = errorCodeID;
+			SET rOutput.Message = errorText;
+			--SET rOutput.ns5:severity = 'low';
+			-- system/sockettimeout error
+		ELSE
+			DECLARE errorCodeID INTEGER;
+			DECLARE errorText CHARACTER;
+			DECLARE errorDetails CHARACTER;
+
+			SET errorCodeID = pException.Number;
+			SET errorText = pException.Text;
+			SET errorDetails = pException.Text;
+
+			--SET rOutput.ns5:code = errorCodeID;
+			SET rOutput.ns6:Message = errorText;
+			--SET rOutput.ns5:severity = 'high';
+
+		END IF;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME : SOAP_InputHTTPTimeoutHandler_Compute
+* DESCRIPTION : Call to the opertaion SOAP_InputHTTPTimeoutHandler_Compute in SOAP_InputHTTPTimeoutHandler.subflow.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 		Comments
+* 1.0 			08/30/2018 				vijay 		Initial Creation
+* ------------------------------------------------------------------------------------------------------------*/
+
+CREATE COMPUTE MODULE SOAP_InputHTTPTimeoutHandler_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://diamondip.com/ipcontrol/ws/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://diamondip.com/ipcontrol/ws/" xmlns:intf="http://diamondip.com/ipcontrol/ws/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://service.ipcontrol.diamondip.com" xmlns:tns2="http://service.netcontrol.diamondip.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://service.ipcontrol.diamondip.com" schemaLocation="Gets_InlineSchema2.xsd"/>
+   <import namespace="http://service.netcontrol.diamondip.com" schemaLocation="Gets_InlineSchema3.xsd"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+                        <xsd:group minOccurs="0" ref="soapenc:Array"/>
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_int">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:int[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_WSTag">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:WSTag[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_soapenc_boolean">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:boolean[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_WSDhcpServer">
+    <complexContent>
+     <restriction base="soapenc:Array">
+                        <xsd:group minOccurs="0" ref="soapenc:Array"/>
+                        <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:WSDhcpServer[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>

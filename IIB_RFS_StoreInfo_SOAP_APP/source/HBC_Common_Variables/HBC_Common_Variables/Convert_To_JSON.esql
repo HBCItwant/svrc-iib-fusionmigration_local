@@ -1,0 +1,25 @@
+BROKER SCHEMA HBC_Common_Variables
+
+CREATE COMPUTE MODULE Convert_To_JSON
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot.JSON.Data = InputRoot.XMLNSC;		
+		CALL HBC_Common_Variables.createJSONArrays(OutputRoot.JSON.Data);
+	END;
+END MODULE;

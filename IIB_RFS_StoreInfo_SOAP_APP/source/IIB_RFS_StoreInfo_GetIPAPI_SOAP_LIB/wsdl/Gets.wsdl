@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://diamondip.com/ipcontrol/ws/" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://diamondip.com/ipcontrol/ws/" xmlns:intf="http://diamondip.com/ipcontrol/ws/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://service.ipcontrol.diamondip.com" xmlns:tns2="http://service.netcontrol.diamondip.com" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="Gets_InlineSchema2.xsd"/>
+        <generatedXSD location="Gets_InlineSchema1.xsd"/>
+        <generatedXSD location="Gets_InlineSchema3.xsd"/>
+        <binding hasEncoding="true" imported="true" name="GetsSoapBinding" originalBindingStyle="rpc"/>
+        <generatedXSD location="Gets?wsdl"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+<!--WSDL created by Apache Axis version: 1.2RC3
+Built on Feb 28, 2005 (10:15:14 EST)-->
+ <wsdl:types>
+  
+  
+  
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.ipcontrol.diamondip.com">
+   <import namespace="http://diamondip.com/ipcontrol/ws/" schemaLocation="Gets_InlineSchema1.xsd"/>
+   <import namespace="http://service.netcontrol.diamondip.com" schemaLocation="Gets_InlineSchema3.xsd"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+   <xsd:include schemaLocation="Gets_InlineSchema2.xsd"/>
+    </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://diamondip.com/ipcontrol/ws/">
+   <import namespace="http://service.ipcontrol.diamondip.com" schemaLocation="Gets_InlineSchema2.xsd"/>
+   <import namespace="http://service.netcontrol.diamondip.com" schemaLocation="Gets_InlineSchema3.xsd"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+   <xsd:include schemaLocation="Gets_InlineSchema1.xsd"/>
+    </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.netcontrol.diamondip.com">
+   <import namespace="http://service.ipcontrol.diamondip.com" schemaLocation="Gets_InlineSchema2.xsd"/>
+   <import namespace="http://diamondip.com/ipcontrol/ws/" schemaLocation="Gets_InlineSchema1.xsd"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+   <xsd:include schemaLocation="Gets_InlineSchema3.xsd"/>
+    </schema>
+    <xsd:schema targetNamespace="http://schemas.xmlsoap.org/soap/encoding/">
+      <xsd:include schemaLocation="../IBMdefined/org/xmlsoap/schemas/soap/encoding/soapenc11.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+
+   <wsdl:message name="getBlockByIpAddressResponse">
+
+      <wsdl:part name="getBlockByIpAddressReturn" type="tns1:WSGenericBlock"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceByIPAddrRequest">
+
+      <wsdl:part name="ipAddress" type="soapenc:string"/>
+
+      <wsdl:part name="container" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceByIPAddrResponse">
+
+      <wsdl:part name="getDeviceByIPAddrReturn" type="tns1:WSDevice"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceByMACAddressRequest">
+
+      <wsdl:part name="macAddress" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceResourceRecResponse">
+
+      <wsdl:part name="getDeviceResourceRecReturn" type="tns1:WSDeviceResourceRec"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrefixPoolByStartAddrResponse">
+
+      <wsdl:part name="getPrefixPoolByStartAddrReturn" type="tns1:WSPrefixPool"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDhcpServerByNameResponse">
+
+      <wsdl:part name="getDhcpServerByNameReturn" type="tns1:WSDhcpServer"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrefixPoolByNameRequest">
+
+      <wsdl:part name="name" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDhcpServerByNameRequest">
+
+      <wsdl:part name="name" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBlockByNameResponse">
+
+      <wsdl:part name="getBlockByNameReturn" type="tns1:WSGenericBlock"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceResourceRecRequest">
+
+      <wsdl:part name="domainName" type="soapenc:string"/>
+
+      <wsdl:part name="domainTypeName" type="soapenc:string"/>
+
+      <wsdl:part name="owner" type="soapenc:string"/>
+
+      <wsdl:part name="type" type="soapenc:string"/>
+
+      <wsdl:part name="classtype" type="soapenc:string"/>
+
+      <wsdl:part name="rdata" type="soapenc:string"/>
+
+      <wsdl:part name="hostname" type="soapenc:string"/>
+
+      <wsdl:part name="ipAddress" type="soapenc:string"/>
+
+      <wsdl:part name="container" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getContainerByNameRequest">
+
+      <wsdl:part name="containerName" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetworkLinkByNameResponse">
+
+      <wsdl:part name="getNetworkLinkByNameReturn" type="tns1:WSNetworkLink"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressPoolRequest">
+
+      <wsdl:part name="startAddress" type="soapenc:string"/>
+
+      <wsdl:part name="container" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDhcpServerByIpAddressResponse">
+
+      <wsdl:part name="getDhcpServerByIpAddressReturn" type="tns1:WSDhcpServer"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceByMACAddressResponse">
+
+      <wsdl:part name="getDeviceByMACAddressReturn" type="tns1:WSDevice"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDhcpServerByIpAddressRequest">
+
+      <wsdl:part name="ipAddress" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDomainResourceRecRequest">
+
+      <wsdl:part name="domainName" type="soapenc:string"/>
+
+      <wsdl:part name="domainTypeName" type="soapenc:string"/>
+
+      <wsdl:part name="owner" type="soapenc:string"/>
+
+      <wsdl:part name="type" type="soapenc:string"/>
+
+      <wsdl:part name="classtype" type="soapenc:string"/>
+
+      <wsdl:part name="rdata" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTagAssociationByIpAddressesResponse">
+
+      <wsdl:part name="getTagAssociationByIpAddressesReturn" type="tns1:WSTagAssociation"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetworkLinkByNameRequest">
+
+      <wsdl:part name="netLinkName" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBlockByNameRequest">
+
+      <wsdl:part name="name" type="soapenc:string"/>
+
+      <wsdl:part name="container" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceByHostnameResponse">
+
+      <wsdl:part name="getDeviceByHostnameReturn" type="tns1:WSDevice"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveDhcpServersForContainerResponse">
+
+      <wsdl:part name="getEffectiveDhcpServersForContainerReturn" type="impl:ArrayOf_tns1_WSDhcpServer"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetworkElementByNameOrIpAddressResponse">
+
+      <wsdl:part name="getNetworkElementByNameOrIpAddressReturn" type="tns1:WSNetworkElement"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminRequest">
+
+      <wsdl:part name="adminName" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetworkElementByNameOrIpAddressRequest">
+
+      <wsdl:part name="netElementName" type="soapenc:string"/>
+
+      <wsdl:part name="netElementIpAddress" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrefixPoolByStartAddrRequest">
+
+      <wsdl:part name="addr" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTagAssociationByIpAddressesRequest">
+
+      <wsdl:part name="tagName" type="soapenc:string"/>
+
+      <wsdl:part name="type" type="soapenc:string"/>
+
+      <wsdl:part name="ipAddresses" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetelementInterfaceRequest">
+
+      <wsdl:part name="neName" type="soapenc:string"/>
+
+      <wsdl:part name="iName" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetelementInterfaceResponse">
+
+      <wsdl:part name="getNetelementInterfaceReturn" type="tns1:WSNetElementInterface"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getContainerParentHierarchyRequest">
+
+      <wsdl:part name="containerName" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDomainResourceRecResponse">
+
+      <wsdl:part name="getDomainResourceRecReturn" type="tns1:WSDomainResourceRec"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPrefixPoolByNameResponse">
+
+      <wsdl:part name="getPrefixPoolByNameReturn" type="tns1:WSPrefixPool"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminRoleRequest">
+
+      <wsdl:part name="adminRoleName" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminRoleResponse">
+
+      <wsdl:part name="getAdminRoleReturn" type="tns1:WSAdminRole"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetworkElementByNameResponse">
+
+      <wsdl:part name="getNetworkElementByNameReturn" type="tns1:WSNetworkElement"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBlockByIpAddressRequest">
+
+      <wsdl:part name="ipAddress" type="soapenc:string"/>
+
+      <wsdl:part name="container" type="soapenc:string"/>
+
+      <wsdl:part name="bsize" type="soapenc:int"/>
+
+      <wsdl:part name="status" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressPoolResponse">
+
+      <wsdl:part name="getAddressPoolReturn" type="tns1:WSAddrpool"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTagAssociationByNameRequest">
+
+      <wsdl:part name="tagName" type="soapenc:string"/>
+
+      <wsdl:part name="type" type="soapenc:string"/>
+
+      <wsdl:part name="name" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getDeviceByHostnameRequest">
+
+      <wsdl:part name="hostname" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getTagAssociationByNameResponse">
+
+      <wsdl:part name="getTagAssociationByNameReturn" type="tns1:WSTagAssociation"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getContainerParentHierarchyResponse">
+
+      <wsdl:part name="getContainerParentHierarchyReturn" type="impl:ArrayOf_soapenc_string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEffectiveDhcpServersForContainerRequest">
+
+      <wsdl:part name="container" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getNetworkElementByNameRequest">
+
+      <wsdl:part name="netElementName" type="soapenc:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAdminResponse">
+
+      <wsdl:part name="getAdminReturn" type="tns1:WSAdmin"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getContainerByNameResponse">
+
+      <wsdl:part name="getContainerByNameReturn" type="tns2:WSContainer"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Gets">
+
+      <wsdl:operation name="getAdmin" parameterOrder="adminName">
+
+         <wsdl:input message="impl:getAdminRequest" name="getAdminRequest"/>
+
+         <wsdl:output message="impl:getAdminResponse" name="getAdminResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDhcpServerByName" parameterOrder="name">
+
+         <wsdl:input message="impl:getDhcpServerByNameRequest" name="getDhcpServerByNameRequest"/>
+
+         <wsdl:output message="impl:getDhcpServerByNameResponse" name="getDhcpServerByNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDhcpServerByIpAddress" parameterOrder="ipAddress">
+
+         <wsdl:input message="impl:getDhcpServerByIpAddressRequest" name="getDhcpServerByIpAddressRequest"/>
+
+         <wsdl:output message="impl:getDhcpServerByIpAddressResponse" name="getDhcpServerByIpAddressResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetworkElementByName" parameterOrder="netElementName">
+
+         <wsdl:input message="impl:getNetworkElementByNameRequest" name="getNetworkElementByNameRequest"/>
+
+         <wsdl:output message="impl:getNetworkElementByNameResponse" name="getNetworkElementByNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetworkElementByNameOrIpAddress" parameterOrder="netElementName netElementIpAddress">
+
+         <wsdl:input message="impl:getNetworkElementByNameOrIpAddressRequest" name="getNetworkElementByNameOrIpAddressRequest"/>
+
+         <wsdl:output message="impl:getNetworkElementByNameOrIpAddressResponse" name="getNetworkElementByNameOrIpAddressResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getContainerByName" parameterOrder="containerName">
+
+         <wsdl:input message="impl:getContainerByNameRequest" name="getContainerByNameRequest"/>
+
+         <wsdl:output message="impl:getContainerByNameResponse" name="getContainerByNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getContainerParentHierarchy" parameterOrder="containerName">
+
+         <wsdl:input message="impl:getContainerParentHierarchyRequest" name="getContainerParentHierarchyRequest"/>
+
+         <wsdl:output message="impl:getContainerParentHierarchyResponse" name="getContainerParentHierarchyResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrefixPoolByName" parameterOrder="name">
+
+         <wsdl:input message="impl:getPrefixPoolByNameRequest" name="getPrefixPoolByNameRequest"/>
+
+         <wsdl:output message="impl:getPrefixPoolByNameResponse" name="getPrefixPoolByNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrefixPoolByStartAddr" parameterOrder="addr">
+
+         <wsdl:input message="impl:getPrefixPoolByStartAddrRequest" name="getPrefixPoolByStartAddrRequest"/>
+
+         <wsdl:output message="impl:getPrefixPoolByStartAddrResponse" name="getPrefixPoolByStartAddrResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetelementInterface" parameterOrder="neName iName">
+
+         <wsdl:input message="impl:getNetelementInterfaceRequest" name="getNetelementInterfaceRequest"/>
+
+         <wsdl:output message="impl:getNetelementInterfaceResponse" name="getNetelementInterfaceResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetworkLinkByName" parameterOrder="netLinkName">
+
+         <wsdl:input message="impl:getNetworkLinkByNameRequest" name="getNetworkLinkByNameRequest"/>
+
+         <wsdl:output message="impl:getNetworkLinkByNameResponse" name="getNetworkLinkByNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminRole" parameterOrder="adminRoleName">
+
+         <wsdl:input message="impl:getAdminRoleRequest" name="getAdminRoleRequest"/>
+
+         <wsdl:output message="impl:getAdminRoleResponse" name="getAdminRoleResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBlockByName" parameterOrder="name container">
+
+         <wsdl:input message="impl:getBlockByNameRequest" name="getBlockByNameRequest"/>
+
+         <wsdl:output message="impl:getBlockByNameResponse" name="getBlockByNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBlockByIpAddress" parameterOrder="ipAddress container bsize status">
+
+         <wsdl:input message="impl:getBlockByIpAddressRequest" name="getBlockByIpAddressRequest"/>
+
+         <wsdl:output message="impl:getBlockByIpAddressResponse" name="getBlockByIpAddressResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceByIPAddr" parameterOrder="ipAddress container">
+
+         <wsdl:input message="impl:getDeviceByIPAddrRequest" name="getDeviceByIPAddrRequest"/>
+
+         <wsdl:output message="impl:getDeviceByIPAddrResponse" name="getDeviceByIPAddrResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceByMACAddress" parameterOrder="macAddress">
+
+         <wsdl:input message="impl:getDeviceByMACAddressRequest" name="getDeviceByMACAddressRequest"/>
+
+         <wsdl:output message="impl:getDeviceByMACAddressResponse" name="getDeviceByMACAddressResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceByHostname" parameterOrder="hostname">
+
+         <wsdl:input message="impl:getDeviceByHostnameRequest" name="getDeviceByHostnameRequest"/>
+
+         <wsdl:output message="impl:getDeviceByHostnameResponse" name="getDeviceByHostnameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTagAssociationByIpAddresses" parameterOrder="tagName type ipAddresses">
+
+         <wsdl:input message="impl:getTagAssociationByIpAddressesRequest" name="getTagAssociationByIpAddressesRequest"/>
+
+         <wsdl:output message="impl:getTagAssociationByIpAddressesResponse" name="getTagAssociationByIpAddressesResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTagAssociationByName" parameterOrder="tagName type name">
+
+         <wsdl:input message="impl:getTagAssociationByNameRequest" name="getTagAssociationByNameRequest"/>
+
+         <wsdl:output message="impl:getTagAssociationByNameResponse" name="getTagAssociationByNameResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveDhcpServersForContainer" parameterOrder="container">
+
+         <wsdl:input message="impl:getEffectiveDhcpServersForContainerRequest" name="getEffectiveDhcpServersForContainerRequest"/>
+
+         <wsdl:output message="impl:getEffectiveDhcpServersForContainerResponse" name="getEffectiveDhcpServersForContainerResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressPool" parameterOrder="startAddress container">
+
+         <wsdl:input message="impl:getAddressPoolRequest" name="getAddressPoolRequest"/>
+
+         <wsdl:output message="impl:getAddressPoolResponse" name="getAddressPoolResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDomainResourceRec" parameterOrder="domainName domainTypeName owner type classtype rdata">
+
+         <wsdl:input message="impl:getDomainResourceRecRequest" name="getDomainResourceRecRequest"/>
+
+         <wsdl:output message="impl:getDomainResourceRecResponse" name="getDomainResourceRecResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceResourceRec" parameterOrder="domainName domainTypeName owner type classtype rdata hostname ipAddress container">
+
+         <wsdl:input message="impl:getDeviceResourceRecRequest" name="getDeviceResourceRecRequest"/>
+
+         <wsdl:output message="impl:getDeviceResourceRecResponse" name="getDeviceResourceRecResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="GetsSoapBinding" type="impl:Gets">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAdmin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdminRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdminResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDhcpServerByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDhcpServerByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDhcpServerByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDhcpServerByIpAddress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDhcpServerByIpAddressRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDhcpServerByIpAddressResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetworkElementByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNetworkElementByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNetworkElementByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetworkElementByNameOrIpAddress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNetworkElementByNameOrIpAddressRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNetworkElementByNameOrIpAddressResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getContainerByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getContainerByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getContainerByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getContainerParentHierarchy">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getContainerParentHierarchyRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getContainerParentHierarchyResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrefixPoolByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPrefixPoolByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPrefixPoolByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPrefixPoolByStartAddr">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPrefixPoolByStartAddrRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPrefixPoolByStartAddrResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetelementInterface">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNetelementInterfaceRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNetelementInterfaceResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getNetworkLinkByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getNetworkLinkByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getNetworkLinkByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAdminRole">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAdminRoleRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAdminRoleResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBlockByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBlockByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBlockByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBlockByIpAddress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBlockByIpAddressRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBlockByIpAddressResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceByIPAddr">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDeviceByIPAddrRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDeviceByIPAddrResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceByMACAddress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDeviceByMACAddressRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDeviceByMACAddressResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceByHostname">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDeviceByHostnameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDeviceByHostnameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTagAssociationByIpAddresses">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTagAssociationByIpAddressesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTagAssociationByIpAddressesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getTagAssociationByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getTagAssociationByNameRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getTagAssociationByNameResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEffectiveDhcpServersForContainer">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEffectiveDhcpServersForContainerRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEffectiveDhcpServersForContainerResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAddressPool">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAddressPoolRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAddressPoolResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDomainResourceRec">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDomainResourceRecRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDomainResourceRecResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getDeviceResourceRec">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getDeviceResourceRecRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getDeviceResourceRecResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://diamondip.com/ipcontrol/ws/" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="GetsService">
+
+      <wsdl:port binding="impl:GetsSoapBinding" name="Gets">
+
+         <wsdlsoap:address location="http://099-bt-ex10.jxnctr.saksinc.com:8080/inc-ws/services/Gets"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

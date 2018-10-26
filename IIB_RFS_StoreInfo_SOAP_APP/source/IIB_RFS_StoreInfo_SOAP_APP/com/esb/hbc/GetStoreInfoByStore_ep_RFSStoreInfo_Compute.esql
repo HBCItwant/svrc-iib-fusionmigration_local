@@ -1,0 +1,71 @@
+BROKER SCHEMA com.esb.hbc
+
+
+DECLARE ERROR_Store_not_found_MSG CONSTANT CHARACTER 'Store not found' ;
+DECLARE errorMsg CHARACTER;
+
+/*------------------------------------------------------------------------------------------------------------
+* FLOW NAME : GetStoreInfoByStore_ep_RFSStoreInfo_Compute
+* DESCRIPTION : Call to the opertaion GetStoreInfoByStore_ep_RFSStoreInfo_Compute in IIB_RFS_StoreInfo.
+*------------------------------------------------------------------------------------------------------------
+* ************************************************* REVISION HISTORY ****************************************
+* ------------------------------------------------------------------------------------------------------------
+* VERSION 		DATE(MM/DD/CCYY) 		Author 		Comments
+* 1.0 			08/20/2018 				vijay 		Initial Creation
+* 1.1 			08/24/2018 				vijay 		Message validation
+* ------------------------------------------------------------------------------------------------------------*/
+
+
+CREATE COMPUTE MODULE GetStoreInfoByStore_ep_RFSStoreInfo_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- CALL CopyMessageHeaders();
+		   CALL CopyEntireMessage();
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+		DELETE FIELD OutputRoot.*[<];
+		
+		DECLARE Store_no, Query CHARACTER;
+		SET Store_no = InputRoot.XMLNSC.ns6:GetStoreInformationRequest.ns6:StoreNumber;
+		
+		SET Query = 'Select * FROM RFS.RF_STORE R1 WHERE (R1.STORE_NO = ?)';
+		
+		SET OutputRoot.XML.Query.Result[] = PASSTHRU(Query,Store_no);
+		
+		DECLARE CountstoreNo INT CARDINALITY(OutputRoot.XML.Query.Result[]);
+		
+		IF EXISTS(OutputRoot.XML.Query.Result[])=TRUE THEN
+			
+			DELETE FIELD OutputRoot.SOAP.*[<];
+			
+			PROPAGATE TO TERMINAL 'out1';
+			
+		ELSE
+			
+			DELETE FIELD OutputRoot.XMLNSC.*[<];
+			DELETE FIELD OutputRoot.*[<];
+			SET OutputRoot.XMLNSC.ns6:Faults.ns6:StoreNumber = InputRoot.XMLNSC.ns6:GetStoreInformationRequest.ns6:StoreNumber;
+			SET OutputRoot.XMLNSC.ns6:Faults.ns6:Message = 'Store not found';
+			
+			
+				
+			PROPAGATE TO TERMINAL 'out2';
+
+
+		END IF;
+			
+	END;
+END MODULE;

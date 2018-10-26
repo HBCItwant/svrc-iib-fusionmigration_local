@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetStoreInfoByStore" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoreInfoByStore" xmlns:client="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetStoreInfoByStore" xmlns:ns1="http://www.xmlns.hbc.com" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo!4.0/GetStoreInfoByStore.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetStoreInfoByStoreBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="GetStoreInfoByStore">
+        <plnk:role name="GetStoreInfoByStoreProvider" portType="client:GetStoreInfoByStore"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://www.xmlns.hbc.com" schemaLocation="GetStoreInformation.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetStoreInfoByStoreRequestMessage">
+        <wsdl:part element="ns1:GetStoreInformationRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="GetStoreInfoByStoreResponseMessage">
+        <wsdl:part element="ns1:GetStoreInormationResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="FaultStoreInfoByStore">
+        <wsdl:part element="ns1:Faults" name="fault"/>
+    </wsdl:message>
+    <wsdl:portType name="GetStoreInfoByStore">
+        <wsdl:operation name="GetStoreInfoByStore">
+            <wsdl:input message="client:GetStoreInfoByStoreRequestMessage"/>
+            <wsdl:output message="client:GetStoreInfoByStoreResponseMessage"/>
+            <wsdl:fault message="client:FaultStoreInfoByStore" name="fault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetStoreInfoByStoreBinding" type="client:GetStoreInfoByStore">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetStoreInfoByStore">
+            <soap:operation soapAction="GetStoreInfoByStore" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault">
+                <soap:fault name="fault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GetStoreInfoByStore_ep">
+        <wsdl:port binding="client:GetStoreInfoByStoreBinding" name="GetStoreInfoByStore_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo/GetStoreInfoByStore_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

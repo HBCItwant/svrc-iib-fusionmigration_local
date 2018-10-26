@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="GetAllStores" targetNamespace="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetAllStores" xmlns:client="http://xmlns.hbc.com/CommonModules/RFSStoreInfo/GetAllStores" xmlns:ns1="http://www.xmlns.hbc.com" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:documentation>
+        <abstractWSDL>http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo!4.0/GetAllStores.wsdl</abstractWSDL>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="GetAllStoresBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+    <plnk:partnerLinkType name="GetAllStores">
+        <plnk:role name="GetAllStoresProvider" portType="client:GetAllStores"/>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.xmlns.hbc.com" schemaLocation="GetStoreInformation.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="GetAllStoresRequestMessage">
+        <wsdl:part element="ns1:GetStoreInformationRequest" name="payload"/>
+    </wsdl:message>
+    <wsdl:message name="GetAllStoresResponseMessage">
+        <wsdl:part element="ns1:GetStoreInormationResponse" name="payload"/>
+    </wsdl:message>
+    <wsdl:portType name="GetAllStores">
+        <wsdl:operation name="GetAllStores">
+            <wsdl:input message="client:GetAllStoresRequestMessage"/>
+            <wsdl:output message="client:GetAllStoresResponseMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="GetAllStoresBinding" type="client:GetAllStores">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetAllStores">
+            <soap:operation soapAction="GetAllStores" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="GetAllStores_ep">
+        <wsdl:port binding="client:GetAllStoresBinding" name="GetAllStores_pt">
+            <soap:address location="http://jxn-ux-fusion11q.saksinc.com:8001/soa-infra/services/CommonModules/RFSStoreInfo/GetAllStores_ep"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
